@@ -1,0 +1,97 @@
+
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- Dev Mode TRUE ; disable in production! -->
+	<constant name="struts.devMode" value="true" />
+
+	<package name="ballScore" extends="struts-default">
+		<!-- Inicio Filters -->
+		<interceptors>
+			<!--  Clase de autentificación-->
+			<interceptor name="authentication"
+				class="ipn.escom.ballScore.interceptor.ValidaLogin" />
+
+			<!-- Orden de ejecución-->
+			<interceptor-stack name="interceptor">
+				<interceptor-ref name="authentication" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!--  el valor predeterminado es usar la pila de clasificación del interceptor que primero autentica y luego sigue la pila predeterminada-->
+		<default-interceptor-ref name="interceptor" />
+
+
+		<!-- Global Results -->
+		<global-results>
+			<!--  Cuando expira la sesión regresa a index.jsp -->
+			<result name="expired" type="redirectAction">index</result>
+		</global-results>
+
+		<!-- Inicio Actions -->
+		<action name="index">
+			<result>/index.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!--  Hello World! http://localhost/webapp/hello para probar-->
+		<action name="hello" class="ipn.escom.ballScore.action.HelloAction">
+			<result name="success">hello.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="login" class="ipn.escom.ballScore.action.LoginAction"
+			method="login">
+			<!--  Tiene que ser defaultStack, de lo contrario, se ejecuta nuevamente para autorización y se repite en la página-->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="valid">sistema.jsp</result>
+			<result name="invalid">index.jsp</result>
+		</action>
+		
+		<!--  Acción para probar el sistema de sesión e intercepción-->
+		<action name="sessionTest" class="ipn.escom.ballScore.action.LoginAction"
+			method="sessionTest">
+			<result name="success">sessionTest.jsp</result>
+		</action>
+		
+		<!--  Acción para salir del sistema-->
+		<action name="logout" class="ipn.escom.ballScore.action.LoginAction"
+			method="logout">
+			<result name="success">index.jsp</result>
+		</action>
+	</package>
+	
+	<package name="managers" namespace="/managers" extends="struts-default">
+		<!-- Inicio Filters -->
+		<interceptors>
+			<!--  Clase de autentificación-->
+			<interceptor name="authentication"
+				class="ipn.escom.ballScore.interceptor.ValidaLogin" />
+
+			<!-- Orden de ejecución-->
+			<interceptor-stack name="interceptor">
+				<interceptor-ref name="authentication" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<!--  el valor predeterminado es usar la pila de clasificación del interceptor que primero autentica y luego sigue la pila predeterminada-->
+		<default-interceptor-ref name="interceptor" />
+
+		<action name="formularioRegistro" class="ipn.escom.ballScore.action.GestionarManagersAction" method="mostrarFormulario">
+			<result name="success">/registro.jsp</result>
+			<result name="input">/registro.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="registro" class="ipn.escom.ballScore.action.GestionarManagersAction" method="registro">
+			<result name="input">/registro.jsp</result>
+			<result name="success">/registro.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+	</package>
+</struts>
