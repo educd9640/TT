@@ -2,6 +2,10 @@ package ipn.escom.ballScore.form;
 
 import java.sql.Date;
 
+/**Form para gestionar managers
+ * @author Jose Mauricio
+ *
+ */
 public class GestionarManagersForm {
 	private Long idManager;
 	private String nombrePila;

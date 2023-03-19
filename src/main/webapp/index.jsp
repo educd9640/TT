@@ -20,7 +20,7 @@
 		<h4>Sistema: </h4>
 		<s:form action="login"  theme="bootstrap" cssClass="well form-vertical">
 			<s:textfield name="login"  placeholder="Login" />
-			<s:password name="contrasenia"  placeholder="Contrasenia" />
+			<s:password name="contrasenia"  placeholder="Contraseña" />
 			<s:submit value="Entrar" cssClass="btn btn-primary" targets="login" effect="highlight"/>
 			<s:submit value="Test" cssClass="btn btn-primary" targets="login" effect="highlight"/>
 		</s:form>

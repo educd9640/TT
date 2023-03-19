@@ -8,6 +8,10 @@ import org.hibernate.Session;
 import ipn.escom.ballScore.entity.Manager;
 import ipn.escom.ballScore.util.HibernateUtil;
 
+/**Clase de negocio para administrar logins
+ * @author Jose Mauricio
+ *
+ */
 @Stateless(mappedName = "LoginService")
 public class LoginBI {
 

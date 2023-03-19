@@ -4,29 +4,22 @@ import com.opensymphony.xwork2.Action;
 
 import ipn.escom.ballScore.entity.Manager;
 
+/**Clase Action para logins
+ * @author Jose Mauricio
+ *
+ */
 public class LoginAction extends BaseAction{
+
+	
+	private static final long serialVersionUID = 1L;
 
 	private String login;
 
 	private String contrasenia;
 
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getContrasenia() {
-		return contrasenia;
-	}
-
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
-	}
-
+	/**Metodo para logear
+	 * @return Valid si el loggin fue exitoso, invalid en caso contrario
+	 */
 	@SuppressWarnings("unchecked")
 	public String login(){
 		Manager usuario = getLoginService().doLogin(getLogin(), getContrasenia());
@@ -42,9 +35,12 @@ public class LoginAction extends BaseAction{
 			return "invalid";
 		}
 
-	} // end login method
+	}
 
-	// método para probar la sesión solamente
+
+	/**Metodo para testear session
+	 * @return En consola muestra el estado de la session
+	 */
 	public String sessionTest(){
 		
 		// eliminar print en producción
@@ -57,7 +53,9 @@ public class LoginAction extends BaseAction{
 	}
 
 
-	// método para cerrar sesión
+	/**Metodo para logout
+	 * @return Action Success
+	 */
 	public String logout(){
 		Manager usuarioLogado = (Manager) this.getSessionMap().get("Usuario");
 		
@@ -67,6 +65,24 @@ public class LoginAction extends BaseAction{
 		this.getSessionMap().remove("Usuario");
 		return Action.SUCCESS;
 
+	}
+	
+	//Inician metodos getters y setters
+	
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 
 

@@ -2,6 +2,10 @@ package ipn.escom.ballScore.entity;
 
 import java.sql.Date;
 
+/**Entidad de Manager
+ * @author Jose Mauricio
+ *
+ */
 public class Manager {
 	private Long idManager;
 	private String nombrePila;

@@ -11,8 +11,15 @@ import ipn.escom.ballScore.entity.Escuela;
 import ipn.escom.ballScore.entity.Manager;
 import ipn.escom.ballScore.form.GestionarManagersVO;
 
+/**Clase de negocio para gestionar los managers
+ * @author Jose Mauricio
+ *
+ */
 public class GestionarManagersBI {
 
+	/**Metodo de negocio para obtener las escuelas registradas
+	 * @return Lista de escuelas sin fecha baja
+	 */
 	public List<Escuela> obtenerEscuelas() {
 		GestionarEscuelasDAO escuelasDao = new GestionarEscuelasDAO();
 		List<Escuela> escuelas = escuelasDao.obtenerEscuelasAlta();
@@ -20,6 +27,10 @@ public class GestionarManagersBI {
 		return escuelas;
 	}
 	
+	/**Metodo de negocio para registrar un manager
+	 * @param vo Con los datos del manager
+	 * @return Id con el que se registro el manager (-1 en caso de que ya exista un manager con ese correo registrado)
+	 */
 	public Long registrarManager(GestionarManagersVO vo) {
 		
 		Manager nuevoManager = new Manager();
@@ -37,6 +48,7 @@ public class GestionarManagersBI {
 			GestionarEscuelasDAO escuelasDao= new GestionarEscuelasDAO();
 			Escuela escuela = escuelasDao.selectEscuelaById(vo.getIdEscuela());
 			nuevoManager.setEscuela(escuela);
+			escuelasDao.cerrarConexiones();
 			idManager = managersDao.insertIntoManagers(nuevoManager);
 		}
 		else

@@ -6,16 +6,24 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import ipn.escom.ballScore.entity.Manager;
-import ipn.escom.ballScore.util.HibernateUtil;
 
-public class GestionarManagersDAO {
+/**Clase DAO para gestionar los managers
+ * @author Jose Mauricio
+ *
+ */
+public class GestionarManagersDAO extends BaseDAO{
 	
-	Session session;
-	
+	/**
+	 * Metodo contructor para la clase DAO
+	 */
 	public GestionarManagersDAO() {
-		this.session = HibernateUtil.getSessionFactory().openSession();
+		super();
 	}
 	
+	/**Metodo para insertar un manager
+	 * @param entidad con los datos del manager
+	 * @return Id con el que se persistio la entidad
+	 */
 	public Long insertIntoManagers(Manager entidad) {
 		java.util.Date utilDate = new java.util.Date();
 		entidad.setFechaAlta(new Date(utilDate.getTime()));
@@ -25,16 +33,14 @@ public class GestionarManagersDAO {
 		return entidad.getIdManager();
 	}
 	
+	/**Metodo para consultar un manager por correo
+	 * @param correo del manager
+	 * @return Entidad del manager con sus datos
+	 */
 	public Manager selectManagerByCorreo(String correo) {
 		Query q = session.createQuery("from Manager m where m.correo=:correo");
 		q.setParameter("correo", correo);
 		return (Manager) q.uniqueResult();
 	}
 	
-	public boolean cerrarConexiones() {
-		if(this.session.isOpen())
-			this.session.close();
-		return true;
-	}
-
 }

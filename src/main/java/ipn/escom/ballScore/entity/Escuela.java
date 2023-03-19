@@ -2,6 +2,10 @@ package ipn.escom.ballScore.entity;
 
 import java.sql.Date;
 
+/**Entidad de Escuela
+ * @author Jose Mauricio
+ *
+ */
 public class Escuela {
 	
 	private Long idEscuela;

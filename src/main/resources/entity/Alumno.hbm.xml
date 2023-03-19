@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "ipn.escom.ballScore.entity.Alumno" table = "ALUMNO">
+      
+      <meta attribute = "class-description">
+         This class contains the alumno detail. 
+      </meta>
+      
+      <id name = "boletaAlumno" type = "java.lang.Long" column = "BOLETA_ALUMNO"></id>
+      
+      <property name = "nombrePila" 	column = "NOMBRE_PILA" 		type = "java.lang.String" not-null="true"/>
+      <property name = "apellidoPat" 	column = "APELLIDO_PAT" 	type = "java.lang.String" not-null="true"/>
+      <property name = "apellidoMat" 	column = "APELLIDO_MAT" 	type = "java.lang.String" not-null="true"/>
+      <property name = "semestre" 		column = "SEMESTRE" 		type = "java.lang.Long"	  not-null="true"/>
+      <property name = "curp" 			column = "CURP" 			type = "java.lang.String" 				 />
+      <property name = "nss" 			column = "NSS"  			type = "java.lang.Long" 				 />
+      <property name = "telefono" 		column = "TELEFONO"  		type = "java.lang.String" 				 />
+      <property name = "telEmergencia" 	column = "TEL_EMERGENCIA" 	type = "java.lang.String" 				 />
+      <property name = "correo" 		column = "CORREO"  			type = "java.lang.String" 				 />
+      <property name = "fechaAlta" 		column = "FECHA_ALTA" 		type = "java.sql.Date"					 />
+      <property name = "fechaBaja" 		column = "FECHA_BAJA" 		type = "java.sql.Date"					 />
+     
+     <!-- <many-to-one name="escuela" class="ipn.escom.ballScore.entity.Escuela" fetch="select">
+      	<column name="ID_ESCUELA" not-null="true" />
+      </many-to-one>
+       --> 
+      <many-to-one name = "escuela" column = "ID_ESCUELA" 
+         class="ipn.escom.ballScore.entity.Escuela" not-null="true" fetch="select"/>
+
+   </class>
+</hibernate-mapping>

@@ -36,6 +36,12 @@
 			<result>/index.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
+		
+		<!-- Inicio Actions -->
+		<action name="menuPrincipal">
+			<result>/sistema.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
 
 		<!--  Hello World! http://localhost/webapp/hello para probar-->
 		<action name="hello" class="ipn.escom.ballScore.action.HelloAction">
@@ -82,15 +88,58 @@
 		<default-interceptor-ref name="interceptor" />
 
 		<action name="formularioRegistro" class="ipn.escom.ballScore.action.GestionarManagersAction" method="mostrarFormulario">
-			<result name="success">/registro.jsp</result>
-			<result name="input">/registro.jsp</result>
+			<result name="success">/managers/registroManagers.jsp</result>
+			<result name="input">/managers/registroManagers.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		
 		<action name="registro" class="ipn.escom.ballScore.action.GestionarManagersAction" method="registro">
-			<result name="input">/registro.jsp</result>
-			<result name="success">/registro.jsp</result>
+			<result name="input">/managers/registroManagers.jsp</result>
+			<result name="success">/managers/registroManagers.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+	</package>
+	
+	<package name="alumnos" namespace="/alumnos" extends="struts-default">
+		<!-- Inicio Filters -->
+		<interceptors>
+			<!--  Clase de autentificación-->
+			<interceptor name="authentication"
+				class="ipn.escom.ballScore.interceptor.ValidaLogin" />
+
+			<!-- Orden de ejecución-->
+			<interceptor-stack name="interceptor">
+				<interceptor-ref name="authentication" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<!--  el valor predeterminado es usar la pila de clasificación del interceptor que primero autentica y luego sigue la pila predeterminada-->
+		<default-interceptor-ref name="interceptor" />
+		
+		<!-- Inicio Actions -->
+		<action name="submenuAlumnos">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>/alumnos/submenuAlumnos.jsp</result>
+		</action>
+		
+		<action name="formularioRegistro" class="ipn.escom.ballScore.action.GestionarAlumnosAction" method="mostrarFormulario">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="input">/alumnos/registroAlumnos.jsp</result>
+			<result name="success">/alumnos/registroAlumnos.jsp</result>
+		</action>
+		
+		<action name="registrarAlumno" class="ipn.escom.ballScore.action.GestionarAlumnosAction" method="registrarAlumno">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/alumnos/registroAlumnos.jsp</result>
+			<result name="input">/alumnos/registroAlumnos.jsp</result>
+		</action>
+		
+		<action name="consultarAlumnos" class="ipn.escom.ballScore.action.GestionarAlumnosAction" method="mostrarRegistrados">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/alumnos/consultarAlumnos.jsp</result>
+			<result name="input">/alumnos/consultarAlumnos.jsp</result>
 		</action>
 		
 	</package>

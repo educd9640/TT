@@ -20,12 +20,17 @@
             <s:textfield key="managerForm.apellidoMat" />
             <s:textfield key="managerForm.telefono" />
             <s:textfield key="managerForm.correo" />
-            <s:textfield key="managerForm.contrasenia" />
+            <s:password key="managerForm.contrasenia" />
             <s:select name="managerForm.idEscuela" list="escuelas" listKey="idEscuela" listValue="nombreCortoEscuela" label="%{getText('managerForm.idEscuela')}"/>
-            <s:submit value="%{getText('button.label.submit')}"/>
+            <s:if test="hasActionMessages()">
+				<s:submit value="%{getText('button.label.submit')}" disabled="true"/>
+			</s:if>
+			<s:else>
+    			<s:submit value="%{getText('button.label.submit')}"/>
+			</s:else>
         </s:form>
         <s:form namespace="/" action="index" >
-			<s:submit value="Cancelar" targets="index"/>
+			<s:submit value="Regresar" targets="index"/>
 		</s:form>
     </body>
 </html>

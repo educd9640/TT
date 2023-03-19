@@ -18,9 +18,13 @@ import ipn.escom.ballScore.business.LoginBI;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**Clase abastracta para la creación de clases Actions
+ * @author Jose Mauricio
+ *
+ */
 public abstract class BaseAction extends ActionSupport implements SessionAware{
 
-	// I put here my services bean classes and inject with CDI 
+	// Clase LoginBI para authenticar sesion activa
 	@Inject
 	private LoginBI loginService;
 	
@@ -29,27 +33,41 @@ public abstract class BaseAction extends ActionSupport implements SessionAware{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	static { // LOAD BLOCK
-	} // LOAD BLOCK 
+	static {
+	}
 
+	/**
+	 * SessionMap, información de la session
+	 */
 	private SessionMap<String,Object> sessionMap;
 	
 	
-	/* method to get sessions
+	/* Metodo para settear en session
 	*/
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void setSession(Map<String, Object> session) {
 	    sessionMap = (SessionMap) session; 
 	}
 	
+	/**Metodo para obtener datos de la session
+	 * @return Session
+	 */
+	@SuppressWarnings("rawtypes")
 	public SessionMap getSessionMap(){
 		return this.sessionMap;
 	}
 
+	/**Metodo para obtener el servicio de login
+	 * @return LoginBI para autenticar
+	 */
 	public LoginBI getLoginService() {
 		return loginService;
 	}
 
+	/**Metodo para settear el servicio de login
+	 * @param loginService
+	 */
 	public void setLoginService(LoginBI loginService) {
 		this.loginService = loginService;
 	}
