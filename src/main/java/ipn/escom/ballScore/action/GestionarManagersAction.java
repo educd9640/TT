@@ -26,7 +26,6 @@ public class GestionarManagersAction extends BaseAction implements Preparable{
 	public String mostrarFormulario() {
 		managerForm = new GestionarManagersForm();
 		this.escuelas = new GestionarManagersBI().obtenerEscuelas();
-		
 		return "success";
 	}
 	
