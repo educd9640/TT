@@ -4,6 +4,9 @@
 package ipn.escom.ballScore.interceptor;
 
 import javax.servlet.http.HttpSession;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
@@ -16,6 +19,7 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 public class ValidaLogin implements Interceptor{
 
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LogManager.getLogger();
 
 	@Override
 	public void destroy() {
@@ -37,16 +41,15 @@ public class ValidaLogin implements Interceptor{
         if(session==null || session.getAttribute("Usuario")==null){  
         	
         	// print de pureba
-        	System.out.println("Interceptor : ValidaLogin: \nLa sesión identificada expiró o se intentó ver sin iniciar sesión primero");
+        	logger.info("Interceptor : ValidaLogin: \nLa sesión identificada expiró o se intentó ver sin iniciar sesión primero");
         	
-            return "expired";   // if no session or expired; send to it
+            return "expired";   // sesion expirada o no iniciada
         }  
         else{
+
+        	logger.info("Interceptor : ValidaLogin: \nSesión existente identificada y liberando la invocación normal de la Acción");
         	
-        	// print de prueba
-        	System.out.println("Interceptor : ValidaLogin: \nSesión existente identificada y liberando la invocación normal de la Acción");
-        	
-            return invocation.invoke(); // or ; just continue the stack
+            return invocation.invoke(); // Continua el flujo normal
             
         }  
 	}

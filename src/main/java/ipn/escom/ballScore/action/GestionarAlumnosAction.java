@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
@@ -21,6 +23,8 @@ import ipn.escom.ballScore.form.GestionarAlumnosVO;
  *
  */
 public class GestionarAlumnosAction extends BaseAction implements Preparable{
+	
+	private static final Logger logger = LogManager.getLogger();
 
 	private static final long serialVersionUID = 1L;
 	GestionarAlumnosForm alumnoForm;
@@ -32,20 +36,25 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	 *Metodo para preparar la pantalla
 	 */
 	@Override
-    public void prepare() throws Exception {
+    public void prepare(){
+		logger.info("Inicia metodo GestionarAlumnosAction.prepare()");
 		
 		GestionarAlumnosBI alumnosBI = new GestionarAlumnosBI();
 		
-		this.escuelas = alumnosBI.obtenerEscuelas();
+		try {
+			this.escuelas = alumnosBI.obtenerEscuelas();
+			this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistrados();
+		} catch (BussinessException e) {
+			addActionError(e.getMessage());
+		}
 		this.semestres = alumnosBI.obtenerSemestres();
-		this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistrados();
     }
 	
 	/**Metodo para presentar pantalla de formulario
 	 * @return
 	 */
 	public String mostrarFormulario() {
-		
+		logger.info("Inicia metodo GestionarAlumnosAction.mostrarFormulario()");
 		return Action.SUCCESS;
 	}
 	
@@ -53,7 +62,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	 * @return
 	 */
 	public String mostrarRegistrados() {
-		
+		logger.info("Inicia metodo GestionarAlumnosAction.mostrarRegistrados()");
 		return Action.SUCCESS;
 	}
 	
@@ -61,18 +70,22 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	 * @return Action Result
 	 */
 	public String registrarAlumno() {
+		logger.info("Inicia metodo GestionarAlumnosAction.registrarAlumno()");
+		
 		GestionarAlumnosVO vo = new GestionarAlumnosVO();
 		
 		try {
 			BeanUtils.copyProperties(vo,alumnoForm);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(" Error al copiar propiedades del Form al VO ",e);
+			addActionError("Error al registrarse.");
+			return Action.SUCCESS;
 		}
 		try {
 			new GestionarAlumnosBI().registrarAlumno(vo);
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
+			return Action.SUCCESS;
 		}
 		
 		addActionMessage("Alumno "+vo.getNombrePila()+" "+vo.getApellidoPat()+" registrado con exito. ");

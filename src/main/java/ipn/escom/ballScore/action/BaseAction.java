@@ -44,7 +44,7 @@ public abstract class BaseAction extends ActionSupport implements SessionAware{
 	
 	/* Metodo para settear en session
 	*/
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void setSession(Map<String, Object> session) {
 	    sessionMap = (SessionMap) session; 

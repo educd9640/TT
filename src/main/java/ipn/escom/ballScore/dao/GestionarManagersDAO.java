@@ -1,6 +1,7 @@
 package ipn.escom.ballScore.dao;
 
 import java.sql.Date;
+import java.sql.SQLException;
 
 import org.hibernate.Query;
 import ipn.escom.ballScore.entity.Manager;
@@ -21,13 +22,18 @@ public class GestionarManagersDAO extends BaseDAO{
 	/**Metodo para insertar un manager
 	 * @param entidad con los datos del manager
 	 * @return Id con el que se persistio la entidad
+	 * @throws SQLException En caso de error al persistir
 	 */
-	public Long insertIntoManagers(Manager entidad) {
+	public Long insertIntoManagers(Manager entidad) throws SQLException {
 		java.util.Date utilDate = new java.util.Date();
 		entidad.setFechaAlta(new Date(utilDate.getTime()));
-		session.save(entidad);
-		session.flush();
-		session.clear();
+		try {
+			session.save(entidad);
+			session.flush();
+			session.clear();
+		} catch(Exception e) {
+			throw new SQLException(e.getMessage(), e.getCause());
+		}
 		return entidad.getIdManager();
 	}
 	

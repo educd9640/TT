@@ -1,5 +1,8 @@
 package ipn.escom.ballScore.action;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.opensymphony.xwork2.Action;
 
 import ipn.escom.ballScore.entity.Manager;
@@ -10,6 +13,7 @@ import ipn.escom.ballScore.entity.Manager;
  */
 public class LoginAction extends BaseAction{
 
+	private static final Logger logger = LogManager.getLogger();
 	
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +26,14 @@ public class LoginAction extends BaseAction{
 	 */
 	@SuppressWarnings("unchecked")
 	public String login(){
-		Manager usuario = getLoginService().doLogin(getLogin(), getContrasenia());
+		Manager usuario;
+		try {
+			usuario = getLoginService().doLogin(getLogin(), getContrasenia());
+		}catch(Exception e) {
+			logger.error("Error al obtener el login ", e);
+			addActionError("Error al obtener el login");
+			return "invalid";
+		}
 
 		if (usuario != null) {
 			// Crear sesion
@@ -31,7 +42,8 @@ public class LoginAction extends BaseAction{
 			return "valid";
 		}
 		else {
-			addActionError("INVALID LOGIN / PASSWORD");
+			logger.error("Error al iniciar sesión con el usuario: "+getLogin());
+			addActionError("Usuario o contraseña invalidos");
 			return "invalid";
 		}
 
@@ -43,11 +55,10 @@ public class LoginAction extends BaseAction{
 	 */
 	public String sessionTest(){
 		
-		// eliminar print en producción
-		System.out.println("LoginAction : sessionTest: \nPrueba de inicio de sesión/Interceptor que se creó antes al iniciar sesión");
+		logger.info("LoginAction : sessionTest: \nPrueba de inicio de sesión/Interceptor que se creó antes al iniciar sesión");
 		
 		Manager usuarioLogado = (Manager) this.getSessionMap().get("Usuario");
-		System.out.println("Usuario logado: "+usuarioLogado);
+		logger.info("Usuario logeado: "+usuarioLogado);
 
 		return "success";
 	}
@@ -59,8 +70,7 @@ public class LoginAction extends BaseAction{
 	public String logout(){
 		Manager usuarioLogado = (Manager) this.getSessionMap().get("Usuario");
 		
-		// eliminar print en producción
-		System.out.println("LoginAction : logout: \nEfectuando LOGOUT Usuario : "+usuarioLogado);
+		logger.info("LoginAction : logout: \nEfectuando LOGOUT Usuario : "+usuarioLogado);
 		
 		this.getSessionMap().remove("Usuario");
 		return Action.SUCCESS;
