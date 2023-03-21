@@ -6,7 +6,7 @@
 <html>
 <head>
 <!--  SETANDO CSS's  -->
-<link rel="stylesheet" href="main.css">
+<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
 <!--  JQUERY PLUGIN -->
 <sj:head jqueryui="true" />
 <sb:head/>

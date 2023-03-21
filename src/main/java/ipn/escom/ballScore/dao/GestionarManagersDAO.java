@@ -3,8 +3,6 @@ package ipn.escom.ballScore.dao;
 import java.sql.Date;
 
 import org.hibernate.Query;
-import org.hibernate.Session;
-
 import ipn.escom.ballScore.entity.Manager;
 
 /**Clase DAO para gestionar los managers

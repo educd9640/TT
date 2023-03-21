@@ -4,7 +4,7 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <html>
     <head>
-    	<link rel="stylesheet" type="text/css" href="main.css">
+    	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
         <title><s:text name="label.registrados.titulo"/></title>
     </head>

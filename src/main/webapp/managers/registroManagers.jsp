@@ -5,7 +5,7 @@
 <html>
     <head>
         <s:head />
-        <link href="<s:url value='/css/main.css'/>" rel="stylesheet" type="text/css"/>
+        <link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
         <style>td { white-space:nowrap; }</style>
         <title><s:property value="#title"/></title>
     </head>

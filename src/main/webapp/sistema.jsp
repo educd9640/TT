@@ -6,7 +6,7 @@
 <html>
 <head>
 <!--  SETANDO CSS's  -->
-<link rel="stylesheet" href="main.css">
+<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
 <!--  JQUERY PLUGIN -->
 <sj:head jqueryui="true" />
 <sb:head/>
@@ -17,6 +17,8 @@
 <h3> Bienvenido al Sistema! </h3>
 
 <p><a href='<s:url namespace="/alumnos" action="submenuAlumnos" />' >Gestionar Alumnos</a></p>
+<p><a href='<s:url namespace="/" action="logout" />' >Cerrar sesión</a></p>
+<p><a href='<s:url namespace="/" action="sessionTest" />' >Test de sesión</a></p>
 
 </body>
 

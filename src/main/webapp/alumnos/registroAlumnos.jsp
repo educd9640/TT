@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-    	<link rel="stylesheet" href="main.css">
+    	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
         <style>td { white-space:nowrap; }</style>
         <title><s:property value="#title"/></title>

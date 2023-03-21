@@ -5,14 +5,17 @@
 
 <html>
 <head>
+<!--  SETANDO CSS's  -->
+<link rel="stylesheet" href="main.css">
+<!--  JQUERY PLUGIN -->
+<sj:head jqueryui="true" />
+<sb:head/>
 </head>
 
 
 <body>
-<h3> Session Test: </h3>
-<br>
-<h3>Usuario.name = <s:property value="%{#session.Usuario.nombrePila}" /></h3>
-<p><a href='<s:url namespace="/" action="menuPrincipal" />' >Menu Principal</a></p>
+<h3> Sesion expirada!</h3>
+<p><a href='<s:url namespace="/" action="index" />' >Pantalla principal</a></p>
 </body>
 
 </html>
