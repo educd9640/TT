@@ -4,8 +4,8 @@
 		<Property name="baseDir">logs</Property>
 	</Properties>
     <Appenders>
-		<RollingFile name="RollingFileDebug"
-			fileName="${baseDir}/debugBallscore.log"
+		<RollingFile name="RollingFileInfo"
+			fileName="${baseDir}/infoBallscore.log"
 			filePattern="${baseDir}/$${date:yyyy-MM}/app-%d{yyyy-MM-dd}.log.gz">
 			<PatternLayout pattern="%d %p %c{1.} [%t] %m%n" />
 			<CronTriggeringPolicy schedule="0 0 0 * * ?" />
@@ -45,7 +45,7 @@
     	<!-- Log ipn.escom.ballScore -->
     	<Logger name="ipn.escom.ballScore" level="ALL" additivity="false">
         	<Appender-ref ref="RollingFileAll"   level="ALL"   />
-        	<Appender-ref ref="RollingFileDebug" level="DEBUG" />
+        	<Appender-ref ref="RollingFileInfo" level="INFO" />
         	<AppenderRef  ref="RollingFileError" level="ERROR" />
     	</Logger>
 		
