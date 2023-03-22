@@ -25,7 +25,7 @@
       <property name = "fechaAlta" 		column = "FECHA_ALTA" 	type = "java.sql.Date"					 />
       <property name = "fechaBaja" 		column = "FECHA_BAJA" 	type = "java.sql.Date"					 />
      
-      <many-to-one name="escuela" class="ipn.escom.ballScore.entity.Escuela" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+      <many-to-one name="escuela" class="ipn.escom.ballScore.entity.Escuela" lazy="false" not-null="true" cascade="none" insert="true" update="true">
       	<column name="ID_ESCUELA"/>
       </many-to-one>
       
