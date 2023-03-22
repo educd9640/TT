@@ -1,0 +1,35 @@
+<!DOCTYPE validators PUBLIC
+         "-//Apache Struts//XWork Validator 1.0.3//EN"
+           "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<validator type="required">
+        <param name="fieldname">alumnoForm.boletaAlumno</param>
+        <message>Boleta requerido.</message>
+    </validator>
+    <validator type="long">
+        <param name="fieldName">alumnoForm.boletaAlumno</param>
+        <param name="max">9999999999</param>
+        <message>Boleta debe ser a 10 digitos</message>
+     </validator>
+    <validator type="requiredstring">
+        <param name="fieldname">alumnoForm.nombrePila</param>
+        <message>Nombre requerido.</message>
+    </validator>
+    <validator type="requiredstring">
+        <param name="fieldname">alumnoForm.apellidoPat</param>
+        <message>Apellido paterno requerido.</message>
+    </validator>
+    <validator type="requiredstring">
+        <param name="fieldname">alumnoForm.apellidoMat</param>
+        <message>Apellido materno requerido.</message>
+    </validator>
+    <validator type="email">
+        <param name="fieldname">alumnoForm.correo</param>
+        <message>Correo electronico no valido.</message>
+    </validator>
+    <validator type="regex">
+        <param name="fieldname">alumnoForm.boletaAlumno</param>
+        <param name="regex"><![CDATA[\d{10}]]></param>
+        <message>El numero de boleta debe ser a 10 digitos.</message>
+    </validator>
+</validators>

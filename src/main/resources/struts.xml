@@ -10,31 +10,40 @@
 	<package name="ballScore" extends="struts-default">
 		<!-- Inicio Filters -->
 		<interceptors>
-			<!--  Clase de autentificación-->
-			<interceptor name="authentication"
+			<!--  Interceptador de autentificación-->
+			<interceptor name="autentificador"
 				class="ipn.escom.ballScore.interceptor.ValidaLogin" />
 
-			<!-- Orden de ejecución-->
-			<interceptor-stack name="interceptor">
-				<interceptor-ref name="authentication" />
+			<!-- Pila de interceptador "authInterceptador" -->
+			<!-- Esta pila llamara primero al interceptador "autentificador", si dicho interceptador no devuelve "expired", continua el flujo normal  -->
+			<interceptor-stack name="authInterceptador">
+				<interceptor-ref name="autentificador" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
 
-		<!--  el valor predeterminado es usar la pila de clasificación del interceptor que primero autentica y luego sigue la pila predeterminada-->
-		<default-interceptor-ref name="interceptor" />
+		<!--  Interceptador default, si no se especifica un interceptador en la definición del action, se llamara automaticamente a este interceptador -->
+		<default-interceptor-ref name="authInterceptador" />
 
 
 		<!-- Global Results -->
+		<!-- Los results que se especifiquen en este apartado, aplican para cualquier Action-->
 		<global-results>
-			<!--  Cuando expira la sesión regresa a index.jsp -->
-			<result name="expired" type="redirectAction">index</result>
+			<!--  Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
+			<result name="expired">/sesionExpirada.jsp</result>
 		</global-results>
 
 		<!-- Inicio Actions -->
 		<action name="index">
 			<result>/index.jsp</result>
-			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<!-- Se especifica un interceptador para no hacer uso del interceptador default (authInterceptador) -->
+			<interceptor-ref name="defaultStack"></interceptor-ref> 
+		</action>
+		
+		<!-- Inicio Actions -->
+		<action name="menuPrincipal">
+			<result>/sistema.jsp</result>
+			<!-- No se especifica un interceptador para hacer uso del interceptador default (authInterceptador)-->
 		</action>
 
 		<!--  Hello World! http://localhost/webapp/hello para probar-->
@@ -65,32 +74,89 @@
 	</package>
 	
 	<package name="managers" namespace="/managers" extends="struts-default">
+	
 		<!-- Inicio Filters -->
 		<interceptors>
-			<!--  Clase de autentificación-->
-			<interceptor name="authentication"
+			<!--  Interceptador de autentificación-->
+			<interceptor name="autentificador"
 				class="ipn.escom.ballScore.interceptor.ValidaLogin" />
 
-			<!-- Orden de ejecución-->
-			<interceptor-stack name="interceptor">
-				<interceptor-ref name="authentication" />
+			<!-- Pila de interceptador "authInterceptador" -->
+			<!-- Esta pila llamara primero al interceptador "autentificador", si dicho interceptador no devuelve "expired", continua el flujo normal  -->
+			<interceptor-stack name="authInterceptador">
+				<interceptor-ref name="autentificador" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
-		
-		<!--  el valor predeterminado es usar la pila de clasificación del interceptor que primero autentica y luego sigue la pila predeterminada-->
-		<default-interceptor-ref name="interceptor" />
 
+		<!--  Interceptador default, si no se especifica un interceptador en la definición del action, se llamara automaticamente a este interceptador -->
+		<default-interceptor-ref name="authInterceptador" />
+
+		<!-- Global Results -->
+		<!-- Los results que se especifiquen en este apartado, aplican para cualquier Action-->
+		<global-results>
+			<!--  Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
+			<result name="expired">/sesionExpirada.jsp</result>
+		</global-results>
+		
+		<!-- Inicio Actions -->
 		<action name="formularioRegistro" class="ipn.escom.ballScore.action.GestionarManagersAction" method="mostrarFormulario">
-			<result name="success">/registro.jsp</result>
-			<result name="input">/registro.jsp</result>
+			<result name="success">/managers/registroManagers.jsp</result>
+			<result name="input">/managers/registroManagers.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		
 		<action name="registro" class="ipn.escom.ballScore.action.GestionarManagersAction" method="registro">
-			<result name="input">/registro.jsp</result>
-			<result name="success">/registro.jsp</result>
+			<result name="input">/managers/registroManagers.jsp</result>
+			<result name="success">/managers/registroManagers.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+	</package>
+	
+	<package name="alumnos" namespace="/alumnos" extends="struts-default">
+		<!-- Inicio Filters -->
+		<interceptors>
+			<!--  Interceptador de autentificación-->
+			<interceptor name="autentificador"
+				class="ipn.escom.ballScore.interceptor.ValidaLogin" />
+
+			<!-- Pila de interceptador "authInterceptador" -->
+			<!-- Esta pila llamara primero al interceptador "autentificador", si dicho interceptador no devuelve "expired", continua el flujo normal  -->
+			<interceptor-stack name="authInterceptador">
+				<interceptor-ref name="autentificador" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!--  Interceptador default, si no se especifica un interceptador en la definición del action, se llamara automaticamente a este interceptador -->
+		<default-interceptor-ref name="authInterceptador" />
+
+		<!-- Global Results -->
+		<!-- Los results que se especifiquen en este apartado, aplican para cualquier Action-->
+		<global-results>
+			<!--  Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
+			<result name="expired">/sesionExpirada.jsp</result>
+		</global-results>
+		
+		<!-- Inicio Actions -->
+		<action name="submenuAlumnos">
+			<result>/alumnos/submenuAlumnos.jsp</result>
+		</action>
+		
+		<action name="formularioRegistro" class="ipn.escom.ballScore.action.GestionarAlumnosAction" method="mostrarFormulario">
+			<result name="input">/alumnos/registroAlumnos.jsp</result>
+			<result name="success">/alumnos/registroAlumnos.jsp</result>
+		</action>
+		
+		<action name="registrarAlumno" class="ipn.escom.ballScore.action.GestionarAlumnosAction" method="registrarAlumno">
+			<result name="success">/alumnos/registroAlumnos.jsp</result>
+			<result name="input">/alumnos/registroAlumnos.jsp</result>
+		</action>
+		
+		<action name="consultarAlumnos" class="ipn.escom.ballScore.action.GestionarAlumnosAction" method="mostrarRegistrados">
+			<result name="success">/alumnos/consultarAlumnos.jsp</result>
+			<result name="input">/alumnos/consultarAlumnos.jsp</result>
 		</action>
 		
 	</package>

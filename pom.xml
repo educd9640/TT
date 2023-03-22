@@ -6,7 +6,7 @@
 	<groupId>ipn.escom</groupId>
 	<artifactId>ballScore</artifactId>
 	<packaging>war</packaging>
-	<url>http://www.address.com.br</url>
+	<url>https://www.escom.ipn.mx/</url>
 	<dependencies>
 
 		<!-- JUnit -->
@@ -100,7 +100,17 @@
 		    <version>1.9.4</version>
 		</dependency>
 
-		
+		<!-- Log4J2 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.20.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.20.0</version>
+		</dependency>
 
 	</dependencies>
 
@@ -126,6 +136,6 @@
 
 	</build>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>WebApp Struts2</name>
-	<description>An Archetype with JPA 2.1; Struts2 core 2.3.28.1; Jquery struts plugin; Struts BootStrap plugin; json Struts plugin; Login System using Session and Interceptor</description>
+	<name>ballScore</name>
+	<description>Proyecto de trabajo terminal</description>
 </project>

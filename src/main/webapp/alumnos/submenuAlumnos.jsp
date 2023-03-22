@@ -10,15 +10,16 @@
 <!--  JQUERY PLUGIN -->
 <sj:head jqueryui="true" />
 <sb:head/>
+
 </head>
 
 
 <body>
-<h3> Bienvenido al Sistema! </h3>
+<h3> Gestionar Alumnos </h3>
 
-<p><a href='<s:url namespace="/alumnos" action="submenuAlumnos" />' >Gestionar Alumnos</a></p>
-<p><a href='<s:url namespace="/" action="logout" />' >Cerrar sesión</a></p>
-<p><a href='<s:url namespace="/" action="sessionTest" />' >Test de sesión</a></p>
+<p><a href='<s:url namespace="/alumnos" action="formularioRegistro" />' >Registrar Alumno</a></p>
+<p><a href='<s:url namespace="/alumnos" action="consultarAlumnos" />' >Consultar Alumnos Registrados</a></p>
+<p><a href='<s:url namespace="/" action="menuPrincipal" />' >Menu Principal</a></p>
 
 </body>
 

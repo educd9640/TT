@@ -5,48 +5,87 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
 import ipn.escom.ballScore.business.GestionarManagersBI;
 import ipn.escom.ballScore.entity.Escuela;
+import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.GestionarManagersForm;
 import ipn.escom.ballScore.form.GestionarManagersVO;
 
+/**Clase Action para gestionar los managers
+ * @author Jose Mauricio
+ *
+ */
 public class GestionarManagersAction extends BaseAction implements Preparable{
 
+	private static final Logger logger = LogManager.getLogger();
+	
+	private static final long serialVersionUID = 1L;
 	private GestionarManagersForm managerForm;
 	private List<Escuela> escuelas = new ArrayList<Escuela>();
 	
+	/**
+	 *Metodo para preparar la pantalla
+	 */
 	@Override
-    public void prepare() throws Exception {
-		this.escuelas = new GestionarManagersBI().obtenerEscuelas();
+    public void prepare(){
+		logger.info("Inicia metodo GestionarManagersAction.registrarAlumno()");
+		GestionarManagersBI managersBI = new GestionarManagersBI();
+		try {
+			this.escuelas = managersBI.obtenerEscuelas();
+		} catch (BussinessException e) {
+			addActionError(e.getMessage());
+		}
     }
 	
+	/**Metodo para presentar la pantalla de formulario
+	 * @return Action Result
+	 */
 	public String mostrarFormulario() {
+		logger.info("Inicia metodo GestionarManagersAction.mostrarFormulario()");
 		managerForm = new GestionarManagersForm();
-		this.escuelas = new GestionarManagersBI().obtenerEscuelas();
-		return "success";
+		GestionarManagersBI managersBI = new GestionarManagersBI();
+		try {
+			this.escuelas = managersBI.obtenerEscuelas();
+		} catch (BussinessException e) {
+			addActionError("Error al obtener las escuelas en alta");
+		}
+		return Action.SUCCESS;
 	}
 	
+	/**Metodo controlador para registrar un manager
+	 * @return Action Result
+	 */
 	public String registro() {
+		logger.info("Inicia metodo GestionarManagersAction.registro()");
 		GestionarManagersVO vo = new GestionarManagersVO();
 
 		try {
 			BeanUtils.copyProperties(vo,managerForm);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(" Error al copiar propiedades del Form al VO ",e);
+			addActionError("Error al registrarse.");
+			return Action.SUCCESS;
 		}
-		Long idManager = new GestionarManagersBI().registrarManager(vo);
-		if(idManager!=-1L) {
-			managerForm.setIdManager(idManager);
-			addActionMessage("Usuario registrado con exito: idManager: "+idManager+" Login: "+managerForm.getCorreo());
+		Long idManager;
+		try {
+			idManager = new GestionarManagersBI().registrarManager(vo);
+		} catch (BussinessException e) {
+			addActionError(e.getMessage());
+			return Action.SUCCESS;
 		}
-		else
-			addActionError("Error al registrar: Ya existe un manager registrado con ese correo electronico");
-		return "success";
+		managerForm.setIdManager(idManager);
+		addActionMessage("Usuario registrado con exito: idManager: "+idManager+" Login: "+managerForm.getCorreo());
+		
+		return Action.SUCCESS;
 	}
+	
+	//Inician Metodos getters y setters
 
 	public GestionarManagersForm getManagerForm() {
 		return managerForm;
@@ -63,6 +102,5 @@ public class GestionarManagersAction extends BaseAction implements Preparable{
 	public void setEscuelas(List<Escuela> escuelas) {
 		this.escuelas = escuelas;
 	}
-	
-	
+
 }
