@@ -80,12 +80,13 @@ public class GestionarAlumnosBI {
 		return alumnos;
 	}
 
-	/**Metodo para registrar un alumno
+	/**Metodo para registrar/actualizar un alumno
 	 * @param vo Con los datos del alumno
+	 * @param operacion Indicia la operación a realizar (registrado ó actualizado)
 	 * @return Entidad persistida
-	 * @throws BussinessException Si ya existiera un alumno registrado con el numero de boleta
+	 * @throws BussinessException Si ya existiera un alumno registrado con el numero de boleta (en el caso de registro)
 	 */
-	public Alumno registrarAlumno(GestionarAlumnosVO vo) throws BussinessException {
+	public Alumno registrarAlumno(GestionarAlumnosVO vo, String operacion) throws BussinessException {
 		
 		logger.info("Inicia metodo GestionarAlumnosBI.registrarAlumno()");
 		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
@@ -109,7 +110,7 @@ public class GestionarAlumnosBI {
 		nuevoAlumno.setEscuela(escuela);
 
 		try {
-			if(nuevoAlumno.getBoletaAlumno()==null)
+			if(operacion.equals("registrado"))
 				nuevoAlumno = alumnosDao.insertIntoAlumno(nuevoAlumno);
 			else
 				nuevoAlumno = alumnosDao.updateAlumno(nuevoAlumno);
@@ -119,7 +120,7 @@ public class GestionarAlumnosBI {
 				throw new BussinessException("Ya existe un alumno registrado con ese numero de boleta.");
 			}
 			else {
-				logger.error("Error al realizar insert del alumno",e);
+				logger.error("Error en la operación sql del alumno",e);
 				throw new BussinessException("Error al registrar al alumno.");
 			}
 		}
@@ -131,6 +132,11 @@ public class GestionarAlumnosBI {
 		return nuevoAlumno;
 	}
 	
+	/**Metodo para obtener un alumno por boleta
+	 * @param numeroBoleta del alumno
+	 * @return Entidad de alumno con sus datos
+	 * @throws BussinessException En caso de no encontrar alumno
+	 */
 	public Alumno obtenerAlumnoPorBoleta(Long numeroBoleta) throws BussinessException {
 		logger.info("Inicia metodo GestionarAlumnosBI.obtenerAlumnoPorBoleta()");
 		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
@@ -140,6 +146,28 @@ public class GestionarAlumnosBI {
 		}
 		alumnosDao.cerrarConexiones();
 		return alumno;
+	}
+	
+	/**Metodo para eliminar un alumno
+	 * @param numeroBoleta del alumno
+	 * @throws BussinessException si no existiera el alumno
+	 */
+	public void eliminarAlumno(Long numeroBoleta) throws BussinessException{
+		logger.info("Inicia metodo GestionarAlumnosBI.eliminarAlumno()");
+		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
+		try {
+			Alumno alumno = alumnosDao.selectAlumnoById(numeroBoleta);
+			if(alumno==null) {
+				logger.error("Error al borrar al alumno: alumno con boleta "+numeroBoleta+" no encontrado");
+				throw new BussinessException("Error al borrar al alumno: alumno no encontrado");
+			}
+			alumnosDao.deleteAlumno(alumno);				
+		}catch (Exception e) {
+			logger.error("Error al borrar al alumno ",e);
+			throw new BussinessException("Error al borrar al alumno.");
+		}
+		
+		alumnosDao.cerrarConexiones();
 	}
 	
 }

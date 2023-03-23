@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
@@ -27,7 +28,8 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	private static final Logger logger = LogManager.getLogger();
 
 	private static final long serialVersionUID = 1L;
-	GestionarAlumnosForm alumnoForm;
+	private GestionarAlumnosForm alumnoForm;
+	private String operacion;
 	private List<Escuela> escuelas = new ArrayList<Escuela>();
 	private List<Long> semestres = new ArrayList<Long>();
 	private List<Alumno> alumnosRegistrado = new ArrayList<Alumno>();
@@ -49,7 +51,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 		}
 		this.semestres = alumnosBI.obtenerSemestres();
 		
-		if(alumnoForm !=null && alumnoForm.getBoletaAlumno()!=null) {
+		if(alumnoForm !=null && alumnoForm.getBoletaAlumno()!=null && operacion !=null && operacion.equals("actualizado")) {
 				try {
 					Alumno alumno = alumnosBI.obtenerAlumnoPorBoleta(alumnoForm.getBoletaAlumno());
 					BeanUtils.copyProperties(alumnoForm,alumno);
@@ -88,27 +90,52 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 		logger.info("Inicia metodo GestionarAlumnosAction.registrarAlumno()");
 		
 		GestionarAlumnosVO vo = new GestionarAlumnosVO();
-		String operacion;
 		try {
 			BeanUtils.copyProperties(vo,alumnoForm);
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			logger.error(" Error al copiar propiedades del Form al VO ",e);
 			addActionError("Error al registrarse.");
+			alumnoForm = new GestionarAlumnosForm();
 			return Action.SUCCESS;
 		}
-		if(vo.getBoletaAlumno()!=null)
-			operacion = "actualizado";
-		else
-			operacion = "registrado";
 		try {
-			new GestionarAlumnosBI().registrarAlumno(vo);
+			new GestionarAlumnosBI().registrarAlumno(vo, operacion);
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
 			return Action.SUCCESS;
 		}
 		
-		addActionMessage("Alumno "+vo.getNombrePila()+" "+vo.getApellidoPat()+" "+operacion+" con exito. ");
+		addActionMessage("Alumno ["+vo.getNombrePila()+" "+vo.getApellidoPat()+"] "+operacion+" con exito. ");
 		
+		return Action.SUCCESS;
+	}
+	
+	/**Metodo controlador para eliminar un alumno
+	 * @return Action Result
+	 */
+	@SkipValidation
+	public String eliminarAlumno() {
+		logger.info("Inicia metodo GestionarAlumnosAction.eliminarAlumno()");
+		GestionarAlumnosVO vo = new GestionarAlumnosVO();
+		try {
+			BeanUtils.copyProperties(vo,alumnoForm);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			logger.error(" Error al copiar propiedades del Form al VO ",e);
+			addActionError("Error al registrarse.");
+			alumnoForm = new GestionarAlumnosForm();
+			return Action.SUCCESS;
+		}
+		
+		try {
+			new GestionarAlumnosBI().eliminarAlumno(vo.getBoletaAlumno());
+		} catch (BussinessException e) {
+			addActionError(e.getMessage());
+			alumnoForm = new GestionarAlumnosForm();
+			return Action.SUCCESS;
+		}
+		
+		addActionMessage("Alumno con boleta: "+vo.getBoletaAlumno()+" borrado con exito.");
+		this.prepare();
 		return Action.SUCCESS;
 	}
 	
@@ -120,6 +147,14 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 
 	public void setAlumnoForm(GestionarAlumnosForm alumnoForm) {
 		this.alumnoForm = alumnoForm;
+	}
+
+	public String getOperacion() {
+		return operacion;
+	}
+
+	public void setOperacion(String operacion) {
+		this.operacion = operacion;
 	}
 
 	public List<Escuela> getEscuelas() {

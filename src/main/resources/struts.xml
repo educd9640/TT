@@ -179,5 +179,10 @@
 			<result name="input">/alumnos/registroAlumnos.jsp</result>
 		</action>
 		
+		<action name="eliminarAlumno" class="ipn.escom.ballScore.action.GestionarAlumnosAction" method="eliminarAlumno">
+			<result name="success">/alumnos/consultarAlumnos.jsp</result>
+			<result name="input">/alumnos/consultarAlumnos.jsp</result>
+		</action>
+		
 	</package>
 </struts>

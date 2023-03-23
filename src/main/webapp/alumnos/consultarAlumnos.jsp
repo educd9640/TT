@@ -12,6 +12,8 @@
         <div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.registrados.titulo"/></h1>
         <br/><br/>
+        <s:actionerror />
+        <s:actionmessage />
         <table class="borderAll">
             <tr>
                 <th><s:text name="alumnoForm.boletaAlumno"/></th>
@@ -41,13 +43,14 @@
                     <td class="nowrap"><s:property value="correo"/></td>
                     <td class="nowrap"><s:property value="escuela.nombreCortoEscuela"/></td>
                     <td class="nowrap">
-                        <s:url action="modificarAlumno" var="url">
+                        <s:url action="modificarAlumno" var="url" escapeAmp="false">
                             <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
+                            <s:param name="operacion">actualizado</s:param>
                         </s:url>
                         <a href="<s:property value="#url"/>">Modificar</a>
                         &nbsp;&nbsp;&nbsp;
-                        <s:url action="deletePerson" var="url">
-                            <s:param name="person.personId" value="personId"/>
+                        <s:url action="eliminarAlumno" var="url">
+                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
                         </s:url>
                         <a href="<s:property value="#url"/>">Borrar</a>
                     </td>
