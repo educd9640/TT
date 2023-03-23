@@ -109,7 +109,10 @@ public class GestionarAlumnosBI {
 		nuevoAlumno.setEscuela(escuela);
 
 		try {
-			nuevoAlumno = alumnosDao.insertIntoAlumno(nuevoAlumno);
+			if(nuevoAlumno.getBoletaAlumno()==null)
+				nuevoAlumno = alumnosDao.insertIntoAlumno(nuevoAlumno);
+			else
+				nuevoAlumno = alumnosDao.updateAlumno(nuevoAlumno);
 		} catch (SQLException e) {
 			if(e.getCause().getMessage().contains("ORA-00001")) {
 				logger.error(" Error al registrar al alumno, ya existe un alumno registrado", e);
@@ -127,5 +130,16 @@ public class GestionarAlumnosBI {
 
 		return nuevoAlumno;
 	}
-
+	
+	public Alumno obtenerAlumnoPorBoleta(Long numeroBoleta) throws BussinessException {
+		logger.info("Inicia metodo GestionarAlumnosBI.obtenerAlumnoPorBoleta()");
+		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
+		Alumno alumno = alumnosDao.selectAlumnoById(numeroBoleta);
+		if(alumno == null) {
+			throw new BussinessException("Error al obtener alumno por boleta, no se encuentra registrado.");
+		}
+		alumnosDao.cerrarConexiones();
+		return alumno;
+	}
+	
 }

@@ -48,6 +48,25 @@ public class GestionarAlumnosDAO extends BaseDAO {
 		return (List<Alumno>)q.list();
 	}
 	
+	/**Metodo para obtener un alumno por boleta
+	 * @param numeroBoleta del alumno
+	 * @return La entidad alumno con sus datos
+	 */
+	public Alumno selectAlumnoById(Long numeroBoleta) {
+		return (Alumno) this.session.get(Alumno.class, numeroBoleta);
+	}
+	
+	public Alumno updateAlumno(Alumno entidad) throws SQLException {
+		try {
+			session.update(entidad);
+			session.flush();
+			session.clear();
+		}catch(Exception e) {
+			throw new SQLException(e.getMessage(), e.getCause());
+		}
+		return entidad;
+	}
+	
 }
 
 

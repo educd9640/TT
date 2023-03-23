@@ -48,6 +48,20 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 			addActionError(e.getMessage());
 		}
 		this.semestres = alumnosBI.obtenerSemestres();
+		
+		if(alumnoForm !=null && alumnoForm.getBoletaAlumno()!=null) {
+				try {
+					Alumno alumno = alumnosBI.obtenerAlumnoPorBoleta(alumnoForm.getBoletaAlumno());
+					BeanUtils.copyProperties(alumnoForm,alumno);
+				} catch (IllegalAccessException | InvocationTargetException e) {
+					logger.error("Error al copiar las propiedades del alumno al form.", e);
+					addActionError("Error al recuperar datos del alumno");
+				} catch (BussinessException e) {
+					logger.error("Error al consultar al alumno", e);
+					addActionError("Error al recuperar datos del alumno");
+				}
+
+		}
     }
 	
 	/**Metodo para presentar pantalla de formulario
@@ -55,6 +69,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	 */
 	public String mostrarFormulario() {
 		logger.info("Inicia metodo GestionarAlumnosAction.mostrarFormulario()");
+
 		return Action.SUCCESS;
 	}
 	
@@ -73,7 +88,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 		logger.info("Inicia metodo GestionarAlumnosAction.registrarAlumno()");
 		
 		GestionarAlumnosVO vo = new GestionarAlumnosVO();
-		
+		String operacion;
 		try {
 			BeanUtils.copyProperties(vo,alumnoForm);
 		} catch (IllegalAccessException | InvocationTargetException e) {
@@ -81,6 +96,10 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 			addActionError("Error al registrarse.");
 			return Action.SUCCESS;
 		}
+		if(vo.getBoletaAlumno()!=null)
+			operacion = "actualizado";
+		else
+			operacion = "registrado";
 		try {
 			new GestionarAlumnosBI().registrarAlumno(vo);
 		} catch (BussinessException e) {
@@ -88,7 +107,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 			return Action.SUCCESS;
 		}
 		
-		addActionMessage("Alumno "+vo.getNombrePila()+" "+vo.getApellidoPat()+" registrado con exito. ");
+		addActionMessage("Alumno "+vo.getNombrePila()+" "+vo.getApellidoPat()+" "+operacion+" con exito. ");
 		
 		return Action.SUCCESS;
 	}

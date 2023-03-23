@@ -40,6 +40,17 @@
                     <td class="nowrap"><s:property value="telEmergencia"/></td>
                     <td class="nowrap"><s:property value="correo"/></td>
                     <td class="nowrap"><s:property value="escuela.nombreCortoEscuela"/></td>
+                    <td class="nowrap">
+                        <s:url action="modificarAlumno" var="url">
+                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
+                        </s:url>
+                        <a href="<s:property value="#url"/>">Modificar</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <s:url action="deletePerson" var="url">
+                            <s:param name="person.personId" value="personId"/>
+                        </s:url>
+                        <a href="<s:property value="#url"/>">Borrar</a>
+                    </td>
                 </tr>
             </s:iterator>
         </table>
