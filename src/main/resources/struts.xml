@@ -18,7 +18,12 @@
 			<!-- Esta pila llamara primero al interceptador "autentificador", si dicho interceptador no devuelve "expired", continua el flujo normal  -->
 			<interceptor-stack name="authInterceptador">
 				<interceptor-ref name="autentificador" />
-				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="params"/>
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">ERROR</param>
+                    <param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,submit</param>
+				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
 
@@ -85,7 +90,12 @@
 			<!-- Esta pila llamara primero al interceptador "autentificador", si dicho interceptador no devuelve "expired", continua el flujo normal  -->
 			<interceptor-stack name="authInterceptador">
 				<interceptor-ref name="autentificador" />
-				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="params"/>
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">ERROR</param>
+                    <param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,submit</param>
+				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
 
@@ -125,7 +135,12 @@
 			<!-- Esta pila llamara primero al interceptador "autentificador", si dicho interceptador no devuelve "expired", continua el flujo normal  -->
 			<interceptor-stack name="authInterceptador">
 				<interceptor-ref name="autentificador" />
-				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="params"/>
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">ERROR</param>
+                    <param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,submit</param>
+				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
 
