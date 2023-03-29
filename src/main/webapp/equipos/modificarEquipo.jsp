@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<s:set var="title" value="%{'Registro Equipo'}"/>
+<s:set var="title" value="%{'Modificar Equipo'}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -15,7 +15,7 @@
 	<h1><s:property value="#title"/></h1>
 	<s:actionerror />
     <s:actionmessage />
-    <s:form action="registrarEquipo" method="post" >
+    <s:form action="modificarEquipo" method="post" >
     	<s:textfield key="equipoForm.nombre"/>
     	<s:if test="hasActionMessages()">
 			<s:submit value="%{getText('button.label.submit')}" disabled="true"/>
@@ -24,8 +24,5 @@
     		<s:submit value="%{getText('button.label.submit')}"/>
 	    </s:else>
     </s:form>
-    <s:form action="submenuEquipos" >
-			<s:submit value="Regresar" targets="submenuEquipos"/>
-	</s:form>
 </body>
 </html>

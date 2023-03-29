@@ -31,9 +31,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	
 	private static final long serialVersionUID = 1L;
 	private GestionarEquiposForm equipoForm;
-	public long idLiderEquipo;
-	public String correo_manager;
-	public GestionarEquiposBI equiposBI;
+	private Manager managerActual;
 	
 	/**
 	 *Metodo para preparar la pantalla
@@ -42,10 +40,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
     public void prepare(){
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo()");
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
-		Manager sessionManager= (Manager) session.getAttribute("Usuario");
-		this.idLiderEquipo=sessionManager.getIdManager();
-		this.correo_manager=sessionManager.getCorreo();
-		this.equiposBI = new GestionarEquiposBI();
+		this.managerActual= (Manager) session.getAttribute("Usuario");
 	
     }
 	
@@ -58,14 +53,23 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		return Action.SUCCESS;
 	}
 	
+	/**Metodo para redirigir a la pantalla de editar Equipo
+	 * @return Action Result
+	 */
+	
 	public String editarEquipo() {
 		logger.info("Inicia metodo GestionarEquipoAction.editarEquipo()");
 		return Action.SUCCESS;
 	}
 	
+	/**Metodo para redirigir a la pantalla de 
+	 * @return Action Result
+	 */
+	
 	public String registrarEquipo() {
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo");
-		boolean comprobacion= this.equiposBI.verificarExistencia(this.idLiderEquipo);
+		GestionarEquiposBI equiposBI= new GestionarEquiposBI();
+		boolean comprobacion= equiposBI.verificarExistencia(this.managerActual.getIdManager());
 		if(comprobacion) {
 			equipoForm = new GestionarEquiposForm();
 			return Action.INPUT;
@@ -79,6 +83,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	 */
 	public String registro() {
 		logger.info("Inicia metodo GestionarManagersAction.registro()");
+		GestionarEquiposBI equiposBI= new GestionarEquiposBI();
 		GestionarEquiposVO vo = new GestionarEquiposVO();
 
 		try {
@@ -90,7 +95,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		}
 		Long idEquipo;
 		try {
-			idEquipo = this.equiposBI.registrarEquipo(vo, correo_manager);
+			idEquipo = equiposBI.registrarEquipo(vo, this.managerActual.getCorreo());
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
 			return Action.SUCCESS;
@@ -103,7 +108,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	
 	//Inician Metodos getters y setters
 
-	public GestionarEquiposForm getManagerForm() {
+	public GestionarEquiposForm getEquipoForm() {
 		return equipoForm;
 	}
 
