@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
 import ipn.escom.ballScore.business.GestionarEquiposBI;
+import ipn.escom.ballScore.entity.Equipo;
 import ipn.escom.ballScore.entity.Manager;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.GestionarEquiposForm;
@@ -32,6 +33,8 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	private static final long serialVersionUID = 1L;
 	private GestionarEquiposForm equipoForm;
 	private Manager managerActual;
+	private Equipo equipoManager;
+	private String operacion;
 	
 	/**
 	 *Metodo para preparar la pantalla
@@ -81,7 +84,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	/**Metodo controlador para registrar un equipo
 	 * @return Action Result
 	 */
-	public String registro() {
+	public String registroEquipo() {
 		logger.info("Inicia metodo GestionarManagersAction.registro()");
 		GestionarEquiposBI equiposBI= new GestionarEquiposBI();
 		GestionarEquiposVO vo = new GestionarEquiposVO();
@@ -95,13 +98,13 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		}
 		Long idEquipo;
 		try {
-			idEquipo = equiposBI.registrarEquipo(vo, this.managerActual.getCorreo());
+			equipoManager = equiposBI.registrarEquipo(vo, this.managerActual.getCorreo(),operacion);
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
 			return Action.SUCCESS;
 		}
-		equipoForm.setIdManager(idEquipo);
-		addActionMessage("Usuario registrado con exito: idManager: "+idEquipo);
+		equipoForm.setIdManager(equipoManager.getIdEquipo());
+		addActionMessage("Equipo registrado con exito: idEquipo: "+equipoForm.getIdEquipo());
 		
 		return Action.SUCCESS;
 	}
@@ -115,6 +118,16 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	public void setEquipoForm(GestionarEquiposForm equipoForm) {
 		this.equipoForm = equipoForm;
 	}
+
+	public String getOperacion() {
+		return operacion;
+	}
+
+	public void setOperacion(String operacion) {
+		this.operacion = operacion;
+	}
+	
+	
 }
 
 

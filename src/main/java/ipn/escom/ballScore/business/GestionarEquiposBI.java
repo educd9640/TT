@@ -32,13 +32,15 @@ public class GestionarEquiposBI {
 	 * @return Id con el que se registro el equipo
 	 * @throws BussinessException
 	 */
-	public Long registrarEquipo(GestionarEquiposVO vo, String correo) throws BussinessException {
+	public Equipo registrarEquipo(GestionarEquiposVO vo, String correo, String operacion) throws BussinessException {
 		logger.info("Inicia metodo GestionarEquiposBI.registrarEquipo()");
 
 		GestionarEquiposDAO equiposDao = new GestionarEquiposDAO();
 		GestionarManagersDAO managersDao = new GestionarManagersDAO();
 		Equipo nuevoEquipo = new Equipo();
 		Long idEquipo = 0L;
+		Manager manager;
+		
 
 		try {
 			BeanUtils.copyProperties(nuevoEquipo, vo);
@@ -46,13 +48,23 @@ public class GestionarEquiposBI {
 			logger.error(" Error al copiar propiedades del vo a la entidad", e);
 			throw new BussinessException("Error al registrar el equipo.");
 		}
-
-		try {
-			Manager manager = managersDao.selectManagerByCorreo(correo);
-			nuevoEquipo.setManager(manager);
-			idEquipo = equiposDao.insertIntoEquipo(nuevoEquipo);
-		} catch (SQLException e) {
-			if (e.getCause().getMessage().contains("ORA-00001")) {
+		try{
+			manager = managersDao.selectManagerByCorreo(correo);
+		}catch(Exception e) {
+			logger.error("Error al obtener el manager para registrar el equipo", e);
+			throw new BussinessException("Error al registrar al alumno. ");
+		}
+		nuevoEquipo.setManager(manager);
+		try 
+		{
+			if((operacion.equals("actualizado"))) 
+			{
+				nuevoEquipo=equiposDao.updateEquipo(nuevoEquipo);
+			}else {
+				nuevoEquipo=equiposDao.insertIntoEquipo(nuevoEquipo);
+			}
+		}catch (SQLException e) {
+			if (e.getCause()!=null&&e.getCause().getMessage().contains("ORA-00001")) {
 				logger.error(" Error al registrar al equipo, ya existe un equipo registrado", e);
 				throw new BussinessException("Ya existe un equipo registrado con ese nombre.");
 			} else {
@@ -63,7 +75,7 @@ public class GestionarEquiposBI {
 
 		equiposDao.cerrarConexiones();
 		managersDao.cerrarConexiones();
-		return idEquipo;
+		return nuevoEquipo;
 	}
 	
 	/**

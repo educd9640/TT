@@ -10,7 +10,11 @@
          This class contains the equipo detail. 
       </meta>
       
-      <id name = "idEquipo" type = "java.lang.Long" column = "ID_EQUIPO"></id>
+      <id name = "idEquipo" type = "java.lang.Long" column = "ID_EQUIPO">
+      	<generator class="sequence">
+        	<param name="sequence">EQUIPO_SEQ</param>
+    	 </generator>
+      </id>
       
       <property name = "nombre" 	column = "NOMBRE" 	type = "java.lang.String" not-null="true"/>
       <property name = "fechaAlta" 	column = "FECHA_ALTA" 	type = "java.sql.Date" />

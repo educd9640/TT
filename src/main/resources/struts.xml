@@ -191,13 +191,18 @@
 		</action>
 		
 		<action name="formularioRegistro" class="ipn.escom.ballScore.action.GestionarEquiposAction" method="registrarEquipo">
-			<result name="input">/equipos/submenuEquipo.jsp</result>
+			<result name="input">/equipos/registrarEquipo.jsp</result>
 			<result name="success">/equipos/registarEquipo.jsp</result>
 		</action>
 		
 		<action name="modificarEquipo" class="ipn.escom.ballScore.action.GestionarEquiposAction" method="editarEquipo">
-			<result name="input">/equipos/submenuEquipo.jsp</result>
-			<result name="success">/equipos/submenuEquipo.jsp</result>
+			<result name="input">/equipos/registrarEquipo.jsp</result>
+			<result name="success">/equipos/registrarEquipo.jsp</result>
+		</action>
+		
+		<action name="registrarEquipo" class="ipn.escom.ballScore.action.GestionarEquiposAction" method="registroEquipo">
+			<result name="input">/equipos/registrarEquipo.jsp</result>
+			<result name="success">/equipos/registarEquipo.jsp</result>
 		</action>
 		
 	</package>

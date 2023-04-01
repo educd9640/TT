@@ -25,7 +25,7 @@ public class GestionarEquiposDAO extends BaseDAO {
 	 * @return la entidad persistida
 	 * @throws SQLException En caso de error al persistir la entidad
 	 */
-	public Long insertIntoEquipo(Equipo entidad) throws SQLException {
+	public Equipo insertIntoEquipo(Equipo entidad) throws SQLException {
 		java.util.Date utilDate = new java.util.Date();
 		entidad.setFechaAlta(new Date(utilDate.getTime()));
 		try {
@@ -36,7 +36,21 @@ public class GestionarEquiposDAO extends BaseDAO {
 			throw new SQLException(e.getMessage(), e.getCause());
 		}
 		
-		return entidad.getIdEquipo();
+		return entidad;
+	}
+	
+	public Equipo updateEquipo(Equipo entidad) throws SQLException{
+		try 
+		{
+			session.update(entidad);
+			session.flush();
+			session.clear();
+		}catch(Exception e) {
+			throw new SQLException(e.getMessage(),e.getCause());
+		}
+		
+		return entidad;
+		
 	}
 	
 	/**Metodo para buscar un equipo de acuerdo a su manager (id)
