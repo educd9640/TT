@@ -17,9 +17,12 @@
 <body>
 <h3> Gestionar Equipos </h3>
 
-<p><a href='<s:url namespace="/equipos" action="formularioRegistro" />' >Registrar Equipo</a></p>
+<s:actionmessage />
+
+
+<p><a href='<s:url namespace="/equipos" action="verificarEquipo" />' >Registrar Equipo</a></p>
 <p>
-	<s:url action="modificarEquipo" var="url" escapeAmp="false">
+	<s:url action="formularioRegistro" var="url" escapeAmp="false">
 		<s:param name="operacion">actualizado</s:param>
 	</s:url>
 	<a href="<s:property value="#url"/>">Modificar equipo</a>

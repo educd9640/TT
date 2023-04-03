@@ -202,7 +202,12 @@
 		
 		<action name="registrarEquipo" class="ipn.escom.ballScore.action.GestionarEquiposAction" method="registroEquipo">
 			<result name="input">/equipos/registrarEquipo.jsp</result>
-			<result name="success">/equipos/registarEquipo.jsp</result>
+			<result name="success">/equipos/registrarEquipo.jsp</result>
+		</action>
+		
+		<action name="verificarEquipo" class="ipn.escom.ballScore.action.GestionarEquiposAction" method="actualizarEquipo">
+			<result name="input">/equipos/registrarEquipo.jsp</result>
+			<result name="success">/equipos/registrarEquipo.jsp</result>
 		</action>
 		
 	</package>

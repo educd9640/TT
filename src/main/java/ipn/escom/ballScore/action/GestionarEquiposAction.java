@@ -42,8 +42,20 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	@Override
     public void prepare(){
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo()");
+		GestionarEquiposBI equipoBI= new GestionarEquiposBI();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
 		this.managerActual= (Manager) session.getAttribute("Usuario");
+		if(operacion !=null && operacion.equals("actualizado")) {
+			try {
+				Equipo team = equipoBI.obtenerEquipo(this.managerActual.getIdManager());
+				BeanUtils.copyProperties(equipoForm,team);
+			} catch (IllegalAccessException | InvocationTargetException e) {
+				logger.error("Error al copiar las propiedades del alumno al form.", e);
+			} catch (BussinessException e) {
+				logger.error("Error al consultar el equipo", e);
+			}
+		}
+		
 	
     }
 	
@@ -71,14 +83,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	
 	public String registrarEquipo() {
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo");
-		GestionarEquiposBI equiposBI= new GestionarEquiposBI();
-		boolean comprobacion= equiposBI.verificarExistencia(this.managerActual.getIdManager());
-		if(comprobacion) {
-			equipoForm = new GestionarEquiposForm();
-			return Action.INPUT;
-		}else {
-			return Action.SUCCESS;
-		}
+		return Action.SUCCESS;
 	}
 	
 	/**Metodo controlador para registrar un equipo
@@ -98,7 +103,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		}
 		Long idEquipo;
 		try {
-			equipoManager = equiposBI.registrarEquipo(vo, this.managerActual.getCorreo(),operacion);
+			equipoManager = equiposBI.registrarEquipo(vo, this.managerActual.getCorreo(),this.operacion);
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
 			return Action.SUCCESS;
@@ -106,6 +111,19 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		equipoForm.setIdManager(equipoManager.getIdEquipo());
 		addActionMessage("Equipo registrado con exito: idEquipo: "+equipoForm.getIdEquipo());
 		
+		return Action.SUCCESS;
+	}
+	
+	public String actualizarEquipo(){
+		logger.info("Inicia metodo GestionarManagersAction.actualizarEquipo()");
+		GestionarEquiposBI equiposBI= new GestionarEquiposBI();
+		String mensaje="";
+		try {
+			mensaje=equiposBI.buscarEquipo(this.managerActual.getIdManager());
+			addActionMessage(mensaje);
+		}catch(BussinessException e) {
+			addActionError(e.getMessage());
+		}
 		return Action.SUCCESS;
 	}
 	

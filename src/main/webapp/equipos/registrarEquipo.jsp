@@ -35,8 +35,8 @@
 			<s:hidden name="operacion" value="%{'registrado'}"/>
 		</s:else>
 		
-    	<s:if test="hasActionMessages()">
-			<s:submit value="%{getText('button.label.submit')}" disabled="true"/>
+    	<s:if test="operacion=='actualizado' || hasActionErrors()">
+			<s:submit value="%{getText('button.label.actualizar')}" />
 		</s:if>
 		<s:else>
     		<s:submit value="%{getText('button.label.submit')}"/>

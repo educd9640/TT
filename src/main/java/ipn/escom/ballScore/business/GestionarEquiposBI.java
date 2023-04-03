@@ -40,7 +40,6 @@ public class GestionarEquiposBI {
 		Equipo nuevoEquipo = new Equipo();
 		Long idEquipo = 0L;
 		Manager manager;
-		
 
 		try {
 			BeanUtils.copyProperties(nuevoEquipo, vo);
@@ -58,9 +57,10 @@ public class GestionarEquiposBI {
 		try 
 		{
 			if((operacion.equals("actualizado"))) 
-			{
+			{				
 				nuevoEquipo=equiposDao.updateEquipo(nuevoEquipo);
 			}else {
+				logger.info("Hola");
 				nuevoEquipo=equiposDao.insertIntoEquipo(nuevoEquipo);
 			}
 		}catch (SQLException e) {
@@ -79,11 +79,10 @@ public class GestionarEquiposBI {
 	}
 	
 	/**
-	 * Metodo de negocio para verificar si el manager tiene
+	 * Metodo de negocio para verificar si el manager tiene un equipo registrado
 	 * 
 	 * @param Long con el id del manager
 	 * @return booleano para indicar si el manager tiene o no un equipo registrado
-	 * @throws BussinessException
 	 */
 
 	public boolean verificarExistencia(Long id_manager) {
@@ -99,5 +98,44 @@ public class GestionarEquiposBI {
 		}
 	}
 	
+	/**
+	 * Metodo de negocio para buscar si el manager cuenta con un equipo y regresar un mensaje al usuario
+	 * 
+	 * @param Long con el id del manager
+	 * @return String con un mensaje para el usuario
+	 * @throws BussinessException
+	 */
+	
+	public String buscarEquipo(Long id) throws BussinessException {
+		logger.info("Inicia metodo GestionarEquiposBI.buscarEquipo()");
+		boolean estatus = this.verificarExistencia(id);
+		String mensaje="";
+		if(estatus==true) {
+			mensaje="El manager con id: "+id+" ya cuenta con un equipo";
+			throw new BussinessException("No se tiene permitido registrar otro equipo, en cambio puede guardar los cambios que desee realizar");
+		}else {
+			mensaje="Bienvenido al registro de equipo";	
+		}
+		
+		return mensaje;
+	}
+	
+	/**
+	 * Metodo de negocio para recuperar un equipo de acuerdo al id del manager
+	 * 
+	 * @param Long con el id del manager
+	 * @return Equipo entidad del equipo
+	 * @throws BussinessException
+	 */
+	
+	public Equipo obtenerEquipo(Long idmanager) throws BussinessException {
+		GestionarEquiposDAO equipoDao= new GestionarEquiposDAO();
+		Equipo equipoManager= equipoDao.obtenerManager(idmanager);
+		if(equipoManager==null) {
+			throw new BussinessException("El manager no cuenta con un equipo registrado");
+		}
+		equipoDao.cerrarConexiones();
+		return equipoManager;
+	}
 	
 }

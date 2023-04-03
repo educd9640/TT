@@ -58,7 +58,7 @@ public class GestionarEquiposDAO extends BaseDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public Equipo obtenerManager(Long id){
-		return (Equipo) session.createQuery("from Equipo where ID_EQUIPO = :id").setParameter("id",id).uniqueResult();
+		return (Equipo) session.createQuery("from Equipo where ID_MANAGER = :id").setParameter("id",id).uniqueResult();
 	}
 	
 }
