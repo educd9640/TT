@@ -1,6 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<s:set var="title" value="%{'Registro Alumnos'}"/>
+<s:if test="operacion=='actualizado'">
+	<s:set var="title" value="%{'Modificar Alumno'}"/>
+</s:if>
+<s:else>
+    <s:set var="title" value="%{'Registro Alumnos'}"/>
+</s:else>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -15,7 +20,14 @@
         <s:actionerror />
         <s:actionmessage />
         <s:form action="registrarAlumno" method="post">
-        	<s:textfield key="alumnoForm.boletaAlumno"/>
+        	<s:if test="operacion=='actualizado'">
+        		<s:textfield key="alumnoForm.boletaAlumno" readonly="true"/>
+        		<s:hidden name="operacion" value="%{'actualizado'}"/>
+        	</s:if>
+        	<s:else>
+        		<s:textfield key="alumnoForm.boletaAlumno"/>
+        		<s:hidden name="operacion" value="%{'registrado'}"/>
+        	</s:else>
             <s:textfield key="alumnoForm.nombrePila" /> 
             <s:textfield key="alumnoForm.apellidoPat" /> 
             <s:textfield key="alumnoForm.apellidoMat" />

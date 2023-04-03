@@ -39,6 +39,23 @@ public class GestionarAlumnosDAO extends BaseDAO {
 		return entidad;
 	}
 	
+	/**Metodo para actualizar un alumno
+	 * @param entidad del alumno
+	 * @return Entidad persistida
+	 * @throws SQLException En caso de error al persistir la entidad
+	 */
+	public Alumno updateAlumno(Alumno entidad) throws SQLException {
+		try {
+			session.update(entidad);
+			session.flush();
+			session.clear();
+		}catch(Exception e) {
+			throw new SQLException(e.getMessage(), e.getCause());
+		}
+		
+		return entidad;
+	}
+	
 	/**Metodo para consultar todos los alumnos registrados
 	 * @return
 	 */
@@ -46,6 +63,28 @@ public class GestionarAlumnosDAO extends BaseDAO {
 	public List<Alumno> selectFromAlumno(){
 		Query q = session.createQuery("from Alumno");
 		return (List<Alumno>)q.list();
+	}
+	
+	/**Metodo para obtener un alumno por boleta
+	 * @param numeroBoleta del alumno
+	 * @return La entidad alumno con sus datos
+	 */
+	public Alumno selectAlumnoById(Long numeroBoleta) {
+		return (Alumno) this.session.get(Alumno.class, numeroBoleta);
+	}
+	
+	/**Metodo para eliminar un alumno
+	 * @param entidad del alumno
+	 * @throws SQLException en caso de error al eliminar
+	 */
+	public void deleteAlumno(Alumno entidad) throws SQLException {
+		try {
+			session.delete(entidad);
+			session.flush();
+			session.clear();
+		}catch(Exception e) {
+			throw new SQLException(e.getMessage(), e.getCause());
+		}
 	}
 	
 }
