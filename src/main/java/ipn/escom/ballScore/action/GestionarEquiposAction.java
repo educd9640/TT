@@ -10,6 +10,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
@@ -43,6 +44,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
     public void prepare(){
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo()");
 		GestionarEquiposBI equipoBI= new GestionarEquiposBI();
+		equipoForm= new GestionarEquiposForm();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
 		this.managerActual= (Manager) session.getAttribute("Usuario");
 		if(operacion !=null && operacion.equals("actualizado")) {
@@ -83,6 +85,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	
 	public String registrarEquipo() {
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo");
+		equipoForm= new GestionarEquiposForm();
 		return Action.SUCCESS;
 	}
 	
@@ -114,8 +117,10 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		return Action.SUCCESS;
 	}
 	
+	@SkipValidation
 	public String actualizarEquipo(){
 		logger.info("Inicia metodo GestionarManagersAction.actualizarEquipo()");
+		equipoForm= new GestionarEquiposForm();
 		GestionarEquiposBI equiposBI= new GestionarEquiposBI();
 		String mensaje="";
 		try {
@@ -123,6 +128,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 			addActionMessage(mensaje);
 		}catch(BussinessException e) {
 			addActionError(e.getMessage());
+			this.setOperacion("actualizado");
 		}
 		return Action.SUCCESS;
 	}
