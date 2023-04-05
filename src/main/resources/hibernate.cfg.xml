@@ -21,5 +21,6 @@
 		<mapping resource="entity/Escuela.hbm.xml" />
 		<mapping resource="entity/Alumno.hbm.xml" />
 		<mapping resource="entity/Equipo.hbm.xml"/> 
+
     </session-factory>
 </hibernate-configuration>
