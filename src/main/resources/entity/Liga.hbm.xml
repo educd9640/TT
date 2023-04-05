@@ -1,0 +1,32 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "ipn.escom.ballScore.entity.Liga" table = "LIGA">
+      
+      <meta attribute = "class-description">
+         This class contains the liga detail. 
+      </meta>
+      
+      <id name = "idLiga" type = "java.lang.Long" column = "ID_LIGA"></id>
+      
+      <property name = "nombre" 		column = "NOMBRE" 			type = "java.lang.String" not-null="true"/>
+      <property name = "telefono" 		column = "TELEFONO" 		type = "java.lang.String" 				 />
+      <property name = "calle"		 	column = "CALLE" 			type = "java.lang.String" 				 />
+      <property name = "colonia" 		column = "COLONIA"	 		type = "java.lang.String"	  			 />
+      <property name = "codigoPostal" 	column = "CODIGO_POSTAL"	type = "java.lang.Long" 				 />
+      <property name = "delegacion" 	column = "DELGACION"  		type = "java.lang.String" 				 />
+      <property name = "estado" 		column = "ESTADO"  			type = "java.lang.String" 				 />
+      <property name = "fechaAlta" 		column = "FECHA_ALTA" 		type = "java.sql.Date"					 />
+      
+     
+     <!-- <many-to-one name="escuela" class="ipn.escom.ballScore.entity.Escuela" fetch="select">
+      	<column name="ID_ESCUELA" not-null="true" />
+      </many-to-one>
+       --> 
+      
+
+   </class>
+</hibernate-mapping>

@@ -186,6 +186,7 @@
 		
 	</package>
 	
+
 	<package name="equipos" namespace="/equipos" extends="struts-default">
 		<interceptors>
 			<!--  Interceptador de autentificación-->
@@ -226,5 +227,51 @@
 		</action>
 		
 	</package>
+
+	
+	<package name="ligas" namespace="/ligas" extends="struts-default">
+		<!-- Inicio Filters -->
+		<interceptors>
+			<!--  Interceptador de autentificación-->
+			<interceptor name="autentificador"
+				class="ipn.escom.ballScore.interceptor.ValidaLogin" />
+
+			<!-- Pila de interceptador "authInterceptador" -->
+			<!-- Esta pila llamara primero al interceptador "autentificador", si dicho interceptador no devuelve "expired", continua el flujo normal  -->
+			<interceptor-stack name="authInterceptador">
+				<interceptor-ref name="autentificador" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!--  Interceptador default, si no se especifica un interceptador en la definición del action, se llamara automaticamente a este interceptador -->
+		<default-interceptor-ref name="authInterceptador" />
+
+		<!-- Global Results -->
+		<!-- Los results que se especifiquen en este apartado, aplican para cualquier Action-->
+		<global-results>
+			<!--  Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
+			<result name="expired">/sesionExpirada.jsp</result>
+		</global-results>
+		
+		
+		<!-- Inicio Actions -->
+		<action name="submenuLigas" >
+			<result>/ligas/submenuLigas.jsp</result>
+		</action>
+		
+		<action name="formularioRegistroLiga" class="ipn.escom.ballScore.action.GestionarLigasAction" method="mostrarFormulario">
+			<result name="input">/ligas/registroLigas.jsp</result>
+			<result name="success">/ligas/registroLigas.jsp</result>
+		</action>
+		
+		<action name="registrarLiga" class="ipn.escom.ballScore.action.GestionarLigasAction" method="crearLiga">
+			<result name="success">/ligas/registroLigas.jsp</result>
+			<result name="input">/ligas/registroLigas.jsp</result>
+		</action>
+	
+	</package>
+	
+
 	
 </struts>
