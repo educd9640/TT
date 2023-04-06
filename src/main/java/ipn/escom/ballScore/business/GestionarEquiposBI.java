@@ -1,6 +1,7 @@
 package ipn.escom.ballScore.business;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -136,6 +137,40 @@ public class GestionarEquiposBI {
 		}
 		equipoDao.cerrarConexiones();
 		return equipoManager;
+	}
+	
+	/**
+	 * Metodo de negocio para activar o desactivar un equipo de acuerdo a su estado actual, el cual se basa de acuerdo a su fecha de subida
+	 * 
+	 * @param Equipo entidad con los datos del equipo
+	 * @return String para indicar al usuario si el equipo a sido activado o desctivado
+	 * @throws BussinessException
+	 */
+	
+	public String cambiarEstatus(Equipo equipoEstatus) throws BussinessException {
+		GestionarEquiposDAO equipoDao= new GestionarEquiposDAO();
+		String mensaje="";
+		Equipo equipoActualizado= new Equipo();
+		Date estatus= equipoEstatus.getFechaAlta();
+		if(estatus!=null) {
+			try {
+				equipoActualizado=equipoDao.bajaEquipo(equipoEstatus);
+				mensaje="El equipo se ha desactivado exitosamente";
+			} catch (SQLException e) {
+				throw new BussinessException("Error al desactivar al equipo");
+			}
+		}else {
+			try {
+				equipoActualizado=equipoDao.altaEquipo(equipoEstatus);
+				mensaje="El equipo ha sido activado exitosamente";
+			} catch (SQLException e) {
+				throw new BussinessException("Error al activar el equipo");
+			}
+		}
+		
+		equipoDao.cerrarConexiones();
+		
+		return mensaje;
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
@@ -117,9 +118,13 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		return Action.SUCCESS;
 	}
 	
+	
+	/**Metodo controlador para verificar si el manager cuenta con un equipo
+	 * @return Action Result
+	 */
 	@SkipValidation
 	public String actualizarEquipo(){
-		logger.info("Inicia metodo GestionarManagersAction.actualizarEquipo()");
+		logger.info("Inicia metodo GestionarEquiposAction.actualizarEquipo()");
 		equipoForm= new GestionarEquiposForm();
 		GestionarEquiposBI equiposBI= new GestionarEquiposBI();
 		String mensaje="";
@@ -130,6 +135,32 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 			addActionError(e.getMessage());
 			this.setOperacion("actualizado");
 		}
+		return Action.SUCCESS;
+	}
+	
+	
+	/**Metodo controlador para activar o desactivar un equipo
+	 * @return Action Result
+	 */
+	@SkipValidation
+	public String modificarEstatus() {
+		logger.info("Inicia metodo GestionarEquiposAction.modificarEstatus()");
+		GestionarEquiposBI equipoBI= new GestionarEquiposBI();
+		Equipo equipoActual = new Equipo();
+		String mensaje="";
+		try {
+			equipoActual=equipoBI.obtenerEquipo(this.managerActual.getIdManager());
+				try{
+					mensaje=equipoBI.cambiarEstatus(equipoActual);
+					addActionMessage(mensaje);
+				}catch(BussinessException e) {
+					addActionError(e.getMessage());
+				}
+		}catch(BussinessException e) {
+			addActionError(""+e.getMessage()+", por el momento esta opcion no esta disponible.");
+			return Action.INPUT;
+		}
+		
 		return Action.SUCCESS;
 	}
 	

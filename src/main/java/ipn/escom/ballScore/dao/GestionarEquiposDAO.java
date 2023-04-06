@@ -39,6 +39,11 @@ public class GestionarEquiposDAO extends BaseDAO {
 		return entidad;
 	}
 	
+	/**Metodo para actualizar un equipo
+	 * @param entidad con los datos del equipo
+	 * @return la entidad actualizada
+	 * @throws SQLException En caso de error al actualizar la entidad
+	 */
 	public Equipo updateEquipo(Equipo entidad) throws SQLException{
 		try 
 		{
@@ -51,6 +56,47 @@ public class GestionarEquiposDAO extends BaseDAO {
 		
 		return entidad;
 		
+	}
+	
+	/**Metodo para activar un equipo
+	 * @param entidad con los datos del equipo
+	 * @return la entidad con la fecha modificada
+	 * @throws SQLException En caso de error al activar la entidad
+	 */
+	
+	public Equipo altaEquipo (Equipo entidad) throws SQLException{
+		java.util.Date utilDate = new java.util.Date();
+		entidad.setFechaAlta(new Date(utilDate.getTime()));
+		try 
+		{
+			session.update(entidad);
+			session.flush();
+			session.clear();
+		}catch(Exception e) {
+			throw new SQLException(e.getMessage(),e.getCause());
+		}
+		
+		return entidad;
+	}
+	
+	/**Metodo para desactivar un equipo
+	 * @param entidad con los datos del equipo
+	 * @return la entidad con la fecha vacia
+	 * @throws SQLException En caso de error al desactivar la entidad
+	 */
+	
+	public Equipo bajaEquipo (Equipo entidad) throws SQLException{
+		entidad.setFechaAlta(null);
+		try 
+		{
+			session.update(entidad);
+			session.flush();
+			session.clear();
+		}catch(Exception e) {
+			throw new SQLException(e.getMessage(),e.getCause());
+		}
+		
+		return entidad;
 	}
 	
 	/**Metodo para buscar un equipo de acuerdo a su manager (id)

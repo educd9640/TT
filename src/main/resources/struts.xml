@@ -240,6 +240,11 @@
 			<result name="success">/equipos/registrarEquipo.jsp</result>
 		</action>
 		
+		<action name="estatusEquipo" class="ipn.escom.ballScore.action.GestionarEquiposAction" method="modificarEstatus">
+			<result name="input">/equipos/submenuEquipo.jsp</result>
+			<result name="success">/equipos/submenuEquipo.jsp</result>
+		</action>
+		
 	</package>
 	
 </struts>
