@@ -42,9 +42,15 @@ public class GestionarEquiposDAO extends BaseDAO {
 	/**Metodo para buscar un equipo de acuerdo a su manager (id)
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public Equipo obtenerManager(Long id){
 		return (Equipo) session.createQuery("from Equipo where ID_EQUIPO = :id").setParameter("id",id).uniqueResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Equipo> obtenerEquipoDelManager(Long idManager) {
+		Query q = session.createQuery("from Equipo where id_Manager =:idManager");
+		q.setParameter("idManager", idManager);
+		return(List<Equipo>) q.list();
 	}
 	
 }

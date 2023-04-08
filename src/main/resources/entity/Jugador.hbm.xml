@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "ipn.escom.ballScore.entity.Jugador" table = "JUGADOR">
+      
+      <meta attribute = "class-description">
+         This class contains the jugador detail. 
+      </meta>
+      
+      <id name = "idJugador" type = "java.lang.Long" column = "ID_JUGADOR">
+         <generator class="sequence">
+        	<param name="sequence">JUGADOR_SEQ</param>
+    	 </generator>
+      </id>
+      
+      <property name = "posicionPrim" 	column = "NOMBRE_PILA" 		type = "java.lang.String" not-null="true" />
+      <property name = "posicionSec" 	column = "APELLIDO_PAT" 	type = "java.lang.String" not-null="false"/>
+      <property name = "idEquipo"		column = "ID_EQUIPO" 		type = "java.lang.long"   not-null="false"/>
+      <property name = "fechaAlta" 		column = "FECHA_ALTA" 		type = "java.sql.Date"	  not-null="false"/>
+     
+      <many-to-one name="alumno" class="ipn.escom.ballScore.entity.Alumno" lazy="false" not-null="true" cascade="none" insert="true" update="true">
+      	<column name="BOLETA_ALUMNO"/>
+      </many-to-one>
+
+   </class>
+</hibernate-mapping>
