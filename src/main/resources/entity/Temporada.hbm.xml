@@ -10,7 +10,7 @@
          This class contains the temporada detail. 
       </meta>
       
-      <id name = "idTemporada" type = "java.lang.Long" column = "ID_LIGA"></id>
+      <id name = "idTemporada" type = "java.lang.Long" column = "ID_TEMPORADA"></id>
       
       <property name = "idLiga" 			column = "ID_LIGA" 				type = "java.lang.Long" not-null="true"/>
       <property name = "idEquipoCampeon" 	column = "ID_EQUIPO_CAMPEON" 	type = "java.lang.Long" 				 />

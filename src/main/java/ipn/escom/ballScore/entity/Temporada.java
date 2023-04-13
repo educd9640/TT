@@ -7,51 +7,70 @@ import java.sql.Date;
  *
  */
 public class Temporada{
-	private long idTemporada;
-	private long idLiga;
-	private long idEquipoCampeon;
+	private Long idTemporada;
+	private Long idLiga;
+	private Long idEquipoCampeon;
 	private Date fechaInicial;
 	private Date fechaFinal;
 	private Date fechaAlta;
 	
-	private Liga liga; 
-	
-	//getters
-	public long getIdTemporada() {	return idTemporada;}
-	
-	public long getIdLiga() {		return idLiga;	}
+	private Liga liga;
 
-	public Date getFechaInicial() {		return fechaInicial;	}
-
-	public Date getFechaFinal() {		return fechaFinal;	}
-
-	public long getIdEquipoCampeon ()	{	return idEquipoCampeon;}	
-	
-	public Date getFechaAlta() {return fechaAlta;}
-	
-	
-	//setters
-	public void setIdEquipoCampeon(long idEquipoCampeon) {
-		this.idEquipoCampeon = idEquipoCampeon;
+	public Long getIdTemporada() {
+		return idTemporada;
 	}
-	
-	public void setIdTemporada(long idTemporada) {
+
+	public void setIdTemporada(Long idTemporada) {
 		this.idTemporada = idTemporada;
 	}
-	
-	public void setFechaAlta(Date fechaAlta) {
-		this.fechaAlta = fechaAlta;
+
+	public Long getIdLiga() {
+		return idLiga;
 	}
-	
-	public void setIdLiga(long idLiga) {
+
+	public void setIdLiga(Long idLiga) {
 		this.idLiga = idLiga;
 	}
-	
+
+	public Long getIdEquipoCampeon() {
+		return idEquipoCampeon;
+	}
+
+	public void setIdEquipoCampeon(Long idEquipoCampeon) {
+		this.idEquipoCampeon = idEquipoCampeon;
+	}
+
+	public Date getFechaInicial() {
+		return fechaInicial;
+	}
+
 	public void setFechaInicial(Date fechaInicial) {
 		this.fechaInicial = fechaInicial;
 	}
-	
+
+	public Date getFechaFinal() {
+		return fechaFinal;
+	}
+
 	public void setFechaFinal(Date fechaFinal) {
 		this.fechaFinal = fechaFinal;
 	}
+
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	public Liga getLiga() {
+		return liga;
+	}
+
+	public void setLiga(Liga liga) {
+		this.liga = liga;
+	} 
+	
+	
 }
