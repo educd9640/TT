@@ -13,10 +13,15 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
 import ipn.escom.ballScore.business.GestionarLigasBI;
+import ipn.escom.ballScore.entity.Liga;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.LigaForm;
 import ipn.escom.ballScore.form.LigaVO;
 
+/**Clase Action para gestionar Ligas
+ * @author Eduardo Callejas
+ *
+ */
 public class GestionarLigasAction extends BaseAction implements Preparable {
 	
 	
@@ -26,20 +31,47 @@ public class GestionarLigasAction extends BaseAction implements Preparable {
 	
 	private LigaForm ligaF;
 	private String operacion;
+	private List<Liga> ligasRegistradas = new ArrayList<Liga>();
 	
 	
+	/**
+	 *Metodo para preparar la pantalla
+	 */
 	@Override
-	public void prepare() throws Exception {
+	public void prepare() {
 		// TODO Auto-generated method stub
 		logger.info("Inicia metodo GestionarLigasAction.prepare()");
-		
 		GestionarLigasBI ligaBI = new GestionarLigasBI();
+		try {
+			this.ligasRegistradas = ligaBI.obtenerLigasRegistradas() ;
+		} catch(BussinessException e) {
+			addActionError(e.getMessage());
+		}
+		
+		if(ligaF!=null && operacion!=null && ligaF.getIdLiga()!=null) {
+			if(operacion.equals("actualizado")) {
+				try {
+					Liga liga = ligaBI.buscarLigaPorId(ligaF.getIdLiga());
+					BeanUtils.copyProperties(ligaF, liga);
+				}catch(IllegalAccessException | InvocationTargetException e){
+					logger.error("Error al copiar las propiedades de la liga al form",e);
+					addActionError("Error al recuperar datos de la Liga");
+				}catch(BussinessException e){
+					logger.error("Error al consultar la Liga");
+					addActionError("Error al recuperar datos de la Liga");
+				}
+			}
+		}
+		
 	}
 	
 	
 	
 	
-	public String crearLiga() {
+	/**Metodo controlador para registrar ligas
+	 * @return Action Result
+	 */
+	public String registrarLiga() {
 		
 		logger.info("Inicia metodo GestionarLigasAction.crearLiga()");
 		
@@ -52,27 +84,72 @@ public class GestionarLigasAction extends BaseAction implements Preparable {
 			ligaF = new LigaForm();
 			return Action.SUCCESS;
 		}
-		if(ligaF != null  && operacion!=null) {
-			try {
-				new GestionarLigasBI().crearLiga(ligaVO, operacion);
-			}catch(BussinessException e) {
-				addActionError(e.getMessage());
-				return Action.SUCCESS;
-			}
+		
+		try {
+			new GestionarLigasBI().crearLiga(ligaVO, operacion);
+		}catch(BussinessException e) {
+			addActionError(e.getMessage());
+			return Action.SUCCESS;
 		}
+	
 		
 		addActionMessage("Liga " + ligaVO.getNombre() +" "+ operacion + " con exito");
 		
 		return Action.SUCCESS;
 	}
 	
+	
+	
+	/**Metodo controlador para eliminar una liga
+	 * @return Action Result
+	 */
+	@SkipValidation
+	public String estadoLiga() {
+		logger.info("Inicia metodo GestionarAlumnosAction.estadoLiga()");
+		LigaVO ligaVO = new LigaVO();
+		try {
+			BeanUtils.copyProperties(ligaVO, ligaF);
+		}catch(IllegalAccessException | InvocationTargetException e) {
+			logger.error(" Error al copiar propiedades del Form al VO ",e);
+			addActionError("Error al registrarse.");
+			ligaF = new LigaForm();
+			return Action.SUCCESS;
+		}
+		
+		try {
+			new GestionarLigasBI().estadoLiga(ligaVO.getIdLiga());
+		}catch(BussinessException e) {
+			addActionError("Error al registrarse.");
+			ligaF = new LigaForm();
+			return Action.SUCCESS;
+		}
+		
+		addActionMessage("Liga " + ligaVO.getIdLiga() +" activada/desactivada con exito");
+		this.prepare();
+		return Action.SUCCESS;
+	}
+	
+	
+	
+	
+	
+	
+	/**Metodo para presentar pantalla de formulario
+	 * @return
+	 */
 	public String mostrarFormulario() {
 		logger.info("Inicia metodo GestionarAlumnosAction.mostrarFormulario()");
 
 		return Action.SUCCESS;
 	}
-
-
+	
+	/**Metodo para presentar pantalla de registrados
+	 * @return
+	 */
+	public String mostrarRegistrados() {
+		logger.info("Inicia metodo GestionarLigasAction.mostrarRegistrados()");
+		return Action.SUCCESS;
+	}
 	
 	
 	
@@ -86,6 +163,17 @@ public class GestionarLigasAction extends BaseAction implements Preparable {
 	
 	
 	
+	public List<Liga> getLigasRegistradas() {
+		return ligasRegistradas;
+	}
+	
+
+
+	public void setLigasRegistradas(List<Liga> ligasRegistradas) {
+		this.ligasRegistradas = ligasRegistradas;
+	}
+
+
 	public void setLigaF(LigaForm ligaF) {
 		this.ligaF = ligaF;
 	}

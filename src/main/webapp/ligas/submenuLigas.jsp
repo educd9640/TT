@@ -18,7 +18,8 @@
 <body>
 <h3>Gestionar Ligas</h3>
 
-<p><a href='<s:url namespace="/ligas" action="formularioRegistroLiga" />' >Registrar Alumno</a></p>
+<p><a href='<s:url namespace="/ligas" action="formularioRegistroLiga" />' >Registrar Liga</a></p>
+<p><a href='<s:url namespace="/ligas" action="consultarLigas" />' >Consultar Ligas</a></p>
 <p><a href='<s:url namespace="/" action="menuPrincipal" />' >Menu Principal</a></p>
 </body>
 </html>
