@@ -1,9 +1,6 @@
 package ipn.escom.ballScore.action;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -19,7 +16,6 @@ import ipn.escom.ballScore.entity.Manager;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.GestionarEquiposForm;
 import ipn.escom.ballScore.form.GestionarEquiposVO;
-import ipn.escom.ballScore.form.GestionarManagersForm;
 
 /**Clase Action para gestionar los equipos
  * @author Cisneros Christian
