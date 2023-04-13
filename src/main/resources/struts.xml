@@ -312,12 +312,27 @@
 			<result>/ligas/submenuLigas.jsp</result>
 		</action>
 		
+		<action name="consultarLigas" class="ipn.escom.ballScore.action.GestionarLigasAction" method="mostrarRegistrados">
+			<result name="input">/ligas/consultarLigas.jsp</result>
+			<result name="success">/ligas/consultarLigas.jsp</result>
+		</action>
+		
 		<action name="formularioRegistroLiga" class="ipn.escom.ballScore.action.GestionarLigasAction" method="mostrarFormulario">
 			<result name="input">/ligas/registroLigas.jsp</result>
 			<result name="success">/ligas/registroLigas.jsp</result>
 		</action>
 		
-		<action name="registrarLiga" class="ipn.escom.ballScore.action.GestionarLigasAction" method="crearLiga">
+		<action name="registrarLiga" class="ipn.escom.ballScore.action.GestionarLigasAction" method="registrarLiga">
+			<result name="success">/ligas/registroLigas.jsp</result>
+			<result name="input">/ligas/registroLigas.jsp</result>
+		</action>
+		
+		<action name="estadoLiga" class="ipn.escom.ballScore.action.GestionarLigasAction" method="estadoLiga">
+			<result name="success">/ligas/consultarLigas.jsp</result>
+			<result name="input">/ligas/consultarLigas.jsp</result>
+		</action>
+		
+		<action name="modificarLiga" class="ipn.escom.ballScore.action.GestionarLigasAction" method="mostrarFormulario">
 			<result name="success">/ligas/registroLigas.jsp</result>
 			<result name="input">/ligas/registroLigas.jsp</result>
 		</action>

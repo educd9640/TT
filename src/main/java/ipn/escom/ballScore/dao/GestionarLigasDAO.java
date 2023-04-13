@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Query;
-
 import ipn.escom.ballScore.entity.Liga;
 
 /**Clase DAO para gestionar ligas
@@ -46,6 +45,8 @@ public class GestionarLigasDAO extends BaseDAO{
 	 * @throws SQLException en caso de error
 	 */
 	public Liga updateLiga(Liga liga) throws SQLException {
+		java.util.Date utilDate = new java.util.Date();
+		liga.setFechaAlta(new Date(utilDate.getTime()));
 		try {
 			session.update(liga);
 			session.flush();
@@ -56,16 +57,29 @@ public class GestionarLigasDAO extends BaseDAO{
 		return liga;
 	}
 	
+	/**Metodo para consultar todas las ligas registradas
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Liga> selectFromLiga(){
+		Query q = session.createQuery("from Liga");
+		return (List<Liga>)q.list();
+	}
 	
 	
-	
-	/**Metodo para eliminar una liga
+	/**Metodo para activar/desactivar una liga
 	 * @param ligaVO liga en cuestión
 	 * @throws SQLException en caso de error
 	 */
-	public void deleteLiga(Liga liga) throws SQLException {
+	public void estadoLiga(Liga liga) throws SQLException {
+		if(liga.getFechaAlta()!=null) {
+			liga.setFechaAlta(null);
+		}else {
+			java.util.Date utilDate = new java.util.Date();
+			liga.setFechaAlta(new Date(utilDate.getTime()));
+		}
 		try {
-			session.delete(liga);
+			session.update(liga);
 			session.flush();
 			session.clear();
 		}catch(Exception e) {
@@ -73,17 +87,7 @@ public class GestionarLigasDAO extends BaseDAO{
 		}
 	}
 	
-	
-	
-	/**Metodo para consultar todas las ligas registradas
-	 * @return Lista de ligas registradas
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Liga> selectLiga () {
-		Query q = session.createQuery("from Liga");
-		return (List<Liga>)q.list();
-	}
-	
+			
 	/**Metodo para obtener una liga por su id
 	 * @param id de la Liga
 	 * @return La entidad Liga con sus datos
