@@ -107,6 +107,15 @@ public class GestionarEquiposDAO extends BaseDAO {
 		return (Equipo) session.createQuery("from Equipo where ID_MANAGER = :id").setParameter("id",id).uniqueResult();
 	}
 	
+	/**Metodo para consultar todos los equiposs registrados
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Equipo> selectFromEquipo(){
+		Query q = session.createQuery("from Equipo");
+		return (List<Equipo>)q.list();
+	}
+	
 }
 
 

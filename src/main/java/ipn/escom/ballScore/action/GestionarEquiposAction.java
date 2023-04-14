@@ -37,6 +37,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	private Manager managerActual;
 	private Equipo equipoManager;
 	private String operacion;
+	private List<Equipo> equiposRegistrados = new ArrayList<Equipo>();
 	
 	/**
 	 *Metodo para preparar la pantalla
@@ -48,6 +49,11 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		equipoForm= new GestionarEquiposForm();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
 		this.managerActual= (Manager) session.getAttribute("Usuario");
+		try {
+			equiposRegistrados= equipoBI.obtenerEquiposRegistrados();
+		}catch(BussinessException e) {
+			addActionError(e.getMessage());
+		}
 		if(operacion !=null && operacion.equals("actualizado")) {
 			try {
 				Equipo team = equipoBI.obtenerEquipo(this.managerActual.getIdManager());
@@ -115,6 +121,15 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		equipoForm.setIdManager(equipoManager.getIdEquipo());
 		addActionMessage("Equipo registrado con exito: idEquipo: "+equipoForm.getIdEquipo());
 		
+		return Action.SUCCESS;
+	}
+	
+	/**Metodo para visualizar la pantalla de consultarEquipo
+	 * @return Action Result
+	 */
+	@SkipValidation
+	public String buscarEquipo() {
+		logger.info("Inicia metodo GestionarEquiposAction.actualizarEquipo()");
 		return Action.SUCCESS;
 	}
 	

@@ -235,6 +235,16 @@
 			<result name="success">/equipos/registrarEquipo.jsp</result>
 		</action>
 		
+		<action name="buscarEquipoModal" class="ipn.escom.ballScore.action.GestionarEquiposAction" method="buscarEquipo">
+			<result name="input">/equipos/buscarEquipoModal.jsp</result>
+			<result name="success">/equipos/buscarEquipoModal.jsp</result>
+		</action>
+		
+		<action name="entrarTemporada" class="ipn.escom.ballScore.action.GestionarEquiposAction" method="buscarEquipo">
+			<result name="input">/equipos/entrarTemporada.jsp</result>
+			<result name="success">/equipos/entrarTemporada.jsp</result>
+		</action>
+		
 		<action name="verificarEquipo" class="ipn.escom.ballScore.action.GestionarEquiposAction" method="actualizarEquipo">
 			<result name="input">/equipos/registrarEquipo.jsp</result>
 			<result name="success">/equipos/registrarEquipo.jsp</result>

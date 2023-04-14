@@ -28,6 +28,7 @@
 	<a href="<s:property value="#url"/>">Modificar equipo</a>
 </p>
 <p><a href='<s:url namespace="/equipos" action="estatusEquipo" />' >Activar/Desactivar Equipo</a></p>
+<p><a href='<s:url namespace="/equipos" action="entrarTemporada" />' >Entrar a temporada</a></p>
 <p><a href='<s:url namespace="/" action="menuPrincipal" />' >Regresar</a></p>
 </body>
 

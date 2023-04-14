@@ -3,6 +3,7 @@ package ipn.escom.ballScore.business;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -171,6 +172,20 @@ public class GestionarEquiposBI {
 		equipoDao.cerrarConexiones();
 		
 		return mensaje;
+	}
+	
+	public List<Equipo> obtenerEquiposRegistrados() throws BussinessException{
+		logger.info("Inicia metodo GestionarEquiposBI.obtenerEquiposRegistrados()");
+		GestionarEquiposDAO equipoDao= new GestionarEquiposDAO();
+		List<Equipo> equipos= new ArrayList<Equipo>();
+		try {
+			equipos=equipoDao.selectFromEquipo();
+		}catch(Exception e) {
+			logger.error(" Error al consultar los equipos registrados ", e);
+			throw new BussinessException("Error al consultar los equipos registrados.");
+		}
+		equipoDao.cerrarConexiones();
+		return equipos;
 	}
 	
 }
