@@ -53,7 +53,7 @@ public class GestionarLigasBI {
 			else
 				nuevaLiga = ligaDAO.updateLiga(nuevaLiga);
 		} catch (SQLException e) {
-			logger.error("Error aqui",e);
+			
 			if(e!=null && e.getCause().getMessage().contains("ORA-00001")) {
 				logger.error(" Error al registrar la liga, ya existe una liga registrada", e);
 				throw new BussinessException("Ya existe una liga registrada con ese id.");
