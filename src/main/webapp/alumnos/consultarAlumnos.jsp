@@ -26,7 +26,8 @@
                 <th><s:text name="alumnoForm.telefono"/></th>
                 <th><s:text name="alumnoForm.telEmergencia"/></th>
                 <th><s:text name="alumnoForm.correo"/></th>	
-                <th><s:text name="alumnoForm.idEscuela"/></th>	
+                <th><s:text name="alumnoForm.idEscuela"/></th>
+                <th><s:text name="alumnoForm.esActivo"/></th>	
                 <th>&nbsp;</th>
             </tr>
             <s:iterator value="alumnosRegistrado" status="status">
@@ -42,6 +43,16 @@
                     <td class="nowrap"><s:property value="telEmergencia"/></td>
                     <td class="nowrap"><s:property value="correo"/></td>
                     <td class="nowrap"><s:property value="escuela.nombreCortoEscuela"/></td>
+                    <s:if test="%{fechaAlta!=null}">
+						<td class="nowrap" style="text-align: center; vertical-align: middle;">
+							<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
+						</td>
+					</s:if>
+                    <s:else>
+                    	<td class="nowrap" style ="text-align: center; vertical-align: middle;">
+                    		<img width="15" height="15" src="<s:url value='/img/cross.png'/>">
+                    	</td>
+                    </s:else>
                     <td class="nowrap">
                         <s:url action="modificarAlumno" var="url" escapeAmp="false">
                             <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
@@ -49,10 +60,18 @@
                         </s:url>
                         <a href="<s:property value="#url"/>">Modificar</a>
                         &nbsp;&nbsp;&nbsp;
-                        <s:url action="eliminarAlumno" var="url">
-                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
-                        </s:url>
-                        <a href="<s:property value="#url"/>">Borrar</a>
+                        <s:if test="%{fechaAlta!=null}">
+	                        <s:url action="bajaAlumno" var="url">
+	                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
+	                        </s:url>
+	                        <a href="<s:property value="#url"/>">Baja</a>
+                        </s:if>
+                        <s:else>
+	                        <s:url action="altaAlumno" var="url">
+	                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
+	                        </s:url>
+	                        <a href="<s:property value="#url"/>">Alta</a>
+                        </s:else>
                     </td>
                 </tr>
             </s:iterator>
