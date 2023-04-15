@@ -17,10 +17,19 @@
 <body>
 <h3> Gestionar Equipos </h3>
 
-<p><a href='<s:url namespace="/equipos" action="formularioRegistro" />' >Registrar Equipo</a></p>
-<p><a href='<s:url namespace="/equipos" action="modificarEquipo" />' >Modificar equipo</a></p>
-<p><a href='<s:url namespace="/" action="menuPrincipal" />' >Menu Principal</a></p>
+<s:actionmessage />
 
+
+<p><a href='<s:url namespace="/equipos" action="verificarEquipo" />' >Registrar Equipo</a></p>
+<p>
+	<s:url action="formularioRegistro" var="url" escapeAmp="false">
+		<s:param name="operacion">actualizado</s:param>
+	</s:url>
+	<a href="<s:property value="#url"/>">Modificar equipo</a>
+</p>
+<p><a href='<s:url namespace="/equipos" action="estatusEquipo" />' >Activar/Desactivar Equipo</a></p>
+<p><a href='<s:url namespace="/equipos" action="entrarTemporada" />' >Entrar a temporada</a></p>
+<p><a href='<s:url namespace="/" action="menuPrincipal" />' >Regresar</a></p>
 </body>
 
 </html>
