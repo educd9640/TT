@@ -13,7 +13,7 @@
       <id name = "idEquipo" type = "java.lang.Long" column = "ID_EQUIPO">
       	<generator class="sequence">
         	<param name="sequence">EQUIPO_SEQ</param>
-    	 </generator>
+    	  </generator>
       </id>
       
       <property name = "nombre" 	column = "NOMBRE" 	type = "java.lang.String" not-null="true"/>

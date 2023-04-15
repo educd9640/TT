@@ -110,11 +110,11 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 		return Action.SUCCESS;
 	}
 	
-	/**Metodo controlador para eliminar un alumno
+	/**Metodo controlador para baja de un alumno
 	 * @return Action Result
 	 */
 	@SkipValidation
-	public String eliminarAlumno() {
+	public String bajaAlumno() {
 		logger.info("Inicia metodo GestionarAlumnosAction.eliminarAlumno()");
 		GestionarAlumnosVO vo = new GestionarAlumnosVO();
 		try {
@@ -127,14 +127,43 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 		}
 		
 		try {
-			new GestionarAlumnosBI().eliminarAlumno(vo.getBoletaAlumno());
+			new GestionarAlumnosBI().bajaAlumno(vo.getBoletaAlumno());
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
 			alumnoForm = new GestionarAlumnosForm();
 			return Action.SUCCESS;
 		}
 		
-		addActionMessage("Alumno con boleta: "+vo.getBoletaAlumno()+" borrado con exito.");
+		addActionMessage("Alumno con boleta: "+vo.getBoletaAlumno()+" dado de baja con exito.");
+		this.prepare();
+		return Action.SUCCESS;
+	}
+	
+	/**Metodo controlador para activar un alumno
+	 * @return Action Result
+	 */
+	@SkipValidation
+	public String altaAlumno() {
+		logger.info("Inicia metodo GestionarAlumnosAction.eliminarAlumno()");
+		GestionarAlumnosVO vo = new GestionarAlumnosVO();
+		try {
+			BeanUtils.copyProperties(vo,alumnoForm);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			logger.error(" Error al copiar propiedades del Form al VO ",e);
+			addActionError("Error al registrarse.");
+			alumnoForm = new GestionarAlumnosForm();
+			return Action.SUCCESS;
+		}
+		
+		try {
+			new GestionarAlumnosBI().altaAlumno(vo.getBoletaAlumno());
+		} catch (BussinessException e) {
+			addActionError(e.getMessage());
+			alumnoForm = new GestionarAlumnosForm();
+			return Action.SUCCESS;
+		}
+		
+		addActionMessage("Alumno con boleta: "+vo.getBoletaAlumno()+" dado de alta con exito.");
 		this.prepare();
 		return Action.SUCCESS;
 	}
