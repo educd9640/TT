@@ -5,8 +5,48 @@
 <html>
     <head>
     	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
+    	<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
         <title><s:text name="label.registrados.titulo"/></title>
+
+        <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
+        <!-- Script Sexyalertbox -->
+        <script src="<s:url value='/js/sexyalertbox.v1.2.jquery.js'/>"></script>
+        <!-- Script Jquery easing (Animaciones, usado por sexyalert) -->
+        <script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
+        
+        <script>
+        	//Inician metodos JQuery
+	        $(document).ready(function(){
+	        
+	        	//Funcion para que solo pueda haber 1 checkbox "checkeado" a la vez
+	        	$("input:checkbox").on('click', function() {
+				  var $box = $(this);
+				  if ($box.is(":checked")) {
+				    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+				    $(group).prop("checked", false);
+				    $box.prop("checked", true);
+				  } else {
+				    $box.prop("checked", false);
+				  }
+				});
+				
+				$("#cerrarVentana").click(function(){
+					window.parent.TINY.box.hide();
+    			}); 
+    			
+    			$("#aceptarSeleccion").click(function(){
+    			
+    				var checkBoxesSeleccionadas = $('input[name="alumno"]:checked');
+					if(checkBoxesSeleccionadas.length<1){
+						Sexy.error("Debe seleccionar un alumno");
+					}else{
+						window.parent.settearDesdeModal(checkBoxesSeleccionadas[0].value);
+						window.parent.TINY.box.hide();
+					}
+    			}); 
+	        });
+        </script>
     </head>
     <body>
         <div class="titleDiv"><s:text name="application.title"/></div>
@@ -26,8 +66,7 @@
                 <th><s:text name="alumnoForm.telefono"/></th>
                 <th><s:text name="alumnoForm.telEmergencia"/></th>
                 <th><s:text name="alumnoForm.correo"/></th>	
-                <th><s:text name="alumnoForm.idEscuela"/></th>
-                <th><s:text name="alumnoForm.esActivo"/></th>	
+                <th><s:text name="alumnoForm.idEscuela"/></th>	
                 <th>&nbsp;</th>
             </tr>
             <s:iterator value="alumnosRegistrado" status="status">
@@ -43,42 +82,15 @@
                     <td class="nowrap"><s:property value="telEmergencia"/></td>
                     <td class="nowrap"><s:property value="correo"/></td>
                     <td class="nowrap"><s:property value="escuela.nombreCortoEscuela"/></td>
-                    <s:if test="%{fechaAlta!=null}">
-						<td class="nowrap" style="text-align: center; vertical-align: middle;">
-							<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
-						</td>
-					</s:if>
-                    <s:else>
-                    	<td class="nowrap" style ="text-align: center; vertical-align: middle;">
-                    		<img width="15" height="15" src="<s:url value='/img/cross.png'/>">
-                    	</td>
-                    </s:else>
                     <td class="nowrap">
-                        <s:url action="modificarAlumno" var="url" escapeAmp="false">
-                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
-                            <s:param name="operacion">actualizado</s:param>
-                        </s:url>
-                        <a href="<s:property value="#url"/>">Modificar</a>
-                        &nbsp;&nbsp;&nbsp;
-                        <s:if test="%{fechaAlta!=null}">
-	                        <s:url action="bajaAlumno" var="url">
-	                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
-	                        </s:url>
-	                        <a href="<s:property value="#url"/>">Baja</a>
-                        </s:if>
-                        <s:else>
-	                        <s:url action="altaAlumno" var="url">
-	                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
-	                        </s:url>
-	                        <a href="<s:property value="#url"/>">Alta</a>
-                        </s:else>
+                    	<input type="checkbox" id="<s:property value="boletaAlumno"/>" name="alumno" value="<s:property value="boletaAlumno"/>_<s:property value="nombrePila"/>_<s:property value="apellidoPat"/>_<s:property value="apellidoMat"/>" />
                     </td>
                 </tr>
             </s:iterator>
         </table>
         
-        <s:form action="submenuAlumnos" >
-			<s:submit value="Regresar" targets="submenuAlumnos"/>
-		</s:form>
+        <input id="cerrarVentana" type="button" value="Cerrar"/>
+        <input id="aceptarSeleccion" type="button" value="Aceptar"/>
+        <input id="LimiparVentana" type="button" value="Limpiar"/>
     </body>
 </html>

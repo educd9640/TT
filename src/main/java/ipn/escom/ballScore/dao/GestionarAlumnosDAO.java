@@ -73,20 +73,6 @@ public class GestionarAlumnosDAO extends BaseDAO {
 		return (Alumno) this.session.get(Alumno.class, numeroBoleta);
 	}
 	
-	/**Metodo para eliminar un alumno
-	 * @param entidad del alumno
-	 * @throws SQLException en caso de error al eliminar
-	 */
-	public void deleteAlumno(Alumno entidad) throws SQLException {
-		try {
-			session.delete(entidad);
-			session.flush();
-			session.clear();
-		}catch(Exception e) {
-			throw new SQLException(e.getMessage(), e.getCause());
-		}
-	}
-	
 }
 
 

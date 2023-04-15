@@ -3,6 +3,7 @@ package ipn.escom.ballScore.business;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,6 +175,10 @@ public class GestionarEquiposBI {
 		return mensaje;
 	}
 	
+	/**Metodo de negocio para obtener los equipos registrados
+	 * @return
+	 * @throws BussinessException
+	 */
 	public List<Equipo> obtenerEquiposRegistrados() throws BussinessException{
 		logger.info("Inicia metodo GestionarEquiposBI.obtenerEquiposRegistrados()");
 		GestionarEquiposDAO equipoDao= new GestionarEquiposDAO();
