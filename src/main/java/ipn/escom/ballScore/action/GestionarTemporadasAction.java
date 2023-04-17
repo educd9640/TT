@@ -100,4 +100,52 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	}
 	
 	
+	/**Metodo para presentar pantalla de formulario
+	 * @return
+	 */
+	public String mostrarFormulario() {
+		logger.info("Inicia metodo GestionarAlumnosAction.mostrarFormulario()");
+
+		return Action.SUCCESS;
+	}
+	
+	/**Metodo para presentar pantalla de registrados
+	 * @return
+	 */
+	public String mostrarRegistrados() {
+		logger.info("Inicia metodo GestionarLigasAction.mostrarRegistrados()");
+		return Action.SUCCESS;
+	}
+
+
+	public TemporadaForm getTemporadaF() {
+		return temporadaF;
+	}
+
+
+	public void setTemporadaF(TemporadaForm temporadaF) {
+		this.temporadaF = temporadaF;
+	}
+
+
+	public String getOperacion() {
+		return operacion;
+	}
+
+
+	public void setOperacion(String operacion) {
+		this.operacion = operacion;
+	}
+
+
+	public List<Temporada> getTemporadasRegistradas() {
+		return temporadasRegistradas;
+	}
+
+
+	public void setTemporadasRegistradas(List<Temporada> temporadasRegistradas) {
+		this.temporadasRegistradas = temporadasRegistradas;
+	}
+	
+	
 }
