@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "ipn.escom.ballScore.entity.Equipo_Temporada" table = "EQUIPO_TEMPORADA">
+      
+      <meta attribute = "class-description">
+         This class contains the equipo_temporada detail. 
+      </meta>
+      
+      <composite-id>
+      	<key-property name="id_Equipo" column="ID_EQUIPO" type="java.lang.Long"></key-property>
+      	<key-property name="id_Temporada" column="ID_TEMPORADA" type="java.lang.Long"></key-property>
+      </composite-id>
+      
+      <property name = "fechaAlta" 	column = "FECHA_ALTA" 	type = "java.sql.Date" />
+     
+      <many-to-one name="equipo" class="ipn.escom.ballScore.entity.Equipo" lazy="false" not-null="true" cascade="none" insert="true" update="true">
+      	<column name="ID_EQUIPO"/>
+      </many-to-one>
+      
+      <many-to-one name="temporada" class="ipn.escom.ballScore.entity.Temporada" lazy="false" not-null="true" cascade="none" insert="true" update="true">
+      	<column name="ID_TEMPORADA"/>
+      </many-to-one>
+
+   </class>
+</hibernate-mapping>

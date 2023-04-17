@@ -1,6 +1,7 @@
 package ipn.escom.ballScore.business;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -152,7 +153,7 @@ public class GestionarAlumnosBI {
 	 * @param numeroBoleta del alumno
 	 * @throws BussinessException si no existiera el alumno
 	 */
-	public void eliminarAlumno(Long numeroBoleta) throws BussinessException{
+	public void bajaAlumno(Long numeroBoleta) throws BussinessException{
 		logger.info("Inicia metodo GestionarAlumnosBI.eliminarAlumno()");
 		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
 		try {
@@ -161,7 +162,37 @@ public class GestionarAlumnosBI {
 				logger.error("Error al borrar al alumno: alumno con boleta "+numeroBoleta+" no encontrado");
 				throw new BussinessException("Error al borrar al alumno: alumno no encontrado");
 			}
-			alumnosDao.deleteAlumno(alumno);				
+			alumno.setFechaAlta(null);
+			java.util.Date utilDate = new java.util.Date();
+			alumno.setFechaBaja(new Date(utilDate.getTime()));
+			alumnosDao.updateAlumno(alumno);
+			//alumnosDao.deleteAlumno(alumno);				
+		}catch (Exception e) {
+			logger.error("Error al borrar al alumno ",e);
+			throw new BussinessException("Error al borrar al alumno.");
+		}
+		
+		alumnosDao.cerrarConexiones();
+	}
+	
+	/**Metodo para eliminar un alumno
+	 * @param numeroBoleta del alumno
+	 * @throws BussinessException si no existiera el alumno
+	 */
+	public void altaAlumno(Long numeroBoleta) throws BussinessException{
+		logger.info("Inicia metodo GestionarAlumnosBI.eliminarAlumno()");
+		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
+		try {
+			Alumno alumno = alumnosDao.selectAlumnoById(numeroBoleta);
+			if(alumno==null) {
+				logger.error("Error al borrar al alumno: alumno con boleta "+numeroBoleta+" no encontrado");
+				throw new BussinessException("Error al borrar al alumno: alumno no encontrado");
+			}
+			java.util.Date utilDate = new java.util.Date();
+			alumno.setFechaAlta(new Date(utilDate.getTime()));
+			alumno.setFechaBaja(null);
+			alumnosDao.updateAlumno(alumno);
+			//alumnosDao.deleteAlumno(alumno);				
 		}catch (Exception e) {
 			logger.error("Error al borrar al alumno ",e);
 			throw new BussinessException("Error al borrar al alumno.");
