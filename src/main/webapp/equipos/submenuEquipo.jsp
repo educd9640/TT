@@ -6,7 +6,7 @@
 <html>
 <head>
 <!--  SETANDO CSS's  -->
-<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
+<link href="<s:url value='/menu.css'/>" rel="stylesheet" type="text/css"/>
 <!--  JQUERY PLUGIN -->
 <sj:head jqueryui="true" />
 <sb:head/>
@@ -15,21 +15,26 @@
 
 
 <body>
-<h3> Gestionar Equipos </h3>
+<h1> Bienvenido al menu de Equipos </h1>
 
 <s:actionmessage />
 
+<nav>
+<a href='<s:url namespace="/equipos" action="verificarEquipo" />' >Registrar Equipo</a>
+<s:url action="formularioRegistro" var="url" escapeAmp="false">
+	<s:param name="operacion">actualizado</s:param>
+</s:url>
+<a href="<s:property value="#url"/>">Modificar equipo</a>
+<a href='<s:url namespace="/equipos" action="estatusEquipo" />' >Activar/Desactivar Equipo</a>
+<a href='<s:url namespace="/equipos" action="entrarTemporada" />' >Entrar a temporada</a>
+<a href='<s:url namespace="/" action="menuPrincipal" />' >Regresar</a>
+<div class="animation start-home"></div>
+</nav>
 
-<p><a href='<s:url namespace="/equipos" action="verificarEquipo" />' >Registrar Equipo</a></p>
 <p>
-	<s:url action="formularioRegistro" var="url" escapeAmp="false">
-		<s:param name="operacion">actualizado</s:param>
-	</s:url>
-	<a href="<s:property value="#url"/>">Modificar equipo</a>
+	<span>BallScore ESCOM</span>
 </p>
-<p><a href='<s:url namespace="/equipos" action="estatusEquipo" />' >Activar/Desactivar Equipo</a></p>
-<p><a href='<s:url namespace="/equipos" action="entrarTemporada" />' >Entrar a temporada</a></p>
-<p><a href='<s:url namespace="/" action="menuPrincipal" />' >Regresar</a></p>
+
 </body>
 
 </html>
