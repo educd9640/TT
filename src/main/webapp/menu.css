@@ -1,109 +1,170 @@
-nav {
-	margin: 27px auto 0;
-	
-	position: relative;
-	width: 590px;
-	height: 50px;
-	background-color: #34495e;
-	border-radius: 8px;
-	font-size: 0;
-}
-
-nav a {
-	line-height: 50px;
-	height: 100%;
-	font-size: 15px;
-	display: inline-block;
-	position: relative;
-	z-index: 1;
-	text-decoration: none;
+body {
+	background: #ccc;
+	font-family: helvetica, arial, serif;
+	font-size: 13px;
 	text-transform: uppercase;
 	text-align: center;
-	color: white;
-	cursor: pointer;
 }
 
-nav .animation{
+.wrap {
+	display: inline-block;
+	-webkit-box-shadow: 0 0 70px #fff;
+	-moz-box-shadow: 0 0 70px #fff;
+	box-shadow: 0 0 70px #fff;
+	margin-top: 40px;
+}
+
+.decor {
+	background: #6EAF8D;
+	background: -webkit-linear-gradient(left,#CDEBDB 50%, #6EAF8D 50%);
+	background: -moz-linear-gradient(left, #CDEBDB 50%, #6EAF8D 50%);
+	background: -o-linear-gradient(left, #CDEBDB 50%, #6EAF8D 50%);
+	background-size: 50px 25%;;
+	padding: 2px;
+	display: block;
+}
+
+a{
+	text-decoration: none;
+	color: #fff;
+	display: block;
+}
+
+ul{
+	list-style: none;
+	position: relative;
+	text-align: left;
+}
+
+li{
+	float:left;
+}
+
+ul:after{
+	clear: both;
+}
+
+ul:before, ul:after{
+	content: " ";
+	display: table;
+}
+
+nav{
+	position: relative;
+	background: #2B2B2B;
+	background-image: -webkit-linear-gradient(bottom, #2B2B2B 7%, #333333 100%);
+	background-image: -moz-linear-gradient(bottom, #2B2B2B 7%, #333333 100%);
+	background-image: -o-linear-gradient(bottom, #2B2B2B 7%, #333333 100%);
+	background-image: linear-gradient(bottom, #2B2B2B 7%, #333333 100%);
+	text-align: center;
+	letter-spacing: 1px;
+	text-shadow: 1px 1px 1px #0E0E0E;
+	-webkit-box-shadow: 2px 2px 3px #888;
+	-moz-box-shadow: 2px 2px 3px #888;
+	box-shadow: 2px 2px 3px #888;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+ul.primary li a{
+	display: block;
+	padding: 20px 3px;
+	border-right: 1px solid #3D3D3D;
+}
+
+ul.primary li:last-child a{
+	border-right:none;
+}
+
+ul.primary li a:hover {
+	color: #000;
+}
+
+ul.sub{
 	position: absolute;
-	height: 100%;
-	top: 0;
-	z-index: 0;
-	transition: all .5s ease 0s;
-	border-radius: 8px;
+	z-index: 200;
+	box-shadow: 2px 2px 0 #BEBEBE;
+	width: 35%;
+	display: none;
 }
 
-a:nth-child(1){
-	width: 100px;
-}
-a:nth-child(2){
-	width: 110px;
-}
-a:nth-child(3){
-	width: 100px;
-}
-a:nth-child(4){
-	width: 160px;
-}
-a:nth-child(5){
-	width: 120px;
+ul.sub li{
+	float: none;
+	margin: 0;
 }
 
-nav .start-home, a:nth-child(1):hover~.animation{
-	width:100px;
-	left:0;
-	background-color: #1abc9c;
+ul.sub li a{
+	border-bottom: 1px dotted #ccc;
+	border-right: none;
+	color: #000;
+	padding: 15px 30px;
 }
 
-nav .start-update, a:nth-child(2):hover~.animation{
-	width:110px;
-	left:100px;
-	background-color: #e74c3c;
+ul.sub li:last-child a{
+	border-bottom: none;
 }
 
-nav .start-change, a:nth-child(3):hover~.animation{
-	width:100px;
-	left:210px;
-	background-color: #3498db;
+ul.sub li a:hover{
+	color: #000;
+	background: #eeeeee;
 }
 
-nav .start-test, a:nth-child(4):hover~.animation{
-	width:160px;
-	left:310px;
-	background-color: #9b59b6;
+ul.primary li:hover ul{
+	display: block;
+	background: #fff;
 }
 
-nav .start-back, a:nth-child(5):hover~.animation{
-	width:120px;
-	left:470px;
-	background-color: #e67e22;
+ul.primary li:hover a{
+	background: #fff;
+	color: #666;
+	text-shadow: none;
 }
 
-body{
-	font-size: 12px;
-	font-family: sans-serif;
-	background: #2c3e50;
+ul.primary li:hover > a{
+	color: #000;
 }
 
-h1{
-	text-align: center;
-	margin: 40px 0 40px;
-	text-align: center;
-	font-size: 30px;
-	color: #ecf0f1;
-	text-shadow: 2px 2px 4px #000000;
-	font-family: 'Cherry Swash', cursive;
-}
-
-p{
-	position: absolute;
-	bottom: 20px;
-	width: 100%;
-	text-align: center;
-	color: #ecf0f1;
-	font-family: 'Cherry Swash', cursive;
-	font-size: 16px;
-}
-
-span{
-	color: #2BD6B4;
+@media only screen and (max-width: 600px){
+	.decor {
+		padding: 3px;
+	}
+	
+	.wrap{
+		width:100%;
+		margin-top: 0px;
+	}
+	
+	li{
+		float:none;
+	}
+	
+	ul.primary li:hover a{
+		background: none;
+		color: #8B8B8B;
+		text-shadow: 1px 1px #000;
+	}
+	
+	ul.primary li:hover ul{
+		display: block;
+		background: #272727;
+		color: #fff;
+	}
+	
+	ul.sub{
+		display: block;
+		position: static;
+		box-shadow: none;
+		width: 100%;
+	}
+	
+	ul.sub li a{
+		background: #272727;
+		border: none;
+		color: #8B8B8B;
+	}
+	
+	ul.sub li a:hover{
+		color: #ccc;
+		background: none;
+	}
 }

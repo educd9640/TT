@@ -19,21 +19,36 @@
 
 <s:actionmessage />
 
-<nav>
-<a href='<s:url namespace="/equipos" action="verificarEquipo" />' >Registrar Equipo</a>
 <s:url action="formularioRegistro" var="url" escapeAmp="false">
 	<s:param name="operacion">actualizado</s:param>
 </s:url>
-<a href="<s:property value="#url"/>">Modificar equipo</a>
-<a href='<s:url namespace="/equipos" action="estatusEquipo" />' >Activar/Desactivar Equipo</a>
-<a href='<s:url namespace="/equipos" action="entrarTemporada" />' >Entrar a temporada</a>
-<a href='<s:url namespace="/" action="menuPrincipal" />' >Regresar</a>
-<div class="animation start-home"></div>
-</nav>
 
-<p>
-	<span>BallScore ESCOM</span>
-</p>
+<div class="wrap">
+	<span class="decor"></span>
+	<nav>
+		<ul class="primary">
+			<li>
+				<a href="">Registrar</a>
+				<ul class="sub">
+					<li><a href='<s:url namespace="/equipos" action="verificarEquipo" />' >Nuevo Equipo</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="">Editar</a>
+				<ul class="sub">
+					<li><a href="<s:property value="#url"/>">Equipo</a></li>
+					<li><a href='<s:url namespace="/equipos" action="estatusEquipo" />' >Estatus</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href='<s:url namespace="/equipos" action="entrarTemporada" />' >Entrar a temporada</a>
+			</li>
+			<li>
+				<a href='<s:url namespace="/" action="menuPrincipal" />' >Regresar</a>
+			</li>
+		</ul>
+	</nav>
+</div>
 
 </body>
 
