@@ -421,7 +421,20 @@
 			<result name="input">/temporadas/registroTemporadas.jsp</result>
 		</action>
 		
+		<action name="modificarTemporada" class="ipn.escom.ballScore.action.GestionarTemporadasAction" method="mostrarFormulario">
+			<result name="success">/temporadas/registroTemporadas.jsp</result>
+			<result name="input">/temporadas/registroTemporadas.jsp</result>
+		</action>
 		
+		<action name="consultarTemporadas" class="ipn.escom.ballScore.action.GestionarTemporadasAction" method="mostrarRegistrados">
+			<result name="input">/temporadas/consultarTemporadas.jsp</result>
+			<result name="success">/temporadas/consultarTemporadas.jsp</result>
+		</action>
+		
+		<action name="estadoTemporada" class="ipn.escom.ballScore.action.GestionarTemporadasAction" method="estadoTemporada">
+			<result name="input">/temporadas/consultarTemporadas.jsp</result>
+			<result name="success">/temporadas/consultarTemporadas.jsp</result>
+		</action>
 	
 	</package>
 	

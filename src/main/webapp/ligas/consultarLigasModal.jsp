@@ -32,6 +32,60 @@
 				  }
 				});
 				
+				
+				$("#buscar").click(function(){
+        			const tablaReg = document.getElementById('tabla');
+        			const buscarID = document.getElementById('busquedaID');
+        			const buscarLiga = document.getElementById('busquedaLiga');
+        			
+        			const textoBuscar = document.getElementById('idTexto').value.toLowerCase();
+        			var noCelda=0;
+        			if(buscarID.checked){
+        				noCelda=0;
+        			}else if(buscarLiga.checked){
+        				noCelda=1;
+        			}else{
+        				Sexy.error("Debes seleccionar una opcion");
+        			}
+        			var total=0;
+        			for(var r=1;r<tablaReg.rows.length; r++){
+        				
+        				// Si el td tiene la clase "noSearch" no se busca en su contenido
+        				if (tablaReg.rows[r].classList.contains("noSearch")) {
+                            continue;
+                        }
+        				
+        				var encontrado = false;
+        				const celdaRenglon = tablaReg.rows[r].getElementsByTagName('td');
+        				//buscamos en la celda especifica de acuerdo a la opcion seleccionada
+        				const textoTabla = celdaRenglon[noCelda].innerHTML.toLowerCase();
+        				if(textoTabla.indexOf(textoBuscar)>-1){
+        					console.log(textoTabla);
+        					encontrado = true;
+        					total++;
+        				}
+        				if(encontrado){
+        					tablaReg.rows[r].style.display='';
+        				}else{
+        					tablaReg.rows[r].style.display='none';
+        				}
+        			}
+        			
+        			// mostramos las coincidencias
+                    const ultimoTR=tablaReg.rows[tablaReg.rows.length-1];
+                    const td=ultimoTR.querySelector("td");
+                    ultimoTR.classList.remove("hide", "red");
+                    if (total>=1) {
+                        td.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
+                    } else {
+                        ultimoTR.classList.add("red");
+                        td.innerHTML="No se han encontrado coincidencias";
+                    }
+        		});
+				
+				
+				
+				
 				$("#cerrarVentana").click(function(){
 					window.parent.TINY.box.hide();
     			}); 
@@ -56,7 +110,19 @@
         <br/><br/>
         <s:actionerror />
         <s:actionmessage />
-        <table class="borderAll">
+        
+        <input type="radio" id="busquedaID" name="opcion" value="ID">
+    	<label for="busquedaID">Busqueda por ID</label> 
+        <input type="radio" id="busquedaLiga" name="opcion" value="equipo">
+    	<label for="busquedaLiga">Busqueda por nombre de la Liga</label>
+    	<br></br>
+    	<br></br>
+    	<label id="etiqueta" for="idTexto"></label>
+    	<input type="text" id="idTexto" name="idTexto"/>
+    	<input type="button" id="buscar" value="Buscar" />
+    	
+    	
+        <table id="tabla" class="borderAll">
         	<tr>
         		<th><s:text name="ligaF.idLiga"/></th>
         		<th><s:text name="ligaF.nombre"/></th>
@@ -91,6 +157,8 @@
 	        	</s:if>
         	
         	</s:iterator>
+        	<tr class='noSearch hide'>
+        	<td colspan="5"></td>
         
         </table>
         <input id="cerrarVentana" type="button" value="Cerrar"/>

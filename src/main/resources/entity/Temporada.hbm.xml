@@ -10,12 +10,15 @@
          This class contains the temporada detail. 
       </meta>
       
-      <id name = "idTemporada" type = "java.lang.Long" column = "ID_TEMPORADA"></id>
+      <id name = "idTemporada" type = "java.lang.Long" column = "ID_TEMPORADA">
+         <generator class="sequence">
+        	<param name="sequence">TEMPORADA_SEQ</param>
+    	 </generator>
+      </id>
       
-      <property name = "idLiga" 			column = "ID_LIGA" 				type = "java.lang.Long" not-null="true"/>
       <property name = "idEquipoCampeon" 	column = "ID_EQUIPO_CAMPEON" 	type = "java.lang.Long" 				 />
-      <property name = "fechaInicial"		column = "FECHA_INICIAL" 		type = "java.lang.String" 				 />
-      <property name = "fechaFinal" 		column = "FECHA_FINAL"	 		type = "java.lang.String"	  			 />
+      <property name = "fechaInicial"		column = "FECHA_INICIAL" 		type = "java.sql.Date" 				 />
+      <property name = "fechaFinal" 		column = "FECHA_FINAL"	 		type = "java.sql.Date"	  			 />
       <property name = "fechaAlta" 			column = "FECHA_ALTA" 			type = "java.sql.Date"					 />
       
      
@@ -23,7 +26,7 @@
       	<column name="ID_ESCUELA" not-null="true" />
       </many-to-one>
        --> 
-      <many-to-one name="liga" class="ipn.escom.ballScore.entity.Liga" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+      <many-to-one name="liga" class="ipn.escom.ballScore.entity.Liga" lazy="false" not-null="true" cascade="none" insert="true" update="true">
       <column name="ID_LIGA"></column>
       </many-to-one>
 

@@ -9,6 +9,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ipn.escom.ballScore.dao.GestionarLigasDAO;
 import ipn.escom.ballScore.dao.GestionarTemporadasDAO;
 import ipn.escom.ballScore.entity.Liga;
 import ipn.escom.ballScore.entity.Temporada;
@@ -22,6 +23,7 @@ import ipn.escom.ballScore.form.TemporadaVO;
 public class GestionarTemporadasBI {
 	
 	private GestionarTemporadasDAO temporadaDAO;
+	private GestionarLigasDAO ligaDAO;
 	
 	private static final Logger logger = LogManager.getLogger();
 	
@@ -37,6 +39,7 @@ public class GestionarTemporadasBI {
 	public Temporada crearTemporada(TemporadaVO temporadaVO, String operacion)throws BussinessException{
 		logger.info("Inicia metodo GestionarTemporadasBI.crearTemporada()");
 		temporadaDAO = new GestionarTemporadasDAO();
+		ligaDAO = new GestionarLigasDAO();
 		Temporada nuevaTemporada=new Temporada();
 		try {
 			BeanUtils.copyProperties(nuevaTemporada, temporadaVO);
@@ -47,12 +50,15 @@ public class GestionarTemporadasBI {
 		
 		/////////////////////////////////////////////////////
 		try {
+			Liga liga = ligaDAO.selectLigaById(temporadaVO.getLiga().getIdLiga());
+			nuevaTemporada.setLiga(liga);
+			
 			if(operacion.equals("registrado"))
 				nuevaTemporada = temporadaDAO.insertIntoTemporada(nuevaTemporada);
 			else
 				nuevaTemporada = temporadaDAO.updateTemporada(nuevaTemporada);
 		} catch (SQLException e) {
-			logger.error("Error aqui",e);
+			
 			if(e!=null && e.getCause().getMessage().contains("ORA-00001")) {
 				logger.error(" Error al registrar la temporada, ya existe una temporada registrada", e);
 				throw new BussinessException("Ya existe una temporada registrada con ese id.");

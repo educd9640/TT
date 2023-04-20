@@ -8,7 +8,6 @@ import java.sql.Date;
  */
 public class Temporada{
 	private Long idTemporada;
-	private Long idLiga;
 	private Long idEquipoCampeon;
 	private Date fechaInicial;
 	private Date fechaFinal;
@@ -22,14 +21,6 @@ public class Temporada{
 
 	public void setIdTemporada(Long idTemporada) {
 		this.idTemporada = idTemporada;
-	}
-
-	public Long getIdLiga() {
-		return idLiga;
-	}
-
-	public void setIdLiga(Long idLiga) {
-		this.idLiga = idLiga;
 	}
 
 	public Long getIdEquipoCampeon() {

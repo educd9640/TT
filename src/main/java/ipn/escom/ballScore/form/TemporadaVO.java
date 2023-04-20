@@ -10,7 +10,6 @@ import ipn.escom.ballScore.entity.Liga;
  */
 public class TemporadaVO {
 	private Long idTemporada;
-	private Long idLiga;
 	private Long idEquipoCampeon;
 	private Date fechaInicial;
 	private Date fechaFinal;
@@ -24,14 +23,6 @@ public class TemporadaVO {
 
 	public void setIdTemporada(Long idTemporada) {
 		this.idTemporada = idTemporada;
-	}
-
-	public Long getIdLiga() {
-		return idLiga;
-	}
-
-	public void setIdLiga(Long idLiga) {
-		this.idLiga = idLiga;
 	}
 
 	public Long getIdEquipoCampeon() {
@@ -73,4 +64,5 @@ public class TemporadaVO {
 	public void setLiga(Liga liga) {
 		this.liga = liga;
 	} 
+
 }

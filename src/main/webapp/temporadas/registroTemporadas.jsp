@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sx" uri="/struts-dojo-tags"%>
+
 <s:if test="operacion=='actualizado'">
 	<s:set var="title" value="%{'Modificar Temporada'}"/>
 </s:if>
@@ -54,11 +54,22 @@
         <s:actionerror />
         <s:actionmessage />
         <s:form action="registrarTemporada" method="post">
+        	
+        	<s:if test="operacion=='actualizado'">
+        		<s:hidden name="operacion" value="%{'actualizado'}"/>
+        		<s:textfield key="temporadaF.idTemporada" readonly="true"/>        	
+        	</s:if>
+        	<s:else>
+        		<s:hidden name="operacion" value="%{'registrado'}"/>
+        	</s:else>
+        
+        
         	<s:textfield id="idLiga" key="temporadaF.liga.idLiga" readonly="true"/>
         	<input id="buscarLiga" type="button" value="Buscar Liga">
         	<s:textfield id="nombre" key="temporadaF.liga.nombre" readonly="true"/>
         	
-        	<sx:datetimepicker name="fechaInicial" label="Format(dd-mm-yyyy)" displayFormat="dd-MM-yyyy"> </sx:datetimepicker>
+			<s:textfield id="fechaInicial" key="fechaInicial" label="Fecha Inicial" placeholder="dd/mm/yyyy"/>
+			<s:textfield id="fechaFinal" key="fechaFinal" label="Fecha Final" placeholder="dd/mm/yyyy"/>
         	
         	
         	<s:if test="hasActionMessages() || hasActionErrors()">
