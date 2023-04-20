@@ -100,7 +100,7 @@ public class GestionarLigasAction extends BaseAction implements Preparable {
 	
 	
 	
-	/**Metodo controlador para eliminar una liga
+	/**Metodo controlador para activar/desactivar una liga
 	 * @return Action Result
 	 */
 	@SkipValidation
