@@ -32,7 +32,6 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	private String operacion;
 	private String fechaInicial;
 	private String fechaFinal;
-	@SuppressWarnings("unused")
 	private List<Temporada> temporadasRegistradas = new ArrayList<Temporada>();
 	
 	
@@ -71,51 +70,49 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	 */
 	public String registrarTemporada() {
 		logger.info("Inicia metodo GestionarTemporadasAction.registrarTemporada()");
-		
+
 		TemporadaVO temporadaVO = new TemporadaVO();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		
-		if(fechaInicial!=null) {
-	        try {
-	        	java.util.Date utilDate = dateFormat.parse(fechaInicial);
-	        	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-	            temporadaF.setFechaInicial(sqlDate);
-	        } catch (Exception e) {
-	        	logger.error("Error al copiar la fecha inicial",e);
-	        	addActionError("Error al copiar la fecha inicial");
-	        }
-        }
-		
-		if(fechaFinal!=null) {
-	        try {
-	        	java.util.Date utilDate = dateFormat.parse(fechaFinal);
-	        	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-	            temporadaF.setFechaFinal(sqlDate);
-	        } catch (Exception e) {
-	        	logger.error("Error al copiar la fecha final",e);
-	        	addActionError("Error al copiar la fecha final");
-	        }
-        }
-		
-		
-		
+
+		if (fechaInicial != null) {
+			try {
+				java.util.Date utilDate = dateFormat.parse(fechaInicial);
+				java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+				temporadaF.setFechaInicial(sqlDate);
+			} catch (Exception e) {
+				logger.error("Error al copiar la fecha inicial", e);
+				addActionError("Error al copiar la fecha inicial");
+			}
+		}
+
+		if (fechaFinal != null) {
+			try {
+				java.util.Date utilDate = dateFormat.parse(fechaFinal);
+				java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+				temporadaF.setFechaFinal(sqlDate);
+			} catch (Exception e) {
+				logger.error("Error al copiar la fecha final", e);
+				addActionError("Error al copiar la fecha final");
+			}
+		}
+
 		try {
 			BeanUtils.copyProperties(temporadaVO, temporadaF);
-		}catch(IllegalAccessException | InvocationTargetException e) {
-			logger.error(" Error al copiar propiedades del Form al VO ",e);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			logger.error(" Error al copiar propiedades del Form al VO ", e);
 			addActionError("Error al crear la temporada.");
 			temporadaF = new TemporadaForm();
 			return Action.SUCCESS;
 		}
 		Temporada auxTemporada = new Temporada();
 		try {
-			 auxTemporada = new GestionarTemporadasBI().crearTemporada(temporadaVO, operacion);
-		}catch(BussinessException e) {
+			auxTemporada = new GestionarTemporadasBI().crearTemporada(temporadaVO, operacion);
+		} catch (BussinessException e) {
 			addActionError(e.getMessage());
 		}
-		
-		addActionMessage("Temporada "+auxTemporada.getIdTemporada()+ " "+ operacion + " con exito");
-		
+
+		addActionMessage("Temporada " + auxTemporada.getIdTemporada() + " " + operacion + " con exito");
+
 		return Action.SUCCESS;
 	}
 	
