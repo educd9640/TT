@@ -35,7 +35,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	private Equipo equipoManager;
 	private String operacion;
 	private List<Equipo> equiposRegistrados = new ArrayList<Equipo>();
-	
+
 	/**
 	 *Metodo para preparar la pantalla
 	 */
@@ -192,6 +192,14 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
+	}
+	
+	public List<Equipo> getEquiposRegistrados() {
+		return equiposRegistrados;
+	}
+
+	public void setEquiposRegistrados(List<Equipo> equiposRegistrados) {
+		this.equiposRegistrados = equiposRegistrados;
 	}
 	
 	
