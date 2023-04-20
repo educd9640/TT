@@ -20,7 +20,7 @@ import ipn.escom.ballScore.form.LigaVO;
  */
 public class GestionarLigasBI {
 	
-	@SuppressWarnings("unused")
+
 	private GestionarLigasDAO ligaDAO;
 
 	
