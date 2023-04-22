@@ -94,7 +94,7 @@ public class GestionarEquiposBI {
 		
 		equiposDao.cerrarConexiones();
 		
-		if (equipo_resultado.getIdEquipo() == null) {
+		if (equipo_resultado == null) {
 			return false;
 		} else {
 			return true;
