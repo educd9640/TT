@@ -20,6 +20,10 @@
 		<mapping resource="entity/Manager.hbm.xml" />
 		<mapping resource="entity/Escuela.hbm.xml" />
 		<mapping resource="entity/Alumno.hbm.xml" />
-		<mapping resource="entity/Equipo.hbm.xml"/> 
+		<mapping resource="entity/Equipo.hbm.xml"/>
+		<mapping resource="entity/Liga.hbm.xml" />
+		<mapping resource="entity/Temporada.hbm.xml" />
+		
+
     </session-factory>
 </hibernate-configuration>

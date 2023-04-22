@@ -1,0 +1,35 @@
+<!DOCTYPE validators PUBLIC
+         "-//Apache Struts//XWork Validator 1.0.3//EN"
+           "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<validator type="requiredstring">
+        <param name="fieldname">ligaF.nombre</param>
+        <message>Nombre requerido.</message>
+    </validator>
+    <validator type="requiredstring">
+        <param name="fieldname">ligaF.telefono</param>
+        <message>Telefono requerido.</message>
+    </validator>
+    <validator type="requiredstring">
+        <param name="fieldname">ligaF.calle</param>
+        <message>Calle requerida.</message>
+    </validator>
+    <validator type="required">
+        <param name="fieldname">ligaF.codigoPostal</param>
+        <message>Codigo postal requerido.</message>
+    </validator>
+    <validator type="long">
+        <param name="fieldName">ligaF.codigoPostal</param>
+        <param name="max">99999</param>
+        <message>El codigo postal debe ser a 5 digitos</message>
+     </validator>
+    <validator type="requiredstring">
+        <param name="fieldname">ligaF.delegacion</param>
+        <message>Delegacion requerida.</message>
+    </validator>
+    <validator type="requiredstring">
+        <param name="fieldname">ligaF.estado</param>
+        <message>Estado requerido.</message>
+    </validator>
+    
+</validators>
