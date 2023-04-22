@@ -1,0 +1,83 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="ballScore" extends="struts-default">
+		<!-- Inicio Filters -->
+		<interceptors>
+			<!-- Interceptador de autentificación -->
+			<interceptor name="autentificador"
+				class="ipn.escom.ballScore.interceptor.ValidaLogin" />
+
+			<!-- Pila de interceptador "authInterceptador" -->
+			<!-- Esta pila llamara primero al interceptador "autentificador", si dicho 
+				interceptador no devuelve "expired", continua el flujo normal -->
+			<interceptor-stack name="authInterceptador">
+				<interceptor-ref name="autentificador" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">ERROR</param>
+					<param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,submit</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- Interceptador default, si no se especifica un interceptador en la 
+			definición del action, se llamara automaticamente a este interceptador -->
+		<default-interceptor-ref
+			name="authInterceptador" />
+
+
+		<!-- Global Results -->
+		<!-- Los results que se especifiquen en este apartado, aplican para cualquier 
+			Action -->
+		<global-results>
+			<!-- Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
+			<result name="expired">/sesionExpirada.jsp</result>
+		</global-results>
+
+		<!-- Inicio Actions -->
+		<action name="index">
+			<result>/index.jsp</result>
+			<!-- Se especifica un interceptador para no hacer uso del interceptador 
+				default (authInterceptador) -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!-- Inicio Actions -->
+		<action name="menuPrincipal">
+			<result>/sistema.jsp</result>
+			<!-- No se especifica un interceptador para hacer uso del interceptador 
+				default (authInterceptador) -->
+		</action>
+
+		<!-- Hello World! http://localhost/webapp/hello para probar -->
+		<action name="hello"
+			class="ipn.escom.ballScore.action.HelloAction">
+			<result name="success">hello.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="login"
+			class="ipn.escom.ballScore.action.LoginAction" method="login">
+			<!-- Tiene que ser defaultStack, de lo contrario, se ejecuta nuevamente 
+				para autorización y se repite en la página -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="valid">sistema.jsp</result>
+			<result name="invalid">index.jsp</result>
+		</action>
+
+		<!-- Acción para probar el sistema de sesión e intercepción -->
+		<action name="sessionTest"
+			class="ipn.escom.ballScore.action.LoginAction" method="sessionTest">
+			<result name="success">sessionTest.jsp</result>
+		</action>
+
+		<!-- Acción para salir del sistema -->
+		<action name="logout"
+			class="ipn.escom.ballScore.action.LoginAction" method="logout">
+			<result name="success">index.jsp</result>
+		</action>
+	</package>
+</struts>
