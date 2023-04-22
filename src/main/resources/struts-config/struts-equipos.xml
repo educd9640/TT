@@ -1,0 +1,95 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="equipos" namespace="/equipos"
+		extends="struts-default">
+		<interceptors>
+			<!-- Interceptador de autentificación -->
+			<interceptor name="autentificador"
+				class="ipn.escom.ballScore.interceptor.ValidaLogin" />
+
+			<!-- Pila de interceptador "authInterceptador" -->
+			<!-- Esta pila llamara primero al interceptador "autentificador", si dicho 
+				interceptador no devuelve "expired", continua el flujo normal -->
+			<interceptor-stack name="authInterceptador">
+				<interceptor-ref name="autentificador" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">ERROR</param>
+					<param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,submit</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- Interceptador default, si no se especifica un interceptador en la 
+			definición del action, se llamara automaticamente a este interceptador -->
+		<default-interceptor-ref
+			name="authInterceptador" />
+
+		<!-- Global Results -->
+		<!-- Los results que se especifiquen en este apartado, aplican para cualquier 
+			Action -->
+		<global-results>
+			<!-- Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
+			<result name="expired">/sesionExpirada.jsp</result>
+		</global-results>
+
+		<!-- Inicio Actions -->
+		<action name="submenuEquipos">
+			<result>/equipos/submenuEquipo.jsp</result>
+		</action>
+
+		<action name="formularioRegistro"
+			class="ipn.escom.ballScore.action.GestionarEquiposAction"
+			method="registrarEquipo">
+			<result name="input">/equipos/registrarEquipo.jsp</result>
+			<result name="success">/equipos/registrarEquipo.jsp</result>
+		</action>
+
+		<action name="modificarEquipo"
+			class="ipn.escom.ballScore.action.GestionarEquiposAction"
+			method="editarEquipo">
+			<result name="input">/equipos/registrarEquipo.jsp</result>
+			<result name="success">/equipos/registrarEquipo.jsp</result>
+		</action>
+
+		<action name="registrarEquipo"
+			class="ipn.escom.ballScore.action.GestionarEquiposAction"
+			method="registroEquipo">
+			<result name="input">/equipos/registrarEquipo.jsp</result>
+			<result name="success">/equipos/registrarEquipo.jsp</result>
+		</action>
+
+		<action name="buscarEquipoModal"
+			class="ipn.escom.ballScore.action.GestionarEquiposAction"
+			method="buscarEquipo">
+			<result name="input">/equipos/buscarEquipoModal.jsp</result>
+			<result name="success">/equipos/buscarEquipoModal.jsp</result>
+		</action>
+
+		<action name="entrarTemporada"
+			class="ipn.escom.ballScore.action.GestionarEquiposAction"
+			method="buscarEquipo">
+			<result name="input">/equipos/entrarTemporada.jsp</result>
+			<result name="success">/equipos/entrarTemporada.jsp</result>
+		</action>
+
+		<action name="verificarEquipo"
+			class="ipn.escom.ballScore.action.GestionarEquiposAction"
+			method="actualizarEquipo">
+			<result name="input">/equipos/registrarEquipo.jsp</result>
+			<result name="success">/equipos/registrarEquipo.jsp</result>
+		</action>
+
+		<action name="estatusEquipo"
+			class="ipn.escom.ballScore.action.GestionarEquiposAction"
+			method="modificarEstatus">
+			<result name="input">/equipos/submenuEquipo.jsp</result>
+			<result name="success">/equipos/submenuEquipo.jsp</result>
+		</action>
+
+	</package>
+</struts>
