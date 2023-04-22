@@ -49,9 +49,9 @@
         			if(buscarID.checked){
         				noCelda=0;
         			}else if(buscarEquipo.checked){
-        				noCelda=1;
-        			}else if(buscarManager.checked){
         				noCelda=2;
+        			}else if(buscarManager.checked){
+        				noCelda=1;
         			}else{
         				Sexy.error("Debes seleccionar una opcion");
         			}
@@ -68,6 +68,7 @@
         				//buscamos en la celda especifica de acuerdo a la opcion seleccionada
         				const textoTabla = celdaRenglon[noCelda].innerHTML.toLowerCase();
         				if(textoTabla.indexOf(textoBuscar)>-1){
+        					console.log(textoTabla);
         					encontrado = true;
         					total++;
         				}
@@ -85,7 +86,7 @@
                     if (total>=1) {
                         td.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
                     } else {
-                        lastTR.classList.add("red");
+                        ultimoTR.classList.add("red");
                         td.innerHTML="No se han encontrado coincidencias";
                     }
         		});
@@ -102,6 +103,19 @@
         		
         	});
         </script>
+        
+        <style>
+        	#tabla {border: 1px solid #ccc;padding:10px;font-size:1em;}
+        	#tabla tr:nth-child(even) {background:#ccc;}
+        	#tabla td {padding:5px;}
+        	#tabla tr.noSearch td {padding-top:10px;text-align:right;}
+        	#tabla tr.noSearch {background:White;font-size:0.8em;}
+        	.hide {display:none;}
+        	.red {color:Red;}
+        </style>
+        	
+
+        
 	</head>
 <body>
 	<div class="titleDiv"><s:text name="equipoElegido"/></div>
@@ -109,12 +123,12 @@
 	<br>
 	<s:actionerror />
     <s:actionmessage />
-    	<label for="busquedaID">Busqueda por ID</label>
     	<input type="radio" id="busquedaID" name="opcion" value="ID">
-    	<label for="busquedaEquipo">Busqueda por nombre del Equipo</label>
+    	<label for="busquedaID">Busqueda por ID</label>   	
     	<input type="radio" id="busquedaEquipo" name="opcion" value="equipo">
-    	<label for="busquedaManager">Busqueda por nombre del Manager</label>
+    	<label for="busquedaEquipo">Busqueda por nombre del Equipo</label>
     	<input type="radio" id="busquedaManager" name="opcion" value="manager">
+    	<label for="busquedaManager">Busqueda por nombre del Manager</label>
     	<br></br>
     	<br></br>
     	<label id="etiqueta" for="idTexto"></label>
@@ -125,7 +139,7 @@
     	<table id="tabla" class="borderAll">
     		<tr>
     			<th><s:text name="equipoForm.idEquipo" /></th>
-    			<th><s:text name="equipoForm.idManager" /></th>
+    			<th><s:text name="equipoForm.nombreManager" /></th>
     			<th><s:text name="equipoForm.nombre" /></th>
     			<th>&nbsp;</th>
     		</tr>

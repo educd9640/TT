@@ -49,10 +49,13 @@
 	<s:actionerror />
     <s:actionmessage />
     <s:form action="" method="post" >
-    	<input id="buscarEquipo" type="button" value="Buscar Alumno"/>
+    	<input id="buscarEquipo" type="button" value="Buscar Equipo"/>
     	<s:textfield id="nombreEquipo" key="equipoForm.nombre"/>
-    	<s:textfield id="idEquipo" key="equipoForm.nombre"/>
-    	<s:textfield id="nombreManager" key="equipoForm.nombre"/>
+    	<s:textfield id="idEquipo" key="equipoForm.idEquipo"/>
+    	<s:textfield id="nombreManager" key="equipoForm.nombreManager"/>
     </s:form>
+     <s:form action="submenuEquipos" >
+			<s:submit value="Regresar" targets="submenuEquipos"/>
+	</s:form>
 </body>
 </html>
