@@ -55,6 +55,27 @@
 			<result name="success">/jugadores/registroJugadores.jsp</result>
 			<result name="input">/jugadores/registroJugadores.jsp</result>
 		</action>
+		
+		<action name="consultarJugadores"
+			class="ipn.escom.ballScore.action.GestionarJugadoresAction"
+			method="consultarJugadores">
+			<result name="success">/jugadores/consultarJugadoresEquipo.jsp</result>
+			<result name="input">/jugadores/consultarJugadoresEquipo.jsp</result>
+		</action>
+		
+		<action name="modificarJugador"
+			class="ipn.escom.ballScore.action.GestionarJugadoresAction"
+			method="mostrarFormulario">
+			<result name="success">/jugadores/registroJugadores.jsp</result>
+			<result name="input">/jugadores/registroJugadores.jsp</result>
+		</action>
+		
+		<action name="alternarEstadoJugador"
+			class="ipn.escom.ballScore.action.GestionarJugadoresAction"
+			method="alternarEstadoJugador">
+			<result name="success">/jugadores/consultarJugadoresEquipo.jsp</result>
+			<result name="input">/jugadores/consultarJugadoresEquipo.jsp</result>
+		</action>
 
 	</package>
 

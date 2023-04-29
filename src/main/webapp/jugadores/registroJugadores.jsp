@@ -53,8 +53,12 @@
         <s:actionerror />
         <s:actionmessage />
         <s:form action="registrarJugador" method="post">
+        	<s:hidden key="jugadoresForm.idJugador"></s:hidden>
+        	<s:hidden key="operacion"></s:hidden>
        		<s:textfield id="boletaAlumno" key="jugadoresForm.alumno.boletaAlumno" readonly="true"/>
-        	<input id="buscarAlumno" type="button" value="Buscar Alumno"/>
+       		<s:if test="operacion!='actualizado'">
+        		<input id="buscarAlumno" type="button" value="Buscar Alumno"/>
+        	</s:if>
             <s:textfield id ="nombrePila" key="jugadoresForm.alumno.nombrePila" readonly="true"/> 
             <s:textfield id ="apellidoPat" key="jugadoresForm.alumno.apellidoPat" readonly="true"/> 
             <s:textfield id ="apellidoMat" key="jugadoresForm.alumno.apellidoMat" readonly="true"/>
