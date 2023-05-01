@@ -16,13 +16,16 @@
     	 </generator>
       </id>
       
-      <property name = "posicionPrim" 	column = "NOMBRE_PILA" 		type = "java.lang.String" not-null="true" />
-      <property name = "posicionSec" 	column = "APELLIDO_PAT" 	type = "java.lang.String" not-null="false"/>
-      <property name = "idEquipo"		column = "ID_EQUIPO" 		type = "java.lang.long"   not-null="false"/>
-      <property name = "fechaAlta" 		column = "FECHA_ALTA" 		type = "java.sql.Date"	  not-null="false"/>
+      <property name = "posicionPrim" 	column = "POSICION_PRIM" 		type = "java.lang.String" not-null="true" />
+      <property name = "posicionSec" 	column = "POSICION_SEC" 		type = "java.lang.String" not-null="false"/>
+      <property name = "fechaAlta" 		column = "FECHA_ALTA" 			type = "java.sql.Date"	  not-null="false"/>
      
       <many-to-one name="alumno" class="ipn.escom.ballScore.entity.Alumno" lazy="false" not-null="true" cascade="none" insert="true" update="true">
       	<column name="BOLETA_ALUMNO"/>
+      </many-to-one>
+      
+      <many-to-one name="equipo" class="ipn.escom.ballScore.entity.Equipo" lazy="false" not-null="true" cascade="none" insert="true" update="true">
+      	<column name="ID_EQUIPO"/>
       </many-to-one>
 
    </class>

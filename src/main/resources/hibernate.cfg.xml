@@ -23,6 +23,9 @@
 		<mapping resource="entity/Equipo.hbm.xml"/>
 		<mapping resource="entity/Liga.hbm.xml" />
 		<mapping resource="entity/Temporada.hbm.xml" />
+		<mapping resource="entity/Jugador.hbm.xml" />
+		<mapping resource="entity/EquipoTemporada.hbm.xml" />
+		<mapping resource="entity/JugadorEquipoTemp.hbm.xml" />
 		
 
     </session-factory>

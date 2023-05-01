@@ -19,6 +19,7 @@
 
 <p><a href='<s:url namespace="/jugadores" action="formulario" />' >Registrar Jugador</a></p>
 <p><a href='<s:url namespace="/jugadores" action="consultarJugadores" />' >Consultar Jugadores Registrados</a></p>
+<p><a href='<s:url namespace="/jugadores/equipo/temporada" action="consultarTemporadasRegistro" />' >Registrar Jugadores En Temporada</a></p>
 <p><a href='<s:url namespace="/" action="menuPrincipal" />' >Menu Principal</a></p>
 
 </body>
