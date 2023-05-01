@@ -1,18 +1,20 @@
-package ipn.escom.ballScore.entity;
+package ipn.escom.ballScore.form;
 
 import java.sql.Date;
 
-/**Clase entidad para Jugador
+import ipn.escom.ballScore.entity.Alumno;
+
+/**Clase VO para la gestion de jugadores
  * @author Jose Mauricio
  *
  */
-public class Jugador {
-
+public class GestionarJugadoresVO {
+	
 	private Long idJugador;
+	private Long idEquipo;
 	private String posicionPrim;
 	private String posicionSec;
 	private Date fechaAlta;
-	private Equipo equipo;
 	private Alumno alumno;
 	
 	public Long getIdJugador() {
@@ -20,6 +22,12 @@ public class Jugador {
 	}
 	public void setIdJugador(Long idJugador) {
 		this.idJugador = idJugador;
+	}
+	public Long getIdEquipo() {
+		return idEquipo;
+	}
+	public void setIdEquipo(Long idEquipo) {
+		this.idEquipo = idEquipo;
 	}
 	public String getPosicionPrim() {
 		return posicionPrim;
@@ -45,11 +53,4 @@ public class Jugador {
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
 	}
-	public Equipo getEquipo() {
-		return equipo;
-	}
-	public void setEquipo(Equipo equipo) {
-		this.equipo = equipo;
-	}
-	
 }

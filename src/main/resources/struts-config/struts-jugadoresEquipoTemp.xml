@@ -2,7 +2,7 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="jugadores" namespace="/jugadores"
+	<package name="jugadoresEquipoTemp" namespace="/jugadores/equipo/temporada"
 		extends="struts-default">
 		<!-- Inicio Filters -->
 		<interceptors>
@@ -36,45 +36,19 @@
 			<!-- Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
 			<result name="expired">/sesionExpirada.jsp</result>
 		</global-results>
-
-		<!-- Inicio Actions -->
-		<action name="submenuJugadores">
-			<result>/jugadores/submenuJugadores.jsp</result>
-		</action>
-
-		<action name="formulario"
-			class="ipn.escom.ballScore.action.GestionarJugadoresAction"
-			method="mostrarFormulario">
-			<result name="success">/jugadores/registroJugadores.jsp</result>
-			<result name="input">/jugadores/registroJugadores.jsp</result>
-		</action>
-
-		<action name="registrarJugador"
-			class="ipn.escom.ballScore.action.GestionarJugadoresAction"
-			method="registrarJugador">
-			<result name="success">/jugadores/registroJugadores.jsp</result>
-			<result name="input">/jugadores/registroJugadores.jsp</result>
+		
+		<action name="consultarTemporadasRegistro"
+			class="ipn.escom.ballScore.action.GestionarJugEquipTempAction"
+			method="presentarTemporadas">
+			<result name="input">/jugadores/jugadoresEquipoTemp/consultarTemporadasParaRegistro.jsp</result>
+			<result name="success">/jugadores/jugadoresEquipoTemp/consultarTemporadasParaRegistro.jsp</result>
 		</action>
 		
-		<action name="consultarJugadores"
-			class="ipn.escom.ballScore.action.GestionarJugadoresAction"
-			method="consultarJugadores">
-			<result name="success">/jugadores/consultarJugadoresEquipo.jsp</result>
-			<result name="input">/jugadores/consultarJugadoresEquipo.jsp</result>
-		</action>
-		
-		<action name="modificarJugador"
-			class="ipn.escom.ballScore.action.GestionarJugadoresAction"
-			method="mostrarFormulario">
-			<result name="success">/jugadores/registroJugadores.jsp</result>
-			<result name="input">/jugadores/registroJugadores.jsp</result>
-		</action>
-		
-		<action name="alternarEstadoJugador"
-			class="ipn.escom.ballScore.action.GestionarJugadoresAction"
-			method="alternarEstadoJugador">
-			<result name="success">/jugadores/consultarJugadoresEquipo.jsp</result>
-			<result name="input">/jugadores/consultarJugadoresEquipo.jsp</result>
+		<action name="registrarJugadores"
+			class="ipn.escom.ballScore.action.GestionarJugEquipTempAction"
+			method="presentarRegistroJugadores">
+			<result name="success">/jugadores/jugadoresEquipoTemp/registrarJugadoresEquipoTemp.jsp</result>
+			<result name="input">/jugadores/jugadoresEquipoTemp/registrarJugadoresEquipoTemp.jsp</result>
 		</action>
 
 	</package>
