@@ -1,50 +1,68 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-
-<s:set var="title" value="%{'Registro de Equipo en Temporada'}"/>
-
+<s:set var="title" value="%{'Buscar Equipo'}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <head>
-    	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
-        <s:head />
+	<head>
+		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
+    	<link href="<s:url value='/css/tinystyle.css'/>" rel="stylesheet" type="text/css"/>
+    <s:head />
         <style>td { white-space:nowrap; }</style>
         <title><s:property value="#title"/></title>
-    </head>
-    <body>
-        <div class="titleDiv"><s:text name="application.title"/></div>
-        <h1><s:property value="#title"/></h1>
-        <s:actionerror />
-        <s:actionmessage />
-        <s:form action="registrarAlumno" method="post">
-        	<s:if test="operacion=='actualizado'">
-        		<s:textfield key="alumnoForm.boletaAlumno" readonly="true"/>
-        		<s:hidden name="operacion" value="%{'actualizado'}"/>
-        	</s:if>
-        	<s:else>
-        		<s:textfield key="alumnoForm.boletaAlumno"/>
-        		<s:hidden name="operacion" value="%{'registrado'}"/>
-        	</s:else>
-            <s:textfield key="alumnoForm.nombrePila" /> 
-            <s:textfield key="alumnoForm.apellidoPat" /> 
-            <s:textfield key="alumnoForm.apellidoMat" />
-            <s:select name="alumnoForm.semestre" list="semestres" label="%{getText('alumnoForm.semestre')}"/>
-            <s:textfield key="alumnoForm.curp" />
-            <s:textfield key="alumnoForm.nss" />
-            <s:textfield key="alumnoForm.telefono" />
-            <s:textfield key="alumnoForm.telEmergencia" />
-            <s:textfield key="alumnoForm.correo" />
-            <s:select name="alumnoForm.idEscuela" list="escuelas" listKey="idEscuela" listValue="nombreCortoEscuela" label="%{getText('alumnoForm.idEscuela')}"/>
-            <s:if test="hasActionMessages()">
-				<s:submit value="%{getText('button.label.submit')}" disabled="true"/>
-			</s:if>
-			<s:else>
-    			<s:submit value="%{getText('button.label.submit')}"/>
-			</s:else>
-        </s:form>
-        <s:form action="submenuAlumnos" >
-			<s:submit value="Regresar" targets="submenuAlumnos"/>
-		</s:form>
-    </body>
+        
+        <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
+        <script src="<s:url value='/js/tinybox.js'/>"></script>
+        <script>
+        	function settearDesdeModal(informacion){
+        		var infoEquipo = informacion.split("_");
+        		document.getElementById("idEquipo").value=infoEquipo[0];
+        		document.getElementById("nombreManager").value=infoEquipo[1];
+        		document.getElementById("nombreEquipo").value=infoEquipo[2];
+        	}
+        </script>
+        
+        <script>
+        	$(document).ready(function(){
+		  	// jQuery methods go here...
+			
+			$("#buscarEquipo").click(function(){
+				var full_window_height = window.outerHeight;
+				var full_window_width = window.outerWidth;
+        		TINY.box.show({
+        			iframe:'/ballscore/equipos/buscarEquipoModal.action',
+        			boxid:'frameless',
+        			width:full_window_width-300,
+        			height:full_window_height-250,
+        			fixed:true,
+        			maskid:'bluemask',
+					maskopacity:40
+       			})
+    		});
+		});
+        </script>
+        
+	</head>
+<body>
+	<div class="titleDiv"><s:text name="application.title"/></div>
+	<h1><s:property value="#title"/></h1>
+	<s:actionerror />
+    <s:actionmessage />
+    <s:form action="ingresarEquipo" method="post" >
+    	<input id="buscarEquipo" type="button" value="Buscar Equipo"/>
+    	<br>
+		<s:textfield key="label.temporada" name="temporada_seleccionada" readonly="true"/>
+		<br>
+    	<s:textfield id="nombreEquipo" key="equipoForm.nombre" name="nombre_equipo_seleccionado"/>
+    	<br>
+    	<s:textfield id="idEquipo" key="equipoForm.idEquipo" name="equipo_seleccionado"/>
+    	<br>
+    	<s:textfield id="nombreManager" key="equipoForm.nombreManager" name="manager_equipo_seleccionado"/>
+    	<br>
+    	<s:submit value="Entrar a temporada"></s:submit>
+    </s:form>
+     <s:form action="submenuTemporadas" >
+			<s:submit value="Regresar" targets="submenuEquipos"/>
+	</s:form>
+</body>
 </html>

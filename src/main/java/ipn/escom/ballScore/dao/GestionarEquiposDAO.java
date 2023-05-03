@@ -100,14 +100,21 @@ public class GestionarEquiposDAO extends BaseDAO {
 	}
 	
 	/**Metodo para buscar un equipo de acuerdo a su manager (id)
-	 * @return
+	 * @return la entidad Equipo de acorde al id del manager
 	 */
 	public Equipo obtenerManager(Long id){
 		return (Equipo) session.createQuery("from Equipo where ID_MANAGER = :id").setParameter("id",id).uniqueResult();
 	}
 	
-	/**Metodo para consultar todos los equiposs registrados
-	 * @return
+	/**Metodo para buscar un equipo de acuerdo a su (id)
+	 * @return la entidad Equipo de acorde al id
+	 */
+	public Equipo obtenerEquipo(Long id){
+		return (Equipo) session.createQuery("from Equipo where ID_EQUIPO = :id").setParameter("id",id).uniqueResult();
+	}
+	
+	/**Metodo para consultar todos los equipos registrados
+	 * @return Lista con las entidades de cada equipo registrado
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Equipo> selectFromEquipo(){
@@ -115,6 +122,9 @@ public class GestionarEquiposDAO extends BaseDAO {
 		return (List<Equipo>)q.list();
 	}
 	
+	/**Metodo para consultar un equipos de acorde al id del manager
+	 * @return Lista con los equipos cuyo manager tenga dicho id
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Equipo> obtenerEquipoDelManager(Long idManager) {
 		Query q = session.createQuery("from Equipo where id_Manager =:idManager");
