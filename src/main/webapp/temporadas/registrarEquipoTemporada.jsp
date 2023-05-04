@@ -51,13 +51,13 @@
     <s:form action="ingresarEquipo" method="post" >
     	<input id="buscarEquipo" type="button" value="Buscar Equipo"/>
     	<br>
-		<s:textfield key="label.temporada" name="temporada_seleccionada" readonly="true"/>
+		<s:textfield key="label.temporada" name="temporadaseleccionada" readonly="true"/>
 		<br>
-    	<s:textfield id="nombreEquipo" key="equipoForm.nombre" name="nombre_equipo_seleccionado"/>
+    	<s:textfield id="nombreEquipo" key="equipoForm.nombre" name="nombreEquipo"/>
     	<br>
-    	<s:textfield id="idEquipo" key="equipoForm.idEquipo" name="equipo_seleccionado"/>
+    	<s:textfield id="idEquipo" key="equipoForm.idEquipo" name="equiposeleccionado"/>
     	<br>
-    	<s:textfield id="nombreManager" key="equipoForm.nombreManager" name="manager_equipo_seleccionado"/>
+    	<s:textfield id="nombreManager" key="equipoForm.nombreManager" name="managerequipo"/>
     	<br>
     	<s:submit value="Entrar a temporada"></s:submit>
     </s:form>

@@ -126,7 +126,7 @@
                         &nbsp;&nbsp;&nbsp;
                         
                         <s:url action="consultarEquipos" var="url" escapeAmp="false">
-                            <s:param name="temporada_seleccionada" value="idTemporada"/>
+                            <s:param name="temporadaseleccionada" value="idTemporada"/>
                         </s:url>
                         <a href="<s:property value="#url"/>" >Registrar Equipo</a>
                         &nbsp;&nbsp;&nbsp;

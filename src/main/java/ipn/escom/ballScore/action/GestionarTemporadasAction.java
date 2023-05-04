@@ -33,10 +33,10 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	private String operacion;
 	private String fechaInicial;
 	private String fechaFinal;
-	private Long equipo_seleccionado;
-	private String nombre_equipo_seleccionado;
-	private String manager_equipo_seleccionado;
-	private Long temporada_seleccionada;
+	private Long equiposeleccionado;
+	private String nombreEquipo;
+	private String managerequipo;
+	private Long temporadaseleccionada;
 	
 
 
@@ -133,7 +133,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		EquipoTemporada nuevoEquipo= new EquipoTemporada();
 		GestionarTemporadasBI equipotem = new GestionarTemporadasBI();
 		try {
-			nuevoEquipo = equipotem.entrarEquipo(temporada_seleccionada, equipo_seleccionado);
+			nuevoEquipo = equipotem.entrarEquipo(temporadaseleccionada, equiposeleccionado);
 			addActionMessage("El equipo con id: "+nuevoEquipo.getIdEquipo()+" se ha registrado en la temporada exitosamente");
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
@@ -238,42 +238,42 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		this.fechaFinal = fechaFinal;
 	}
 	
-	public Long getEquipo_seleccionado() {
-		return equipo_seleccionado;
+	public Long getEquiposeleccionado() {
+		return equiposeleccionado;
 	}
 
 
-	public void setEquipo_seleccionado(Long equipo_seleccionado) {
-		this.equipo_seleccionado = equipo_seleccionado;
+	public void setEquiposeleccionado(Long equiposeleccionado) {
+		this.equiposeleccionado = equiposeleccionado;
 	}
 
 
-	public Long getTemporada_seleccionada() {
-		return temporada_seleccionada;
+	public Long getTemporadaseleccionada() {
+		return temporadaseleccionada;
 	}
 
 
-	public void setTemporada_seleccionada(Long temporada_seleccionada) {
-		this.temporada_seleccionada = temporada_seleccionada;
+	public void setTemporadaseleccionada(Long temporadaseleccionada) {
+		this.temporadaseleccionada = temporadaseleccionada;
 	}
 
-	public String getNombre_equipo_seleccionado() {
-		return nombre_equipo_seleccionado;
-	}
-
-
-	public void setNombre_equipo_seleccionado(String nombre_equipo_seleccionado) {
-		this.nombre_equipo_seleccionado = nombre_equipo_seleccionado;
+	public String getNombreEquipo() {
+		return nombreEquipo;
 	}
 
 
-	public String getManager_equipo_seleccionado() {
-		return manager_equipo_seleccionado;
+	public void setNombreEquipo(String nombreEquipo) {
+		this.nombreEquipo = nombreEquipo;
 	}
 
 
-	public void setManager_equipo_seleccionado(String manager_equipo_seleccionado) {
-		this.manager_equipo_seleccionado = manager_equipo_seleccionado;
+	public String getManagerequipo() {
+		return managerequipo;
+	}
+
+
+	public void setManagerequipo(String managerequipo) {
+		this.managerequipo = managerequipo;
 	}
 	
 }
