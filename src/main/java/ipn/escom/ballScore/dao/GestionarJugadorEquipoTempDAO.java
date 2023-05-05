@@ -1,5 +1,6 @@
 package ipn.escom.ballScore.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -30,5 +31,18 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 		q.setParameter("idEquipo", idEquipo);
 		q.setParameter("idTemporada", idTemporada);
 		return (List<JugadorEquipoTemp>) q.list();
+	}
+	
+	/**Metodo DAO para registrar jugadores de equipos de temporada
+	 * @param jugadores lista de jugadores a registrar
+	 */
+	public void saveJugadores(List<JugadorEquipoTemp> jugadores) {
+		for(JugadorEquipoTemp jugador : jugadores) {
+				java.util.Date utilDate = new java.util.Date();
+				jugador.setFechaAlta(new Date(utilDate.getTime()));
+				session.save(jugador);
+				session.flush();
+				session.clear();
+		}
 	}
 }

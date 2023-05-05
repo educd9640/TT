@@ -50,6 +50,12 @@
 			<result name="success">/jugadores/jugadoresEquipoTemp/registrarJugadoresEquipoTemp.jsp</result>
 			<result name="input">/jugadores/jugadoresEquipoTemp/registrarJugadoresEquipoTemp.jsp</result>
 		</action>
+		
+		<action name="modalRegistrarJugador"
+			class="ipn.escom.ballScore.action.GestionarJugEquipTempAction"
+			method="presentaModalRegistroJugador">
+			<result name="success">/jugadores/jugadoresEquipoTemp/registrarJugadorEquipoTemp.jsp</result>
+		</action>
 
 	</package>
 

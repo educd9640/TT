@@ -1,5 +1,6 @@
 package ipn.escom.ballScore.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -58,5 +59,32 @@ public class GestionarJugEquipoTempBI {
 			gestionarJugadorEquipoTempDAO.cerrarConexiones();
 		}
 		return jugadores;
+	}
+	
+	/**Metodo de negocio para registrar jugadores
+	 * @param idJugadores Arreglo de idJugadores a registrar
+	 * @param idEquipo del equipo de temporada
+	 * @param idTemporada del equipo de temporada
+	 * @throws BussinessException en caso de error al registrar
+	 */
+	public void registrarJugadores(String[] idJugadores, Long idEquipo, Long idTemporada) throws BussinessException {
+		List<JugadorEquipoTemp> jugadores = new ArrayList<JugadorEquipoTemp>();
+		for(String idJugador : idJugadores) {
+			JugadorEquipoTemp jugador = new JugadorEquipoTemp();
+			jugador.setIdJugador(Long.valueOf(idJugador));
+			jugador.setIdEquipo(idEquipo);
+			jugador.setIdTemporada(idTemporada);
+			jugadores.add(jugador);
+		}
+		GestionarJugadorEquipoTempDAO gestionarJugadorEquipoTempDAO = new GestionarJugadorEquipoTempDAO();
+		try {
+			gestionarJugadorEquipoTempDAO.saveJugadores(jugadores);
+		}catch (Exception e) {
+			logger.error("Error al registrar jugador", e);
+			throw new BussinessException("Error al registrar jugador "+e.getMessage());
+		}finally {
+			gestionarJugadorEquipoTempDAO.cerrarConexiones();
+		}
+		
 	}
 }
