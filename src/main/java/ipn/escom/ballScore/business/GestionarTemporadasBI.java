@@ -11,10 +11,15 @@ import org.apache.logging.log4j.Logger;
 
 import ipn.escom.ballScore.dao.GestionarLigasDAO;
 import ipn.escom.ballScore.dao.GestionarTemporadasDAO;
+import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
+import ipn.escom.ballScore.dao.GestionarEquiposDAO;
 import ipn.escom.ballScore.entity.Liga;
 import ipn.escom.ballScore.entity.Temporada;
+import ipn.escom.ballScore.entity.Equipo;
+import ipn.escom.ballScore.entity.EquipoTemporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.TemporadaVO;
+import ipn.escom.ballScore.form.GestionarEquipoTemporadaVO;
 
 /**Clase de negocio para gestionar las Temporadas
  * @author Eduardo Callejas
@@ -23,6 +28,8 @@ import ipn.escom.ballScore.form.TemporadaVO;
 public class GestionarTemporadasBI {
 	
 	private GestionarTemporadasDAO temporadaDAO;
+	private GestionarEquiposDAO equipoDAO;
+	private GestionarEquipoTemporadaDAO equipotemporadaDAO;
 	private GestionarLigasDAO ligaDAO;
 	
 	private static final Logger logger = LogManager.getLogger();
@@ -64,7 +71,7 @@ public class GestionarTemporadasBI {
 				throw new BussinessException("Ya existe una temporada registrada con ese id.");
 			}
 			else {
-				logger.error("Error en la operación sql de la temporada",e);
+				logger.error("Error en la operaciï¿½n sql de la temporada",e);
 				throw new BussinessException("Error al registrar la temporada.");
 			}
 		}
@@ -115,6 +122,41 @@ public class GestionarTemporadasBI {
 		}
 		temporadaDAO.cerrarConexiones();
 	}
+	
+	/**
+	 * Metodo de negocio para registrar un equipo dentro de una temporada
+	 * 
+	 * @params Long con el id de la temporada donde se regitrara el equipo y Long con el id del equipo a registrar
+	 * @return entidad EquipoTemporada con el equipo y temporada registrados
+	 * @throws BussinessException
+	 */
+	public EquipoTemporada entrarEquipo(Long idTemporada, Long idEquipo) throws BussinessException{
+		logger.info("Inicia metodo GestionarTemporadasBI.entrarEquipo()");
+		
+		equipotemporadaDAO = new GestionarEquipoTemporadaDAO();
+		equipoDAO = new GestionarEquiposDAO();
+		temporadaDAO = new GestionarTemporadasDAO();
+		Equipo equipoEscogido = new Equipo();
+		Temporada temporadaElegida= new Temporada();
+		EquipoTemporada nuevoequipo = new EquipoTemporada();
+		EquipoTemporada equiporegistrado= new EquipoTemporada();
+		equipoEscogido = equipoDAO.obtenerEquipo(idEquipo);
+		temporadaElegida = temporadaDAO.selectTemporadaById(idTemporada);
+		nuevoequipo.setEquipo(equipoEscogido);
+		nuevoequipo.setTemporada(temporadaElegida);
+		nuevoequipo.setIdEquipo(idEquipo);
+		nuevoequipo.setIdTemporada(idTemporada);
+		try {
+			equiporegistrado=equipotemporadaDAO.registrarEquipo(nuevoequipo);
+		} catch (SQLException e) {
+			logger.error(" Error al registrar el equipo en la temporada", e);
+			throw new BussinessException("Error al registrar el equipo en la temporada.");
+		}
+		equipoDAO.cerrarConexiones();
+		equipotemporadaDAO.cerrarConexiones();
+		temporadaDAO.cerrarConexiones();
+		return equiporegistrado;
+	} 
 	
 	
 	

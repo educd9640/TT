@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.Preparable;
 
 import ipn.escom.ballScore.business.GestionarTemporadasBI;
 import ipn.escom.ballScore.entity.Temporada;
+import ipn.escom.ballScore.entity.EquipoTemporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.TemporadaForm;
 import ipn.escom.ballScore.form.TemporadaVO;
@@ -32,6 +33,13 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	private String operacion;
 	private String fechaInicial;
 	private String fechaFinal;
+	private Long equiposeleccionado;
+	private String nombreEquipo;
+	private String managerequipo;
+	private Long temporadaseleccionada;
+	
+
+
 	private List<Temporada> temporadasRegistradas = new ArrayList<Temporada>();
 	
 	
@@ -116,6 +124,23 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		return Action.SUCCESS;
 	}
 	
+	/**Metodo para registrar un equipo en una temporada
+	 * @return
+	 */
+	@SkipValidation
+	public String entrarEquipo() {
+		logger.info("Inicia metodo GestionarTemporadasAction.entrarEquipo()");
+		EquipoTemporada nuevoEquipo= new EquipoTemporada();
+		GestionarTemporadasBI equipotem = new GestionarTemporadasBI();
+		try {
+			nuevoEquipo = equipotem.entrarEquipo(temporadaseleccionada, equiposeleccionado);
+			addActionMessage("El equipo con id: "+nuevoEquipo.getIdEquipo()+" se ha registrado en la temporada exitosamente");
+		} catch (BussinessException e) {
+			addActionError(e.getMessage());
+		}
+		
+		return Action.SUCCESS;
+	}
 	
 	
 	/**Metodo para activar/desactivar una temporada
@@ -212,7 +237,43 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	public void setFechaFinal(String fechaFinal) {
 		this.fechaFinal = fechaFinal;
 	}
+	
+	public Long getEquiposeleccionado() {
+		return equiposeleccionado;
+	}
 
 
+	public void setEquiposeleccionado(Long equiposeleccionado) {
+		this.equiposeleccionado = equiposeleccionado;
+	}
+
+
+	public Long getTemporadaseleccionada() {
+		return temporadaseleccionada;
+	}
+
+
+	public void setTemporadaseleccionada(Long temporadaseleccionada) {
+		this.temporadaseleccionada = temporadaseleccionada;
+	}
+
+	public String getNombreEquipo() {
+		return nombreEquipo;
+	}
+
+
+	public void setNombreEquipo(String nombreEquipo) {
+		this.nombreEquipo = nombreEquipo;
+	}
+
+
+	public String getManagerequipo() {
+		return managerequipo;
+	}
+
+
+	public void setManagerequipo(String managerequipo) {
+		this.managerequipo = managerequipo;
+	}
 	
 }

@@ -1,10 +1,13 @@
 package ipn.escom.ballScore.dao;
 
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Query;
 
 import ipn.escom.ballScore.entity.EquipoTemporada;
+import ipn.escom.ballScore.exception.BussinessException;
 
 /**Clase DAO para la gestion de equipos de temporada
  * @author Jose Mauricio
@@ -28,5 +31,26 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 		Query q = session.createQuery("from EquipoTemporada et where et.equipo.manager.idManager = :idManager");
 		q.setParameter("idManager", idManager);
 		return (List<EquipoTemporada>) q.list();
+	}
+	
+	/**
+	 * Metodo DAO para registrar un equipo en una temporada
+	 * @param entidad del tipo EquipoTemporada
+	 * @return entidad EquipoTemporada con el equipo, temporada y fecha de alta ingresados
+	 * @throws BussinessException
+	 */
+	
+	public EquipoTemporada registrarEquipo(EquipoTemporada entidad) throws SQLException {
+		java.util.Date utilDate = new java.util.Date();
+		entidad.setFechaAlta(new Date(utilDate.getTime()));
+		try {
+			session.save(entidad);
+			session.flush();
+			session.clear();
+		}catch(Exception e) {
+			throw new SQLException(e.getMessage(), e.getCause());
+		}
+		
+		return entidad;
 	}
 }
