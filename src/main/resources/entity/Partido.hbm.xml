@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "ipn.escom.ballScore.entity.Partido" table = "PARTIDO">
+      
+      <meta attribute = "class-description">
+         This class contains the partido detail. 
+      </meta>
+      
+      <id name = "idPartido" type = "java.lang.Long" column = "ID_PARTIDO">
+         <generator class="sequence">
+        	<param name="sequence">PARTIDO_SEQ</param>
+    	 </generator>
+      </id>
+      
+      <property name = "idEquipoLocal" 			column = "ID_EQUIPO_LOCAL" 			type = "java.lang.Long" 				 />
+      <property name = "idEquipoVisitante" 		column = "ID_EQUIPO_VISITANTE" 		type = "java.lang.Long" 				 />
+      <property name = "campo" 					column = "CAMPO" 					type = "java.lang.String" 				 />
+      <property name = "fechaAnuncioPartido"	column = "FECHA_ANUNCIO_PARTIDO" 	type = "java.sql.Timestamp" 			 />
+      <property name = "fechaAlta" 				column = "FECHA_ALTA" 				type = "java.sql.Date"					 />
+      
+     
+     <!-- <many-to-one name="escuela" class="ipn.escom.ballScore.entity.Escuela" fetch="select">
+      	<column name="ID_ESCUELA" not-null="true" />
+      </many-to-one>
+       --> 
+      <many-to-one name="equipoTemporada" class="ipn.escom.ballScore.entity.EquipoTemporada" lazy="false" not-null="true" cascade="none" insert="true" update="true">
+      <column name="EQUIPO_TEMPORADA"></column>
+      </many-to-one>
+
+   </class>
+</hibernate-mapping>
