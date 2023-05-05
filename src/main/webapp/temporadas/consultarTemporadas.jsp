@@ -5,14 +5,11 @@
 <html>
 	<head>
 		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
+		<link href="<s:url value='/css/tinystyle.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
         <style>td { white-space:nowrap; }</style>
         <title><s:property value="#title"/></title>
         <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
-        <!-- Script Sexyalertbox -->
-        <script src="<s:url value='/js/sexyalertbox.v1.2.jquery.js'/>"></script>
-        <!-- Script Jquery easing (Animaciones, usado por sexyalert) -->
-        <script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
         
         <script>
         	//Inician metodos JQuery
