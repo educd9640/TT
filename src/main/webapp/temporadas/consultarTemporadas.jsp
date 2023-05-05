@@ -125,6 +125,11 @@
                         <a href="<s:property value="#url"/>">Modificar</a>
                         &nbsp;&nbsp;&nbsp;
                         
+                        <s:url action="consultarEquipos" var="url" escapeAmp="false">
+                            <s:param name="temporadaseleccionada" value="idTemporada"/>
+                        </s:url>
+                        <a href="<s:property value="#url"/>" >Registrar Equipo</a>
+                        &nbsp;&nbsp;&nbsp;
                         
         				<s:url action="estadoTemporada" var="url">
                             <s:param name="temporadaF.idTemporada" value="idTemporada"/>
