@@ -20,7 +20,6 @@
 
 <p><a href='<s:url namespace="/temporadas" action="formularioRegistroTemporada" />' >Registrar Temporada</a></p>
 <p><a href='<s:url namespace="/temporadas" action="consultarTemporadas" />' >Consultar Temporadas</a></p>
-
 <p><a href='<s:url namespace="/" action="menuPrincipal" />' >Menu Principal</a></p>
 </body>
 </html>
