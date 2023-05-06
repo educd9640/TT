@@ -76,6 +76,11 @@
                     </td>
                 </tr>
             </s:iterator>
+            <s:if test="%{form.getJugadoresEquipo().isEmpty()}">
+			   <tr>
+			   		<td class="nowrap" colspan="5" align="center">No hay jugadores disponibles para registrar</td>
+			   </tr>
+			</s:if>
         </table>
         
         <input id="cerrarVentana" type="button" value="Cerrar"/>

@@ -20,6 +20,7 @@ public class GestionarJugEquipTempForm {
 	private List<JugadorEquipoTemp> jugadoresTemporada;
 	private List<Jugador> jugadoresEquipo;
 	private String jugadoresARegistrar;
+	private Long idJugador;
 
 	
 	public Long getIdTemporada() {
@@ -77,6 +78,16 @@ public class GestionarJugEquipTempForm {
 	public void setJugadoresARegistrar(String jugadoresARegistrar) {
 		this.jugadoresARegistrar = jugadoresARegistrar;
 	}
+
+	public Long getIdJugador() {
+		return idJugador;
+	}
+
+	public void setIdJugador(Long idJugador) {
+		this.idJugador = idJugador;
+	}
+	
+	
 	
 	
 	

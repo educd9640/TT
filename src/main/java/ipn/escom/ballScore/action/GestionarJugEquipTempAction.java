@@ -36,9 +36,10 @@ public class GestionarJugEquipTempAction extends BaseAction{
 			form.setJugadoresTemporada(bi.consultarJugadoresRegistrados(form.getIdEquipo(), form.getIdTemporada()));
 			form.setTemporada(biTemp.buscarTemporadaPorId(form.getIdTemporada()));
 			
-			if(form.getJugadoresARegistrar()!=null) {
+			if(form.getJugadoresARegistrar()!=null && !form.getJugadoresARegistrar().equals("")) {
 				this.registrarJugadores();
 				form.setJugadoresTemporada(bi.consultarJugadoresRegistrados(form.getIdEquipo(), form.getIdTemporada()));
+				form.setJugadoresARegistrar("");
 			}
 			
 		} catch (BussinessException e) {
@@ -79,6 +80,21 @@ public class GestionarJugEquipTempAction extends BaseAction{
 		}
 		
 		return Action.SUCCESS;
+	}
+	
+	/**Metodo Action para alternar el estado de un jugador
+	 * @return pantalla de registro de jugadores
+	 */
+	public String alternaEstadoJugador() {
+		logger.info("Inicia metodo GestionarJugEquipTempAction.alternaEstadoJugador()");
+		GestionarJugEquipoTempBI bi = new GestionarJugEquipoTempBI();
+		
+		try {
+			bi.alternarEstadoJugador(form.getIdJugador(), form.getIdEquipo(), form.getIdTemporada());
+		} catch (BussinessException e) {
+			addActionError(e.getMessage());
+		}
+		return this.presentarRegistroJugadores();
 	}
 	
 	/**

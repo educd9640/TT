@@ -56,6 +56,12 @@
 			method="presentaModalRegistroJugador">
 			<result name="success">/jugadores/jugadoresEquipoTemp/registrarJugadorEquipoTemp.jsp</result>
 		</action>
+		
+		<action name="alternarEstado"
+			class="ipn.escom.ballScore.action.GestionarJugEquipTempAction"
+			method="alternaEstadoJugador">
+			<result name="success">/jugadores/jugadoresEquipoTemp/registrarJugadoresEquipoTemp.jsp</result>
+		</action>
 
 	</package>
 

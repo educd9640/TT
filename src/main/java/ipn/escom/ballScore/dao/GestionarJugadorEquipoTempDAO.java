@@ -45,4 +45,27 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 				session.clear();
 		}
 	}
+	
+	/**Metodo para consultar un jugador de equipo de temporada
+	 * @param idJugador del jugador de temporada
+	 * @param idEquipo del equipo de temporada
+	 * @param idTemporada de la temporada
+	 * @return Jugador de temporada
+	 */
+	public JugadorEquipoTemp selectJugadorEquipoTemp(Long idJugador, Long idEquipo, Long idTemporada) {
+		Query q = session.createQuery("from JugadorEquipoTemp jet where jet.idJugador = :idJugador and jet.idEquipo = :idEquipo and jet.idTemporada = :idTemporada");
+		q.setParameter("idJugador", idJugador);
+		q.setParameter("idEquipo", idEquipo);
+		q.setParameter("idTemporada", idTemporada);
+		return (JugadorEquipoTemp) q.uniqueResult();
+	}
+	
+	/**Metodo para insertar o actualizar un jugador de equipo temporada
+	 * @param jugadorEquipoTemp Entidad con los datos del jugador de temporada
+	 */
+	public void saveOrUpdateJugadorEquipoTemp(JugadorEquipoTemp jugadorEquipoTemp) {
+		session.save(jugadorEquipoTemp);
+		session.flush();
+		session.clear();
+	}
 }
