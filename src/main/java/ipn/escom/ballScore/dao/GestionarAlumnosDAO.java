@@ -65,6 +65,28 @@ public class GestionarAlumnosDAO extends BaseDAO {
 		return (List<Alumno>)q.list();
 	}
 	
+	/**Metodo para consultar los alumnos por nombre pila
+	 * @param nombrePila del alumno
+	 * @return Lista de alumnos donde el nombre pila comienze por el indiciado
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Alumno> selectFromAlumnoLikeNombrePila(String nombrePila){
+		Query q = session.createQuery("from Alumno al where al.nombrePila like :nombrePila");
+		q.setParameter("nombrePila", nombrePila+"%");
+		return (List<Alumno>) q.list();
+	}
+	
+	/**Metodo para consultar alumnos registrados en una escuela
+	 * @param idEscuela de la escuela
+	 * @return lista de alumnos registrados en la escuela
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Alumno> selectFromAlumnoByEscuela(Long idEscuela){
+		Query q = session.createQuery("from Alumno al where al.escuela.idEscuela = :idEscuela");
+		q.setParameter("idEscuela", idEscuela);
+		return (List<Alumno>) q.list();
+	}
+	
 	/**Metodo para obtener un alumno por boleta
 	 * @param numeroBoleta del alumno
 	 * @return La entidad alumno con sus datos

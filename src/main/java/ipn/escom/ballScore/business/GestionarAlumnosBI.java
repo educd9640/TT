@@ -80,10 +80,72 @@ public class GestionarAlumnosBI {
 		alumnosDao.cerrarConexiones();
 		return alumnos;
 	}
+	
+
+	/**Metodo para obtener los alumnos por boleta
+	 * @param boletaAlumno del alumno
+	 * @return Lista con un alumno o vacia en caso de no encontrar
+	 * @throws BussinessException En caso de error al consultar
+	 */
+	public List<Alumno> obtenerAlumnosRegistradosPorBoleta(Long boletaAlumno) throws BussinessException{
+		logger.info("Inicia metodo GestionarAlumnosBI.obtenerAlumnosRegistrados()");
+		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
+		List<Alumno> alumnos = new ArrayList<Alumno>();
+		try {
+			alumnos.add(alumnosDao.selectAlumnoById(boletaAlumno));
+		}catch(Exception e) {
+			logger.error(" Error al consultar los alumnos registrados ", e);
+			throw new BussinessException("Error al consultar los alumnos registrados.");
+		}finally {
+			alumnosDao.cerrarConexiones();
+		}
+		return alumnos;
+	}
+	
+	/**Metodo para obtener alumnos por nombrePila
+	 * @param nombrePila del alumno
+	 * @return Lista de alumnos donde nombre pila sea como nombrePila%
+	 * @throws BussinessException en caso de error al consultar
+	 */
+	public List<Alumno> obtenerAlumnosRegistradosPorNombrePila(String nombrePila) throws BussinessException{
+		logger.info("Inicia metodo GestionarAlumnosBI.obtenerAlumnosRegistrados()");
+		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
+		List<Alumno> alumnos = new ArrayList<Alumno>();
+		try {
+			alumnos = alumnosDao.selectFromAlumnoLikeNombrePila(nombrePila);
+		}catch(Exception e) {
+			logger.error(" Error al consultar los alumnos registrados ", e);
+			throw new BussinessException("Error al consultar los alumnos registrados.");
+		}finally {
+			alumnosDao.cerrarConexiones();
+		}
+		return alumnos;
+	}
+	
+
+	/**Metodo de negocio para obtener los alumnos registrados en una escuela
+	 * @param idEscuela de la escuela
+	 * @return Lista de alumnos
+	 * @throws BussinessException En caso de error al consultar
+	 */
+	public List<Alumno> obtenerAlumnosRegistradosPorEscuela(Long idEscuela) throws BussinessException{
+		logger.info("Inicia metodo GestionarAlumnosBI.obtenerAlumnosRegistrados()");
+		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
+		List<Alumno> alumnos = new ArrayList<Alumno>();
+		try {
+			alumnos = alumnosDao.selectFromAlumnoByEscuela(idEscuela);
+		}catch(Exception e) {
+			logger.error(" Error al consultar los alumnos registrados ", e);
+			throw new BussinessException("Error al consultar los alumnos registrados.");
+		}finally {
+			alumnosDao.cerrarConexiones();
+		}
+		return alumnos;
+	}
 
 	/**Metodo para registrar/actualizar un alumno
 	 * @param vo Con los datos del alumno
-	 * @param operacion Indicia la operaci贸n a realizar (registrado 贸 actualizado)
+	 * @param operacion Indicia la operaci髇 a realizar (registrado 贸 actualizado)
 	 * @return Entidad persistida
 	 * @throws BussinessException Si ya existiera un alumno registrado con el numero de boleta (en el caso de registro)
 	 */
@@ -107,6 +169,8 @@ public class GestionarAlumnosBI {
 		}catch(Exception e) {
 			logger.error("Error al obtener la escuela para registrar al alumno", e);
 			throw new BussinessException("Error al registrar al alumno. ");
+		}finally {
+			escuelasDao.cerrarConexiones();
 		}
 		nuevoAlumno.setEscuela(escuela);
 
@@ -124,11 +188,9 @@ public class GestionarAlumnosBI {
 				logger.error("Error en la operaci贸n sql del alumno",e);
 				throw new BussinessException("Error al registrar al alumno.");
 			}
+		}finally {
+			alumnosDao.cerrarConexiones();
 		}
-
-
-		alumnosDao.cerrarConexiones();
-		escuelasDao.cerrarConexiones();
 
 		return nuevoAlumno;
 	}
@@ -143,6 +205,7 @@ public class GestionarAlumnosBI {
 		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
 		Alumno alumno = alumnosDao.selectAlumnoById(numeroBoleta);
 		if(alumno == null) {
+			alumnosDao.cerrarConexiones();
 			throw new BussinessException("Error al obtener alumno por boleta, no se encuentra registrado.");
 		}
 		alumnosDao.cerrarConexiones();
@@ -170,9 +233,10 @@ public class GestionarAlumnosBI {
 		}catch (Exception e) {
 			logger.error("Error al borrar al alumno ",e);
 			throw new BussinessException("Error al borrar al alumno.");
+		}finally {
+			alumnosDao.cerrarConexiones();
 		}
 		
-		alumnosDao.cerrarConexiones();
 	}
 	
 	/**Metodo para eliminar un alumno
@@ -196,9 +260,10 @@ public class GestionarAlumnosBI {
 		}catch (Exception e) {
 			logger.error("Error al borrar al alumno ",e);
 			throw new BussinessException("Error al borrar al alumno.");
+		}finally {
+			alumnosDao.cerrarConexiones();
 		}
 		
-		alumnosDao.cerrarConexiones();
 	}
 	
 }

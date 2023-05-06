@@ -45,7 +45,14 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 		
 		try {
 			this.escuelas = alumnosBI.obtenerEscuelas();
-			this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistrados();
+			if(alumnoForm != null && alumnoForm.getBoletaAlumno()!= null) {
+				this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistradosPorBoleta(alumnoForm.getBoletaAlumno());
+			}else if(alumnoForm != null && alumnoForm.getNombrePila()!= null && !alumnoForm.getNombrePila().equals("")) {
+				this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistradosPorNombrePila(alumnoForm.getNombrePila());
+			}else if(alumnoForm != null && alumnoForm.getIdEscuela()!= null && alumnoForm.getIdEscuela()!=-1L) {
+				this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistradosPorEscuela(alumnoForm.getIdEscuela());
+			}else
+				this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistrados();
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
 		}
@@ -55,6 +62,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 				try {
 					Alumno alumno = alumnosBI.obtenerAlumnoPorBoleta(alumnoForm.getBoletaAlumno());
 					BeanUtils.copyProperties(alumnoForm,alumno);
+					alumnoForm.setIdEscuela(alumno.getEscuela().getIdEscuela());
 				} catch (IllegalAccessException | InvocationTargetException e) {
 					logger.error("Error al copiar las propiedades del alumno al form.", e);
 					addActionError("Error al recuperar datos del alumno");
@@ -78,8 +86,10 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	/**Metodo para presentar pantalla de registrados
 	 * @return
 	 */
+	@SkipValidation
 	public String mostrarRegistrados() {
 		logger.info("Inicia metodo GestionarAlumnosAction.mostrarRegistrados()");
+		this.prepare();
 		return Action.SUCCESS;
 	}
 	
