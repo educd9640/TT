@@ -131,9 +131,9 @@ public class GestionarEquiposBI {
 	 * @throws BussinessException
 	 */
 	
-	public Equipo obtenerEquipo(Long idmanager) throws BussinessException {
+	public Equipo obtenerEquipo(Long idManager) throws BussinessException {
 		GestionarEquiposDAO equipoDao= new GestionarEquiposDAO();
-		Equipo equipoManager= equipoDao.obtenerManager(idmanager);
+		Equipo equipoManager= equipoDao.obtenerManager(idManager);
 		if(equipoManager==null) {
 			throw new BussinessException("El manager no cuenta con un equipo registrado");
 		}

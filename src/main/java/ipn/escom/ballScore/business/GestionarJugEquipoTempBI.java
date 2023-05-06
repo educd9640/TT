@@ -1,5 +1,7 @@
 package ipn.escom.ballScore.business;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -58,5 +60,57 @@ public class GestionarJugEquipoTempBI {
 			gestionarJugadorEquipoTempDAO.cerrarConexiones();
 		}
 		return jugadores;
+	}
+	
+	/**Metodo de negocio para registrar jugadores
+	 * @param idJugadores Arreglo de idJugadores a registrar
+	 * @param idEquipo del equipo de temporada
+	 * @param idTemporada del equipo de temporada
+	 * @throws BussinessException en caso de error al registrar
+	 */
+	public void registrarJugadores(String[] idJugadores, Long idEquipo, Long idTemporada) throws BussinessException {
+		List<JugadorEquipoTemp> jugadores = new ArrayList<JugadorEquipoTemp>();
+		for(String idJugador : idJugadores) {
+			JugadorEquipoTemp jugador = new JugadorEquipoTemp();
+			jugador.setIdJugador(Long.valueOf(idJugador));
+			jugador.setIdEquipo(idEquipo);
+			jugador.setIdTemporada(idTemporada);
+			jugadores.add(jugador);
+		}
+		GestionarJugadorEquipoTempDAO gestionarJugadorEquipoTempDAO = new GestionarJugadorEquipoTempDAO();
+		try {
+			gestionarJugadorEquipoTempDAO.saveJugadores(jugadores);
+		}catch (Exception e) {
+			logger.error("Error al registrar jugador", e);
+			throw new BussinessException("Error al registrar jugador "+e.getMessage());
+		}finally {
+			gestionarJugadorEquipoTempDAO.cerrarConexiones();
+		}
+		
+	}
+	
+	/**Metodo de negocio para alternar el estado de un jugador de temporada
+	 * @param idJugador del jugador de temporada
+	 * @param idEquipo del equipo de temporada
+	 * @param idTemporada de la temporada
+	 * @throws BussinessException En caso de error al actualizar
+	 */
+	public void alternarEstadoJugador(Long idJugador, Long idEquipo, Long idTemporada) throws BussinessException {
+		GestionarJugadorEquipoTempDAO gestionarJugadorEquipoTempDAO = new GestionarJugadorEquipoTempDAO();
+		try {
+			JugadorEquipoTemp jugadorEquipoTemp = gestionarJugadorEquipoTempDAO.selectJugadorEquipoTemp(idJugador,idEquipo,idTemporada);
+			if(jugadorEquipoTemp.getFechaAlta()==null) {
+				java.util.Date date = new java.util.Date();
+				jugadorEquipoTemp.setFechaAlta(new Date(date.getTime()));
+			}else {
+				jugadorEquipoTemp.setFechaAlta(null);
+			}
+			gestionarJugadorEquipoTempDAO.saveOrUpdateJugadorEquipoTemp(jugadorEquipoTemp);
+		}catch (Exception e) {
+			logger.error("Error al actualizar jugador", e);
+			throw new BussinessException("Error al actualizar jugador "+e.getMessage());
+		}finally {
+			gestionarJugadorEquipoTempDAO.cerrarConexiones();
+		}
 	}
 }

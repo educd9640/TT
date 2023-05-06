@@ -1,81 +1,91 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <html>
     <head>
     	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
         <title><s:text name="label.registrados.titulo"/></title>
     </head>
+    <script type="text/javascript">
+    	function limpiarBusqueda(){
+    		document.forms[0].boletaAlumno.value=null;
+    		document.forms[0].nombrePila.value=null;
+    		document.forms[0].consultarAlumnos_alumnoForm_idEscuela.value=null;
+    		document.forms[0].submit();
+    	}
+    </script>
     <body>
+    <s:form action="consultarAlumnos" method="post">
         <div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.registrados.titulo"/></h1>
         <br/><br/>
         <s:actionerror />
         <s:actionmessage />
-        <table class="borderAll">
-            <tr>
-                <th><s:text name="alumnoForm.boletaAlumno"/></th>
-                <th><s:text name="alumnoForm.nombrePila"/></th>
-                <th><s:text name="alumnoForm.apellidoPat"/></th>
-                <th><s:text name="alumnoForm.apellidoMat"/></th>
-                <th><s:text name="alumnoForm.semestre"/></th>
-                <th><s:text name="alumnoForm.curp"/></th>
-                <th><s:text name="alumnoForm.nss"/></th>
-                <th><s:text name="alumnoForm.telefono"/></th>
-                <th><s:text name="alumnoForm.telEmergencia"/></th>
-                <th><s:text name="alumnoForm.correo"/></th>	
-                <th><s:text name="alumnoForm.idEscuela"/></th>
-                <th><s:text name="alumnoForm.esActivo"/></th>	
-                <th>&nbsp;</th>
-            </tr>
-            <s:iterator value="alumnosRegistrado" status="status">
-                <tr>
-                    <td class="nowrap"><s:property value="boletaAlumno"/></td>
-                    <td class="nowrap"><s:property value="nombrePila"/></td>
-                    <td class="nowrap"><s:property value="apellidoPat"/></td>
-                    <td class="nowrap"><s:property value="apellidoMat"/></td>
-                    <td class="nowrap"><s:property value="semestre"/></td>
-                    <td class="nowrap"><s:property value="curp"/></td>
-                    <td class="nowrap"><s:property value="nss"/></td>
-                    <td class="nowrap"><s:property value="telefono"/></td>
-                    <td class="nowrap"><s:property value="telEmergencia"/></td>
-                    <td class="nowrap"><s:property value="correo"/></td>
-                    <td class="nowrap"><s:property value="escuela.nombreCortoEscuela"/></td>
-                    <s:if test="%{fechaAlta!=null}">
-						<td class="nowrap" style="text-align: center; vertical-align: middle;">
-							<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
-						</td>
+        <table style="border:none">
+        	<tr>
+        	<td><b>Busqueda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="alumnoForm.boletaAlumno"/></td>
+        	<td><b>Busqueda por Nombre Pila</b> <input type="text" id="nombrePila" name="alumnoForm.nombrePila"/></td>
+        	<td><b>Busqueda por Escuela</b> <s:select name="alumnoForm.idEscuela" style="display:inline-block;" headerKey="-1" headerValue="Seleccione" list="escuelas" listKey="idEscuela" listValue="nombreCortoEscuela" theme="simple"/></td>
+        	</tr>
+        	<tr>
+        		<td align="left" colspan="3"><s:submit value="%{getText('button.label.submit')}" theme="simple"/> <input type="button" value="Limpiar" onclick="javascript:limpiarBusqueda()"></td>
+        	</tr>
+        </table>
+   		<br>
+   		
+   </s:form>
+        <div class="container">
+			<display:table export="true" id="alumno" name="alumnosRegistrado" pagesize="10" requestURI="" class="table table-bordered">
+				<display:setProperty name="export.types" value="csv excel xml pdf" />
+				<display:setProperty name="export.excel.filename" value="AlumnosRegistrados.xls" />
+				<display:setProperty name="export.csv.filename" value="AlumnosRegistrados.csv" />
+				<display:setProperty name="export.xml.filename" value="AlumnosRegistrados.xml" />
+				<display:setProperty name="export.pdf.filename" value="AlumnosRegistrados.pdf" />
+				<display:column property="boletaAlumno" title="Boleta Alumno" sortable="true"></display:column>
+				<display:column property="nombrePila" title="Nombre pila" sortable="true" escapeXml="true"></display:column>
+				<display:column property="apellidoPat" title="Apellido Paterno" sortable="true" escapeXml="true"></display:column>
+				<display:column property="apellidoMat" title="Apellido Materno" sortable="true" escapeXml="true"></display:column>
+				<display:column property="semestre" title="Semestre" sortable="true"></display:column>
+				<display:column property="curp" title="CURP" sortable="true"></display:column>
+				<display:column property="nss" title="NSS" sortable="true"></display:column>
+				<display:column property="telefono" title="Telefono" sortable="true"></display:column>
+				<display:column property="telEmergencia" title="Telefono Emergencia" sortable="true"></display:column>
+				<display:column property="correo" title="Correo" sortable="true"></display:column>
+				<display:column property="escuela.nombreCortoEscuela" title="Escuela" sortable="true"></display:column>
+				<display:column title="Activo" sortable="true" media="html">
+					<s:if test="%{#attr.alumno.fechaAlta!=null}">
+						<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
 					</s:if>
                     <s:else>
-                    	<td class="nowrap" style ="text-align: center; vertical-align: middle;">
-                    		<img width="15" height="15" src="<s:url value='/img/cross.png'/>">
-                    	</td>
+                   		<img width="15" height="15" src="<s:url value='/img/cross.png'/>">
                     </s:else>
-                    <td class="nowrap">
-                        <s:url action="modificarAlumno" var="url" escapeAmp="false">
-                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
+				</display:column>
+				<display:column media="html">
+					<s:url action="modificarAlumno" var="url" escapeAmp="false">
+                            <s:param name="alumnoForm.boletaAlumno" value="%{#attr.alumno.boletaAlumno}"/>
                             <s:param name="operacion">actualizado</s:param>
-                        </s:url>
-                        <a href="<s:property value="#url"/>">Modificar</a>
-                        &nbsp;&nbsp;&nbsp;
-                        <s:if test="%{fechaAlta!=null}">
-	                        <s:url action="bajaAlumno" var="url">
-	                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
+                    </s:url>
+                    <a href="<s:property value="#url"/>">Modificar</a>
+				</display:column>
+				<display:column media="html">
+					<s:if test="%{#attr.alumno.fechaAlta!=null}">
+							<s:url action="bajaAlumno" var="url">
+	                            <s:param name="alumnoForm.boletaAlumno" value="%{#attr.alumno.boletaAlumno}"/>
 	                        </s:url>
 	                        <a href="<s:property value="#url"/>">Baja</a>
-                        </s:if>
-                        <s:else>
-	                        <s:url action="altaAlumno" var="url">
-	                            <s:param name="alumnoForm.boletaAlumno" value="boletaAlumno"/>
+					</s:if>
+                    <s:else>
+                   			<s:url action="altaAlumno" var="url">
+	                            <s:param name="alumnoForm.boletaAlumno" value="%{#attr.alumno.boletaAlumno}"/>
 	                        </s:url>
 	                        <a href="<s:property value="#url"/>">Alta</a>
-                        </s:else>
-                    </td>
-                </tr>
-            </s:iterator>
-        </table>
+                    </s:else>
+				</display:column>
+			</display:table>
+		</div>
         
         <s:form action="submenuAlumnos" >
 			<s:submit value="Regresar" targets="submenuAlumnos"/>

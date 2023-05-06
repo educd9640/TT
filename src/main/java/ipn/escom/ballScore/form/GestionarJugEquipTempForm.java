@@ -3,6 +3,7 @@ package ipn.escom.ballScore.form;
 import java.util.List;
 
 import ipn.escom.ballScore.entity.EquipoTemporada;
+import ipn.escom.ballScore.entity.Jugador;
 import ipn.escom.ballScore.entity.JugadorEquipoTemp;
 import ipn.escom.ballScore.entity.Temporada;
 
@@ -17,6 +18,9 @@ public class GestionarJugEquipTempForm {
 	private Temporada temporada;
 	private List<EquipoTemporada> equiposTemporada;
 	private List<JugadorEquipoTemp> jugadoresTemporada;
+	private List<Jugador> jugadoresEquipo;
+	private String jugadoresARegistrar;
+	private Long idJugador;
 
 	
 	public Long getIdTemporada() {
@@ -59,7 +63,32 @@ public class GestionarJugEquipTempForm {
 		this.jugadoresTemporada = jugadoresTemporada;
 	}
 
-	
+	public List<Jugador> getJugadoresEquipo() {
+		return jugadoresEquipo;
+	}
 
+	public void setJugadoresEquipo(List<Jugador> jugadoresEquipo) {
+		this.jugadoresEquipo = jugadoresEquipo;
+	}
+
+	public String getJugadoresARegistrar() {
+		return jugadoresARegistrar;
+	}
+
+	public void setJugadoresARegistrar(String jugadoresARegistrar) {
+		this.jugadoresARegistrar = jugadoresARegistrar;
+	}
+
+	public Long getIdJugador() {
+		return idJugador;
+	}
+
+	public void setIdJugador(Long idJugador) {
+		this.idJugador = idJugador;
+	}
+	
+	
+	
+	
 	
 }
