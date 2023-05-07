@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Query;
 
 import ipn.escom.ballScore.entity.EquipoTemporada;
+import ipn.escom.ballScore.entity.Temporada;
 import ipn.escom.ballScore.exception.BussinessException;
 
 /**Clase DAO para la gestion de equipos de temporada
@@ -53,4 +54,14 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 		
 		return entidad;
 	}
+	
+	/**Metodo para obtener las temporadas en equipo_temporada
+	 * @return Lista de los id de las temporadas en Long
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Long> obtenerTemporadas() {
+		Query q = session.createQuery("select distinct et.idTemporada from EquipoTemporada et");
+		return (List<Long>)q.list();
+	}
+	
 }

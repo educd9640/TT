@@ -27,8 +27,9 @@
       	<column name="ID_ESCUELA" not-null="true" />
       </many-to-one>
        --> 
-      <many-to-one name="equipoTemporada" class="ipn.escom.ballScore.entity.EquipoTemporada" lazy="false" not-null="true" cascade="none" insert="true" update="true">
-      <column name="EQUIPO_TEMPORADA"></column>
+      <many-to-one name="equipoTemporada" class="ipn.escom.ballScore.entity.EquipoTemporada" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+      	<column name="ID_EQUIPO"/>
+      	<column name="ID_TEMPORADA"/>
       </many-to-one>
 
    </class>

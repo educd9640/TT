@@ -92,6 +92,13 @@
 			<result name="input">/temporadas/registrarEquipoTemporada.jsp</result>
 			<result name="success">/temporadas/registrarEquipoTemporada.jsp</result>
 		</action>
+		
+		<action name="consultarEquipoTemporadasModal"
+			class="ipn.escom.ballScore.action.GestionarTemporadasAction"
+			method="mostrarRegistrados">
+			<result name="input">/temporadas/consultarEquipoTemporadasModal.jsp</result>
+			<result name="success">/temporadas/consultarEquipoTemporadasModal.jsp</result>
+		</action>
 
 	</package>
 </struts>

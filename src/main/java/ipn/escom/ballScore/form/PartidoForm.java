@@ -12,16 +12,17 @@ import ipn.escom.ballScore.entity.ResultadosPartido;
  */
 public class PartidoForm {
 	
+
 	private Long idPartido;
-	
+	private Long idTemporada;
 	private Long idEquipoLocal;
 	private Long idEquipoVisitante;
 	private String campo;
 	private Timestamp fechaAnuncioPartido;
 	private Date fechaAlta;
 	
-	private EquipoTemporada equipoTemporada;
 	private ResultadosPartido resultadosPartido;
+	private EquipoTemporada equipoTemporada;
 	
 	
 	public Long getIdPartido() {
@@ -65,6 +66,12 @@ public class PartidoForm {
 	}
 	public void setResultadosPartido(ResultadosPartido resultadosPartido) {
 		this.resultadosPartido = resultadosPartido;
+	}
+	public Long getIdTemporada() {
+		return idTemporada;
+	}
+	public void setIdTemporada(Long idTemporada) {
+		this.idTemporada = idTemporada;
 	}
 	public EquipoTemporada getEquipoTemporada() {
 		return equipoTemporada;

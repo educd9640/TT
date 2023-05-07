@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class Partido {
 	
 	private Long idPartido;
-	
+	private Long idTemporada;
 	private Long idEquipoLocal;
 	private Long idEquipoVisitante;
 	private String campo;
@@ -62,6 +62,12 @@ public class Partido {
 	}
 	public void setResultadosPartido(ResultadosPartido resultadosPartido) {
 		this.resultadosPartido = resultadosPartido;
+	}
+	public Long getIdTemporada() {
+		return idTemporada;
+	}
+	public void setIdTemporada(Long idTemporada) {
+		this.idTemporada = idTemporada;
 	}
 	public EquipoTemporada getEquipoTemporada() {
 		return equipoTemporada;

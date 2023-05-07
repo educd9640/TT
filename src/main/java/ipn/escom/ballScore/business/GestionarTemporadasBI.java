@@ -76,6 +76,7 @@ public class GestionarTemporadasBI {
 			}
 		}
 		temporadaDAO.cerrarConexiones();
+		ligaDAO.cerrarConexiones();
 		return nuevaTemporada;
 	}
 	
@@ -176,6 +177,39 @@ public class GestionarTemporadasBI {
 			throw new BussinessException("Error al consultar las temporadas registradas.");
 		}
 		temporadaDAO.cerrarConexiones();
+		return temporadas;
+	}
+	
+	
+	
+	/**Metodo para obtener las temporadas registradas en equipo_temporada
+	 * @return Lista de temporadas
+	 * @throws BussinessException Em caso de error
+	 */
+	public List<Temporada> obtenerEquipoTemporadasRegistradas()throws BussinessException{
+		logger.info("Inicia metodo GestionarTemporadasBI.obtenerEquipoTemporadasRegistradas()");
+		temporadaDAO = new GestionarTemporadasDAO();
+		equipotemporadaDAO = new GestionarEquipoTemporadaDAO();
+		List<Temporada> temporadas = new ArrayList<Temporada>();
+		List<Long> equipoTemporadas = new ArrayList<Long>();
+		try {
+			equipoTemporadas = equipotemporadaDAO.obtenerTemporadas();
+		}catch(Exception e) {
+			logger.error(" Error al consultar las temporadas registradas en equipo_temporada", e);
+			throw new BussinessException("Error al consultar las temporadas registradas en equipo_temporada.");
+		}
+		
+		try {
+			for(Long temporada: equipoTemporadas) {
+				temporadas.add( temporadaDAO.selectTemporadaById(temporada));
+			}
+		}catch(Exception e) {
+			logger.error(" Error al consultar las temporadas registradas ", e);
+			throw new BussinessException("Error al consultar las temporadas registradas.");
+		}
+		
+		temporadaDAO.cerrarConexiones();
+		equipotemporadaDAO.cerrarConexiones();
 		return temporadas;
 	}
 	
