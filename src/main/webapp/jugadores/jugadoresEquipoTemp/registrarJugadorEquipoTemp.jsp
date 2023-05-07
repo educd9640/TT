@@ -2,8 +2,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <html>
     <head>
+    	<link rel="stylesheet" href="<s:url value='/bs/css/bootstrap.min.css'/>">
+    	<script src="<s:url value='/bs/js/bootstrap.bundle.min.js'/>"></script>
+    
     	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
     	<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
@@ -38,50 +42,67 @@
 					}
     			}); 
 	        });
+	        
+	        function limpiarBusqueda(){
+				document.forms[0].boletaAlumno.value=null;
+				document.forms[0].nombrePila.value=null;
+				document.forms[0].posicionPrim.value=null;
+				document.forms[0].posicionSec.value=null;
+				document.forms[0].submit();
+			}
         </script>
     </head>
     <body>
         <div class="titleDiv"><s:text name="application.title"/></div>
-        <h1><s:text name="label.registrados.titulo"/></h1>
+        <h1><s:text name="label.registradosModal.titulo"/></h1>
         <br/><br/>
         <s:actionerror />
         <s:actionmessage />
-        <table class="borderAll">
-            <tr>
-                <th><s:text name="form.jugadoresEquipo.alumno.boletaAlumno"/></th>
-                <th><s:text name="form.jugadoresEquipo.alumno.nombreAlumno"/></th>
-                <th><s:text name="form.jugadoresEquipo.posicionPrim"/></th>
-                <th><s:text name="form.jugadoresEquipo.posicionSec"/></th>
-                <th><s:text name="label.esJugadorActivo"/></th>
-                <th>&nbsp;</th>
-            </tr>
-            <s:iterator value="form.jugadoresEquipo" status="status">
-                <tr>
-                    <td class="nowrap"><s:property value="alumno.boletaAlumno"/></td>
-                    <td class="nowrap"><s:property value="alumno.nombrePila"/> <s:property value="alumno.apellidoPat"/> <s:property value="alumno.apellidoMat"/></td>
-                    <td class="nowrap"><s:property value="posicionPrim"/></td>
-                    <td class="nowrap"><s:property value="posicionSec"/></td>
-                    <td class="nowrap" align="center">
-        				<s:if test="fechaAlta != null">
-        					<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
-        				</s:if>
-        				<s:else>
-        					<img width="15" height="15" src="<s:url value='/img/cross.png'/>">
-        				</s:else>
-        			</td>
-                    <td class="nowrap">
-                    	<s:if test="fechaAlta != null">
-                    		<input type="checkbox" name="jugador" id="<s:property value="idJugador"/>" value="<s:property value="idJugador"/>"/>
-                    	</s:if>
-                    </td>
-                </tr>
-            </s:iterator>
-            <s:if test="%{form.getJugadoresEquipo().isEmpty()}">
-			   <tr>
-			   		<td class="nowrap" colspan="5" align="center">No hay jugadores disponibles para registrar</td>
-			   </tr>
-			</s:if>
-        </table>
+        
+        <s:form action="modalRegistrarJugador" method="post">
+                <table style="border:none">
+        	<tr>
+        	<td><b>Busqueda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="form.boletaAlumno"/></td>
+        	<td><b>Busqueda por Nombre Pila</b> <input type="text" id="nombrePila" name="form.nombrePila"/></td>
+        	<td><b>Busqueda por Posici&oacute;n Primaria</b> <s:select id="posicionPrim" name="form.posicionPrim" headerKey="" headerValue="Seleccione" list="posiciones" theme="simple"/></td>
+        	<td><b>Busqueda por Posici&oacute;n Secundaria</b> <s:select id="posicionSec" name="form.posicionSec" headerKey="" headerValue="Seleccione" list="posiciones" theme="simple"/></td>
+        	</tr>
+        	<tr>
+        		<td align="left" colspan="3"><s:submit value="%{getText('button.label.submit')}" theme="simple"/> <input type="button" value="Limpiar" onclick="javascript:limpiarBusqueda()"></td>
+        	</tr>
+        	<s:hidden name="form.idEquipo"></s:hidden>
+        	<s:hidden name="form.idTemporada"></s:hidden>
+    	</table>
+        </s:form>
+        
+        <div>
+			<display:table export="true" id="jugadorEquipo" name="form.jugadoresEquipo" pagesize="7" requestURI="" class="table table-hover table-striped">
+				<display:setProperty name="export.types" value="csv excel xml pdf" />
+				<display:setProperty name="export.excel.filename" value="JugadoresEquipoLibres.xls" />
+				<display:setProperty name="export.csv.filename" value="JugadoresEquipoLibres.csv" />
+				<display:setProperty name="export.xml.filename" value="JugadoresEquipoLibres.xml" />
+				<display:setProperty name="export.pdf.filename" value="JugadoresEquipoLibres.pdf" />
+				<display:column property="alumno.boletaAlumno" title="Boleta Alumno" sortable="true"></display:column>
+				<display:column property="alumno.nombrePila" title="Nombre pila" sortable="true" escapeXml="true"></display:column>
+				<display:column property="alumno.apellidoPat" title="Apellido Paterno" sortable="true" escapeXml="true"></display:column>
+				<display:column property="alumno.apellidoMat" title="Apellido Materno" sortable="true" escapeXml="true"></display:column>
+				<display:column property="posicionPrim" title="Posici&oacute;n Primaria" sortable="true"></display:column>
+				<display:column property="posicionSec" title="Posici&oacute;n Secundaria" sortable="true"></display:column>
+				<display:column title="Activo" sortable="true" media="html">
+					<s:if test="%{#attr.jugadorEquipo.fechaAlta!=null}">
+						<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
+					</s:if>
+                    <s:else>
+                   		<img width="15" height="15" src="<s:url value='/img/cross.png'/>">
+                    </s:else>
+				</display:column>
+				<display:column media="html">
+					<s:if test="%{#attr.jugadorEquipo.fechaAlta!=null}">
+                   		<input type="checkbox" name="jugador" id="<s:property value="%{#attr.jugadorEquipo.idJugador}"/>" value="<s:property value="%{#attr.jugadorEquipo.idJugador}"/>"/>
+                   	</s:if>
+				</display:column>
+			</display:table>
+		</div>
         
         <input id="cerrarVentana" type="button" value="Cerrar"/>
         <input id="aceptarSeleccion" type="button" value="Aceptar"/>

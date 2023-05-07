@@ -1,6 +1,8 @@
 package ipn.escom.ballScore.entity;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**Entidad de Alumno
  * @author Jose Mauricio
@@ -21,6 +23,7 @@ public class Alumno {
 	private Escuela escuela;
 	private Date fechaAlta;
 	private Date fechaBaja;
+	private Set<Jugador> jugador = new HashSet<Jugador>();
 	
 	public Long getBoletaAlumno() {
 		return boletaAlumno;
@@ -32,19 +35,19 @@ public class Alumno {
 		return nombrePila;
 	}
 	public void setNombrePila(String nombrePila) {
-		this.nombrePila = nombrePila;
+		this.nombrePila = nombrePila.toUpperCase();
 	}
 	public String getApellidoPat() {
 		return apellidoPat;
 	}
 	public void setApellidoPat(String apellidoPat) {
-		this.apellidoPat = apellidoPat;
+		this.apellidoPat = apellidoPat.toUpperCase();
 	}
 	public String getApellidoMat() {
 		return apellidoMat;
 	}
 	public void setApellidoMat(String apellidoMat) {
-		this.apellidoMat = apellidoMat;
+		this.apellidoMat = apellidoMat.toUpperCase();
 	}
 	public Long getSemestre() {
 		return semestre;
@@ -100,5 +103,13 @@ public class Alumno {
 	public void setFechaBaja(Date fechaBaja) {
 		this.fechaBaja = fechaBaja;
 	}
+	public Set<Jugador> getJugador() {
+		return jugador;
+	}
+	public void setJugador(Set<Jugador> jugador) {
+		this.jugador = jugador;
+	}
+	
+	
 	
 }

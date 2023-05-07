@@ -44,6 +44,13 @@
 			<result name="success">/jugadores/jugadoresEquipoTemp/consultarTemporadasParaRegistro.jsp</result>
 		</action>
 		
+		<action name="alternarEstadoEquipoTemp"
+			class="ipn.escom.ballScore.action.GestionarJugEquipTempAction"
+			method="alternarEstadoEquipoTemp">
+			<result name="input">/jugadores/jugadoresEquipoTemp/consultarTemporadasParaRegistro.jsp</result>
+			<result name="success">/jugadores/jugadoresEquipoTemp/consultarTemporadasParaRegistro.jsp</result>
+		</action>
+		
 		<action name="registrarJugadores"
 			class="ipn.escom.ballScore.action.GestionarJugEquipTempAction"
 			method="presentarRegistroJugadores">

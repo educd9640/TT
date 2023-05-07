@@ -57,32 +57,48 @@ public class GestionarAlumnosDAO extends BaseDAO {
 	}
 	
 	/**Metodo para consultar todos los alumnos registrados
+	 * @param soloLibres si es true, solo muestra alumnos que no tienen equipo
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Alumno> selectFromAlumno(){
-		Query q = session.createQuery("from Alumno");
+	public List<Alumno> selectFromAlumno(boolean soloLibres){
+		Query q ;
+		if(!soloLibres)
+			q = session.createQuery("from Alumno al");
+		else
+			q = session.createQuery("from Alumno al where al.boletaAlumno not in (select jug.alumno.boletaAlumno from Jugador jug)");
 		return (List<Alumno>)q.list();
 	}
 	
+	
 	/**Metodo para consultar los alumnos por nombre pila
 	 * @param nombrePila del alumno
+	 * @param soloLibres si es true, solo muestra alumnos que no tienen equipo
 	 * @return Lista de alumnos donde el nombre pila comienze por el indiciado
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Alumno> selectFromAlumnoLikeNombrePila(String nombrePila){
-		Query q = session.createQuery("from Alumno al where al.nombrePila like :nombrePila");
-		q.setParameter("nombrePila", nombrePila+"%");
+	public List<Alumno> selectFromAlumnoLikeNombrePila(String nombrePila, boolean soloLibres){
+		Query q;
+		if(!soloLibres)
+			q = session.createQuery("from Alumno al where al.nombrePila like :nombrePila");
+		else
+			q = session.createQuery("from Alumno al where al.nombrePila like :nombrePila and al.boletaAlumno not in (select jug.alumno.boletaAlumno from Jugador jug)");
+		q.setParameter("nombrePila", nombrePila.toUpperCase()+"%");
 		return (List<Alumno>) q.list();
 	}
 	
 	/**Metodo para consultar alumnos registrados en una escuela
 	 * @param idEscuela de la escuela
+	 * @param soloLibres si es true, solo muestra alumnos que no tienen equipo
 	 * @return lista de alumnos registrados en la escuela
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Alumno> selectFromAlumnoByEscuela(Long idEscuela){
-		Query q = session.createQuery("from Alumno al where al.escuela.idEscuela = :idEscuela");
+	public List<Alumno> selectFromAlumnoByEscuela(Long idEscuela, boolean soloLibres){
+		Query q;
+		if(!soloLibres)
+			q = session.createQuery("from Alumno al where al.escuela.idEscuela = :idEscuela");
+		else
+			q = session.createQuery("from Alumno al where al.escuela.idEscuela = :idEscuela and al.boletaAlumno not in (select jug.alumno.boletaAlumno from Jugador jug)");
 		q.setParameter("idEscuela", idEscuela);
 		return (List<Alumno>) q.list();
 	}

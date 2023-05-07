@@ -130,6 +130,86 @@ public class GestionarJugadoresBI {
 		return jugadoresRegistrados;
 	}
 	
+	/**Metodo para consultar los jugadores registrados en un equipo
+	 * @param idEquipo del equipo
+	 * @param boletaAlumno del alumno
+	 * @return lista de jugadores registrados
+	 * @throws BussinessException en caso de error al consultar
+	 */
+	public List<Jugador> consultarJugadorEquipoByBoleta(Long idEquipo, Long boletaAlumno) throws BussinessException{
+		List<Jugador> jugadoresRegistrados;
+		GestionarJugadoresDAO jugadoresDao = new  GestionarJugadoresDAO();
+		try {
+			jugadoresRegistrados = jugadoresDao.selectJugadorByBoleta(boletaAlumno);
+		} catch (SQLException e) {
+			logger.error("Error al consultar jugadores registrados ", e);
+			throw new BussinessException("Error al consultar jugadores registrados "+e.getCause());
+		}finally {
+			jugadoresDao.cerrarConexiones();
+		}
+		return jugadoresRegistrados;
+	}
+	
+	/**Metodo para consultar los jugadores registrados en un equipo
+	 * @param idEquipo del equipo
+	 * @param nombrePila del jugador
+	 * @return lista de jugadores registrados
+	 * @throws BussinessException en caso de error al consultar
+	 */
+	public List<Jugador> consultarJugadoresEquipoLikeNombrePila(Long idEquipo, String nombrePila) throws BussinessException{
+		List<Jugador> jugadoresRegistrados;
+		GestionarJugadoresDAO jugadoresDao = new  GestionarJugadoresDAO();
+		try {
+			jugadoresRegistrados = jugadoresDao.selectJugadorByEquipoLikeNombrePila(idEquipo,nombrePila);
+		} catch (SQLException e) {
+			logger.error("Error al consultar jugadores registrados ", e);
+			throw new BussinessException("Error al consultar jugadores registrados "+e.getCause());
+		}finally {
+			jugadoresDao.cerrarConexiones();
+		}
+		return jugadoresRegistrados;
+	}
+	
+	/**Metodo para consultar los jugadores registrados en un equipo
+	 * @param idEquipo del equipo
+	 * @param posicionPrim del jugador
+	 * @return lista de jugadores registrados
+	 * @throws BussinessException en caso de error al consultar
+	 */
+	public List<Jugador> consultarJugadoresEquipoByPosicionPrim(Long idEquipo, String posicionPrim) throws BussinessException{
+		List<Jugador> jugadoresRegistrados;
+		GestionarJugadoresDAO jugadoresDao = new  GestionarJugadoresDAO();
+		try {
+			jugadoresRegistrados = jugadoresDao.selectJugadorByPosicionPrim(idEquipo,posicionPrim);
+		} catch (SQLException e) {
+			logger.error("Error al consultar jugadores registrados ", e);
+			throw new BussinessException("Error al consultar jugadores registrados "+e.getCause());
+		}finally {
+			jugadoresDao.cerrarConexiones();
+		}
+		return jugadoresRegistrados;
+	}
+	
+	/**Metodo para consultar los jugadores registrados en un equipo
+	 * @param idEquipo del equipo
+	 * @param posicionSec del jugador
+	 * @return lista de jugadores registrados
+	 * @throws BussinessException en caso de error al consultar
+	 */
+	public List<Jugador> consultarJugadoresEquipoByPosicionSec(Long idEquipo, String posicionSec) throws BussinessException{
+		List<Jugador> jugadoresRegistrados;
+		GestionarJugadoresDAO jugadoresDao = new  GestionarJugadoresDAO();
+		try {
+			jugadoresRegistrados = jugadoresDao.selectJugadorByPosicionSec(idEquipo,posicionSec);
+		} catch (SQLException e) {
+			logger.error("Error al consultar jugadores registrados ", e);
+			throw new BussinessException("Error al consultar jugadores registrados "+e.getCause());
+		}finally {
+			jugadoresDao.cerrarConexiones();
+		}
+		return jugadoresRegistrados;
+	}
+	
 	/**Metodo para consultar los jugadores que no estan registrados en un equipo de temporada
 	 * @param idEquipo del equipo
 	 * @param idTemporada de la temporada
@@ -141,6 +221,90 @@ public class GestionarJugadoresBI {
 		GestionarJugadoresDAO jugadoresDao = new  GestionarJugadoresDAO();
 		try {
 			jugadoresNoRegistrados = jugadoresDao.selectJugadoresNoRegistrados(idEquipo, idTemporada);
+		} catch (SQLException e) {
+			logger.error("Error al consultar jugadores registrados ", e);
+			throw new BussinessException("Error al consultar jugadores registrados "+e.getCause());
+		}finally {
+			jugadoresDao.cerrarConexiones();
+		}
+		return jugadoresNoRegistrados;
+	}
+	
+	/**Metodo para consultar los jugadores que no estan registrados en un equipo de temporada
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param boletaAlumno del alumno
+	 * @return lista de jugadores no registrados
+	 * @throws BussinessException en caso de error al consultar
+	 */
+	public List<Jugador> consultarJugadoresNoRegistradosByBoleta(Long idEquipo, Long idTemporada, Long boletaAlumno) throws BussinessException{
+		List<Jugador> jugadoresNoRegistrados;
+		GestionarJugadoresDAO jugadoresDao = new  GestionarJugadoresDAO();
+		try {
+			jugadoresNoRegistrados = jugadoresDao.selectJugadoresNoRegistrados(idEquipo, idTemporada, boletaAlumno);
+		} catch (SQLException e) {
+			logger.error("Error al consultar jugadores registrados ", e);
+			throw new BussinessException("Error al consultar jugadores registrados "+e.getCause());
+		}finally {
+			jugadoresDao.cerrarConexiones();
+		}
+		return jugadoresNoRegistrados;
+	}
+	
+	/**Metodo para consultar los jugadores que no estan registrados en un equipo de temporada
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param nombrePila del alumno
+	 * @return lista de jugadores no registrados
+	 * @throws BussinessException en caso de error al consultar
+	 */
+	public List<Jugador> consultarJugadoresNoRegistradosLikeNombrePila(Long idEquipo, Long idTemporada, String nombrePila) throws BussinessException{
+		List<Jugador> jugadoresNoRegistrados;
+		GestionarJugadoresDAO jugadoresDao = new  GestionarJugadoresDAO();
+		try {
+			jugadoresNoRegistrados = jugadoresDao.selectJugadoresNoRegistradosLikeNombrePila(idEquipo, idTemporada, nombrePila);
+		} catch (SQLException e) {
+			logger.error("Error al consultar jugadores registrados ", e);
+			throw new BussinessException("Error al consultar jugadores registrados "+e.getCause());
+		}finally {
+			jugadoresDao.cerrarConexiones();
+		}
+		return jugadoresNoRegistrados;
+	}
+	
+	/**Metodo para consultar los jugadores que no estan registrados en un equipo de temporada
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param posicionPrim del jugador
+	 * @return lista de jugadores no registrados
+	 * @throws BussinessException en caso de error al consultar
+	 */
+	public List<Jugador> consultarJugadoresNoRegistradosByPosicionPrim(Long idEquipo, Long idTemporada, String posicionPrim) throws BussinessException{
+		List<Jugador> jugadoresNoRegistrados;
+		GestionarJugadoresDAO jugadoresDao = new  GestionarJugadoresDAO();
+		try {
+			jugadoresNoRegistrados = jugadoresDao.selectJugadoresNoRegistradosByPosicionPrim(idEquipo, idTemporada, posicionPrim);
+		} catch (SQLException e) {
+			logger.error("Error al consultar jugadores registrados ", e);
+			throw new BussinessException("Error al consultar jugadores registrados "+e.getCause());
+		}finally {
+			jugadoresDao.cerrarConexiones();
+		}
+		return jugadoresNoRegistrados;
+	}
+	
+	/**Metodo para consultar los jugadores que no estan registrados en un equipo de temporada
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param posicionSec del jugador
+	 * @return lista de jugadores no registrados
+	 * @throws BussinessException en caso de error al consultar
+	 */
+	public List<Jugador> consultarJugadoresNoRegistradosByPosicionSec(Long idEquipo, Long idTemporada, String posicionSec) throws BussinessException{
+		List<Jugador> jugadoresNoRegistrados;
+		GestionarJugadoresDAO jugadoresDao = new  GestionarJugadoresDAO();
+		try {
+			jugadoresNoRegistrados = jugadoresDao.selectJugadoresNoRegistradosByPosicionSec(idEquipo, idTemporada, posicionSec);
 		} catch (SQLException e) {
 			logger.error("Error al consultar jugadores registrados ", e);
 			throw new BussinessException("Error al consultar jugadores registrados "+e.getCause());
