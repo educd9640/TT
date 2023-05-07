@@ -1,16 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<html>
-<head>
-	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css" />
-	<link href="<s:url value='/css/tinystyle.css'/>" rel="stylesheet" type="text/css"/>
-	<s:head />
-	<title><s:text name="label.registrados.titulo" /></title>
-	
-	<script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
-        <script src="<s:url value='/js/tinybox.js'/>"></script>
+<div class="container rounded p-3 contenido">
         <script>
         	function registrarJugadores(jugadoresARegistrar){
 				document.getElementById("jugadoresARegistrar").value=jugadoresARegistrar;
@@ -44,9 +34,6 @@
     		});
 		});
         </script>
-	
-	</head>
-<body>
 <s:form id="registrarJugadores" action="registrarJugadores" method="post">
 	<s:hidden id="idJugador" key="form.idJugador"></s:hidden>
 	<s:hidden key="form.idTemporada"></s:hidden>
@@ -108,8 +95,8 @@
     <s:form namespace="/jugadores/equipo/temporada" action="consultarTemporadasRegistro">
 			<s:submit value="Regresar" targets="consultarTemporadasRegistro" />
 	</s:form>
-</body>
-</html>
+</div>
+<jsp:include page="/bases/footer.jsp"></jsp:include>
    
     
     

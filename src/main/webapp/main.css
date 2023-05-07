@@ -1,7 +1,9 @@
 #login {
+	margin-top:15%;
 	margin-left: auto;
 	margin-right: auto;
 	width: 330px;
+	background: white;
 }
 
 #loginRegistro {

@@ -9,9 +9,14 @@
 <link rel="stylesheet" href="<s:url value='/bs/css/bootstrap.min.css'/>">
 <link rel="stylesheet" href="<s:url value='/css/tinystyle.css'/>" type="text/css"/>
 <link rel="stylesheet" href="<s:url value='/main.css'/>"  type="text/css"/>
+<link rel="stylesheet" href="<s:url value='/css/sexyalertbox.css'/>"  type="text/css"/>
 <script src="<s:url value='/bs/js/bootstrap.bundle.min.js'/>"></script>
 <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
 <script src="<s:url value='/js/tinybox.js'/>"></script>
+<!-- Script Sexyalertbox -->
+<script src="<s:url value='/js/sexyalertbox.v1.2.jquery.js'/>"></script>
+<!-- Script Jquery easing (Animaciones, usado por sexyalert) -->
+<script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
 <style>
       .bd-placeholder-img {
         font-size: 1.125rem;

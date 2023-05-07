@@ -1,28 +1,12 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<html>
-	<head>
-		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
-		<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
-        <s:head />
-        <style>td { white-space:nowrap; }</style>
-        <title><s:property value="#title"/></title>
-        <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
-        <!-- Script Sexyalertbox -->
-        <script src="<s:url value='/js/sexyalertbox.v1.2.jquery.js'/>"></script>
-        <!-- Script Jquery easing (Animaciones, usado por sexyalert) -->
-        <script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
-        
+<div class="container rounded p-3 contenido">
         <script>
         	//Inician metodos JQuery
 	        $(document).ready(function(){
 	        
 	        });
         </script>
-	</head>
-	<body>
 		<div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.seleccionar.titulo"/></h1>
         <br/><br/>
@@ -81,5 +65,5 @@
 			<s:submit value="Regresar" targets="submenuJugadores" />
 		</s:form>
 	
-	</body>
-</html>
+</div>
+<jsp:include page="/bases/footer.jsp"></jsp:include>
