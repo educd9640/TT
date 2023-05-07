@@ -3,7 +3,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
-<html>
+<html style="margin: 0">
 <head>
 <title>BallScore</title>
 <link rel="stylesheet" href="<s:url value='/bs/css/bootstrap.min.css'/>">
@@ -100,7 +100,7 @@
 	  	  opacity:.9;
 	  }
 </style>
-<body>
+<body style="margin: 0">
 <header class="p-3 text-bg-dark" style="width: 100%">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <img alt="logo" src="/ballscore/bases/ball.png" width="50" height="50">
