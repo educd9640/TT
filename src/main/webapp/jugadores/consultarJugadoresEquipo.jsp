@@ -1,14 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<html>
-    <head>
-    	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
-        <s:head />
-        <title><s:text name="label.registrados.titulo"/></title>
-    </head>
-    <body>
+<div class="container rounded p-3 contenido">
         <div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.registrados.titulo"/></h1>
         <br/><br/>
@@ -70,5 +62,5 @@
         <s:form action="submenuJugadores" >
 			<s:submit value="Regresar" targets="submenuJugadores"/>
 		</s:form>
-    </body>
-</html>
+</div>
+<jsp:include page="/bases/footer.jsp"></jsp:include>

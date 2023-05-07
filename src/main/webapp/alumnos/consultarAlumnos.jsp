@@ -1,26 +1,18 @@
-<%@ page contentType="text/html; charset=ISO-8859-1"%>
+<jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
-<html>
-    <head>
-    	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
-        <s:head />
-        <title><s:text name="label.registrados.titulo"/></title>
-    </head>
-    <script type="text/javascript">
-    	function limpiarBusqueda(){
-    		document.forms[0].boletaAlumno.value=null;
-    		document.forms[0].nombrePila.value=null;
-    		document.forms[0].consultarAlumnos_alumnoForm_idEscuela.value=null;
-    		document.forms[0].submit();
-    	}
-    </script>
-    <body>
+<script type="text/javascript">
+	function limpiarBusqueda(){
+		document.forms[0].boletaAlumno.value=null;
+		document.forms[0].nombrePila.value=null;
+		document.forms[0].consultarAlumnos_alumnoForm_idEscuela.value=null;
+		document.forms[0].submit();
+	}
+</script>
+    <div class="container rounded p-3 contenido">
     <s:form action="consultarAlumnos" method="post">
         <div class="titleDiv"><s:text name="application.title"/></div>
-        <h1><s:text name="label.registrados.titulo"/></h1>
+        <h3><s:text name="label.registrados.titulo"/></h3>
         <br/><br/>
         <s:actionerror />
         <s:actionmessage />
@@ -37,8 +29,8 @@
    		<br>
    		
    </s:form>
-        <div class="container">
-			<display:table export="true" id="alumno" name="alumnosRegistrado" pagesize="10" requestURI="" class="table table-bordered">
+        <div>
+			<display:table export="true" id="alumno" name="alumnosRegistrado" pagesize="7" requestURI="" class="table table-hover table-striped">
 				<display:setProperty name="export.types" value="csv excel xml pdf" />
 				<display:setProperty name="export.excel.filename" value="AlumnosRegistrados.xls" />
 				<display:setProperty name="export.csv.filename" value="AlumnosRegistrados.csv" />
@@ -90,5 +82,5 @@
         <s:form action="submenuAlumnos" >
 			<s:submit value="Regresar" targets="submenuAlumnos"/>
 		</s:form>
-    </body>
-</html>
+</div>
+<jsp:include page="/bases/footer.jsp"></jsp:include>

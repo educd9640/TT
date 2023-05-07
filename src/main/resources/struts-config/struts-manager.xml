@@ -36,7 +36,7 @@
 			Action -->
 		<global-results>
 			<!-- Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
-			<result name="expired">/sesionExpirada.jsp</result>
+			<result name="expired">/index.jsp</result>
 		</global-results>
 
 		<!-- Inicio Actions -->

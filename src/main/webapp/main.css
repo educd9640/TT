@@ -1,7 +1,9 @@
 #login {
+	margin-top:15%;
 	margin-left: auto;
 	margin-right: auto;
 	width: 330px;
+	background: white;
 }
 
 #loginRegistro {
@@ -10,14 +12,7 @@
 	width: 330px;
 }
 
-body {
-	padding: 0px;
-	margin: 0px;
-}
-
 #menu ul {
-	padding: 0px;
-	margin: 0px;
 	float: left;
 	width: 100%;
 	background-color: #82C5EC;
@@ -34,7 +29,6 @@ body {
 	color: #333;
 	text-decoration: none;
 	border-bottom: 3px solid #82C5EC;
-	padding: 2px 10px;
 	float: left;
 }
 
@@ -44,18 +38,20 @@ body {
 	border-bottom: 3px solid #EA0000;
 }
 
+html{
+	margin: 0;
+}
+
+body{
+	margin: 0;
+}
 .errors {
 	background-color: #FFCCCC;
 	border: 1px solid #CC0000;
 	width: 400px;
-	margin-bottom: 8px;
 	position: fixed;
 	top: 30px;
 	right: 5px;
-}
-
-.errors li {
-	list-style: none;
 }
 
 .message {
@@ -71,29 +67,13 @@ body {
 	list-style: none;
 }
 
-html, body  {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    color: black;
-    background-color: white;
-    font-family: Verdana, Arial, sans-serif;
-    font-size:12px;
-}
 .titleDiv {
     background-color: #EFFBEF;
     font-weight:bold;
     font-size:18px;
     text-align:left;
-    padding-left:10px;
-    padding-top:10px;
-    padding-bottom:10px;
     border:2px solid #8F99EF;
 }
-h1 { font-weight:bold; color: brown; font-size:15px; text-align:left;}
-
-td { font-size:12px; padding-right:10px; }
-th { text-align:left; font-weight:bold; font-size:13px; padding-right:10px; }
 .tdLabel { font-weight: bold; white-space:nowrap; vertical-align:top;}
 
 A { color:#4A825A; text-decoration:none;}
@@ -115,12 +95,6 @@ A:hover { text-decoration:none; color: red;}
 .error {
     color: red;
     font-weight: bold;
-}
-.errorSection {
-    padding-left:18px;
-    padding-top:2px;
-    padding-bottom:10px;
-    padding-right:5px;
 }
 
 .even { background-color: #EFFBEF; }
