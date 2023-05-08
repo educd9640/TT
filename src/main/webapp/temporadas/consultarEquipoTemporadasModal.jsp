@@ -1,22 +1,36 @@
-<jsp:include page="/bases/header.jsp"></jsp:include>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<!DOCTYPE html>
 <html>
 	<head>
 		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
-		<link href="<s:url value='/css/tinystyle.css'/>" rel="stylesheet" type="text/css"/>
+    	<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
-        <style>td { white-space:nowrap; }</style>
-        <title><s:property value="#title"/></title>
+        <title><s:text name="label.registrados.titulo"/></title>
+
         <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
+        <!-- Script Sexyalertbox -->
+        <script src="<s:url value='/js/sexyalertbox.v1.2.jquery.js'/>"></script>
+        <!-- Script Jquery easing (Animaciones, usado por sexyalert) -->
+        <script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
         
-		<div class="container rounded p-3 contenido">
         <script>
         	//Inician metodos JQuery
 	        $(document).ready(function(){
 	        
-	        	
+	        	//Funcion para que solo pueda haber 1 checkbox "checkeado" a la vez
+	        	$("input:checkbox").on('click', function() {
+				  var $box = $(this);
+				  if ($box.is(":checked")) {
+				    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+				    $(group).prop("checked", false);
+				    $box.prop("checked", true);
+				  } else {
+				    $box.prop("checked", false);
+				  }
+				});
 				
 				
 				$("#buscar").click(function(){
@@ -69,9 +83,28 @@
                     }
         		});
 				
-    			 
+				
+				
+				
+				$("#cerrarVentana").click(function(){
+					window.parent.TINY.box.hide();
+    			}); 
+    			
+    			$("#aceptarSeleccion").click(function(){
+    			
+    				var checkBoxesSeleccionadas = $('input[name="temporada"]:checked');
+					if(checkBoxesSeleccionadas.length<1){
+						Sexy.error("Debe seleccionar una temporada");
+					}else{
+						window.parent.settearDesdeModal(checkBoxesSeleccionadas[0].value);
+						window.parent.TINY.box.hide();
+					}
+    			}); 
 	        });
         </script>
+        
+	</head>
+	<body>
 		<div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.registrados.titulo"/></h1>
         <br/><br/>
@@ -82,12 +115,13 @@
     	<label for="busquedaIdTemporada">Busqueda por Id de la Temporada</label> 
         <input type="radio" id="busquedaIdLiga" name="opcion" value="IdLiga">
     	<label for="busquedaIdLiga">Busqueda por Id de la Liga</label>
+    	
     	<br></br>
     	<label id="etiqueta" for="idTexto"></label>
     	<input type="text" id="idTexto" name="idTexto"/>
     	<input type="button" id="buscar" value="Buscar" />
-        <br></br>
-        
+    	
+    	
         <table id="tabla" class="borderAll">
         	<tr>
         		<th><s:text name="temporadaF.idTemporada"/></th>
@@ -95,60 +129,33 @@
         		<th><s:text name="temporadaF.fechaInicial"/></th>
         		<th><s:text name="temporadaF.fechaFinal"/></th>
         		<th><s:text name="temporadaF.liga.idLiga"/></th>
-        		<th><s:text name="temporadaF.fechaAlta"/></th>
         		<th>&nbsp;</th>
         	</tr>
-        	<s:iterator value="temporadasRegistradas" status="status">
-        		<tr>
-        			<td class="nowrap"><s:property value="idTemporada"/></td>
+        	<s:iterator value="equipoTemporadasRegistradas" status="status">
+        		<s:if test="fechaAlta != null">
+        				
+	        		<tr>
+	        		<td class="nowrap"><s:property value="idTemporada"/></td>
         			<td class="nowrap"><s:property value="idEquipoCampeon"/></td>
         			<td class="nowrap"><s:property value="fechaInicial"/></td>
         			<td class="nowrap"><s:property value="fechaFinal"/></td>
         			<td class="nowrap"><s:property value="liga.idLiga"/></td>
-        			<td class="nowrap">
-        				<s:if test="fechaAlta != null">
-        					<s:property value="%{'Activada'}"></s:property>
-        				</s:if>
-        				<s:else>
-        					<s:property value="%{'Desactivada'}"></s:property>
-        				</s:else>
-        			</td>
-        			<td class="nowrap">
-        				<s:url action="modificarTemporada" var="url" escapeAmp="false">
-                            <s:param name="temporadaF.idTemporada" value="idTemporada"/>
-                            <s:param name="operacion">actualizado</s:param>
-                        </s:url>
-                        <a href="<s:property value="#url"/>">Modificar</a>
-                        &nbsp;&nbsp;&nbsp;
-                        
-                        <s:url action="consultarEquipos" var="url" escapeAmp="false">
-                            <s:param name="temporadaseleccionada" value="idTemporada"/>
-                        </s:url>
-                        <a href="<s:property value="#url"/>" >Registrar Equipo</a>
-                        &nbsp;&nbsp;&nbsp;
-                        
-        				<s:url action="estadoTemporada" var="url">
-                            <s:param name="temporadaF.idTemporada" value="idTemporada"/>
-                        </s:url>
-                        <s:if test="fechaAlta != null">
-                        	<a href="<s:property value="#url"/>">Desactivar</a>		
-                        </s:if>
-                        <s:else>
-                        	<a href="<s:property value="#url"/>">Activar</a>
-                        </s:else>
-                        
-        			
-        			</td>
-        		</tr>
+	        			
+	        			<td class="nowrap">
+	                    	<input type="checkbox" id="<s:property value="idTemporada"/>" name="temporada" 
+	                    	value="<s:property value="idTemporada"/>" />
+	                    </td>
+	        		</tr>
+	        		
+	        	</s:if>
         	
         	</s:iterator>
         	<tr class='noSearch hide'>
         	<td colspan="5"></td>
         
         </table>
-        <s:form action="submenuTemporadas">
-			<s:submit value="Regresar" targets="submenuTemporadas" />
-		</s:form>
-	
-</div>
-<jsp:include page="/bases/footer.jsp"></jsp:include>
+        <input id="cerrarVentana" type="button" value="Cerrar"/>
+        <input id="aceptarSeleccion" type="button" value="Aceptar"/>
+        <input id="LimiparVentana" type="button" value="Limpiar"/>
+	</body>
+</html>

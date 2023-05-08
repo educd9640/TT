@@ -13,6 +13,8 @@
 
 <p><a href='<s:url namespace="/temporadas" action="submenuTemporadas" />' >Gestionar Temporadas</a></p>
 
+<p><a href='<s:url namespace="/partidos" action="submenuPartidos" />' >Gestionar Partidos</a></p>
+
 <p><a href='<s:url namespace="/" action="logout" />' >Cerrar sesión</a></p>
 <p><a href='<s:url namespace="/" action="sessionTest" />' >Test de sesión</a></p>
 </div>

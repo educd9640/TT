@@ -42,6 +42,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 
 
 	private List<Temporada> temporadasRegistradas = new ArrayList<Temporada>();
+	private List<Temporada> equipoTemporadasRegistradas = new ArrayList<Temporada>();
 	
 	
 	
@@ -56,6 +57,12 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		}catch(BussinessException e) {
 			addActionError(e.getMessage());
 		}
+		try {
+			this.equipoTemporadasRegistradas = temporadaBI.obtenerEquipoTemporadasRegistradas();
+		}catch(BussinessException e) {
+			addActionError(e.getMessage());
+		}
+		
 		if(temporadaF!=null && operacion!=null && temporadaF.getIdTemporada()!=null) {
 			if(operacion.equals("actualizado")) {
 				try {
@@ -275,6 +282,16 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 
 	public void setManagerequipo(String managerequipo) {
 		this.managerequipo = managerequipo;
+	}
+
+
+	public List<Temporada> getEquipoTemporadasRegistradas() {
+		return equipoTemporadasRegistradas;
+	}
+
+
+	public void setEquipoTemporadasRegistradas(List<Temporada> equipoTemporadasRegistradas) {
+		this.equipoTemporadasRegistradas = equipoTemporadasRegistradas;
 	}
 	
 }
