@@ -15,6 +15,10 @@
 	<include file="struts-config/struts-temporadas.xml"></include>
 	<include file="struts-config/struts-jugadoresEquipoTemp.xml"></include>
 	<include file="struts-config/struts-partidos.xml"></include>
+<<<<<<< HEAD
 	<include file="struts-config/struts-jugadoresPartido.xml"></include>
 	
+=======
+
+>>>>>>> branch 'main_jcasasc' of git@github.com:educd9640/TT.git
 </struts>

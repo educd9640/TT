@@ -27,7 +27,11 @@
 		<mapping resource="entity/EquipoTemporada.hbm.xml" />
 		<mapping resource="entity/JugadorEquipoTemp.hbm.xml" />
 		<mapping resource="entity/Partido.hbm.xml" />
+<<<<<<< HEAD
 		<mapping resource="entity/JugadorPartido.hbm.xml" />
+=======
+		
+>>>>>>> branch 'main_jcasasc' of git@github.com:educd9640/TT.git
 
     </session-factory>
 </hibernate-configuration>

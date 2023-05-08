@@ -7,7 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 /**
- * Created by Ариорх on 27.05.2017.
+ *Clase de utileria de hibernate
  */
 public class HibernateUtil {
 	private static SessionFactory sessionFactory = null;
