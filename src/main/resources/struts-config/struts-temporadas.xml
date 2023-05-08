@@ -35,7 +35,7 @@
 			Action -->
 		<global-results>
 			<!-- Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
-			<result name="expired">/sesionExpirada.jsp</result>
+			<result name="expired">/index.jsp</result>
 		</global-results>
 
 
@@ -91,6 +91,13 @@
 			method="entrarEquipo">
 			<result name="input">/temporadas/registrarEquipoTemporada.jsp</result>
 			<result name="success">/temporadas/registrarEquipoTemporada.jsp</result>
+		</action>
+		
+		<action name="consultarEquipoTemporadasModal"
+			class="ipn.escom.ballScore.action.GestionarTemporadasAction"
+			method="mostrarRegistrados">
+			<result name="input">/temporadas/consultarEquipoTemporadasModal.jsp</result>
+			<result name="success">/temporadas/consultarEquipoTemporadasModal.jsp</result>
 		</action>
 
 	</package>

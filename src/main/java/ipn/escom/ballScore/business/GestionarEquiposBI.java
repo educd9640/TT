@@ -41,7 +41,6 @@ public class GestionarEquiposBI {
 		GestionarEquiposDAO equiposDao = new GestionarEquiposDAO();
 		GestionarManagersDAO managersDao = new GestionarManagersDAO();
 		Equipo nuevoEquipo = new Equipo();
-		Long idEquipo = 0L;
 		Manager manager;
 
 		try {
@@ -131,9 +130,9 @@ public class GestionarEquiposBI {
 	 * @throws BussinessException
 	 */
 	
-	public Equipo obtenerEquipo(Long idmanager) throws BussinessException {
+	public Equipo obtenerEquipo(Long idManager) throws BussinessException {
 		GestionarEquiposDAO equipoDao= new GestionarEquiposDAO();
-		Equipo equipoManager= equipoDao.obtenerManager(idmanager);
+		Equipo equipoManager= equipoDao.obtenerManager(idManager);
 		if(equipoManager==null) {
 			throw new BussinessException("El manager no cuenta con un equipo registrado");
 		}
@@ -152,18 +151,17 @@ public class GestionarEquiposBI {
 	public String cambiarEstatus(Equipo equipoEstatus) throws BussinessException {
 		GestionarEquiposDAO equipoDao= new GestionarEquiposDAO();
 		String mensaje="";
-		Equipo equipoActualizado= new Equipo();
 		Date estatus= equipoEstatus.getFechaAlta();
 		if(estatus!=null) {
 			try {
-				equipoActualizado=equipoDao.bajaEquipo(equipoEstatus);
+				equipoDao.bajaEquipo(equipoEstatus);
 				mensaje="El equipo se ha desactivado exitosamente";
 			} catch (SQLException e) {
 				throw new BussinessException("Error al desactivar al equipo");
 			}
 		}else {
 			try {
-				equipoActualizado=equipoDao.altaEquipo(equipoEstatus);
+				equipoDao.altaEquipo(equipoEstatus);
 				mensaje="El equipo ha sido activado exitosamente";
 			} catch (SQLException e) {
 				throw new BussinessException("Error al activar el equipo");

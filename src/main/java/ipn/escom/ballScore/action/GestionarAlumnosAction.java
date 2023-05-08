@@ -33,7 +33,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	private List<Escuela> escuelas = new ArrayList<Escuela>();
 	private List<Long> semestres = new ArrayList<Long>();
 	private List<Alumno> alumnosRegistrado = new ArrayList<Alumno>();
-	
+	private boolean soloLibres;
 	/**
 	 *Metodo para preparar la pantalla
 	 */
@@ -45,7 +45,14 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 		
 		try {
 			this.escuelas = alumnosBI.obtenerEscuelas();
-			this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistrados();
+			if(alumnoForm != null && alumnoForm.getBoletaAlumno()!= null) {
+				this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistradosPorBoleta(alumnoForm.getBoletaAlumno());
+			}else if(alumnoForm != null && alumnoForm.getNombrePila()!= null && !alumnoForm.getNombrePila().equals("")) {
+				this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistradosPorNombrePila(alumnoForm.getNombrePila(), soloLibres);
+			}else if(alumnoForm != null && alumnoForm.getIdEscuela()!= null && alumnoForm.getIdEscuela()!=-1L) {
+				this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistradosPorEscuela(alumnoForm.getIdEscuela(), soloLibres);
+			}else
+				this.alumnosRegistrado = alumnosBI.obtenerAlumnosRegistrados(soloLibres);
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
 		}
@@ -55,6 +62,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 				try {
 					Alumno alumno = alumnosBI.obtenerAlumnoPorBoleta(alumnoForm.getBoletaAlumno());
 					BeanUtils.copyProperties(alumnoForm,alumno);
+					alumnoForm.setIdEscuela(alumno.getEscuela().getIdEscuela());
 				} catch (IllegalAccessException | InvocationTargetException e) {
 					logger.error("Error al copiar las propiedades del alumno al form.", e);
 					addActionError("Error al recuperar datos del alumno");
@@ -78,8 +86,20 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	/**Metodo para presentar pantalla de registrados
 	 * @return
 	 */
+	@SkipValidation
 	public String mostrarRegistrados() {
 		logger.info("Inicia metodo GestionarAlumnosAction.mostrarRegistrados()");
+
+		return Action.SUCCESS;
+	}
+	
+	/**Metodo para presentar pantalla de registrados Libres
+	 * @return
+	 */
+	@SkipValidation
+	public String mostrarRegistradosLibres() {
+		logger.info("Inicia metodo GestionarAlumnosAction.mostrarRegistrados()");
+
 		return Action.SUCCESS;
 	}
 	
@@ -209,5 +229,15 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	public void setAlumnosRegistrado(List<Alumno> alumnosRegistrado) {
 		this.alumnosRegistrado = alumnosRegistrado;
 	}
+
+	public boolean isSoloLibres() {
+		return soloLibres;
+	}
+
+	public void setSoloLibres(boolean soloLibres) {
+		this.soloLibres = soloLibres;
+	}
+	
+	
 	
 }

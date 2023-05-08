@@ -13,6 +13,7 @@ import org.apache.struts2.interceptor.validation.SkipValidation;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
+import ipn.escom.ballScore.business.GestionarEquipoTemporadaBI;
 import ipn.escom.ballScore.business.GestionarTemporadasBI;
 import ipn.escom.ballScore.entity.Temporada;
 import ipn.escom.ballScore.entity.EquipoTemporada;
@@ -41,6 +42,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 
 
 	private List<Temporada> temporadasRegistradas = new ArrayList<Temporada>();
+	private List<Temporada> equipoTemporadasRegistradas = new ArrayList<Temporada>();
 	
 	
 	
@@ -55,6 +57,12 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		}catch(BussinessException e) {
 			addActionError(e.getMessage());
 		}
+		try {
+			this.equipoTemporadasRegistradas = temporadaBI.obtenerEquipoTemporadasRegistradas();
+		}catch(BussinessException e) {
+			addActionError(e.getMessage());
+		}
+		
 		if(temporadaF!=null && operacion!=null && temporadaF.getIdTemporada()!=null) {
 			if(operacion.equals("actualizado")) {
 				try {
@@ -131,7 +139,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	public String entrarEquipo() {
 		logger.info("Inicia metodo GestionarTemporadasAction.entrarEquipo()");
 		EquipoTemporada nuevoEquipo= new EquipoTemporada();
-		GestionarTemporadasBI equipotem = new GestionarTemporadasBI();
+		GestionarEquipoTemporadaBI equipotem = new GestionarEquipoTemporadaBI();
 		try {
 			nuevoEquipo = equipotem.entrarEquipo(temporadaseleccionada, equiposeleccionado);
 			addActionMessage("El equipo con id: "+nuevoEquipo.getIdEquipo()+" se ha registrado en la temporada exitosamente");
@@ -274,6 +282,16 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 
 	public void setManagerequipo(String managerequipo) {
 		this.managerequipo = managerequipo;
+	}
+
+
+	public List<Temporada> getEquipoTemporadasRegistradas() {
+		return equipoTemporadasRegistradas;
+	}
+
+
+	public void setEquipoTemporadasRegistradas(List<Temporada> equipoTemporadasRegistradas) {
+		this.equipoTemporadasRegistradas = equipoTemporadasRegistradas;
 	}
 	
 }

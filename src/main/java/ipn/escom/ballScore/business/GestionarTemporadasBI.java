@@ -11,15 +11,10 @@ import org.apache.logging.log4j.Logger;
 
 import ipn.escom.ballScore.dao.GestionarLigasDAO;
 import ipn.escom.ballScore.dao.GestionarTemporadasDAO;
-import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
-import ipn.escom.ballScore.dao.GestionarEquiposDAO;
 import ipn.escom.ballScore.entity.Liga;
 import ipn.escom.ballScore.entity.Temporada;
-import ipn.escom.ballScore.entity.Equipo;
-import ipn.escom.ballScore.entity.EquipoTemporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.TemporadaVO;
-import ipn.escom.ballScore.form.GestionarEquipoTemporadaVO;
 
 /**Clase de negocio para gestionar las Temporadas
  * @author Eduardo Callejas
@@ -28,8 +23,6 @@ import ipn.escom.ballScore.form.GestionarEquipoTemporadaVO;
 public class GestionarTemporadasBI {
 	
 	private GestionarTemporadasDAO temporadaDAO;
-	private GestionarEquiposDAO equipoDAO;
-	private GestionarEquipoTemporadaDAO equipotemporadaDAO;
 	private GestionarLigasDAO ligaDAO;
 	
 	private static final Logger logger = LogManager.getLogger();
@@ -76,6 +69,7 @@ public class GestionarTemporadasBI {
 			}
 		}
 		temporadaDAO.cerrarConexiones();
+		ligaDAO.cerrarConexiones();
 		return nuevaTemporada;
 	}
 	
@@ -123,44 +117,6 @@ public class GestionarTemporadasBI {
 		temporadaDAO.cerrarConexiones();
 	}
 	
-	/**
-	 * Metodo de negocio para registrar un equipo dentro de una temporada
-	 * 
-	 * @params Long con el id de la temporada donde se regitrara el equipo y Long con el id del equipo a registrar
-	 * @return entidad EquipoTemporada con el equipo y temporada registrados
-	 * @throws BussinessException
-	 */
-	public EquipoTemporada entrarEquipo(Long idTemporada, Long idEquipo) throws BussinessException{
-		logger.info("Inicia metodo GestionarTemporadasBI.entrarEquipo()");
-		
-		equipotemporadaDAO = new GestionarEquipoTemporadaDAO();
-		equipoDAO = new GestionarEquiposDAO();
-		temporadaDAO = new GestionarTemporadasDAO();
-		Equipo equipoEscogido = new Equipo();
-		Temporada temporadaElegida= new Temporada();
-		EquipoTemporada nuevoequipo = new EquipoTemporada();
-		EquipoTemporada equiporegistrado= new EquipoTemporada();
-		equipoEscogido = equipoDAO.obtenerEquipo(idEquipo);
-		temporadaElegida = temporadaDAO.selectTemporadaById(idTemporada);
-		nuevoequipo.setEquipo(equipoEscogido);
-		nuevoequipo.setTemporada(temporadaElegida);
-		nuevoequipo.setIdEquipo(idEquipo);
-		nuevoequipo.setIdTemporada(idTemporada);
-		try {
-			equiporegistrado=equipotemporadaDAO.registrarEquipo(nuevoequipo);
-		} catch (SQLException e) {
-			logger.error(" Error al registrar el equipo en la temporada", e);
-			throw new BussinessException("Error al registrar el equipo en la temporada.");
-		}
-		equipoDAO.cerrarConexiones();
-		equipotemporadaDAO.cerrarConexiones();
-		temporadaDAO.cerrarConexiones();
-		return equiporegistrado;
-	} 
-	
-	
-	
-	
 	/**Metodo para obtener las temporadas registradas
 	 * @return Lista de temporadas
 	 * @throws BussinessException En caso de error del negocio
@@ -176,6 +132,39 @@ public class GestionarTemporadasBI {
 			throw new BussinessException("Error al consultar las temporadas registradas.");
 		}
 		temporadaDAO.cerrarConexiones();
+		return temporadas;
+	}
+	
+	
+	
+	/**Metodo para obtener las temporadas registradas en equipo_temporada
+	 * @return Lista de temporadas
+	 * @throws BussinessException Em caso de error
+	 */
+	public List<Temporada> obtenerEquipoTemporadasRegistradas()throws BussinessException{
+		logger.info("Inicia metodo GestionarTemporadasBI.obtenerEquipoTemporadasRegistradas()");
+		temporadaDAO = new GestionarTemporadasDAO();
+		equipotemporadaDAO = new GestionarEquipoTemporadaDAO();
+		List<Temporada> temporadas = new ArrayList<Temporada>();
+		List<Long> equipoTemporadas = new ArrayList<Long>();
+		try {
+			equipoTemporadas = equipotemporadaDAO.obtenerTemporadas();
+		}catch(Exception e) {
+			logger.error(" Error al consultar las temporadas registradas en equipo_temporada", e);
+			throw new BussinessException("Error al consultar las temporadas registradas en equipo_temporada.");
+		}
+		
+		try {
+			for(Long temporada: equipoTemporadas) {
+				temporadas.add( temporadaDAO.selectTemporadaById(temporada));
+			}
+		}catch(Exception e) {
+			logger.error(" Error al consultar las temporadas registradas ", e);
+			throw new BussinessException("Error al consultar las temporadas registradas.");
+		}
+		
+		temporadaDAO.cerrarConexiones();
+		equipotemporadaDAO.cerrarConexiones();
 		return temporadas;
 	}
 	

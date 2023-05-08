@@ -34,7 +34,7 @@
 			Action -->
 		<global-results>
 			<!-- Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
-			<result name="expired">/sesionExpirada.jsp</result>
+			<result name="expired">/index.jsp</result>
 		</global-results>
 		
 		<action name="consultarTemporadasRegistro"
@@ -44,11 +44,30 @@
 			<result name="success">/jugadores/jugadoresEquipoTemp/consultarTemporadasParaRegistro.jsp</result>
 		</action>
 		
+		<action name="alternarEstadoEquipoTemp"
+			class="ipn.escom.ballScore.action.GestionarJugEquipTempAction"
+			method="alternarEstadoEquipoTemp">
+			<result name="input">/jugadores/jugadoresEquipoTemp/consultarTemporadasParaRegistro.jsp</result>
+			<result name="success">/jugadores/jugadoresEquipoTemp/consultarTemporadasParaRegistro.jsp</result>
+		</action>
+		
 		<action name="registrarJugadores"
 			class="ipn.escom.ballScore.action.GestionarJugEquipTempAction"
 			method="presentarRegistroJugadores">
 			<result name="success">/jugadores/jugadoresEquipoTemp/registrarJugadoresEquipoTemp.jsp</result>
 			<result name="input">/jugadores/jugadoresEquipoTemp/registrarJugadoresEquipoTemp.jsp</result>
+		</action>
+		
+		<action name="modalRegistrarJugador"
+			class="ipn.escom.ballScore.action.GestionarJugEquipTempAction"
+			method="presentaModalRegistroJugador">
+			<result name="success">/jugadores/jugadoresEquipoTemp/registrarJugadorEquipoTemp.jsp</result>
+		</action>
+		
+		<action name="alternarEstado"
+			class="ipn.escom.ballScore.action.GestionarJugEquipTempAction"
+			method="alternaEstadoJugador">
+			<result name="success">/jugadores/jugadoresEquipoTemp/registrarJugadoresEquipoTemp.jsp</result>
 		</action>
 
 	</package>
