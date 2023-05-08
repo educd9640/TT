@@ -9,6 +9,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
 import ipn.escom.ballScore.dao.GestionarLigasDAO;
 import ipn.escom.ballScore.dao.GestionarTemporadasDAO;
 import ipn.escom.ballScore.entity.Liga;
@@ -24,9 +25,9 @@ public class GestionarTemporadasBI {
 	
 	private GestionarTemporadasDAO temporadaDAO;
 	private GestionarLigasDAO ligaDAO;
+	private GestionarEquipoTemporadaDAO equipotemporadaDAO;
 	
 	private static final Logger logger = LogManager.getLogger();
-	
 	
 	
 	
