@@ -14,5 +14,7 @@
 	<include file="struts-config/struts-ligas.xml"></include>
 	<include file="struts-config/struts-temporadas.xml"></include>
 	<include file="struts-config/struts-jugadoresEquipoTemp.xml"></include>
-
+	<include file="struts-config/struts-partidos.xml"></include>
+	<include file="struts-config/struts-jugadoresPartido.xml"></include>
+	
 </struts>

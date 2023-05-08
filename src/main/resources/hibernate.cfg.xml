@@ -26,7 +26,8 @@
 		<mapping resource="entity/Jugador.hbm.xml" />
 		<mapping resource="entity/EquipoTemporada.hbm.xml" />
 		<mapping resource="entity/JugadorEquipoTemp.hbm.xml" />
-		
+		<mapping resource="entity/Partido.hbm.xml" />
+		<mapping resource="entity/JugadorPartido.hbm.xml" />
 
     </session-factory>
 </hibernate-configuration>
