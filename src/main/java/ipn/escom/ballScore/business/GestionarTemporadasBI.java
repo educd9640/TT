@@ -24,6 +24,7 @@ import ipn.escom.ballScore.form.TemporadaVO;
 public class GestionarTemporadasBI {
 	
 	private GestionarTemporadasDAO temporadaDAO;
+	private GestionarEquipoTemporadaDAO equipotemporadaDAO;
 	private GestionarLigasDAO ligaDAO;
 	private GestionarEquipoTemporadaDAO equipotemporadaDAO;
 	

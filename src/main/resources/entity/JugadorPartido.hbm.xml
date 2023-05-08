@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "ipn.escom.ballScore.entity.JugadorPartido" table = "JUGADOR_PARTIDO">
+      
+      <meta attribute = "class-description">
+         This class contains the JUGADOR_PARTIDO detail. 
+      </meta>
+
+      <composite-id>
+      	<key-property name="idJugador" 	 column="ID_JUGADOR"   type="java.lang.Long"></key-property>
+      	<key-property name="idPartido"	 column="ID_PARTIDO"   type="java.lang.Long"></key-property>
+      	<key-property name="idEquipo" 	 column="ID_EQUIPO"    type="java.lang.Long"></key-property>
+      	<key-property name="idTemporada" column="ID_TEMPORADA" type="java.lang.Long"></key-property>
+      </composite-id>
+      
+      <property name = "rolEquipo" 	column = "ROL_EQUIPO" 	type = "java.lang.String" />
+     
+      <many-to-one name="jugadorEquipoTemp" class="ipn.escom.ballScore.entity.JugadorEquipoTemp" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+      	<column name="ID_JUGADOR"/>
+      	<column name="ID_EQUIPO"/>
+      	<column name="ID_TEMPORADA"/>
+      </many-to-one>
+
+   </class>
+</hibernate-mapping>
