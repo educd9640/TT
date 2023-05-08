@@ -69,9 +69,10 @@ body{
 
 .titleDiv {
     background-color: #EFFBEF;
+    width: 100%;
     font-weight:bold;
     font-size:18px;
-    text-align:left;
+    text-align:center;
     border:2px solid #8F99EF;
 }
 .tdLabel { font-weight: bold; white-space:nowrap; vertical-align:top;}

@@ -1,5 +1,8 @@
 package ipn.escom.ballScore.action;
 
+import java.sql.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
@@ -8,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.Action;
 
+import ipn.escom.ballScore.business.GestionarEquipoTemporadaBI;
 import ipn.escom.ballScore.business.GestionarJugEquipoTempBI;
 import ipn.escom.ballScore.business.GestionarJugadoresBI;
 import ipn.escom.ballScore.business.GestionarTemporadasBI;
@@ -24,6 +28,7 @@ public class GestionarJugEquipTempAction extends BaseAction{
 	private static final Logger logger = LogManager.getLogger();
 	private static final long serialVersionUID = 1L;
 	private GestionarJugEquipTempForm form;
+	private List<String> posiciones;
 	
 	/**Metodo para presentar pantalla de registro de jugadores
 	 * @return
@@ -31,10 +36,24 @@ public class GestionarJugEquipTempAction extends BaseAction{
 	public String presentarRegistroJugadores() {
 		logger.info("Inicia metodo GestionarJugEquipTempAction.presentarRegistroJugadores()");
 		GestionarJugEquipoTempBI bi = new GestionarJugEquipoTempBI();
+		GestionarJugadoresBI jugadoresBI = new GestionarJugadoresBI();
 		GestionarTemporadasBI biTemp = new GestionarTemporadasBI();
+		this.posiciones= jugadoresBI.obtenerPosiciones();
 		try {
-			form.setJugadoresTemporada(bi.consultarJugadoresRegistrados(form.getIdEquipo(), form.getIdTemporada()));
+			
 			form.setTemporada(biTemp.buscarTemporadaPorId(form.getIdTemporada()));
+			
+			if(form.getBoletaAlumno()!=null) {
+				form.setJugadoresTemporada(bi.consultarJugadoresRegistrados(form.getIdEquipo(), form.getIdTemporada(), form.getBoletaAlumno()));
+			}else if(form.getNombrePila()!=null && !form.getNombrePila().equals("")) {
+				form.setJugadoresTemporada(bi.consultarJugadoresRegistradosLikeNombrePila(form.getIdEquipo(), form.getIdTemporada(), form.getNombrePila()));
+			}else if(form.getPosicionPrim()!=null && !form.getPosicionPrim().equals("")) {
+				form.setJugadoresTemporada(bi.consultarJugadoresRegistradosByPosicionPrim(form.getIdEquipo(), form.getIdTemporada(), form.getPosicionPrim()));
+			}else if(form.getPosicionSec()!= null && !form.getPosicionSec().equals("")){
+				form.setJugadoresTemporada(bi.consultarJugadoresRegistradosByPosicionSec(form.getIdEquipo(), form.getIdTemporada(), form.getPosicionSec()));
+			}else {
+				form.setJugadoresTemporada(bi.consultarJugadoresRegistrados(form.getIdEquipo(), form.getIdTemporada()));
+			}
 			
 			if(form.getJugadoresARegistrar()!=null && !form.getJugadoresARegistrar().equals("")) {
 				this.registrarJugadores();
@@ -56,8 +75,19 @@ public class GestionarJugEquipTempAction extends BaseAction{
 		GestionarJugEquipoTempBI bi = new GestionarJugEquipoTempBI();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
 		Manager sessionManager = (Manager) session.getAttribute("Usuario");
-		try {
+		if(form==null) {
 			form = new GestionarJugEquipTempForm();
+		}
+		try {
+			if(form.getNombreLiga()!=null && !form.getNombreLiga().equals("") && form.getFechaFinalTemporada()!=null && form.getFechaInicialTemporada()!=null) {
+				form.setEquiposTemporada(bi.consultarEquiposTemporadaDeManager(sessionManager.getIdManager(), form.getNombreLiga(),new Date(form.getFechaInicialTemporada().getTime()),
+						new Date(form.getFechaFinalTemporada().getTime())));
+			}else if(form.getFechaFinalTemporada()!=null && form.getFechaInicialTemporada()!=null){
+				form.setEquiposTemporada(bi.consultarEquiposTemporadaDeManager(sessionManager.getIdManager(),new Date(form.getFechaInicialTemporada().getTime()),
+						new Date(form.getFechaFinalTemporada().getTime())));
+			}else if(form.getNombreLiga()!=null && !form.getNombreLiga().equals("")) {
+				form.setEquiposTemporada(bi.consultarEquiposTemporadaDeManager(sessionManager.getIdManager(),form.getNombreLiga()));
+			}
 			form.setEquiposTemporada(bi.consultarEquiposTemporadaDeManager(sessionManager.getIdManager()));
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
@@ -73,8 +103,20 @@ public class GestionarJugEquipTempAction extends BaseAction{
 	public String presentaModalRegistroJugador() {
 		logger.info("Inicia metodo GestionarJugEquipTempAction.presentaModalRegistroJugador()");
 		GestionarJugadoresBI biJugadores = new GestionarJugadoresBI();
+		this.posiciones= biJugadores.obtenerPosiciones();
 		try {
-			form.setJugadoresEquipo(biJugadores.consultarJugadoresNoRegistrados(form.getIdEquipo(),form.getIdTemporada()));
+			
+			if(form.getBoletaAlumno()!=null) {
+				form.setJugadoresEquipo(biJugadores.consultarJugadoresNoRegistradosByBoleta(form.getIdEquipo(),form.getIdTemporada(), form.getBoletaAlumno()));
+			}else if(form.getNombrePila()!=null && !form.getNombrePila().equals("")) {
+				form.setJugadoresEquipo(biJugadores.consultarJugadoresNoRegistradosLikeNombrePila(form.getIdEquipo(), form.getIdTemporada(), form.getNombrePila()));
+			}else if(form.getPosicionPrim()!=null && !form.getPosicionPrim().equals("")) {
+				form.setJugadoresEquipo(biJugadores.consultarJugadoresNoRegistradosByPosicionPrim(form.getIdEquipo(), form.getIdTemporada(), form.getPosicionPrim()));
+			}else if(form.getPosicionSec()!= null && !form.getPosicionSec().equals("")){
+				form.setJugadoresEquipo(biJugadores.consultarJugadoresNoRegistradosByPosicionSec(form.getIdEquipo(), form.getIdTemporada(), form.getPosicionSec()));
+			}else {
+				form.setJugadoresEquipo(biJugadores.consultarJugadoresNoRegistrados(form.getIdEquipo(),form.getIdTemporada()));
+			}
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
 		}
@@ -109,6 +151,20 @@ public class GestionarJugEquipTempAction extends BaseAction{
 		}
 	}
 	
+	/**Metodo para alternar estado de un equipo de temporada
+	 * @return
+	 */
+	public String alternarEstadoEquipoTemp() {
+		GestionarEquipoTemporadaBI bi = new GestionarEquipoTemporadaBI();
+		try {
+			bi.alternarEstadoEquipoTemp(form.getIdTemporada(), form.getIdEquipo());
+		} catch (BussinessException e) {
+			addActionError(e.getMessage());
+		}
+		
+		return this.presentarTemporadas();
+	}
+	
 	//Inician getters y setters
 
 	public GestionarJugEquipTempForm getForm() {
@@ -119,4 +175,13 @@ public class GestionarJugEquipTempAction extends BaseAction{
 		this.form = form;
 	}
 
+	public List<String> getPosiciones() {
+		return posiciones;
+	}
+
+	public void setPosiciones(List<String> posiciones) {
+		this.posiciones = posiciones;
+	}
+
+	
 }

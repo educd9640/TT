@@ -108,7 +108,6 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 			addActionError("Error al registrarse.");
 			return Action.SUCCESS;
 		}
-		Long idEquipo;
 		try {
 			equipoManager = equiposBI.registrarEquipo(vo, this.managerActual.getCorreo(),this.operacion);
 		} catch (BussinessException e) {

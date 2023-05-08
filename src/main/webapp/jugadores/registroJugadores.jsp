@@ -19,7 +19,7 @@
 				var full_window_height = window.outerHeight;
 				var full_window_width = window.outerWidth;
         		TINY.box.show({
-        			iframe:'/ballscore/alumnos/consultarAlumnosModal.action',
+        			iframe:'/ballscore/alumnos/consultarAlumnosModal.action?soloLibres=true',
         			boxid:'frameless',
         			width:full_window_width-300,
         			height:full_window_height-250,

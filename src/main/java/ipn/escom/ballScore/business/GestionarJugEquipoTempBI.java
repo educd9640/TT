@@ -36,9 +36,79 @@ public class GestionarJugEquipoTempBI {
 		} catch (Exception e) {
 			logger.error("Error al consultar equipos de la temporada", e);
 			throw new BussinessException("Error al consultar equipos de la temporada " + e.getCause());
-			
+		}finally {
+			gestionarEquipoTemporadaDAO.cerrarConexiones();
 		}
-		gestionarEquipoTemporadaDAO.cerrarConexiones();
+		return equipos;
+	}
+	
+	/**Metodo de negocio para la consulta de los equipos de temporada del manager
+	 * @param idManager del manager
+	 * @Param nombreLiga de la liga
+	 * @return Lista de equipos temporada
+	 * @throws BussinessException En caso de error al consultar o no existan equipos
+	 */
+	public List<EquipoTemporada> consultarEquiposTemporadaDeManager(Long idManager, String nombreLiga) throws BussinessException{
+		GestionarEquipoTemporadaDAO gestionarEquipoTemporadaDAO = new GestionarEquipoTemporadaDAO();
+		List<EquipoTemporada> equipos;
+		try {
+			equipos = gestionarEquipoTemporadaDAO.consultarEquipoTemporadaManager(idManager, nombreLiga);
+			if(equipos == null || equipos.isEmpty())
+				throw new BussinessException("No existen equipos registrados en alguna temporada.");
+		} catch (Exception e) {
+			logger.error("Error al consultar equipos de la temporada", e);
+			throw new BussinessException("Error al consultar equipos de la temporada " + e.getMessage());
+		}finally {
+			gestionarEquipoTemporadaDAO.cerrarConexiones();
+		}
+		return equipos;
+	}
+	
+	/**Metodo de negocio para la consulta de los equipos de temporada del manager
+	 * @param idManager del manager
+	 * @Param nombreLiga de la liga
+	 * @param fechaInicialTemporada fecha de inicio de la temporada
+	 * @param fechaFinalTemporada fecha de fin de temporada
+	 * @return Lista de equipos temporada
+	 * @throws BussinessException En caso de error al consultar o no existan equipos
+	 */
+	public List<EquipoTemporada> consultarEquiposTemporadaDeManager(Long idManager, Date fechaInicialTemporada, Date fechaFinalTemporada) throws BussinessException{
+		GestionarEquipoTemporadaDAO gestionarEquipoTemporadaDAO = new GestionarEquipoTemporadaDAO();
+		List<EquipoTemporada> equipos;
+		try {
+			equipos = gestionarEquipoTemporadaDAO.consultarEquipoTemporadaManager(idManager, fechaInicialTemporada, fechaFinalTemporada);
+			if(equipos == null || equipos.isEmpty())
+				throw new BussinessException("No existen equipos registrados en alguna temporada.");
+		} catch (Exception e) {
+			logger.error("Error al consultar equipos de la temporada", e);
+			throw new BussinessException("Error al consultar equipos de la temporada " + e.getMessage());
+		}finally {
+			gestionarEquipoTemporadaDAO.cerrarConexiones();
+		}
+		return equipos;
+	}
+	
+	/**Metodo de negocio para la consulta de los equipos de temporada del manager
+	 * @param idManager del manager
+	 * @Param nombreLiga de la liga
+	 * @param fechaInicialTemporada fecha de inicio de la temporada
+	 * @param fechaFinalTemporada fecha de fin de temporada
+	 * @return Lista de equipos temporada
+	 * @throws BussinessException En caso de error al consultar o no existan equipos
+	 */
+	public List<EquipoTemporada> consultarEquiposTemporadaDeManager(Long idManager, String nombreLiga, Date fechaInicialTemporada, Date fechaFinalTemporada) throws BussinessException{
+		GestionarEquipoTemporadaDAO gestionarEquipoTemporadaDAO = new GestionarEquipoTemporadaDAO();
+		List<EquipoTemporada> equipos;
+		try {
+			equipos = gestionarEquipoTemporadaDAO.consultarEquipoTemporadaManager(idManager,nombreLiga, fechaInicialTemporada, fechaFinalTemporada);
+			if(equipos == null || equipos.isEmpty())
+				throw new BussinessException("No existen equipos registrados en alguna temporada.");
+		} catch (Exception e) {
+			logger.error("Error al consultar equipos de la temporada", e);
+			throw new BussinessException("Error al consultar equipos de la temporada " + e.getCause());
+		}finally {
+			gestionarEquipoTemporadaDAO.cerrarConexiones();
+		}
 		return equipos;
 	}
 	
@@ -53,6 +123,90 @@ public class GestionarJugEquipoTempBI {
 		List<JugadorEquipoTemp> jugadores;
 		try {
 			jugadores = gestionarJugadorEquipoTempDAO.selectJugadorEquipoTempByEquipoTemp(idEquipo, idTemporada);
+		}catch (Exception e) {
+			logger.error("Error al consultar jugadores", e);
+			throw new BussinessException("Error al consultar jugadores "+e.getCause());
+		}finally {
+			gestionarJugadorEquipoTempDAO.cerrarConexiones();
+		}
+		return jugadores;
+	}
+	
+	/**Metodo de negocio para la consulta de jugadores registrados en un equipo de temporada
+	 * @param idEquipo del equipo temporada
+	 * @param idTemporada del equipo temporada
+	 * @param boletaAlumno del alumno
+	 * @return Lista de jugadores registrados en el equipo temporada
+	 * @throws BussinessException En caso de error al consultar
+	 */
+	public List<JugadorEquipoTemp> consultarJugadoresRegistrados(Long idEquipo, Long idTemporada, Long boletaAlumno) throws BussinessException{
+		GestionarJugadorEquipoTempDAO gestionarJugadorEquipoTempDAO = new GestionarJugadorEquipoTempDAO();
+		List<JugadorEquipoTemp> jugadores;
+		try {
+			jugadores = gestionarJugadorEquipoTempDAO.selectJugadorEquipoTempByEquipoTemp(idEquipo, idTemporada, boletaAlumno);
+		}catch (Exception e) {
+			logger.error("Error al consultar jugadores", e);
+			throw new BussinessException("Error al consultar jugadores "+e.getCause());
+		}finally {
+			gestionarJugadorEquipoTempDAO.cerrarConexiones();
+		}
+		return jugadores;
+	}
+	
+	/**Metodo de negocio para la consulta de jugadores registrados en un equipo de temporada
+	 * @param idEquipo del equipo temporada
+	 * @param idTemporada del equipo temporada
+	 * @param nombrePila del jugador
+	 * @return Lista de jugadores registrados en el equipo temporada
+	 * @throws BussinessException En caso de error al consultar
+	 */
+	public List<JugadorEquipoTemp> consultarJugadoresRegistradosLikeNombrePila(Long idEquipo, Long idTemporada, String nombrePila) throws BussinessException{
+		GestionarJugadorEquipoTempDAO gestionarJugadorEquipoTempDAO = new GestionarJugadorEquipoTempDAO();
+		List<JugadorEquipoTemp> jugadores;
+		try {
+			jugadores = gestionarJugadorEquipoTempDAO.selectJugadorEquipoTempByEquipoTempLikeNombrePila(idEquipo, idTemporada, nombrePila);
+		}catch (Exception e) {
+			logger.error("Error al consultar jugadores", e);
+			throw new BussinessException("Error al consultar jugadores "+e.getCause());
+		}finally {
+			gestionarJugadorEquipoTempDAO.cerrarConexiones();
+		}
+		return jugadores;
+	}
+	
+	/**Metodo de negocio para la consulta de jugadores registrados en un equipo de temporada
+	 * @param idEquipo del equipo temporada
+	 * @param idTemporada del equipo temporada
+	 * @param posicionPrim del jugador
+	 * @return Lista de jugadores registrados en el equipo temporada
+	 * @throws BussinessException En caso de error al consultar
+	 */
+	public List<JugadorEquipoTemp> consultarJugadoresRegistradosByPosicionPrim(Long idEquipo, Long idTemporada, String posicionPrim) throws BussinessException{
+		GestionarJugadorEquipoTempDAO gestionarJugadorEquipoTempDAO = new GestionarJugadorEquipoTempDAO();
+		List<JugadorEquipoTemp> jugadores;
+		try {
+			jugadores = gestionarJugadorEquipoTempDAO.selectJugadorEquipoTempByEquipoTempAndPosicionPrim(idEquipo, idTemporada, posicionPrim);
+		}catch (Exception e) {
+			logger.error("Error al consultar jugadores", e);
+			throw new BussinessException("Error al consultar jugadores "+e.getCause());
+		}finally {
+			gestionarJugadorEquipoTempDAO.cerrarConexiones();
+		}
+		return jugadores;
+	}
+	
+	/**Metodo de negocio para la consulta de jugadores registrados en un equipo de temporada
+	 * @param idEquipo del equipo temporada
+	 * @param idTemporada del equipo temporada
+	 * @param posicionSec del jugador
+	 * @return Lista de jugadores registrados en el equipo temporada
+	 * @throws BussinessException En caso de error al consultar
+	 */
+	public List<JugadorEquipoTemp> consultarJugadoresRegistradosByPosicionSec(Long idEquipo, Long idTemporada, String posicionSec) throws BussinessException{
+		GestionarJugadorEquipoTempDAO gestionarJugadorEquipoTempDAO = new GestionarJugadorEquipoTempDAO();
+		List<JugadorEquipoTemp> jugadores;
+		try {
+			jugadores = gestionarJugadorEquipoTempDAO.selectJugadorEquipoTempByEquipoTempAndPosicionSec(idEquipo, idTemporada, posicionSec);
 		}catch (Exception e) {
 			logger.error("Error al consultar jugadores", e);
 			throw new BussinessException("Error al consultar jugadores "+e.getCause());

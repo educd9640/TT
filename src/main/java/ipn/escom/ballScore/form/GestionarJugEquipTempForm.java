@@ -1,5 +1,6 @@
 package ipn.escom.ballScore.form;
 
+import java.util.Date;
 import java.util.List;
 
 import ipn.escom.ballScore.entity.EquipoTemporada;
@@ -21,6 +22,13 @@ public class GestionarJugEquipTempForm {
 	private List<Jugador> jugadoresEquipo;
 	private String jugadoresARegistrar;
 	private Long idJugador;
+	private Date fechaInicialTemporada;
+	private Date fechaFinalTemporada;
+	private String nombreLiga;
+	private Long boletaAlumno;
+	private String nombrePila;
+	private String posicionPrim;
+	private String posicionSec;
 
 	
 	public Long getIdTemporada() {
@@ -85,6 +93,62 @@ public class GestionarJugEquipTempForm {
 
 	public void setIdJugador(Long idJugador) {
 		this.idJugador = idJugador;
+	}
+
+	public Date getFechaInicialTemporada() {
+		return fechaInicialTemporada;
+	}
+
+	public void setFechaInicialTemporada(Date fechaInicialTemporada) {
+		this.fechaInicialTemporada = fechaInicialTemporada;
+	}
+
+	public Date getFechaFinalTemporada() {
+		return fechaFinalTemporada;
+	}
+
+	public void setFechaFinalTemporada(Date fechaFinalTemporada) {
+		this.fechaFinalTemporada = fechaFinalTemporada;
+	}
+
+	public String getNombreLiga() {
+		return nombreLiga;
+	}
+
+	public void setNombreLiga(String nombreLiga) {
+		this.nombreLiga = nombreLiga;
+	}
+
+	public Long getBoletaAlumno() {
+		return boletaAlumno;
+	}
+
+	public void setBoletaAlumno(Long boletaAlumno) {
+		this.boletaAlumno = boletaAlumno;
+	}
+
+	public String getNombrePila() {
+		return nombrePila;
+	}
+
+	public void setNombrePila(String nombrePila) {
+		this.nombrePila = nombrePila;
+	}
+
+	public String getPosicionPrim() {
+		return posicionPrim;
+	}
+
+	public void setPosicionPrim(String posicionPrim) {
+		this.posicionPrim = posicionPrim;
+	}
+
+	public String getPosicionSec() {
+		return posicionSec;
+	}
+
+	public void setPosicionSec(String posicionSec) {
+		this.posicionSec = posicionSec;
 	}
 	
 	

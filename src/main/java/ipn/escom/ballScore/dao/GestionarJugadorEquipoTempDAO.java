@@ -33,6 +33,66 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 		return (List<JugadorEquipoTemp>) q.list();
 	}
 	
+	/**Metodo DAO para la consulta de jugadores registrados en un equipo de temporada
+	 * @param idEquipo del equipo temporada
+	 * @param idTemporada del equipo temporada
+	 * @param boletaALumno del alumno
+	 * @return Lista de jugadores registrados
+	 */
+	@SuppressWarnings("unchecked")
+	public List<JugadorEquipoTemp> selectJugadorEquipoTempByEquipoTemp(Long idEquipo, Long idTemporada, Long boletaAlumno){
+		Query q = session.createQuery("from JugadorEquipoTemp jet where jet.idEquipo=:idEquipo and jet.idTemporada=:idTemporada and jet.jugador.alumno.boletaAlumno = :boletaAlumno");
+		q.setParameter("idEquipo", idEquipo);
+		q.setParameter("idTemporada", idTemporada);
+		q.setParameter("boletaAlumno", boletaAlumno);
+		return (List<JugadorEquipoTemp>) q.list();
+	}
+	
+	/**Metodo DAO para la consulta de jugadores registrados en un equipo de temporada
+	 * @param idEquipo del equipo temporada
+	 * @param idTemporada del equipo temporada
+	 * @param nombrePila del jugador
+	 * @return Lista de jugadores registrados
+	 */
+	@SuppressWarnings("unchecked")
+	public List<JugadorEquipoTemp> selectJugadorEquipoTempByEquipoTempLikeNombrePila(Long idEquipo, Long idTemporada, String nombrePila){
+		Query q = session.createQuery("from JugadorEquipoTemp jet where jet.idEquipo=:idEquipo and jet.idTemporada=:idTemporada and jet.jugador.alumno.nombrePila like :nombrePila");
+		q.setParameter("idEquipo", idEquipo);
+		q.setParameter("idTemporada", idTemporada);
+		q.setParameter("nombrePila", nombrePila.toUpperCase()+"%");
+		return (List<JugadorEquipoTemp>) q.list();
+	}
+	
+	/**Metodo DAO para la consulta de jugadores registrados en un equipo de temporada
+	 * @param idEquipo del equipo temporada
+	 * @param idTemporada del equipo temporada
+	 * @param posicionPrim del jugador
+	 * @return Lista de jugadores registrados
+	 */
+	@SuppressWarnings("unchecked")
+	public List<JugadorEquipoTemp> selectJugadorEquipoTempByEquipoTempAndPosicionPrim(Long idEquipo, Long idTemporada, String posicionPrim){
+		Query q = session.createQuery("from JugadorEquipoTemp jet where jet.idEquipo=:idEquipo and jet.idTemporada=:idTemporada and jet.jugador.posicionPrim = :posicionPrim");
+		q.setParameter("idEquipo", idEquipo);
+		q.setParameter("idTemporada", idTemporada);
+		q.setParameter("posicionPrim", posicionPrim);
+		return (List<JugadorEquipoTemp>) q.list();
+	}
+	
+	/**Metodo DAO para la consulta de jugadores registrados en un equipo de temporada
+	 * @param idEquipo del equipo temporada
+	 * @param idTemporada del equipo temporada
+	 * @param posicionSec del jugador
+	 * @return Lista de jugadores registrados
+	 */
+	@SuppressWarnings("unchecked")
+	public List<JugadorEquipoTemp> selectJugadorEquipoTempByEquipoTempAndPosicionSec(Long idEquipo, Long idTemporada, String posicionSec){
+		Query q = session.createQuery("from JugadorEquipoTemp jet where jet.idEquipo=:idEquipo and jet.idTemporada=:idTemporada and jet.jugador.posicionSec = :posicionSec");
+		q.setParameter("idEquipo", idEquipo);
+		q.setParameter("idTemporada", idTemporada);
+		q.setParameter("posicionSec", posicionSec);
+		return (List<JugadorEquipoTemp>) q.list();
+	}
+	
 	/**Metodo DAO para registrar jugadores de equipos de temporada
 	 * @param jugadores lista de jugadores a registrar
 	 */

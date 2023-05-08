@@ -79,7 +79,7 @@
 
 		<action name="consultarAlumnosModal"
 			class="ipn.escom.ballScore.action.GestionarAlumnosAction"
-			method="mostrarRegistrados">
+			method="mostrarRegistradosLibres">
 			<result name="success">/alumnos/consultarAlumnosModal.jsp</result>
 			<result name="input">/alumnos/consultarAlumnosModal.jsp</result>
 		</action>

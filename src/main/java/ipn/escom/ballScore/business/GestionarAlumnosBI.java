@@ -64,15 +64,16 @@ public class GestionarAlumnosBI {
 	}
 	
 	/**Metodo para obtener los alumnos registrados
+	 * @param soloLibres indica si consultar solo alumnos sin equipo
 	 * @return Lista de alumnos
 	 * @throws BussinessException En caso de error de negocio
 	 */
-	public List<Alumno> obtenerAlumnosRegistrados() throws BussinessException{
+	public List<Alumno> obtenerAlumnosRegistrados(boolean soloLibres) throws BussinessException{
 		logger.info("Inicia metodo GestionarAlumnosBI.obtenerAlumnosRegistrados()");
 		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
 		List<Alumno> alumnos = new ArrayList<Alumno>();
 		try {
-			alumnos = alumnosDao.selectFromAlumno();
+			alumnos = alumnosDao.selectFromAlumno(soloLibres);
 		}catch(Exception e) {
 			logger.error(" Error al consultar los alumnos registrados ", e);
 			throw new BussinessException("Error al consultar los alumnos registrados.");
@@ -104,15 +105,16 @@ public class GestionarAlumnosBI {
 	
 	/**Metodo para obtener alumnos por nombrePila
 	 * @param nombrePila del alumno
+	 * @param soloLibres indica si solo mostrar alumnos sin equipo
 	 * @return Lista de alumnos donde nombre pila sea como nombrePila%
 	 * @throws BussinessException en caso de error al consultar
 	 */
-	public List<Alumno> obtenerAlumnosRegistradosPorNombrePila(String nombrePila) throws BussinessException{
+	public List<Alumno> obtenerAlumnosRegistradosPorNombrePila(String nombrePila, boolean soloLibres) throws BussinessException{
 		logger.info("Inicia metodo GestionarAlumnosBI.obtenerAlumnosRegistrados()");
 		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
 		List<Alumno> alumnos = new ArrayList<Alumno>();
 		try {
-			alumnos = alumnosDao.selectFromAlumnoLikeNombrePila(nombrePila);
+			alumnos = alumnosDao.selectFromAlumnoLikeNombrePila(nombrePila, soloLibres);
 		}catch(Exception e) {
 			logger.error(" Error al consultar los alumnos registrados ", e);
 			throw new BussinessException("Error al consultar los alumnos registrados.");
@@ -125,15 +127,16 @@ public class GestionarAlumnosBI {
 
 	/**Metodo de negocio para obtener los alumnos registrados en una escuela
 	 * @param idEscuela de la escuela
+	 * @param soloLibres indica si mostrar solo alumnos sin equipo
 	 * @return Lista de alumnos
 	 * @throws BussinessException En caso de error al consultar
 	 */
-	public List<Alumno> obtenerAlumnosRegistradosPorEscuela(Long idEscuela) throws BussinessException{
+	public List<Alumno> obtenerAlumnosRegistradosPorEscuela(Long idEscuela, boolean soloLibres) throws BussinessException{
 		logger.info("Inicia metodo GestionarAlumnosBI.obtenerAlumnosRegistrados()");
 		GestionarAlumnosDAO alumnosDao = new GestionarAlumnosDAO();
 		List<Alumno> alumnos = new ArrayList<Alumno>();
 		try {
-			alumnos = alumnosDao.selectFromAlumnoByEscuela(idEscuela);
+			alumnos = alumnosDao.selectFromAlumnoByEscuela(idEscuela, soloLibres);
 		}catch(Exception e) {
 			logger.error(" Error al consultar los alumnos registrados ", e);
 			throw new BussinessException("Error al consultar los alumnos registrados.");
