@@ -2,12 +2,17 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <html>
     <head>
+    	<link rel="stylesheet" href="<s:url value='/bs/css/bootstrap.min.css'/>">
+    	<script src="<s:url value='/bs/js/bootstrap.bundle.min.js'/>"></script>
+    	
     	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
     	<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
+    	
         <s:head />
-        <title><s:text name="label.registrados.titulo"/></title>
+        <title><s:text name="label.registradosLibres.titulo"/></title>
 
         <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
         <!-- Script Sexyalertbox -->
@@ -16,6 +21,12 @@
         <script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
         
         <script>
+        function limpiarBusqueda(){
+			document.forms[0].boletaAlumno.value=null;
+			document.forms[0].nombrePila.value=null;
+			document.forms[0].consultarAlumnosModal_alumnoForm_idEscuela.value=null;
+			document.forms[0].submit();
+		}
         	//Inician metodos JQuery
 	        $(document).ready(function(){
 	        
@@ -50,47 +61,60 @@
     </head>
     <body>
         <div class="titleDiv"><s:text name="application.title"/></div>
-        <h1><s:text name="label.registrados.titulo"/></h1>
+        <h1><s:text name="label.registradosLibres.titulo"/></h1>
         <br/><br/>
         <s:actionerror />
         <s:actionmessage />
-        <table class="borderAll">
-            <tr>
-                <th><s:text name="alumnoForm.boletaAlumno"/></th>
-                <th><s:text name="alumnoForm.nombrePila"/></th>
-                <th><s:text name="alumnoForm.apellidoPat"/></th>
-                <th><s:text name="alumnoForm.apellidoMat"/></th>
-                <th><s:text name="alumnoForm.semestre"/></th>
-                <th><s:text name="alumnoForm.curp"/></th>
-                <th><s:text name="alumnoForm.nss"/></th>
-                <th><s:text name="alumnoForm.telefono"/></th>
-                <th><s:text name="alumnoForm.telEmergencia"/></th>
-                <th><s:text name="alumnoForm.correo"/></th>	
-                <th><s:text name="alumnoForm.idEscuela"/></th>	
-                <th>&nbsp;</th>
-            </tr>
-            <s:iterator value="alumnosRegistrado" status="status">
-                <tr>
-                    <td class="nowrap"><s:property value="boletaAlumno"/></td>
-                    <td class="nowrap"><s:property value="nombrePila"/></td>
-                    <td class="nowrap"><s:property value="apellidoPat"/></td>
-                    <td class="nowrap"><s:property value="apellidoMat"/></td>
-                    <td class="nowrap"><s:property value="semestre"/></td>
-                    <td class="nowrap"><s:property value="curp"/></td>
-                    <td class="nowrap"><s:property value="nss"/></td>
-                    <td class="nowrap"><s:property value="telefono"/></td>
-                    <td class="nowrap"><s:property value="telEmergencia"/></td>
-                    <td class="nowrap"><s:property value="correo"/></td>
-                    <td class="nowrap"><s:property value="escuela.nombreCortoEscuela"/></td>
-                    <td class="nowrap">
-                    	<input type="checkbox" id="<s:property value="boletaAlumno"/>" name="alumno" value="<s:property value="boletaAlumno"/>_<s:property value="nombrePila"/>_<s:property value="apellidoPat"/>_<s:property value="apellidoMat"/>" />
-                    </td>
-                </tr>
-            </s:iterator>
+        <s:form action="consultarAlumnosModal" method="post">
+        <table style="border:none">
+        	<tr>
+        	<td><b>Busqueda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="alumnoForm.boletaAlumno"/></td>
+        	<td><b>Busqueda por Nombre Pila</b> <input type="text" id="nombrePila" name="alumnoForm.nombrePila"/></td>
+        	<td><b>Busqueda por Escuela</b> <s:select name="alumnoForm.idEscuela" style="display:inline-block;" headerKey="-1" headerValue="Seleccione" list="escuelas" listKey="idEscuela" listValue="nombreCortoEscuela" theme="simple"/></td>
+        	</tr>
+        	<tr>
+        		<td align="left" colspan="3"><s:submit value="%{getText('button.label.submit')}" theme="simple"/> <input type="button" value="Limpiar" onclick="javascript:limpiarBusqueda()"></td>
+        	</tr>
+        	<s:hidden name="soloLibres" value="%{true}"></s:hidden>
         </table>
-        
+        </s:form>
+        <div>
+			<display:table export="true" id="alumno" name="alumnosRegistrado" pagesize="15" requestURI="" class="table table-hover table-striped">
+				<display:setProperty name="export.types" value="csv excel xml pdf" />
+				<display:setProperty name="export.excel.filename" value="AlumnosRegistrados.xls" />
+				<display:setProperty name="export.csv.filename" value="AlumnosRegistrados.csv" />
+				<display:setProperty name="export.xml.filename" value="AlumnosRegistrados.xml" />
+				<display:setProperty name="export.pdf.filename" value="AlumnosRegistrados.pdf" />
+				<display:column property="boletaAlumno" title="Boleta Alumno" sortable="true"></display:column>
+				<display:column property="nombrePila" title="Nombre pila" sortable="true" escapeXml="true"></display:column>
+				<display:column property="apellidoPat" title="Apellido Paterno" sortable="true" escapeXml="true"></display:column>
+				<display:column property="apellidoMat" title="Apellido Materno" sortable="true" escapeXml="true"></display:column>
+				<display:column property="semestre" title="Semestre" sortable="true"></display:column>
+				<display:column property="curp" title="CURP" sortable="true"></display:column>
+				<display:column property="nss" title="NSS" sortable="true"></display:column>
+				<display:column property="telefono" title="Telefono" sortable="true"></display:column>
+				<display:column property="telEmergencia" title="Telefono Emergencia" sortable="true"></display:column>
+				<display:column property="correo" title="Correo" sortable="true"></display:column>
+				<display:column property="escuela.nombreCortoEscuela" title="Escuela" sortable="true"></display:column>
+				<display:column title="Activo" sortable="true" media="html">
+					<s:if test="%{#attr.alumno.fechaAlta!=null}">
+						<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
+					</s:if>
+                    <s:else>
+                   		<img width="15" height="15" src="<s:url value='/img/cross.png'/>">
+                    </s:else>
+				</display:column>
+				<display:column media="html">
+					<s:if test="%{#attr.alumno.fechaAlta!=null}">
+						<input type="checkbox" id="<s:property value="%{#attr.alumno.boletaAlumno}"/>" name="alumno" value="<s:property value="%{#attr.alumno.boletaAlumno}"/>_<s:property value="%{#attr.alumno.nombrePila}"/>_<s:property value="%{#attr.alumno.apellidoPat}"/>_<s:property value="%{#attr.alumno.apellidoMat}"/>" />
+					</s:if>
+                    <s:else>
+                   			&nbsp;
+                    </s:else>
+				</display:column>
+			</display:table>
+		</div>
         <input id="cerrarVentana" type="button" value="Cerrar"/>
         <input id="aceptarSeleccion" type="button" value="Aceptar"/>
-        <input id="LimiparVentana" type="button" value="Limpiar"/>
     </body>
 </html>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
@@ -11,6 +11,7 @@
         <title><s:property value="#title"/></title>
         <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
         
+		<div class="container rounded p-3 contenido">
         <script>
         	//Inician metodos JQuery
 	        $(document).ready(function(){
@@ -71,8 +72,6 @@
     			 
 	        });
         </script>
-	</head>
-	<body>
 		<div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.registrados.titulo"/></h1>
         <br/><br/>
@@ -151,5 +150,5 @@
 			<s:submit value="Regresar" targets="submenuTemporadas" />
 		</s:form>
 	
-	</body>
-</html>
+</div>
+<jsp:include page="/bases/footer.jsp"></jsp:include>

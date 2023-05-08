@@ -34,6 +34,65 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 		return (List<EquipoTemporada>) q.list();
 	}
 	
+	/**Metodo DAO para la consulta de equipos de temporada de un manager
+	 * @param idManager del manager
+	 * @param nombreLiga de la liga
+	 * @return Lista de equipos de temporada del manager
+	 */
+	@SuppressWarnings("unchecked")
+	public List<EquipoTemporada> consultarEquipoTemporadaManager(Long idManager, String nombreLiga){
+		Query q = session.createQuery("from EquipoTemporada et where et.equipo.manager.idManager  = :idManager and lower(et.temporada.liga.nombre) like :nombreLiga");
+		q.setParameter("idManager", idManager);
+		q.setParameter("nombreLiga", nombreLiga.toLowerCase()+"%");
+		return (List<EquipoTemporada>) q.list();
+	}
+	
+	/**Metodo DAO para la consulta de equipos de temporada de un manager
+	 * @param idManager del manager
+	 * @param fechaInicialTemporada fecha de inicio de la temporada
+	 * @param fechaFinalTemporada fecha de fin de temporada
+	 * @param nombreLiga de la liga
+	 * @return Lista de equipos de temporada del manager
+	 */
+	@SuppressWarnings("unchecked")
+	public List<EquipoTemporada> consultarEquipoTemporadaManager(Long idManager, Date fechaInicialTemporada, Date fechaFinalTemporada){
+		Query q = session.createQuery("from EquipoTemporada et where et.equipo.manager.idManager  = :idManager "
+				+ "and et.temporada.fechaInicial > :fechaInicialTemporada and et.temporada.fechaFinal < :fechaFinalTemporada");
+		q.setParameter("idManager", idManager);
+		q.setParameter("fechaInicialTemporada", fechaInicialTemporada);
+		q.setParameter("fechaFinalTemporada", fechaFinalTemporada);
+		return (List<EquipoTemporada>) q.list();
+	}
+	
+	/**Metodo DAO para la consulta de equipos de temporada de un manager
+	 * @param idManager del manager
+	 * @param nombreLiga de la liga
+	 * @param fechaInicialTemporada fecha de inicio de la temporada
+	 * @param fechaFinalTemporada fecha de fin de temporada
+	 * @return Lista de equipos de temporada del manager
+	 */
+	@SuppressWarnings("unchecked")
+	public List<EquipoTemporada> consultarEquipoTemporadaManager(Long idManager, String nombreLiga, Date fechaInicialTemporada, Date fechaFinalTemporada){
+		Query q = session.createQuery("from EquipoTemporada et where et.equipo.manager.idManager  = :idManager and lower(et.temporada.liga.nombre) like :nombreLiga " 
+				+ "and et.temporada.fechaInicial > :fechaInicialTemporada and et.temporada.fechaFinal < :fechaFinalTemporada");
+		q.setParameter("idManager", idManager);
+		q.setParameter("nombreLiga", nombreLiga.toLowerCase()+"%");
+		q.setParameter("fechaInicialTemporada", fechaInicialTemporada);
+		q.setParameter("fechaFinalTemporada", fechaFinalTemporada);
+		return (List<EquipoTemporada>) q.list();
+	}
+	
+	/**Metodo DAO para la consulta de equipos de una temporada
+	 * @param idTemporada de la temporada
+	 * @return Lista de equipos de la temporada
+	 */
+	@SuppressWarnings("unchecked")
+	public List<EquipoTemporada> obtenerEquiposTemporada(Long idTemporada) {
+		Query q = session.createQuery("from EquipoTemporada where ID_TEMPORADA =:idTemporada");
+		q.setParameter("idTemporada", idTemporada);
+		return(List<EquipoTemporada>) q.list();
+	}
+	
 	/**
 	 * Metodo DAO para registrar un equipo en una temporada
 	 * @param entidad del tipo EquipoTemporada
@@ -64,4 +123,24 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 		return (List<Long>)q.list();
 	}
 	
+	/**Metodo DAO para acutalizar un equipo de temporada
+	 * @param entidad del equipo de temporada
+	 */
+	public void updateEquipoTemporada(EquipoTemporada entidad) {
+		session.save(entidad);
+		session.flush();
+		session.clear();
+	}
+	
+	/**Metodo Dao para seleccionar un equipo de temporada
+	 * @param idEquipo del equipo de temporada
+	 * @param idTemporada del equipo de temporada
+	 * @return el equipo de temporada
+	 */
+	public EquipoTemporada selectEquipoTemporadaById(Long idEquipo, Long idTemporada) {
+		Query q = session.createQuery("from EquipoTemporada et where et.idEquipo = :idEquipo and et.idTemporada = :idTemporada");
+		q.setParameter("idEquipo", idEquipo);
+		q.setParameter("idTemporada", idTemporada);
+		return (EquipoTemporada) q.uniqueResult();
+	}
 }

@@ -93,7 +93,7 @@ public class GestionarJugadoresAction extends BaseAction implements Preparable{
 			return Action.SUCCESS;
 		}
 		
-		if(vo.getIdJugador()!=null)
+		if(vo.getIdJugador()==null)
 			addActionMessage("Jugador registrado con exito: "+ idJugador);
 		else
 			addActionMessage("Jugador modificado con exito: "+ idJugador);
@@ -110,9 +110,20 @@ public class GestionarJugadoresAction extends BaseAction implements Preparable{
 		Manager sessionManager = (Manager) session.getAttribute("Usuario");
 		GestionarJugadoresBI jugadoresBI = new GestionarJugadoresBI();
 		this.escuela = sessionManager.getEscuela();
+		this.posiciones= jugadoresBI.obtenerPosiciones();
 		try {
 			this.equipo = jugadoresBI.obtenerEquipoDelManager(sessionManager.getIdManager());
-			this.jugadoresRegistrados = jugadoresBI.consultarJugadoresEquipo(equipo.getIdEquipo());
+			if(jugadoresForm!= null && jugadoresForm.getAlumno()!=null && jugadoresForm.getAlumno().getBoletaAlumno()!=null) {
+				this.jugadoresRegistrados = jugadoresBI.consultarJugadorEquipoByBoleta(equipo.getIdEquipo(), jugadoresForm.getAlumno().getBoletaAlumno());
+			}else if(jugadoresForm!= null && jugadoresForm.getAlumno()!=null && jugadoresForm.getAlumno().getNombrePila()!=null && !jugadoresForm.getAlumno().getNombrePila().equals("")) {
+				this.jugadoresRegistrados = jugadoresBI.consultarJugadoresEquipoLikeNombrePila(equipo.getIdEquipo(), jugadoresForm.getAlumno().getNombrePila());
+			}else if(jugadoresForm!= null && jugadoresForm.getPosicionPrim()!= null && !jugadoresForm.getPosicionPrim().equals("")) {
+				this.jugadoresRegistrados = jugadoresBI.consultarJugadoresEquipoByPosicionPrim(equipo.getIdEquipo(), jugadoresForm.getPosicionPrim());
+			}else if(jugadoresForm!= null && jugadoresForm.getPosicionSec()!= null && !jugadoresForm.getPosicionSec().equals("")) {
+				this.jugadoresRegistrados = jugadoresBI.consultarJugadoresEquipoByPosicionSec(equipo.getIdEquipo(), jugadoresForm.getPosicionSec());
+			}else {
+				this.jugadoresRegistrados = jugadoresBI.consultarJugadoresEquipo(equipo.getIdEquipo());
+			}
 		} catch (BussinessException e) {
 			addActionError(e.getMessage());
 		}

@@ -1,29 +1,18 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-
-<html>
-<head>
-<!--  SETANDO CSS's  -->
-<link rel="stylesheet" href="main.css">
-<!--  JQUERY PLUGIN -->
-<sj:head jqueryui="true" />
-<sb:head/>
-
-</head>
-<body>
-	<div id="titulo">
+	<div>
+	<img alt="logo" src="/ballscore/bases/ball.png" style="display: block; margin-left: auto; margin-right: auto;" width=250 height=250>
 	</div>
-
-	<div id="login">
-		<h4>Sistema: </h4>
+	<div id="login" class="rounded" style="background-color: white;width: 25%; padding: 1%; margin-top:1%">
+		<h4>Inicio de sesión: </h4>
 		<s:form action="login"  theme="bootstrap" cssClass="well form-vertical">
 			<s:textfield name="login"  placeholder="Login" />
-			<s:password name="contrasenia"  placeholder="ContraseÃ±a" />
+			<s:password name="contrasenia"  placeholder="Contraseña" />
+			<br>
 			<s:submit value="Entrar" cssClass="btn btn-primary" targets="login" effect="highlight"/>
 			<s:submit value="Test" cssClass="btn btn-primary" targets="login" effect="highlight"/>
 		</s:form>
+		
 		<s:form namespace="/managers" action="formularioRegistro"  theme="bootstrap" cssClass="well form-vertical">
 			<s:submit value="Registrarse" cssClass="btn btn-primary" targets="registro" effect="highlight"/>
 		</s:form>
@@ -42,5 +31,4 @@
 			<s:actionmessage theme="bootstrap"/>
 		</div>
 	</s:if>
-</body>
-</html>
+<jsp:include page="/bases/footer.jsp"></jsp:include>

@@ -1,19 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-
-<html>
-<head>
-<!--  SETANDO CSS's  -->
-<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
-<!--  JQUERY PLUGIN -->
-<sj:head jqueryui="true" />
-<sb:head/>
-</head>
-
-
-<body>
+<div class="container rounded p-3 contenido">
 <h3> Bienvenido al Sistema! </h3>
 
 <p><a href='<s:url namespace="/alumnos" action="submenuAlumnos" />' >Gestionar Alumnos</a></p>
@@ -28,9 +15,7 @@
 
 <p><a href='<s:url namespace="/partidos" action="submenuPartidos" />' >Gestionar Partidos</a></p>
 
-<p><a href='<s:url namespace="/" action="logout" />' >Cerrar sesiÃ³n</a></p>
-<p><a href='<s:url namespace="/" action="sessionTest" />' >Test de sesiÃ³n</a></p>
-
-</body>
-
-</html>
+<p><a href='<s:url namespace="/" action="logout" />' >Cerrar sesión</a></p>
+<p><a href='<s:url namespace="/" action="sessionTest" />' >Test de sesión</a></p>
+</div>
+<jsp:include page="/bases/footer.jsp"></jsp:include>

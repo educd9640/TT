@@ -1,24 +1,16 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<jsp:include page="/bases/header.jsp"></jsp:include>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<div class="container rounded p-3 contenido">
+
 <s:if test="operacion=='actualizado'">
 	<s:set var="title" value="%{'Modificar Alumno'}"/>
 </s:if>
 <s:else>
-    <s:set var="title" value="%{'Registro Alumnos'}"/>
+    <s:set var="title" value="%{'Registro de Alumnos'}"/>
 </s:else>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-    <head>
-    	<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
-        <s:head />
-        <style>td { white-space:nowrap; }</style>
-        <title><s:property value="#title"/></title>
-    </head>
-    <body>
         <div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:property value="#title"/></h1>
-        <s:actionerror />
-        <s:actionmessage />
+        <s:actionerror theme="simple"/> <s:actionmessage theme="simple"/>
         <s:form action="registrarAlumno" method="post">
         	<s:if test="operacion=='actualizado'">
         		<s:textfield key="alumnoForm.boletaAlumno" readonly="true"/>
@@ -48,6 +40,7 @@
         <s:form action="submenuAlumnos" >
 			<s:submit value="Regresar" targets="submenuAlumnos"/>
 		</s:form>
-    </body>
-</html>
+		
+</div>
+<jsp:include page="/bases/footer.jsp"></jsp:include>
 
