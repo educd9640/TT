@@ -24,6 +24,22 @@
       <many-to-one name="temporada" class="ipn.escom.ballScore.entity.Temporada" lazy="false" not-null="true" cascade="none" insert="false" update="false">
       	<column name="ID_TEMPORADA"/>
       </many-to-one>
+      
+      <set name="partidosLocal" inverse="true" lazy="true" table="PARTIDO" fetch="select">
+    	<key >
+    		<column  name="ID_EQUIPO_LOCAL"/>
+    		<column  name="ID_TEMPORADA"/>
+    	</key>
+    	<one-to-many class="ipn.escom.ballScore.entity.Partido" />
+	  </set>
+	  
+	  <set name="partidosVisitante" inverse="true" lazy="true" table="PARTIDO" fetch="select">
+    	<key >
+    		<column  name="ID_EQUIPO_VISITANTE"/>
+    		<column  name="ID_TEMPORADA"/>
+    	</key>
+    	<one-to-many class="ipn.escom.ballScore.entity.Partido" />
+	  </set>
 
    </class>
 </hibernate-mapping>
