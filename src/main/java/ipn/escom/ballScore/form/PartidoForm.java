@@ -24,6 +24,11 @@ public class PartidoForm {
 	private ResultadosPartido resultadosPartido;
 	private EquipoTemporada equipoTemporada;
 	
+	private String nombreEquipoLocal;
+	private String nombreEquipoVisitante;
+	private String nombreLiga;
+	private Timestamp fechaInicialBusqueda;
+	private Timestamp fechaFinalBusqueda;
 	
 	public Long getIdPartido() {
 		return idPartido;
@@ -79,4 +84,38 @@ public class PartidoForm {
 	public void setEquipoTemporada(EquipoTemporada equipoTemporada) {
 		this.equipoTemporada = equipoTemporada;
 	}
+	public String getNombreEquipoLocal() {
+		return nombreEquipoLocal;
+	}
+	public void setNombreEquipoLocal(String nombreEquipoLocal) {
+		this.nombreEquipoLocal = nombreEquipoLocal;
+	}
+	public String getNombreEquipoVisitante() {
+		return nombreEquipoVisitante;
+	}
+	public void setNombreEquipoVisitante(String nombreEquipoVisitante) {
+		this.nombreEquipoVisitante = nombreEquipoVisitante;
+	}
+	public String getNombreLiga() {
+		return nombreLiga;
+	}
+	public void setNombreLiga(String nombreLiga) {
+		this.nombreLiga = nombreLiga;
+	}
+	public Timestamp getFechaInicialBusqueda() {
+		return fechaInicialBusqueda;
+	}
+	public void setFechaInicialBusqueda(java.util.Date fechaInicialBusqueda) {
+		if(fechaInicialBusqueda!=null)
+			this.fechaInicialBusqueda = new Timestamp(fechaInicialBusqueda.getTime());
+	}
+	public Timestamp getFechaFinalBusqueda() {
+		return fechaFinalBusqueda;
+	}
+	public void setFechaFinalBusqueda(java.util.Date fechaFinalBusqueda) {
+		if(fechaFinalBusqueda!=null)
+			this.fechaFinalBusqueda = new Timestamp(fechaFinalBusqueda.getTime());
+	}
+	
+	
 }

@@ -20,6 +20,7 @@ public class Partido {
 	private ResultadosPartido resultadosPartido;
 	private EquipoTemporada equipoTemporadaLocal;
 	private EquipoTemporada equipoTemporadaVisitante;
+	private Temporada temporada;
 	
 	public Long getIdPartido() {
 		return idPartido;
@@ -80,6 +81,12 @@ public class Partido {
 	}
 	public void setEquipoTemporadaVisitante(EquipoTemporada equipoTemporadaVisitante) {
 		this.equipoTemporadaVisitante = equipoTemporadaVisitante;
+	}
+	public Temporada getTemporada() {
+		return temporada;
+	}
+	public void setTemporada(Temporada temporada) {
+		this.temporada = temporada;
 	}
 	
 	

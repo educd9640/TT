@@ -2,6 +2,7 @@ package ipn.escom.ballScore.business;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,11 +123,136 @@ public class GestionarPartidosBI {
 		}catch(Exception e) {
 			logger.error(" Error al consultar los partidos registrados ", e);
 			throw new BussinessException("Error al consultar los partidos registrados.");
+		}finally {
+			partidoDAO.cerrarConexiones();
 		}
-		partidoDAO.cerrarConexiones();
 		return partidos;
 	}
 	
+	/**Metodo para obtener los partidos registrados
+	 * @return Lista de partidos
+	 * @throws BussinessException En caso de error
+	 */
+	public List<Partido> obtenerPartidosRegistradosByIdPartido(Long idPartido)throws BussinessException{
+		logger.info("Inicia metodo GestionarPartidosBI.obtenerPartidosRegistrados()");
+		partidoDAO = new GestionarPartidosDAO();
+		List<Partido> partidos = new ArrayList<Partido>();
+		try {
+			partidos = partidoDAO.selectFromPartidoById(idPartido);
+		}catch(Exception e) {
+			logger.error(" Error al consultar los partidos registrados ", e);
+			throw new BussinessException("Error al consultar los partidos registrados.");
+		}finally {
+			partidoDAO.cerrarConexiones();
+		}
+		return partidos;
+	}
+	
+	/**Metodo para obtener los partidos registrados
+	 * @return Lista de partidos
+	 * @throws BussinessException En caso de error
+	 */
+	public List<Partido> obtenerPartidosRegistradosByLiga(String nombreLiga)throws BussinessException{
+		logger.info("Inicia metodo GestionarPartidosBI.obtenerPartidosRegistrados()");
+		partidoDAO = new GestionarPartidosDAO();
+		List<Partido> partidos = new ArrayList<Partido>();
+		try {
+			partidos = partidoDAO.selectFromPartido();
+		}catch(Exception e) {
+			logger.error(" Error al consultar los partidos registrados ", e);
+			throw new BussinessException("Error al consultar los partidos registrados.");
+		}finally {
+			partidoDAO.cerrarConexiones();
+		}
+		return partidos;
+	}
+	
+	/**Metodo para obtener los partidos registrados
+	 * @return Lista de partidos
+	 * @throws BussinessException En caso de error
+	 */
+	public List<Partido> obtenerPartidosRegistradosByEquipoLocal(String nombreEquipoLocal)throws BussinessException{
+		logger.info("Inicia metodo GestionarPartidosBI.obtenerPartidosRegistrados()");
+		partidoDAO = new GestionarPartidosDAO();
+		List<Partido> partidos = new ArrayList<Partido>();
+		try {
+			partidos = partidoDAO.selectFromPartidoByNombreEquipoLocal(nombreEquipoLocal);
+		}catch(Exception e) {
+			logger.error(" Error al consultar los partidos registrados ", e);
+			throw new BussinessException("Error al consultar los partidos registrados.");
+		}finally {
+			partidoDAO.cerrarConexiones();
+		}
+		return partidos;
+	}
+	
+	/**Metodo para obtener los partidos registrados
+	 * @return Lista de partidos
+	 * @throws BussinessException En caso de error
+	 */
+	public List<Partido> obtenerPartidosRegistradosByEquipoVisitante(String nombreEquipoVisitante)throws BussinessException{
+		logger.info("Inicia metodo GestionarPartidosBI.obtenerPartidosRegistrados()");
+		partidoDAO = new GestionarPartidosDAO();
+		List<Partido> partidos = new ArrayList<Partido>();
+		try {
+			partidos = partidoDAO.selectFromPartidoByNombreEquipoVisitante(nombreEquipoVisitante);
+		}catch(Exception e) {
+			logger.error(" Error al consultar los partidos registrados ", e);
+			throw new BussinessException("Error al consultar los partidos registrados.");
+		}finally {
+			partidoDAO.cerrarConexiones();
+		}
+		return partidos;
+	}
+	
+	/**Metodo para obtener los partidos registrados
+	 * @return Lista de partidos
+	 * @throws BussinessException En caso de error
+	 */
+	public List<Partido> obtenerPartidosRegistradosByFechas(Timestamp fechaInicial, Timestamp fechaFinal)throws BussinessException{
+		logger.info("Inicia metodo GestionarPartidosBI.obtenerPartidosRegistrados()");
+		partidoDAO = new GestionarPartidosDAO();
+		List<Partido> partidos = new ArrayList<Partido>();
+		try {
+			partidos = partidoDAO.selectFromPartidoByFechas(fechaInicial,fechaFinal);
+		}catch(Exception e) {
+			logger.error(" Error al consultar los partidos registrados ", e);
+			throw new BussinessException("Error al consultar los partidos registrados.");
+		}finally {
+			partidoDAO.cerrarConexiones();
+		}
+		return partidos;
+	}
+
+
+	public GestionarPartidosDAO getPartidoDAO() {
+		return partidoDAO;
+	}
+
+
+	public void setPartidoDAO(GestionarPartidosDAO partidoDAO) {
+		this.partidoDAO = partidoDAO;
+	}
+
+
+	public GestionarTemporadasDAO getTemporadaDAO() {
+		return temporadaDAO;
+	}
+
+
+	public void setTemporadaDAO(GestionarTemporadasDAO temporadaDAO) {
+		this.temporadaDAO = temporadaDAO;
+	}
+
+
+	public GestionarEquipoTemporadaDAO getEquipoTDAO() {
+		return equipoTDAO;
+	}
+
+
+	public void setEquipoTDAO(GestionarEquipoTemporadaDAO equipoTDAO) {
+		this.equipoTDAO = equipoTDAO;
+	}
 	
 }
 

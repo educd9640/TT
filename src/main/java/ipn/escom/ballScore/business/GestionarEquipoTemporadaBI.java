@@ -82,4 +82,22 @@ public class GestionarEquipoTemporadaBI {
 			equipotemporadaDAO.cerrarConexiones();
 		}
 	}
+	
+	/**Metodo para consultar los equipos de temporada
+	 * @param idEquipo del equipo temporada
+	 * @param idTemporada de la temporada
+	 * @return equipo de temporada
+	 * @throws BussinessException en caso de error al consultar
+	 */
+	public EquipoTemporada consultarEquipoTemporada(Long idEquipo, Long idTemporada) throws BussinessException {
+		equipotemporadaDAO = new GestionarEquipoTemporadaDAO();
+		try {
+			return equipotemporadaDAO.selectEquipoTemporadaById(idEquipo, idTemporada);
+		}catch (Exception e) {
+			logger.error("Error al consultar equipo", e);
+			throw new BussinessException("Error al consultar equipo." +e.getMessage());
+		}finally {
+			equipotemporadaDAO.cerrarConexiones();
+		}
+	}
 }

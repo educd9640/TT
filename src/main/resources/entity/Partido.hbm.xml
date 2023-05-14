@@ -38,6 +38,10 @@
      	<column name="ID_EQUIPO_VISITANTE" ></column>
      	<column name="ID_TEMPORADA" ></column>
      </many-to-one>
+     
+     <many-to-one name="temporada" class="ipn.escom.ballScore.entity.Temporada" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+     	<column name="ID_TEMPORADA" ></column>
+     </many-to-one>
 
    </class>
 </hibernate-mapping>
