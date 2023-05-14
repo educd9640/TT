@@ -16,4 +16,5 @@
 	<include file="struts-config/struts-jugadoresEquipoTemp.xml"></include>
 	<include file="struts-config/struts-partidos.xml"></include>
 	<include file="struts-config/struts-jugadoresPartido.xml"></include>
+	<include file="struts-config/struts-estadisticas.xml"></include>
 </struts>

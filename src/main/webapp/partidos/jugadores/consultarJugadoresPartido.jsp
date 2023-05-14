@@ -16,11 +16,13 @@
 				document.forms[0].submit();
 			}
 			function registrarResultados(idJugador){
-				alert(idJugador);
+				valIdPartido=document.getElementById("idPartido").value
+				valIdEquipo=document.getElementById("idEquipo").value;
+				valIdTemporada=document.getElementById("idTemporada").value
 				var full_window_height = window.outerHeight;
 				var full_window_width = window.outerWidth;
         		TINY.box.show({
-        			iframe:'/ballscore/jugadores/partido/presentarRegistroResultados.action',
+        			iframe:'/ballscore/jugadores/estadisticas/presentarRegistroResultados.action?form.idPartido='+valIdPartido+'&form.idJugador='+idJugador+'&form.idEquipo='+valIdEquipo+'&form.idTemporada='+valIdTemporada+'',
         			boxid:'frameless',
         			width:full_window_width-300,
         			height:full_window_height-250,
@@ -60,13 +62,15 @@
 	<s:actionerror />
     <s:actionmessage />
     <br>
-    Registrando jugadores en partido del dia [] de la liga [] temporada del <b></b> al <b></b>
+    Registrando jugadores en partido del dia [<b><s:text name="partido.fechaAnuncioPartido"/></b>] de la liga [<b><s:text name="partido.temporada.liga.nombre"/></b>] temporada del <b><s:text name="partido.temporada.fechaInicial"/></b> al <b><s:text name="partido.temporada.fechaInicial"/></b>
     <br>
-    
+    del equipo <b><s:text name="equipoTemporada.equipo.nombre"/></b>
+    <br>
     <s:form action="consultarJugadoresPartido" method="post">
-		<s:hidden key="form.idTemporada"></s:hidden>
-		<s:hidden key="form.idEquipo"></s:hidden>
-		<s:hidden key="form.idPartido"></s:hidden>
+    	<s:hidden id="sessionManager" key="sessionManager"></s:hidden>
+		<s:hidden id="idTemporada" key="form.idTemporada"></s:hidden>
+		<s:hidden id="idEquipo" key="form.idEquipo"></s:hidden>
+		<s:hidden id="idPartido" key="form.idPartido"></s:hidden>
 		<s:hidden key="form.jugadoresARegistrar" id="jugadoresARegistrar"></s:hidden>
         <table style="border:none;" >
         	<tr>
@@ -93,16 +97,20 @@
 				<display:column property="jugadorEquipoTemp.jugador.alumno.nombrePila" title="Nombre pila" sortable="true" escapeXml="true"></display:column>
 				<display:column property="jugadorEquipoTemp.jugador.alumno.apellidoPat" title="Apellido Paterno" sortable="true" escapeXml="true"></display:column>
 				<display:column property="jugadorEquipoTemp.jugador.alumno.apellidoMat" title="Apellido Materno" sortable="true" escapeXml="true"></display:column>
-				<display:column property="jugadorEquipoTemp.jugador.posicionPrim" title="Posici&oacute;n Primaria" sortable="true"></display:column>
-				<display:column property="jugadorEquipoTemp.jugador.posicionSec" title="Posici&oacute;n Secundaria" sortable="true"></display:column>
+				<display:column property="jugadorEquipoTemp.jugador.posicionPrim" title="Posición Primaria" sortable="true" escapeXml="true"></display:column>
+				<display:column property="jugadorEquipoTemp.jugador.posicionSec" title="Posición Secundaria" sortable="true" escapeXml="true"></display:column>
 				<display:column media="html">
+					<s:if test="%{sessionManager.idManager==equipoTemporada.equipo.manager.idManager}">
                         <a href="javascript:registrarResultados('<s:property value="%{#attr.jugadoresPartido.idJugador}"/>')">Registrar Resultados</a>
+                    </s:if>
 				</display:column>
 			</display:table>
 		</div>
-	<input id="registrarJugadoresModal" type="button" value="Registrar jugadores"/>
-    <s:form namespace="/jugadores/equipo/temporada" action="consultarTemporadasRegistro">
-			<s:submit value="Regresar" targets="consultarTemporadasRegistro" />
+	<s:if test="%{sessionManager.idManager==equipoTemporada.equipo.manager.idManager}">
+		<input id="registrarJugadoresModal" type="button" value="Registrar jugadores"/>
+	</s:if>
+    <s:form namespace="/partidos" action="consultarPartidos">
+			<s:submit value="Regresar" targets="consultarPartidos" />
 	</s:form>
 </div>
 <jsp:include page="/bases/footer.jsp"></jsp:include>
