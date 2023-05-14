@@ -88,7 +88,7 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 	 */
 	@SuppressWarnings("unchecked")
 	public List<EquipoTemporada> obtenerEquiposTemporada(Long idTemporada) {
-		Query q = session.createQuery("from EquipoTemporada where ID_TEMPORADA =:idTemporada");
+		Query q = session.createQuery("from EquipoTemporada et where et.idTemporada = :idTemporada");
 		q.setParameter("idTemporada", idTemporada);
 		return(List<EquipoTemporada>) q.list();
 	}
