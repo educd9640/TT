@@ -72,7 +72,14 @@ public abstract class BaseAction extends ActionSupport implements SessionAware{
 		this.loginService = loginService;
 	}
 
-	
+	public boolean isNullOrBlank(String arg) {
+		if(arg==null) 
+			return true;
+		else if(arg.equals(""))
+			return true;
+		else
+			return false;
+	}
 	
 	
 }

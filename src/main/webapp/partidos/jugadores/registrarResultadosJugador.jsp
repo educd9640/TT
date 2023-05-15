@@ -18,31 +18,32 @@
 				
 				$("#cerrarVentana").click(function(){
 					window.parent.TINY.box.hide();
-    			}); 
+    			}); 		
     			
-    			$("#aceptarSeleccion").click(function(){
-    			
-    				var jugadoresARegistrar = "";
-    			
-    				$("input:checkbox[name='jugador']:checked").each(function(){
-					    jugadoresARegistrar = jugadoresARegistrar + $(this).val() + "_";
-					});
-					if(jugadoresARegistrar.length<1){
-						Sexy.error("Debe seleccionar al menos un jugador");
-					}else{
-						window.parent.TINY.box.hide();
-						window.parent.registrarJugadores(jugadoresARegistrar);
-					}
-    			}); 
+    			$('#partidoIniciado').on('change', function(){
+			   this.value = this.checked ? 1 : 0;
+				}).change();
+				$('#partidoSalvado').on('change', function(){
+				   this.value = this.checked ? 1 : 0;
+				}).change();
+				$('#partidoTerminado').on('change', function(){
+				   this.value = this.checked ? 1 : 0;
+				}).change();
+				$('#partidoGanado').on('change', function(){
+				   this.value = this.checked ? 1 : 0;
+				}).change();
+				$('#partidoPerdido').on('change', function(){
+				   this.value = this.checked ? 1 : 0;
+				}).change();
+				$('#esOportunidadSalvado').on('change', function(){
+				   this.value = this.checked ? 1 : 0;
+				}).change();
+				$('#esShoutout').on('change', function(){
+				   this.value = this.checked ? 1 : 0;
+				}).change();
 	        });
-	        
-	        function limpiarBusqueda(){
-				document.forms[0].boletaAlumno.value=null;
-				document.forms[0].nombrePila.value=null;
-				document.forms[0].posicionPrim.value=null;
-				document.forms[0].posicionSec.value=null;
-				document.forms[0].submit();
-			}
+
+   			
         </script>
 
 	<style>
@@ -68,40 +69,49 @@
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
+      <s:form action="registrarEstadisticasPitcher" method="post">
+		<s:hidden id="idPartido" key="form.IdPartido"></s:hidden>
+		<s:hidden id="idJugador" key="form.idJugador"></s:hidden>
+		<s:hidden id="idEquipo" key="form.idEquipo"></s:hidden>
+		<s:hidden id="idTemporada" key="form.idTemporada"></s:hidden>
         <table>
 				<tr>
 					<th>Resultados Pitcher: </th>
 				</tr>
 				<tr>
-					<td>Partido Iniciado: <input id="partidoIniciado" class="form-check-input" type="checkbox"></td>
-					<td>Partido Salvado: <input id="partidoSalvado" class="form-check-input" type="checkbox"></td>
-					<td>Partido Terminado: <input id="partidoSalvado" class="form-check-input" type="checkbox"></td>
-					<td>Partido Ganado: <input id="partidoSalvado" class="form-check-input" type="checkbox"></td>
-					<td>Partido Perdido: <input id="partidoSalvado" class="form-check-input" type="checkbox"></td>
+					<td>Partido Iniciado: <input id="partidoIniciado" name="form.estadisticasPitcherVO.partidoIniciado" class="form-check-input" type="checkbox" value="0"></td>
+					<td>Partido Salvado: <input id="partidoSalvado" name="form.estadisticasPitcherVO.partidoSalvado" class="form-check-input" type="checkbox" value="0"></td>
+					<td>Partido Terminado: <input id="partidoTerminado" name="form.estadisticasPitcherVO.partidoTerminado" class="form-check-input" type="checkbox" value="0"></td>
+					<td>Partido Ganado: <input id="partidoGanado" name="form.estadisticasPitcherVO.partidoGanado" class="form-check-input" type="checkbox" value="0"></td>
+					<td>Partido Perdido: <input id="partidoPerdido" name="form.estadisticasPitcherVO.partidoPerdido" class="form-check-input" type="checkbox" value="0"></td>
+					<td>Oportunidad Salvado: <input id="esOportunidadSalvado" name="form.estadisticasPitcherVO.esOportunidadSalvado" class="form-check-input" type="checkbox" value="0"></td>
+					<td>Shutout: <input id="esShoutout" class="form-check-input" name="form.estadisticasPitcherVO.esShutout" type="checkbox" value="0"></td>
 				</tr>
 				<tr>
-					<td>Innings Pitcheadas: <br><input class="form-control" id="inningsPitch" type="number"></td>
-					<td>Bases por bola: <br><input class="form-control" id="walks" type="number"></td>
-					<td>Bases por bola intencionales: <br><input class="form-control" id="intWalk" type="number"></td>
-					<td>Bases por golpe:<br><input class="form-control" id="intWalk" type="number"></td>
-					<td>Balks:<br><input class="form-control" id="balks" type="number"></td>
-					<td>WildPitchs:<br><input class="form-control" id="wp" type="number"></td>
+					<td>Innings Pitcheadas: <br><input class="form-control" name="form.estadisticasPitcherVO.inningsPitcheadas" id="inningsPitch" type="number"></td>
+					<td>Bases por bola: <br><input class="form-control" name="form.estadisticasPitcherVO.basesPorbola" id="walks" type="number"></td>
+					<td>Bases por bola intencionales: <br><input class="form-control" name="form.estadisticasPitcherVO.basesPorBolaInt" id="intWalk" type="number"></td>
+					<td>Bases por golpe:<br><input class="form-control" name="form.estadisticasPitcherVO.basesPorGolpe" id="hbp" type="number"></td>
+					<td>Balks:<br><input class="form-control" name="form.estadisticasPitcherVO.balks" id="balks" type="number"></td>
+					<td>WildPitchs:<br><input class="form-control" name="form.estadisticasPitcherVO.wildpitchs" id="wp" type="number"></td>
 				</tr>
 				<tr>
-					<td>Hits Permitidos:<br><input class="form-control" id="inningsPitch" type="number"></td>
-					<td>Carreras:<br><input class="form-control" id="walks" type="number"></td>
-					<td>Carreras permitidas:<br><input class="form-control" id="intWalk" type="number"></td>
-					<td>Homeruns:<br><input class="form-control" id="hitsByPitch" type="number"></td>
+					<td>Hits Permitidos:<br><input class="form-control" name="form.estadisticasPitcherVO.hitsPermitidos" id="hitsPermitidos" type="number"></td>
+					<td>Carreras:<br><input class="form-control" name="form.estadisticasPitcherVO.carreras" id="carreras" type="number"></td>
+					<td>Carreras permitidas:<br><input class="form-control" name="form.estadisticasPitcherVO.carrerasPermitidas" id="carrerasPermitidas" type="number"></td>
+					<td>Homeruns:<br><input class="form-control" name="form.estadisticasPitcherVO.homeruns" id="homeruns" type="number"></td>
 				</tr>
 				<tr>
-					<td>Strike Outs:<br><input class="form-control" id="inningsPitch" type="number"></td>
-					<td>Fly Outs: <br><input class="form-control" id="walks" type="number"></td>
-					<td>Ground Outs: <br><input class="form-control" id="intWalk" type="number"></td>
+					<td>Strike Outs:<br><input class="form-control" name="form.estadisticasPitcherVO.strikeouts" id="strikeoutsPitch" type="number"></td>
+					<td>Fly Outs: <br><input class="form-control" name="form.estadisticasPitcherVO.flyouts" id="flyouts" type="number"></td>
+					<td>Ground Outs: <br><input class="form-control"  name="form.estadisticasPitcherVO.groundOuts" id="groundouts" type="number"></td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
-					<td><input class="btn btn-primary" type="button" value="Registrar Resultados"></td>
+					<td>&nbsp;</td>
+					<td><input class="btn btn-primary" type="submit" value="Registrar Resultados"></td>
 				</tr>
 		</table>
+	</s:form>
       </div>
     </div>
   </div>
@@ -113,28 +123,34 @@
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
+      <s:form action="registrarEstadisticasDefensivas" method="post">
+		<s:hidden id="idPartido" key="form.IdPartido"></s:hidden>
+		<s:hidden id="idJugador" key="form.idJugador"></s:hidden>
+		<s:hidden id="idEquipo" key="form.idEquipo"></s:hidden>
+		<s:hidden id="idTemporada" key="form.idTemporada"></s:hidden>
         <table>
 				<tr>
 					<th>Resultados defensivos:</th>
 				<tr>
-					<td>Innings jugadas:<br><input class="form-control" id="wp" type="number"></td>
+					<td>Innings jugadas:<br><input class="form-control" name="form.estadisticasDefensivasVO.inningsJugadas" id="inningsJugadas" type="number"></td>
 				</tr>
 				<tr>
-					<td>Outs:<br><input class="form-control" id="inningsPitch" type="number"></td>
-					<td>Putouts:<br><input class="form-control" id="hitsByPitch" type="number"></td>
-					<td>Doble plays:<br><input class="form-control" id="intWalk" type="number"></td>
-					<td>Triple Plays<br><input class="form-control" id="inningsPitch" type="number"></td>
-					<td>Passed Balls: <br><input class="form-control" id="intWalk" type="number"></td>
+					<td>Outs:<br><input class="form-control" name="form.estadisticasDefensivasVO.outs" id="outs" type="number"></td>
+					<td>Putouts:<br><input class="form-control" name="form.estadisticasDefensivasVO.putouts" id="putouts" type="number"></td>
+					<td>Doble plays:<br><input class="form-control" name="form.estadisticasDefensivasVO.dobleplays" id="dobleplays" type="number"></td>
+					<td>Triple Plays<br><input class="form-control" name="form.estadisticasDefensivasVO.triplePlays" id="triplePlays" type="number"></td>
+					<td>Passed Balls: <br><input class="form-control" name="form.estadisticasDefensivasVO.passedballs" id="passedballs" type="number"></td>
 				</tr>
 				<tr>
-					<td>Asitencia Out Outfield:<br><input class="form-control" id="walks" type="number"></td>
-					<td>Asistencias:  <br><input class="form-control" id="inningsPitch" type="number"></td>
-					<td>Atradas en robo: <br><input class="form-control" id="walks" type="number"></td>
-					<td>Robos: <br><input class="form-control" id="intWalk" type="number"></td>
-					<td>Errores:<br><input class="form-control" id="balks" type="number"></td>
-					<td><input class="btn btn-primary" type="button" value="Registrar Resultados"></td>
+					<td>Asitencia Out Outfield:<br><input class="form-control" name="form.estadisticasDefensivasVO.asistenciaOutField" id="asistenciaOutField" type="number"></td>
+					<td>Asistencias:  <br><input class="form-control" name="form.estadisticasDefensivasVO.asistencias" id="asistencias" type="number"></td>
+					<td>Atradas en robo: <br><input class="form-control" name="form.estadisticasDefensivasVO.atrapadasEnRobo" id="atrapadasEnRobo" type="number"></td>
+					<td>Robos: <br><input class="form-control" name="form.estadisticasDefensivasVO.robos" id="robos" type="number"></td>
+					<td>Errores:<br><input class="form-control" name="form.estadisticasDefensivasVO.errores" id="errores" type="number"></td>
+					<td><input class="btn btn-primary" type="submit" value="Registrar Resultados"></td>
 				</tr>
 		</table>
+		</s:form>
       </div>
     </div>
   </div>
@@ -151,7 +167,7 @@
 					<th>Resultados ofensivos:</th>	
 				</tr>
 				<tr>
-					<td>Walk off: <input class="form-check-input" id="partidoIniciado" type="checkbox"></td>
+					<td>Walk off: <input class="form-check-input" id="walkoff" type="checkbox"></td>
 				<tr>
 				<tr>
 					<td>Turnos al bat:  <br><input class="form-control" id="inningsPitch" type="number"></td>
@@ -195,7 +211,6 @@
     </div>
   </div>
 </div>
-
 <input id="cerrarVentana" type="button" value="Cerrar"/>
     </body>
 </html>
