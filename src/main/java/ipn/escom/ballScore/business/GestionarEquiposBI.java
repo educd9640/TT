@@ -54,6 +54,8 @@ public class GestionarEquiposBI {
 		}catch(Exception e) {
 			logger.error("Error al obtener el manager para registrar el equipo", e);
 			throw new BussinessException("Error al registrar al alumno. ");
+		}finally {
+			managersDao.cerrarConexiones();
 		}
 		nuevoEquipo.setManager(manager);
 		try 
@@ -73,10 +75,10 @@ public class GestionarEquiposBI {
 				logger.error("Error al realizar insert del equipo", e);
 				throw new BussinessException(" Error al registrar al alumno. ");
 			}
+		}finally {
+			equiposDao.cerrarConexiones();
 		}
 
-		equiposDao.cerrarConexiones();
-		managersDao.cerrarConexiones();
 		return nuevoEquipo;
 	}
 	
@@ -158,6 +160,8 @@ public class GestionarEquiposBI {
 				mensaje="El equipo se ha desactivado exitosamente";
 			} catch (SQLException e) {
 				throw new BussinessException("Error al desactivar al equipo");
+			}finally {
+				equipoDao.cerrarConexiones();
 			}
 		}else {
 			try {
@@ -165,10 +169,10 @@ public class GestionarEquiposBI {
 				mensaje="El equipo ha sido activado exitosamente";
 			} catch (SQLException e) {
 				throw new BussinessException("Error al activar el equipo");
+			}finally {
+				equipoDao.cerrarConexiones();
 			}
 		}
-		
-		equipoDao.cerrarConexiones();
 		
 		return mensaje;
 	}
@@ -186,8 +190,9 @@ public class GestionarEquiposBI {
 		}catch(Exception e) {
 			logger.error(" Error al consultar los equipos registrados ", e);
 			throw new BussinessException("Error al consultar los equipos registrados.");
+		}finally {
+			equipoDao.cerrarConexiones();
 		}
-		equipoDao.cerrarConexiones();
 		return equipos;
 	}
 	
