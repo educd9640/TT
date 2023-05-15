@@ -1,0 +1,60 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="jugadoresPartido" namespace="/jugadores/partido"
+		extends="struts-default">
+		<!-- Inicio Filters -->
+		<interceptors>
+			<!-- Interceptador de autentificación -->
+			<interceptor name="autentificador"
+				class="ipn.escom.ballScore.interceptor.ValidaLogin" />
+
+			<!-- Pila de interceptador "authInterceptador" -->
+			<!-- Esta pila llamara primero al interceptador "autentificador", si dicho 
+				interceptador no devuelve "expired", continua el flujo normal -->
+			<interceptor-stack name="authInterceptador">
+				<interceptor-ref name="autentificador" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">ERROR</param>
+					<param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,submit</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- Interceptador default, si no se especifica un interceptador en la 
+			definición del action, se llamara automaticamente a este interceptador -->
+		<default-interceptor-ref
+			name="authInterceptador" />
+
+		<!-- Global Results -->
+		<!-- Los results que se especifiquen en este apartado, aplican para cualquier 
+			Action -->
+		<global-results>
+			<!-- Cuando expira la sesión regresa a index.jsp (pantalla de login) -->
+			<result name="expired">/index.jsp</result>
+		</global-results>
+		
+		<action name="consultarJugadoresPartido"
+			class="ipn.escom.ballScore.action.GestionarJugadorPartidoAction"
+			method="consultarJugadoresPartido">
+			<result name="success">/partidos/jugadores/consultarJugadoresPartido.jsp</result>
+		</action>
+	
+		<action name="consultarJugadoresNoInscritos"
+			class="ipn.escom.ballScore.action.GestionarJugadorPartidoAction"
+			method="consultarJugadoresNoInscritos">
+			<result name="success">/partidos/jugadores/consultarJugadoresNoInscritosModal.jsp</result>
+		</action>
+		
+		<action name="registrarJugadores"
+			class="ipn.escom.ballScore.action.GestionarJugadorPartidoAction"
+			method="registrarJugadores">
+			<result name="success">/partidos/jugadores/consultarJugadoresPartido.jsp</result>
+		</action>
+
+	</package>
+
+</struts>

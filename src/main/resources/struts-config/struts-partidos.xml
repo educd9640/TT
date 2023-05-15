@@ -57,7 +57,12 @@
 			<result name="input">/partidos/registroPartidos.jsp</result>
 		</action>
 
-		
+		<action name="consultarPartidos"
+			class="ipn.escom.ballScore.action.GestionarPartidosAction"
+			method="consultarPartidos">
+			<result name="success">/partidos/consultarPartidos.jsp</result>
+			<result name="input">/partidos/consultarPartidos.jsp</result>
+		</action>
 
 	</package>
 </struts>

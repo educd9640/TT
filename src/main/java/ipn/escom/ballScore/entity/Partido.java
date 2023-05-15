@@ -18,8 +18,9 @@ public class Partido {
 	private Date fechaAlta;
 	
 	private ResultadosPartido resultadosPartido;
-	private EquipoTemporada equipoTemporada;
-	
+	private EquipoTemporada equipoTemporadaLocal;
+	private EquipoTemporada equipoTemporadaVisitante;
+	private Temporada temporada;
 	
 	public Long getIdPartido() {
 		return idPartido;
@@ -69,11 +70,24 @@ public class Partido {
 	public void setIdTemporada(Long idTemporada) {
 		this.idTemporada = idTemporada;
 	}
-	public EquipoTemporada getEquipoTemporada() {
-		return equipoTemporada;
+	public EquipoTemporada getEquipoTemporadaLocal() {
+		return equipoTemporadaLocal;
 	}
-	public void setEquipoTemporada(EquipoTemporada equipoTemporada) {
-		this.equipoTemporada = equipoTemporada;
+	public void setEquipoTemporadaLocal(EquipoTemporada equipoTemporadaLocal) {
+		this.equipoTemporadaLocal = equipoTemporadaLocal;
 	}
+	public EquipoTemporada getEquipoTemporadaVisitante() {
+		return equipoTemporadaVisitante;
+	}
+	public void setEquipoTemporadaVisitante(EquipoTemporada equipoTemporadaVisitante) {
+		this.equipoTemporadaVisitante = equipoTemporadaVisitante;
+	}
+	public Temporada getTemporada() {
+		return temporada;
+	}
+	public void setTemporada(Temporada temporada) {
+		this.temporada = temporada;
+	}
+	
 	
 }

@@ -59,8 +59,8 @@
         <s:actionerror />
         <s:actionmessage />
         
-        <s:form action="modalRegistrarJugador" method="post">
-                <table style="border:none">
+        	<s:form action="consultarJugadoresNoInscritos" method="post">
+            <table style="border:none">
         	<tr>
         	<td><b>Busqueda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="form.boletaAlumno"/></td>
         	<td><b>Busqueda por Nombre Pila</b> <input type="text" id="nombrePila" name="form.nombrePila"/></td>
@@ -72,24 +72,25 @@
         	</tr>
         	<s:hidden name="form.idEquipo"></s:hidden>
         	<s:hidden name="form.idTemporada"></s:hidden>
+        	<s:hidden name="form.idPartido"></s:hidden>
     	</table>
         </s:form>
         
         <div>
-			<display:table export="true" id="jugadorEquipo" name="form.jugadoresEquipo" pagesize="15" requestURI="" class="table table-hover table-striped">
+			<display:table export="true" id="jugadorEquipoTemp" name="form.jugadoresEquipoTemp" pagesize="15" requestURI="" class="table table-hover table-striped">
 				<display:setProperty name="export.types" value="csv excel xml pdf" />
-				<display:setProperty name="export.excel.filename" value="JugadoresEquipoLibres.xls" />
-				<display:setProperty name="export.csv.filename" value="JugadoresEquipoLibres.csv" />
-				<display:setProperty name="export.xml.filename" value="JugadoresEquipoLibres.xml" />
-				<display:setProperty name="export.pdf.filename" value="JugadoresEquipoLibres.pdf" />
-				<display:column property="alumno.boletaAlumno" title="Boleta Alumno" sortable="true"></display:column>
-				<display:column property="alumno.nombrePila" title="Nombre pila" sortable="true" escapeXml="true"></display:column>
-				<display:column property="alumno.apellidoPat" title="Apellido Paterno" sortable="true" escapeXml="true"></display:column>
-				<display:column property="alumno.apellidoMat" title="Apellido Materno" sortable="true" escapeXml="true"></display:column>
-				<display:column property="posicionPrim" title="Posici&oacute;n Primaria" sortable="true"></display:column>
-				<display:column property="posicionSec" title="Posici&oacute;n Secundaria" sortable="true"></display:column>
+				<display:setProperty name="export.excel.filename" value="JugadoresEquipoTempLibres.xls" />
+				<display:setProperty name="export.csv.filename" value="JugadoresEquipoTempLibres.csv" />
+				<display:setProperty name="export.xml.filename" value="JugadoresEquipoTempLibres.xml" />
+				<display:setProperty name="export.pdf.filename" value="JugadoresEquipoTempLibres.pdf" />
+				<display:column property="jugador.alumno.boletaAlumno" title="Boleta Alumno" sortable="true"></display:column>
+				<display:column property="jugador.alumno.nombrePila" title="Nombre pila" sortable="true" escapeXml="true"></display:column>
+				<display:column property="jugador.alumno.apellidoPat" title="Apellido Paterno" sortable="true" escapeXml="true"></display:column>
+				<display:column property="jugador.alumno.apellidoMat" title="Apellido Materno" sortable="true" escapeXml="true"></display:column>
+				<display:column property="jugador.posicionPrim" title="Posici&oacute;n Primaria" sortable="true"></display:column>
+				<display:column property="jugador.posicionSec" title="Posici&oacute;n Secundaria" sortable="true"></display:column>
 				<display:column title="Activo" sortable="true" media="html">
-					<s:if test="%{#attr.jugadorEquipo.fechaAlta!=null}">
+					<s:if test="%{#attr.jugadorEquipoTemp.fechaAlta!=null}">
 						<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
 					</s:if>
                     <s:else>
@@ -97,8 +98,8 @@
                     </s:else>
 				</display:column>
 				<display:column media="html">
-					<s:if test="%{#attr.jugadorEquipo.fechaAlta!=null}">
-                   		<input type="checkbox" name="jugador" id="<s:property value="%{#attr.jugadorEquipo.idJugador}"/>" value="<s:property value="%{#attr.jugadorEquipo.idJugador}"/>"/>
+					<s:if test="%{#attr.jugadorEquipoTemp.fechaAlta!=null}">
+                   		<input type="checkbox" name="jugador" id="<s:property value="%{#attr.jugadorEquipoTemp.idJugador}"/>" value="<s:property value="%{#attr.jugadorEquipoTemp.idJugador}"/>"/>
                    	</s:if>
 				</display:column>
 			</display:table>
