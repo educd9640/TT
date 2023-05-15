@@ -35,15 +35,15 @@
 				
 				$("#buscar").click(function(){
         			const tablaReg = document.getElementById('tabla');
-        			const buscarIdTemporada = document.getElementById('busquedaIdTemporada');
-        			const buscarIdLiga = document.getElementById('busquedaIdLiga');
+        			const buscarID = document.getElementById('busquedaID');
+        			const buscarEquipo = document.getElementById('busquedaEquipo');
         			
         			const textoBuscar = document.getElementById('idTexto').value.toLowerCase();
         			var noCelda=0;
-        			if(buscarIdTemporada.checked){
+        			if(buscarID.checked){
         				noCelda=0;
-        			}else if(buscarIdLiga.checked){
-        				noCelda=4;
+        			}else if(buscarEquipo.checked){
+        				noCelda=1;
         			}else{
         				Sexy.error("Debes seleccionar una opcion");
         			}
@@ -92,11 +92,11 @@
     			
     			$("#aceptarSeleccion").click(function(){
     			
-    				var checkBoxesSeleccionadas = $('input[name="temporada"]:checked');
+    				var checkBoxesSeleccionadas = $('input[name="equipo"]:checked');
 					if(checkBoxesSeleccionadas.length<1){
-						Sexy.error("Debe seleccionar una temporada");
+						Sexy.error("Debe seleccionar un equipo");
 					}else{
-						window.parent.settearDesdeModal(checkBoxesSeleccionadas[0].value);
+						window.parent.settearDesdeModalVisitante(checkBoxesSeleccionadas[0].value);
 						window.parent.TINY.box.hide();
 					}
     			}); 
@@ -111,11 +111,14 @@
         <s:actionerror />
         <s:actionmessage />
         
-        <input type="radio" id="busquedaIdTemporada" name="opcion" value="IdTemporada">
-    	<label for="busquedaIdTemporada">Busqueda por Id de la Temporada</label> 
-        <input type="radio" id="busquedaIdLiga" name="opcion" value="IdLiga">
-    	<label for="busquedaIdLiga">Busqueda por Id de la Liga</label>
-    	
+        <s:hidden name="partidoF.idTemporada"></s:hidden>
+        <s:hidden name="idTemporada" value="partidoF.idTemporada"></s:hidden>
+        
+        <input type="radio" id="busquedaID" name="opcion" value="ID">
+    	<label for="busquedaID">Busqueda por ID</label> 
+        <input type="radio" id="busquedaEquipo" name="opcion" value="equipo">
+    	<label for="busquedaEquipo">Busqueda por nombre del equipo</label>
+    	<br></br>
     	<br></br>
     	<label id="etiqueta" for="idTexto"></label>
     	<input type="text" id="idTexto" name="idTexto"/>
@@ -124,26 +127,22 @@
     	
         <table id="tabla" class="borderAll">
         	<tr>
-        		<th><s:text name="temporadaF.idTemporada"/></th>
-        		<th><s:text name="temporadaF.idEquipoCampeon"/></th>
-        		<th><s:text name="temporadaF.fechaInicial"/></th>
-        		<th><s:text name="temporadaF.fechaFinal"/></th>
-        		<th><s:text name="temporadaF.liga.idLiga"/></th>
+        		<th><s:text name="equipoForm.idEquipo"/></th>
+        		<th><s:text name="equipoForm.nombre"/></th>
+        		<th><s:text name="equipoForm.manager.idManager"/></th>
         		<th>&nbsp;</th>
         	</tr>
-        	<s:iterator value="equipoTemporadasRegistradas" status="status">
+        	<s:iterator value="equiposTemporadaRegistrados" status="status">
         		<s:if test="fechaAlta != null">
         				
 	        		<tr>
-	        		<td class="nowrap"><s:property value="idTemporada"/></td>
-        			<td class="nowrap"><s:property value="idEquipoCampeon"/></td>
-        			<td class="nowrap"><s:property value="fechaInicial"/></td>
-        			<td class="nowrap"><s:property value="fechaFinal"/></td>
-        			<td class="nowrap"><s:property value="liga.idLiga"/></td>
+	        			<td class="nowrap"><s:property value="idEquipo"/></td>
+	        			<td class="nowrap"><s:property value="nombre"/></td>
+	        			<td class="nowrap"><s:property value="manager.idManager"/></td>
 	        			
 	        			<td class="nowrap">
-	                    	<input type="checkbox" id="<s:property value="idTemporada"/>" name="temporada" 
-	                    	value="<s:property value="idTemporada"/>" />
+	                    	<input type="checkbox" id="<s:property value="idEquipo"/>" name="equipo" 
+	                    	value="<s:property value="idEquipo"/>" />
 	                    </td>
 	        		</tr>
 	        		
@@ -156,6 +155,6 @@
         </table>
         <input id="cerrarVentana" type="button" value="Cerrar"/>
         <input id="aceptarSeleccion" type="button" value="Aceptar"/>
-        <input id="LimpiarVentana" type="button" value="Limpiar"/>
+        <input id="LimiparVentana" type="button" value="Limpiar"/>
 	</body>
 </html>

@@ -26,7 +26,6 @@ public class GestionarTemporadasBI {
 	private GestionarTemporadasDAO temporadaDAO;
 	private GestionarEquipoTemporadaDAO equipotemporadaDAO;
 	private GestionarLigasDAO ligaDAO;
-	private GestionarEquipoTemporadaDAO equipotemporadaDAO;
 	
 	private static final Logger logger = LogManager.getLogger();
 	
@@ -77,7 +76,7 @@ public class GestionarTemporadasBI {
 	
 	
 	
-	/**Metodo para busacar una temporada por su id
+	/**Metodo para buscar una temporada por su id
 	 * @param id de la temporada
 	 * @return Entidad de la temporada con sus datos
 	 * @throws BussinessException En caso de no encontrar la Temporada

@@ -19,7 +19,7 @@
 <h3>Gestionar Partidos</h3>
 
 <p><a href='<s:url namespace="/partidos" action="formularioRegistroPartido" />' >Registrar Partido</a></p>
-<!-- <p><a href='<s:url namespace="/ligas" action="consultarPartidos" />' >Consultar Partido</a></p> -->
+<p><a href='<s:url namespace="/partidos" action="consultarPartidos" />' >Consultar Partido</a></p>
 <p><a href='<s:url namespace="/" action="menuPrincipal" />' >Menu Principal</a></p>
 </body>
 </html>

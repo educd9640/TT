@@ -20,7 +20,30 @@
         <script src="<s:url value='/js/tinybox.js'/>"></script>
         <script>
         	function settearDesdeModal(informacion){
+        		var equipoLocal = document.getElementById("buscarEquipoLocal");
+        	
         		document.getElementById("idTemporada").value=informacion;
+        		
+        		equipoLocal.removeAttribute("disabled");
+        		equipoLocal.visibility = "visible";
+        		
+        	}
+        </script>
+        <script>	
+        	function settearDesdeModalLocal(informacion){
+        		const equipoVisita = document.getElementById("buscarEquipoVisitante");
+        		document.getElementById("idEquipoLocal").value=null;
+        		document.getElementById("idEquipoLocal").value=informacion;
+        		
+        		
+        		equipoVisita.removeAttribute("disabled");
+        		equipoVisita.visibility = "visible";
+        	}
+        </script>
+        <script>
+        	function settearDesdeModalVisitante(informacion){
+        		
+        		document.getElementById("idEquipoVisitante").value=informacion;
         	}
         </script>
         <script>
@@ -41,6 +64,43 @@
 					maskopacity:40
        			})
     		});
+    		
+    		//EquipoLocal
+    		$("#buscarEquipoLocal").click(function(){
+				var full_window_height = window.outerHeight;
+				var full_window_width = window.outerWidth;
+				var temporada = document.getElementById("idTemporada").value;
+        		TINY.box.show({
+        			iframe: '/ballscore/equipos/consultarEquipoLocalModal.action?idTemporada=' + temporada,
+        			boxid:'frameless',
+        			width:full_window_width-300,
+        			height:full_window_height-250,
+        			fixed:true,
+        			maskid:'bluemask',
+					maskopacity:40
+       			})
+    		});
+    		
+    		
+    		//EquipoVisita
+    		$("#buscarEquipoVisitante").click(function(){
+				var full_window_height = window.outerHeight;
+				var full_window_width = window.outerWidth;
+				var temporada = document.getElementById("idTemporada").value;
+				var equipoL = document.getElementById("idEquipoLocal").value;
+				
+        		TINY.box.show({
+        			iframe: '/ballscore/equipos/consultarEquipoVisitanteModal.action?idTemporada=' + temporada+'&equipoL='+equipoL,
+        			boxid:'frameless',
+        			width:full_window_width-300,
+        			height:full_window_height-250,
+        			fixed:true,
+        			maskid:'bluemask',
+					maskopacity:40
+       			})
+    		});
+    		
+    		
 		});
         </script>
         
@@ -64,6 +124,13 @@
         
         	<s:textfield id="idTemporada" key="partidoF.idTemporada" readonly="true"/>
         	<input id="buscarTemporada" type="button" value="Buscar Temporada">
+        	
+        	
+			<input id="buscarEquipoLocal" type="button" value="Buscar Equipo Local" disabled="true">
+			<input id="buscarEquipoVisitante" type="button" value="Buscar Equipo Visitante" disabled="true">
+        	
+        	<s:textfield id="idEquipoLocal" key="partidoF.idEquipoLocal" readonly="true"/>
+        	<s:textfield id="idEquipoVisitante" key="partidoF.idEquipoVisitante" readonly="true"/>
         	
         	<s:textfield id="fechaAnuncioPartido" key="fechaAnuncioPartido" label="Fecha de Anuncio" placeholder="dd/mm/yyyy"/>
 			<s:textfield id="horaAnuncioPartido" key="horaAnuncioPartido" label="Hora de Anuncio formato 24hrs" placeholder="xx:xx"/>        	

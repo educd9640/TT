@@ -90,6 +90,23 @@
 			<result name="input">/equipos/submenuEquipo.jsp</result>
 			<result name="success">/equipos/submenuEquipo.jsp</result>
 		</action>
+		
+		<action name="consultarEquipoLocalModal"
+			class="ipn.escom.ballScore.action.GestionarEquiposAction"
+			method="mostrarLocales">
+			<param name="idTemporada">{1}</param>
+			<result name="input">/equipos/consultarEquipoLocalModal.jsp</result>
+			<result name="success">/equipos/consultarEquipoLocalModal.jsp</result>
+		</action>
+		
+		<action name="consultarEquipoVisitanteModal"
+			class="ipn.escom.ballScore.action.GestionarEquiposAction"
+			method="mostrarLocales">
+			<param name="idTemporada">{1}</param>
+			<param name="equipoL">{1}</param>
+			<result name="input">/equipos/consultarEquipoVisitanteModal.jsp</result>
+			<result name="success">/equipos/consultarEquipoVisitanteModal.jsp</result>
+		</action>
 
 	</package>
 </struts>

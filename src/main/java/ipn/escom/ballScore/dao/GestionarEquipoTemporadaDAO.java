@@ -123,6 +123,18 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 		return (List<Long>)q.list();
 	}
 	
+	
+	
+	/**Metodo para obtener los equipos en equipo_temporada
+	 * @return Lista de los id de los equipos en Long
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Long> obtenerEquipos(Long idTemporada){
+		Query q = session.createQuery("select distinct et.idEquipo from EquipoTemporada et where et.idTemporada = :idTemporada");
+		q.setParameter("idTemporada", idTemporada);
+		return (List<Long>)q.list();
+	}
+	
 	/**Metodo DAO para acutalizar un equipo de temporada
 	 * @param entidad del equipo de temporada
 	 */

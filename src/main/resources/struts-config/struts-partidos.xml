@@ -56,6 +56,27 @@
 			<result name="success">/partidos/registroPartidos.jsp</result>
 			<result name="input">/partidos/registroPartidos.jsp</result>
 		</action>
+		
+		<action name="consultarPartidos"
+			class="ipn.escom.ballScore.action.GestionarPartidosAction"
+			method="mostrarRegistrados">
+			<result name="input">/partidos/consultarPartidos.jsp</result>
+			<result name="success">/partidos/consultarPartidos.jsp</result>
+		</action>
+		
+		<action name="modificarPartido"
+			class="ipn.escom.ballScore.action.GestionarPartidosAction"
+			method="mostrarFormulario">
+			<result name="success">/partidos/registroPartidos.jsp</result>
+			<result name="input">/partidos/registroPartidos.jsp</result>
+		</action>
+		
+		<action name="estadoPartido"
+			class="ipn.escom.ballScore.action.GestionarPartidosAction"
+			method="estadoTemporada">
+			<result name="input">/partidos/consultarPartidos.jsp</result>
+			<result name="success">/partidos/consultarPartidos.jsp</result>
+		</action>
 
 		
 

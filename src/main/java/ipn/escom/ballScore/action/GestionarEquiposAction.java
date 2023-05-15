@@ -34,7 +34,12 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	private Manager managerActual;
 	private Equipo equipoManager;
 	private String operacion;
+	private Long idTemporada;
+	private Long equipoL;
+
+
 	private List<Equipo> equiposRegistrados = new ArrayList<Equipo>();
+	private List<Equipo> equiposTemporadaRegistrados = new ArrayList<Equipo>();
 
 	/**
 	 *Metodo para preparar la pantalla
@@ -46,6 +51,23 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		equipoForm= new GestionarEquiposForm();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
 		this.managerActual= (Manager) session.getAttribute("Usuario");
+		
+		if(idTemporada != null) {
+			try {
+				this.equiposTemporadaRegistrados = equipoBI.obtenerEquiposTemporadaRegistrados(idTemporada);
+				if(equipoL != null) {
+					for(int i=0; i<equiposTemporadaRegistrados.size();i++) {
+						if(equiposTemporadaRegistrados.get(i).getIdEquipo() == equipoL) {
+							equiposTemporadaRegistrados.remove(i);
+						}
+					}
+				}
+				
+			}catch(BussinessException e) {
+				addActionError(e.getMessage());
+			}
+		}
+		
 		try {
 			equiposRegistrados= equipoBI.obtenerEquiposRegistrados();
 		}catch(BussinessException e) {
@@ -175,6 +197,23 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		return Action.SUCCESS;
 	}
 	
+	
+	/**Metodo para presentar pantalla de equipos locales
+	 * @return
+	 */
+	public String mostrarLocales() {
+		logger.info("Inicia metodo GestionarLigasAction.mostrarLocales()");
+		return Action.SUCCESS;
+	}
+	
+	/**Metodo para presentar pantalla de equipos visitantes
+	 * @return
+	 */
+	public String mostrarVisitantes() {
+		logger.info("Inicia metodo GestionarLigasAction.mostrarVisitantes()");
+		return Action.SUCCESS;
+	}
+	
 	//Inician Metodos getters y setters
 
 	public GestionarEquiposForm getEquipoForm() {
@@ -199,6 +238,30 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 
 	public void setEquiposRegistrados(List<Equipo> equiposRegistrados) {
 		this.equiposRegistrados = equiposRegistrados;
+	}
+
+	public List<Equipo> getEquiposTemporadaRegistrados() {
+		return equiposTemporadaRegistrados;
+	}
+
+	public void setEquiposTemporadaRegistrados(List<Equipo> equiposTemporadaRegistrados) {
+		this.equiposTemporadaRegistrados = equiposTemporadaRegistrados;
+	}
+
+	public Long getIdTemporada() {
+		return idTemporada;
+	}
+
+	public void setIdTemporada(Long idTemporada) {
+		this.idTemporada = idTemporada;
+	}
+	
+	public Long getEquipoL() {
+		return equipoL;
+	}
+
+	public void setEquipoL(Long idEquipoL) {
+		this.equipoL = idEquipoL;
 	}
 	
 	
