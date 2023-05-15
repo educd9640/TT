@@ -118,6 +118,13 @@
                         <a href="<s:property value="#url"/>" >Registrar Equipo</a>
                         &nbsp;&nbsp;&nbsp;
                         
+                        <s:url action="consultarEquiposParticipantes" var="url" escapeAmp="false">
+                            <s:param name="temporadaseleccionada" value="idTemporada"/>
+                            <s:param name="consultar">equipos</s:param>
+                        </s:url>
+                        <a href="<s:property value="#url"/>">Consultar equipos</a>
+                        &nbsp;&nbsp;&nbsp;
+                        
         				<s:url action="estadoTemporada" var="url">
                             <s:param name="temporadaF.idTemporada" value="idTemporada"/>
                         </s:url>

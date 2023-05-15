@@ -78,6 +78,13 @@
 			<result name="input">/temporadas/registrarEquipoTemporada.jsp</result>
 			<result name="success">/temporadas/registrarEquipoTemporada.jsp</result>
 		</action>
+		
+		<action name="consultarEquiposParticipantes"
+			class="ipn.escom.ballScore.action.GestionarTemporadasAction"
+			method="mostrarRegistrados">
+			<result name="input">/temporadas/consultarEquipos.jsp</result>
+			<result name="success">/temporadas/consultarEquipos.jsp</result>
+		</action>
 
 		<action name="estadoTemporada"
 			class="ipn.escom.ballScore.action.GestionarTemporadasAction"

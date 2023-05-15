@@ -2,11 +2,16 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <s:set var="title" value="%{'Buscar Equipo'}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
+	
+		<link rel="stylesheet" href="<s:url value='/bs/css/bootstrap.min.css'/>">
+		<script src="<s:url value='/bs/js/bootstrap.bundle.min.js'/>"></script>
+		
 		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
 		<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
@@ -47,11 +52,11 @@
         			const textoBuscar = document.getElementById('idTexto').value.toLowerCase();
         			var noCelda=0;
         			if(buscarID.checked){
-        				noCelda=0;
-        			}else if(buscarEquipo.checked){
-        				noCelda=2;
-        			}else if(buscarManager.checked){
         				noCelda=1;
+        			}else if(buscarEquipo.checked){
+        				noCelda=0;
+        			}else if(buscarManager.checked){
+        				noCelda=2;
         			}else{
         				Sexy.error("Debes seleccionar una opcion");
         			}
@@ -136,27 +141,27 @@
     	<input type="button" id="buscar" value="Buscar" />
     	<br></br>
     	<br></br>
-    	<table id="tabla" class="borderAll">
-    		<tr>
-    			<th><s:text name="equipoForm.idEquipo" /></th>
-    			<th><s:text name="equipoForm.nombreManager" /></th>
-    			<th><s:text name="equipoForm.nombre" /></th>
-    			<th>&nbsp;</th>
-    		</tr>
-    		<s:iterator value="equiposRegistrados" status="status">
-    			<tr>
-    				<td class="nowrap"><s:property value="idEquipo"/></td>
-    				<td class="nowrap"><s:property value="manager.nombrePila"/></td>
-    				<td class="nowrap"><s:property value="nombre"/></td>
-    				<td class="nowrap">
-    					<input type="checkbox" id="<s:property value="idEquipo" />" name="equipoElegido" value="<s:property value="idEquipo"/>_<s:property value="manager.nombrePila"/>_<s:property value="nombre"/>" />
-    				</td>
-    			</tr>
-    		</s:iterator>
-    		<tr class='noSearch hide'>
-                <td colspan="5"></td>
-            </tr>
-    	</table>
+    	<div class="container">
+    		<display:table export="true" id="tabla" name="equiposRegistrados" pagesize="10" class="table table-bordered">
+				<display:setProperty name="export.types" value="csv excel xml pdf" />
+				<display:setProperty name="export.excel.filename" value="EquiposRegistrados.xls" />
+				<display:setProperty name="export.csv.filename" value="EquiposRegistrados.csv" />
+				<display:setProperty name="export.xml.filename" value="EquiposRegistrados.xml" />
+				<display:setProperty name="export.pdf.filename" value="EquiposRegistrados.pdf" />
+				<display:column property="nombre" title="Nombre del equipo" sortable="true" ></display:column>    
+				<display:column property="idEquipo" title="ID del Equipo" sortable="true" ></display:column>
+				<display:column property="manager.nombrePila" title="Nombre del manager" sortable="true" ></display:column>
+				<display:column media="html">
+					<input type="checkbox" id="<s:property value="%{#attr.tabla.idEquipo}" />" name="equipoElegido" value="<s:property value="%{#attr.tabla.idEquipo}"/>_<s:property value="%{#attr.tabla.manager.nombrePila}"/>_<s:property value="%{#attr.tabla.nombre}"/>" />
+				</display:column>
+				<display:footer>
+					<tr class='noSearch hide'>
+                		<td colspan="5"></td>
+            		</tr>
+				</display:footer>
+					
+    		</display:table>
+    	</div>
     	
     	<input id="confirmar" type="button" value="Confirmar seleccion"> 
 </body>
