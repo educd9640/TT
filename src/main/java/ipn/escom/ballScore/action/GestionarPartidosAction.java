@@ -16,12 +16,12 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
 import ipn.escom.ballScore.business.GestionarPartidosBI;
+import ipn.escom.ballScore.entity.Manager;
 import ipn.escom.ballScore.entity.Partido;
 import ipn.escom.ballScore.entity.Temporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.PartidoForm;
 import ipn.escom.ballScore.form.PartidoVO;
-import ipn.escom.ballScore.form.TemporadaForm;
 
 /**Clase Acrion para gestionar Partidos
  * @author Eduardo Callejas
@@ -40,6 +40,8 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	
 	private List<Partido> partidosRegistrados = new ArrayList<Partido>();
 	
+	private List<Partido> partidos;
+	private Manager sessionManager;
 	/**Metodo para preparar la pantalla
 	 *
 	 */
@@ -138,15 +140,12 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 		return Action.SUCCESS;
 	}
 	
-	
-	
-	
 	/**Metodo para presentar pantalla de formulario
 	 * @return
 	 */
 	public String mostrarFormulario() {
 		logger.info("Inicia metodo GestionarAlumnosAction.mostrarFormulario()");
-
+		
 		return Action.SUCCESS;
 	}
 	
@@ -157,6 +156,35 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 		logger.info("Inicia metodo GestionarLigasAction.mostrarRegistrados()");
 		return Action.SUCCESS;
 	}
+	
+	/**Metodo para consultar los partidos
+	 * @return pantalla de partidos registrados
+	 */
+	@SkipValidation
+	public String consultarPartidos() {
+		logger.info("Inicia metodo GestionarLigasAction.mostrarRegistrados()");
+		GestionarPartidosBI bi = new GestionarPartidosBI();
+		try {
+			if(this.partidoF!=null &&this.partidoF.getIdPartido()!=null) {
+				this.partidos = bi.obtenerPartidosRegistradosByIdPartido(this.partidoF.getIdPartido());
+			}else if(this.partidoF!=null &&!super.isNullOrBlank(this.partidoF.getNombreLiga())) {
+				this.partidos = bi.obtenerPartidosRegistradosByLiga(this.partidoF.getNombreLiga());
+			}else if(this.partidoF!=null &&!super.isNullOrBlank(this.partidoF.getNombreEquipoVisitante())) {
+				this.partidos = bi.obtenerPartidosRegistradosByEquipoVisitante(this.partidoF.getNombreEquipoVisitante());
+			}else if(this.partidoF!=null &&!super.isNullOrBlank(this.partidoF.getNombreEquipoLocal())) {
+				this.partidos = bi.obtenerPartidosRegistradosByEquipoLocal(this.partidoF.getNombreEquipoLocal());
+			}else if(this.partidoF!=null &&this.partidoF.getFechaInicialBusqueda()!=null && this.partidoF.getFechaFinalBusqueda()!= null) {
+				this.partidos = bi.obtenerPartidosRegistradosByFechas(this.partidoF.getFechaInicialBusqueda(),this.partidoF.getFechaFinalBusqueda());
+			}else {
+				this.partidos = bi.obtenerPartidosRegistrados();
+			}
+		} catch (BussinessException e) {
+			logger.error("Error al consultar partido ", e);
+			addActionError("Error al consultar partido "+e.getMessage());
+		}
+		return Action.SUCCESS;
+	}
+	
 
 	public PartidoForm getPartidoF() {
 		return partidoF;
@@ -212,4 +240,27 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	public void setPartidosRegistrados(List<Partido> partidosRegistrados) {
 		this.partidosRegistrados = partidosRegistrados;
 	}
+	public List<Partido> getPartidos() {
+		return partidos;
+	}
+
+
+
+	public void setPartidos(List<Partido> partidos) {
+		this.partidos = partidos;
+	}
+
+
+
+	public Manager getSessionManager() {
+		return sessionManager;
+	}
+
+
+
+	public void setSessionManager(Manager sessionManager) {
+		this.sessionManager = sessionManager;
+	}
+	
+	
 }

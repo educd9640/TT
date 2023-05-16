@@ -2,15 +2,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<html>
-	<head>
-		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
-		<link href="<s:url value='/css/tinystyle.css'/>" rel="stylesheet" type="text/css"/>
-        <s:head />
-        <style>td { white-space:nowrap; }</style>
-        <title><s:property value="#title"/></title>
-        <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
-        
 		<div class="container rounded p-3 contenido">
         <script>
         	//Inician metodos JQuery
@@ -125,6 +116,13 @@
                             <s:param name="temporadaseleccionada" value="idTemporada"/>
                         </s:url>
                         <a href="<s:property value="#url"/>" >Registrar Equipo</a>
+                        &nbsp;&nbsp;&nbsp;
+                        
+                        <s:url action="consultarEquiposParticipantes" var="url" escapeAmp="false">
+                            <s:param name="temporadaseleccionada" value="idTemporada"/>
+                            <s:param name="consultar">equipos</s:param>
+                        </s:url>
+                        <a href="<s:property value="#url"/>">Consultar equipos</a>
                         &nbsp;&nbsp;&nbsp;
                         
         				<s:url action="estadoTemporada" var="url">

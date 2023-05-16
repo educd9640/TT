@@ -16,6 +16,7 @@
     	 </generator>
       </id>
       
+      <property name = "idTemporada" 			column = "ID_TEMPORADA" 			type = "java.lang.Long" 				 />
       <property name = "idEquipoLocal" 			column = "ID_EQUIPO_LOCAL" 			type = "java.lang.Long" 				 />
       <property name = "idEquipoVisitante" 		column = "ID_EQUIPO_VISITANTE" 		type = "java.lang.Long" 				 />
       <property name = "campo" 					column = "CAMPO" 					type = "java.lang.String" 				 />
@@ -23,14 +24,24 @@
       <property name = "fechaAlta" 				column = "FECHA_ALTA" 				type = "java.sql.Date"					 />
       
      
-     <!-- <many-to-one name="escuela" class="ipn.escom.ballScore.entity.Escuela" fetch="select">
+     <!-- <many-to-one name="escuela" class="ipn.escom.ballScore.entity.EquipoTemporada" fetch="select">
       	<column name="ID_ESCUELA" not-null="true" />
       </many-to-one>
        --> 
-      <many-to-one name="equipoTemporada" class="ipn.escom.ballScore.entity.EquipoTemporada" lazy="false" not-null="true" cascade="none" insert="false" update="false">
-      	<column name="ID_EQUIPO"/>
-      	<column name="ID_TEMPORADA"/>
-      </many-to-one>
+       
+     <many-to-one name="equipoTemporadaLocal" class="ipn.escom.ballScore.entity.EquipoTemporada" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+     	<column name="ID_EQUIPO_LOCAL" ></column>
+     	<column name="ID_TEMPORADA" ></column>
+     </many-to-one>
+     
+     <many-to-one name="equipoTemporadaVisitante" class="ipn.escom.ballScore.entity.EquipoTemporada" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+     	<column name="ID_EQUIPO_VISITANTE" ></column>
+     	<column name="ID_TEMPORADA" ></column>
+     </many-to-one>
+     
+     <many-to-one name="temporada" class="ipn.escom.ballScore.entity.Temporada" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+     	<column name="ID_TEMPORADA" ></column>
+     </many-to-one>
 
    </class>
 </hibernate-mapping>
