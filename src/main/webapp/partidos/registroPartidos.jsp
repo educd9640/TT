@@ -1,6 +1,7 @@
+<jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<div class="container rounded p-3 contenido">
 <s:if test="operacion=='actualizado'">
 	<s:set var="title" value="%{'Modificar Partido'}"/>
 </s:if>
@@ -18,10 +19,13 @@
         
         <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
         <script src="<s:url value='/js/tinybox.js'/>"></script>
-        <script>
+                <script>
         	function settearDesdeModal(informacion){
         		var equipoLocal = document.getElementById("buscarEquipoLocal");
-        	
+        		
+        		document.getElementById("idEquipoLocal").value = null;
+        		document.getElementById("idEquipoVisitante").value = null;
+
         		document.getElementById("idTemporada").value=informacion;
         		
         		equipoLocal.removeAttribute("disabled");
@@ -31,10 +35,10 @@
         </script>
         <script>	
         	function settearDesdeModalLocal(informacion){
-        		const equipoVisita = document.getElementById("buscarEquipoVisitante");
-        		document.getElementById("idEquipoLocal").value=null;
-        		document.getElementById("idEquipoLocal").value=informacion;
+        		var equipoVisita = document.getElementById("buscarEquipoVisitante");
         		
+        		document.getElementById("idEquipoLocal").value=informacion;
+        		document.getElementById("idEquipoVisitante").value = null;
         		
         		equipoVisita.removeAttribute("disabled");
         		equipoVisita.visibility = "visible";
@@ -131,7 +135,9 @@
         	
         	<s:textfield id="idEquipoLocal" key="partidoF.idEquipoLocal" readonly="true"/>
         	<s:textfield id="idEquipoVisitante" key="partidoF.idEquipoVisitante" readonly="true"/>
+        	&nbsp;&nbsp;&nbsp;
         	
+        	<s:textfield key="partidoF.campo" />
         	<s:textfield id="fechaAnuncioPartido" key="fechaAnuncioPartido" label="Fecha de Anuncio" placeholder="dd/mm/yyyy"/>
 			<s:textfield id="horaAnuncioPartido" key="horaAnuncioPartido" label="Hora de Anuncio formato 24hrs" placeholder="xx:xx"/>        	
         	
@@ -148,3 +154,5 @@
 		</s:form>
 	</body>
 </html>
+</div>
+<jsp:include page="/bases/footer.jsp"></jsp:include>

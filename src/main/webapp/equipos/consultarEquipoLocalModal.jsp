@@ -8,7 +8,7 @@
 		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
     	<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
-        <title><s:text name="label.registrados.titulo"/></title>
+        <title><s:text name="label.local.titulo"/></title>
 
         <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
         <!-- Script Sexyalertbox -->

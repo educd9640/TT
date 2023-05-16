@@ -39,6 +39,7 @@ public class GestionarPartidosBI {
 		logger.info("Inicia metodo GestionarPartidosBI.crearPartido()");
 		temporadaDAO = new GestionarTemporadasDAO();
 		partidoDAO = new GestionarPartidosDAO();
+		equipoTDAO = new GestionarEquipoTemporadaDAO();
 		Partido nuevoPartido= new Partido();
 		
 		try {
@@ -48,6 +49,10 @@ public class GestionarPartidosBI {
 			throw new BussinessException("Error al registrar el partido.");
 		}
 		/////////////////////////////////////////////////////
+		Long idTemporada = nuevoPartido.getIdTemporada();
+		nuevoPartido.setEquipoTemporadaLocal(equipoTDAO.selectEquipoTemporadaById(nuevoPartido.getIdEquipoLocal(), idTemporada));
+		nuevoPartido.setEquipoTemporadaVisitante(equipoTDAO.selectEquipoTemporadaById(nuevoPartido.getIdEquipoVisitante(), idTemporada));
+		nuevoPartido.setTemporada(temporadaDAO.selectTemporadaById(idTemporada));
 		
 		try {
 			if(operacion.equals("registrado"))
