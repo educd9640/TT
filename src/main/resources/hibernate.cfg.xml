@@ -28,6 +28,7 @@
 		<mapping resource="entity/JugadorEquipoTemp.hbm.xml" />
 		<mapping resource="entity/Partido.hbm.xml" />
 		<mapping resource="entity/JugadorPartido.hbm.xml" />
-
+		<mapping resource="entity/EstPitcherPart.hbm.xml" />
+		
     </session-factory>
 </hibernate-configuration>

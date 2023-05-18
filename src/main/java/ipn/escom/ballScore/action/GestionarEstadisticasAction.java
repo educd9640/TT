@@ -1,7 +1,5 @@
 package ipn.escom.ballScore.action;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,7 +7,8 @@ import org.apache.logging.log4j.Logger;
 import com.opensymphony.xwork2.Action;
 
 import ipn.escom.ballScore.business.GestionarEstadisticasBI;
-import ipn.escom.ballScore.exception.BussinessException;
+import ipn.escom.ballScore.entity.EstPitcherPart;
+import ipn.escom.ballScore.form.EstadisticasPitcherVO;
 import ipn.escom.ballScore.form.GestionarEstadisticasForm;
 import ipn.escom.ballScore.form.GestionarEstadisticasVO;
 
@@ -27,45 +26,74 @@ public class GestionarEstadisticasAction extends BaseAction{
 	 * @return Pantalla para registro
 	 */
 	public String registrarEstadisticasPitcher() {
-		logger.info("Inicia metodo GestionarEstadisticasAction.registrarEstadisticasAction()");
+		logger.info("Inicia metodo GestionarEstadisticasAction.registrarEstadisticasPitcher()");
 		GestionarEstadisticasBI bi = new GestionarEstadisticasBI();
 		GestionarEstadisticasVO vo = new GestionarEstadisticasVO();
 		
 		try {
 			BeanUtils.copyProperties(vo, form);
 			bi.registrarEstadisticasPitcher(vo);
-		} catch (BussinessException | IllegalAccessException | InvocationTargetException e) {
+		} catch (Exception e) {
 			logger.error("Error al registrar estadisticas : "+e.getMessage(), e);
 			addActionError("Error al registrar estadisticas : "+e.getMessage());
 		}
 		
-		return Action.SUCCESS;
+		return this.presentarRegistroResultados();
 	}
 	
 	/**Metodo Action para registrar estadisticas defensivas
 	 * @return Pantalla para registro
 	 */
 	public String registrarEstadisticasDefensivas() {
-		logger.info("Inicia metodo GestionarEstadisticasAction.registrarEstadisticasAction()");
+		logger.info("Inicia metodo GestionarEstadisticasAction.registrarEstadisticasDefensivas()");
 		GestionarEstadisticasBI bi = new GestionarEstadisticasBI();
 		GestionarEstadisticasVO vo = new GestionarEstadisticasVO();
 		
 		try {
 			BeanUtils.copyProperties(vo, form);
 			bi.registrarEstadisticasDefensivas(vo);
-		} catch (BussinessException | IllegalAccessException | InvocationTargetException e) {
+		} catch (Exception e) {
 			logger.error("Error al registrar estadisticas : "+e.getMessage(), e);
 			addActionError("Error al registrar estadisticas : "+e.getMessage());
 		}
 		
-		return Action.SUCCESS;
+		return this.presentarRegistroResultados();
+	}
+	
+	/**Metodo Action para registrar estadisticas ofensivas
+	 * @return Pantalla para registro
+	 */
+	public String registrarEstadisticasOfensivas() {
+		logger.info("Inicia metodo GestionarEstadisticasAction.registrarEstadisticasOfensivas()");
+		GestionarEstadisticasBI bi = new GestionarEstadisticasBI();
+		GestionarEstadisticasVO vo = new GestionarEstadisticasVO();
+		
+		try {
+			BeanUtils.copyProperties(vo, form);
+			bi.registrarEstadisticasOfensivas(vo);
+		} catch (Exception e) {
+			logger.error("Error al registrar estadisticas : "+e.getMessage(), e);
+			addActionError("Error al registrar estadisticas : "+e.getMessage());
+		}
+		
+		return this.presentarRegistroResultados();
 	}
 	
 	/**Metodo Action para presentar pantalla de registro
 	 * @return pantalla para registro
 	 */
 	public String presentarRegistroResultados() {
-		
+		GestionarEstadisticasBI bi = new GestionarEstadisticasBI();
+		try {
+			EstPitcherPart estPitcher = bi.consultarEstadisticasJugador(form.getIdPartido(), form.getIdJugador(), form.getIdEquipo(), form.getIdTemporada());
+			EstadisticasPitcherVO vo = new EstadisticasPitcherVO();
+			if(estPitcher!=null)
+				BeanUtils.copyProperties(vo, estPitcher);
+			form.setEstadisticasPitcherVO(vo);
+		} catch (Exception e) {
+			logger.error("Error al consultar estadisticas : "+e.getMessage(), e);
+			addActionError("Error al consultar estadisticas : "+e.getMessage());
+		}
 		return Action.SUCCESS;
 	}
 

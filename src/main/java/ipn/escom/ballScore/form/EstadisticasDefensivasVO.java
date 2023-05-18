@@ -5,17 +5,17 @@ package ipn.escom.ballScore.form;
  *
  */
 public class EstadisticasDefensivasVO {
-	private Long inningsJugadas;
-	private Long outs;
-	private Long putouts;
-	private Long dobleplays;
-	private Long triplePlays;
-	private Long passedballs;
-	private Long asistenciaOutField;
-	private Long asistencias;
-	private Long atrapadasEnRobo;
-	private Long robos;
-	private Long errores;
+	private Long inningsJugadas=0L;
+	private Long outs=0L;
+	private Long putouts=0L;
+	private Long dobleplays=0L;
+	private Long triplePlays=0L;
+	private Long passedballs=0L;
+	private Long asistenciaOutField=0L;
+	private Long asistencias=0L;
+	private Long atrapadasEnRobo=0L;
+	private Long robos=0L;
+	private Long errores=0L;
 	
 	public Long getInningsJugadas() {
 		return inningsJugadas;
