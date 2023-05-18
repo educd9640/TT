@@ -38,14 +38,15 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	private String nombreEquipo;
 	private String managerequipo;
 	private Long temporadaseleccionada;
-	
+	private String consultar;
 
 
 	private List<Temporada> temporadasRegistradas = new ArrayList<Temporada>();
 	private List<Temporada> equipoTemporadasRegistradas = new ArrayList<Temporada>();
+	private List<EquipoTemporada> equiposByTemporada = new ArrayList<EquipoTemporada>();
 	
-	
-	
+
+
 	/**Metodo para preparar la pantalla
 	 *
 	 */
@@ -74,6 +75,15 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 				}catch(BussinessException e) {
 					logger.error("Error al consultar la Temporada");
 					addActionError("Error al recuperar datos de la Temporada");
+				}
+			}
+		}
+		if(consultar!=null && temporadaseleccionada!=null) {
+			if(consultar.equals("equipos")) {
+				try {
+					this.equiposByTemporada = temporadaBI.obtenerEqiposByTemporada(temporadaseleccionada);
+				}catch(Exception e) {
+					logger.error("Error al copiar las propiedades de la Temporada al form",e);
 				}
 			}
 		}
@@ -292,6 +302,24 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 
 	public void setEquipoTemporadasRegistradas(List<Temporada> equipoTemporadasRegistradas) {
 		this.equipoTemporadasRegistradas = equipoTemporadasRegistradas;
+	}
+	
+	public String getConsultar() {
+		return consultar;
+	}
+
+
+	public void setConsultar(String consultar) {
+		this.consultar = consultar;
+	}
+	
+	public List<EquipoTemporada> getEquiposByTemporada() {
+		return equiposByTemporada;
+	}
+
+
+	public void setEquiposByTemporada(List<EquipoTemporada> equiposByTemporada) {
+		this.equiposByTemporada = equiposByTemporada;
 	}
 	
 }

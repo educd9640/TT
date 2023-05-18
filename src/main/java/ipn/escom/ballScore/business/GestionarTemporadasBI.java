@@ -12,8 +12,10 @@ import org.apache.logging.log4j.Logger;
 import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
 import ipn.escom.ballScore.dao.GestionarLigasDAO;
 import ipn.escom.ballScore.dao.GestionarTemporadasDAO;
+import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
 import ipn.escom.ballScore.entity.Liga;
 import ipn.escom.ballScore.entity.Temporada;
+import ipn.escom.ballScore.entity.EquipoTemporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.TemporadaVO;
 
@@ -26,6 +28,7 @@ public class GestionarTemporadasBI {
 	private GestionarTemporadasDAO temporadaDAO;
 	private GestionarEquipoTemporadaDAO equipotemporadaDAO;
 	private GestionarLigasDAO ligaDAO;
+	private GestionarEquipoTemporadaDAO equipotempDAO;
 	
 	private static final Logger logger = LogManager.getLogger();
 	
@@ -69,9 +72,10 @@ public class GestionarTemporadasBI {
 				logger.error("Error en la operaci�n sql de la temporada",e);
 				throw new BussinessException("Error al registrar la temporada.");
 			}
+		} finally {
+			temporadaDAO.cerrarConexiones();
+			ligaDAO.cerrarConexiones();
 		}
-		temporadaDAO.cerrarConexiones();
-		ligaDAO.cerrarConexiones();
 		return nuevaTemporada;
 	}
 	
@@ -90,6 +94,7 @@ public class GestionarTemporadasBI {
 		if(temporada == null) {
 			throw new BussinessException("Error al obtener la temporada por su id, no se encuentra registrada.");
 		}
+		
 		temporadaDAO.cerrarConexiones();
 		return temporada;
 		
@@ -115,8 +120,9 @@ public class GestionarTemporadasBI {
 		}catch (Exception e) {
 			logger.error("Error al activar/desactivar la temporada ",e);
 			throw new BussinessException("Error al activar/desactivar la temporada.");
+		}finally {
+			temporadaDAO.cerrarConexiones();
 		}
-		temporadaDAO.cerrarConexiones();
 	}
 	
 	/**Metodo para obtener las temporadas registradas
@@ -132,9 +138,22 @@ public class GestionarTemporadasBI {
 		}catch(Exception e) {
 			logger.error(" Error al consultar las temporadas registradas ", e);
 			throw new BussinessException("Error al consultar las temporadas registradas.");
+		}finally {
+			temporadaDAO.cerrarConexiones();
 		}
-		temporadaDAO.cerrarConexiones();
 		return temporadas;
+	}
+	
+	public List<EquipoTemporada> obtenerEqiposByTemporada(Long idTemporada)throws BussinessException{
+		logger.info("Inicia metodo GestionarTemporadasBI.obtenerEquiposByTemporada()");
+		List <EquipoTemporada> equipos = new ArrayList<EquipoTemporada>();
+		equipotempDAO = new GestionarEquipoTemporadaDAO();
+		equipos= equipotempDAO.obtenerEquiposTemporada(idTemporada);
+		if (equipos.size()==0) {
+			throw new BussinessException ("Error al consultar los equipos");
+		}
+		equipotempDAO.cerrarConexiones();
+		return equipos;
 	}
 	
 	
@@ -146,7 +165,7 @@ public class GestionarTemporadasBI {
 	public List<Temporada> obtenerEquipoTemporadasRegistradas()throws BussinessException{
 		logger.info("Inicia metodo GestionarTemporadasBI.obtenerEquipoTemporadasRegistradas()");
 		temporadaDAO = new GestionarTemporadasDAO();
-		equipotemporadaDAO = new GestionarEquipoTemporadaDAO();
+		GestionarEquipoTemporadaDAO equipotemporadaDAO = new GestionarEquipoTemporadaDAO();
 		List<Temporada> temporadas = new ArrayList<Temporada>();
 		List<Long> equipoTemporadas = new ArrayList<Long>();
 		try {
@@ -154,6 +173,8 @@ public class GestionarTemporadasBI {
 		}catch(Exception e) {
 			logger.error(" Error al consultar las temporadas registradas en equipo_temporada", e);
 			throw new BussinessException("Error al consultar las temporadas registradas en equipo_temporada.");
+		}finally {
+			equipotemporadaDAO.cerrarConexiones();
 		}
 		
 		try {
@@ -163,10 +184,10 @@ public class GestionarTemporadasBI {
 		}catch(Exception e) {
 			logger.error(" Error al consultar las temporadas registradas ", e);
 			throw new BussinessException("Error al consultar las temporadas registradas.");
+		}finally {
+			temporadaDAO.cerrarConexiones();
 		}
 		
-		temporadaDAO.cerrarConexiones();
-		equipotemporadaDAO.cerrarConexiones();
 		return temporadas;
 	}
 	
