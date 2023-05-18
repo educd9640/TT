@@ -45,8 +45,8 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	private List<Temporada> equipoTemporadasRegistradas = new ArrayList<Temporada>();
 	private List<EquipoTemporada> equiposByTemporada = new ArrayList<EquipoTemporada>();
 	
-	
-	
+
+
 	/**Metodo para preparar la pantalla
 	 *
 	 */
@@ -81,7 +81,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		if(consultar!=null && temporadaseleccionada!=null) {
 			if(consultar.equals("equipos")) {
 				try {
-					equiposByTemporada = temporadaBI.obtenerEqiposByTemporada(temporadaseleccionada);
+					this.equiposByTemporada = temporadaBI.obtenerEqiposByTemporada(temporadaseleccionada);
 				}catch(Exception e) {
 					logger.error("Error al copiar las propiedades de la Temporada al form",e);
 				}
@@ -311,6 +311,15 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 
 	public void setConsultar(String consultar) {
 		this.consultar = consultar;
+	}
+	
+	public List<EquipoTemporada> getEquiposByTemporada() {
+		return equiposByTemporada;
+	}
+
+
+	public void setEquiposByTemporada(List<EquipoTemporada> equiposByTemporada) {
+		this.equiposByTemporada = equiposByTemporada;
 	}
 	
 }

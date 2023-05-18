@@ -71,9 +71,10 @@ public class GestionarTemporadasBI {
 				logger.error("Error en la operaci�n sql de la temporada",e);
 				throw new BussinessException("Error al registrar la temporada.");
 			}
+		} finally {
+			temporadaDAO.cerrarConexiones();
+			ligaDAO.cerrarConexiones();
 		}
-		temporadaDAO.cerrarConexiones();
-		ligaDAO.cerrarConexiones();
 		return nuevaTemporada;
 	}
 	
@@ -92,6 +93,7 @@ public class GestionarTemporadasBI {
 		if(temporada == null) {
 			throw new BussinessException("Error al obtener la temporada por su id, no se encuentra registrada.");
 		}
+		
 		temporadaDAO.cerrarConexiones();
 		return temporada;
 		
@@ -117,8 +119,9 @@ public class GestionarTemporadasBI {
 		}catch (Exception e) {
 			logger.error("Error al activar/desactivar la temporada ",e);
 			throw new BussinessException("Error al activar/desactivar la temporada.");
+		}finally {
+			temporadaDAO.cerrarConexiones();
 		}
-		temporadaDAO.cerrarConexiones();
 	}
 	
 	/**Metodo para obtener las temporadas registradas
@@ -134,14 +137,16 @@ public class GestionarTemporadasBI {
 		}catch(Exception e) {
 			logger.error(" Error al consultar las temporadas registradas ", e);
 			throw new BussinessException("Error al consultar las temporadas registradas.");
+		}finally {
+			temporadaDAO.cerrarConexiones();
 		}
-		temporadaDAO.cerrarConexiones();
 		return temporadas;
 	}
 	
 	public List<EquipoTemporada> obtenerEqiposByTemporada(Long idTemporada)throws BussinessException{
 		logger.info("Inicia metodo GestionarTemporadasBI.obtenerEquiposByTemporada()");
 		List <EquipoTemporada> equipos = new ArrayList<EquipoTemporada>();
+		equipotempDAO = new GestionarEquipoTemporadaDAO();
 		equipos= equipotempDAO.obtenerEquiposTemporada(idTemporada);
 		if (equipos.size()==0) {
 			throw new BussinessException ("Error al consultar los equipos");
@@ -167,6 +172,8 @@ public class GestionarTemporadasBI {
 		}catch(Exception e) {
 			logger.error(" Error al consultar las temporadas registradas en equipo_temporada", e);
 			throw new BussinessException("Error al consultar las temporadas registradas en equipo_temporada.");
+		}finally {
+			equipotemporadaDAO.cerrarConexiones();
 		}
 		
 		try {
@@ -176,10 +183,10 @@ public class GestionarTemporadasBI {
 		}catch(Exception e) {
 			logger.error(" Error al consultar las temporadas registradas ", e);
 			throw new BussinessException("Error al consultar las temporadas registradas.");
+		}finally {
+			temporadaDAO.cerrarConexiones();
 		}
 		
-		temporadaDAO.cerrarConexiones();
-		equipotemporadaDAO.cerrarConexiones();
 		return temporadas;
 	}
 	
