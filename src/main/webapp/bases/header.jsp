@@ -97,6 +97,9 @@
 		  background-repeat: no-repeat;
 		  background-attachment: fixed;
 		  background-size: cover;
+		  width:100%;
+		  heigth:100%;
+		  position:relative;
 	  }
 	  
 	  .contenido{
@@ -105,6 +108,7 @@
 	  	  max-width: 90%; 
 	  	  margin-top: 1%; 
 	  	  opacity:.9;
+	  	  overflow-x: auto;
 	  }
 </style>
 <body style="margin: 0">

@@ -28,7 +28,7 @@ public class LoginAction extends BaseAction{
 	public String login(){
 		Manager usuario;
 		try {
-			usuario = getLoginService().doLogin(getLogin(), getContrasenia());
+			usuario = getLoginService().doLogin(getLogin().trim(), getContrasenia());
 		}catch(Exception e) {
 			logger.error("Error al obtener el login ", e);
 			addActionError("Error al obtener el login");

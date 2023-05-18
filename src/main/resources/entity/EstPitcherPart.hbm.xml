@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "ipn.escom.ballScore.entity.EstPitcherPart" table = "EST_PITCHER_PART">
+      
+      <meta attribute = "class-description">
+         This class contains the EstPitcherPart detail. 
+      </meta>
+      
+      <composite-id>
+      	<key-property name="idPartido" column="ID_PARTIDO" type="java.lang.Long"></key-property>
+      	<key-property name="idJugador" column="ID_JUGADOR" type="java.lang.Long"></key-property>
+      	<key-property name="idEquipo" column="ID_EQUIPO" type="java.lang.Long"></key-property>
+      	<key-property name="idTemporada" column="ID_TEMPORADA" type="java.lang.Long"></key-property>
+      </composite-id>
+      
+      <property name = "partidoIniciado" 		column = "STARTED_GAMES" 	type = "java.lang.Long"/>
+      <property name = "partidoSalvado" 		column = "SV" 				type = "java.lang.Long"/>
+      <property name = "partidoTerminado" 		column = "FINISHED_GAMES" 	type = "java.lang.Long"/>
+      <property name = "partidoGanado" 			column = "W" 			type = "java.lang.Long"/>
+      <property name = "partidoPerdido" 		column = "L" 			type = "java.lang.Long" 				 />
+      <property name = "esOportunidadSalvado" 	column = "SVO"  		type = "java.lang.Long" 				 />
+      <property name = "esShutout" 				column = "SHO"  		type = "java.lang.Long" 				 />
+      <property name = "inningsPitcheadas" 		column = "IP" 			type = "java.lang.Long" 				 />
+      <property name = "basesPorbola" 			column = "BB"  			type = "java.lang.Long" 				 />
+      <property name = "basesPorBolaInt" 		column = "IBB" 			type = "java.lang.Long"					 />
+      <property name = "basesPorGolpe" 			column = "HBP" 			type = "java.lang.Long"					 />
+      <property name = "balks" 					column = "BK" 			type = "java.lang.Long"					 />
+      <property name = "wildpitchs" 			column = "WP" 			type = "java.lang.Long"					 />
+      <property name = "hitsPermitidos" 		column = "H" 			type = "java.lang.Long"					 />
+      <property name = "carreras" 				column = "R" 			type = "java.lang.Long"					 />
+      <property name = "carrerasPermitidas" 	column = "ER" 			type = "java.lang.Long"					 />
+      <property name = "homeruns" 				column = "HR" 			type = "java.lang.Long"					 />
+      <property name = "strikeouts" 			column = "SO" 			type = "java.lang.Long"					 />
+      <property name = "flyouts" 				column = "FLOUT" 		type = "java.lang.Long"					 />
+      <property name = "groundOuts" 			column = "GOUT" 		type = "java.lang.Long"					 />
+      
+      <many-to-one name="JugadorPartido" class="ipn.escom.ballScore.entity.JugadorPartido" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+      	<column name="ID_JUGADOR"/>
+      	<column name="ID_PARTIDO"/>
+      	<column name="ID_EQUIPO"/>
+      	<column name="ID_TEMPORADA"/>
+      </many-to-one>
+
+   </class>
+</hibernate-mapping>
