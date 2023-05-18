@@ -2,9 +2,13 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="<s:url value='/bs/css/bootstrap.min.css'/>">
+    	<script src="<s:url value='/bs/js/bootstrap.bundle.min.js'/>"></script>
+	
 		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
     	<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
@@ -122,38 +126,30 @@
     	<input type="button" id="buscar" value="Buscar" />
     	
     	
-        <table id="tabla" class="borderAll">
-        	<tr>
-        		<th><s:text name="temporadaF.idTemporada"/></th>
-        		<th><s:text name="temporadaF.idEquipoCampeon"/></th>
-        		<th><s:text name="temporadaF.fechaInicial"/></th>
-        		<th><s:text name="temporadaF.fechaFinal"/></th>
-        		<th><s:text name="temporadaF.liga.idLiga"/></th>
-        		<th>&nbsp;</th>
-        	</tr>
-        	<s:iterator value="equipoTemporadasRegistradas" status="status">
-        		<s:if test="fechaAlta != null">
-        				
-	        		<tr>
-	        		<td class="nowrap"><s:property value="idTemporada"/></td>
-        			<td class="nowrap"><s:property value="idEquipoCampeon"/></td>
-        			<td class="nowrap"><s:property value="fechaInicial"/></td>
-        			<td class="nowrap"><s:property value="fechaFinal"/></td>
-        			<td class="nowrap"><s:property value="liga.idLiga"/></td>
-	        			
-	        			<td class="nowrap">
-	                    	<input type="checkbox" id="<s:property value="idTemporada"/>" name="temporada" 
-	                    	value="<s:property value="idTemporada"/>" />
-	                    </td>
-	        		</tr>
-	        		
-	        	</s:if>
-        	
-        	</s:iterator>
-        	<tr class='noSearch hide'>
-        	<td colspan="5"></td>
-        
-        </table>
+    	<div>
+			<display:table export="true" id="temporada" name="equipoTemporadasRegistradas" pagesize="15" requestURI="" class="table table-hover table-striped">
+				<s:if test="%{#attr.temporada.fechaAlta!=null}">
+					<display:setProperty name="export.types" value="csv excel xml pdf" />
+					<display:setProperty name="export.excel.filename" value="EquipoTemporadasRegistradas.xls" />
+					<display:setProperty name="export.csv.filename" value="EquipoTemporadasRegistradas.csv" />
+					<display:setProperty name="export.xml.filename" value="EquipoTemporadasRegistradas.xml" />
+					<display:setProperty name="export.pdf.filename" value="EquipoTemporadasRegistradas.pdf" />
+					
+					<display:column property="idTemporada" title="Id de la temporada" sortable="true"></display:column>
+					<display:column property="idEquipoCampeon" title="Id del equipo campeon" sortable="true" escapeXml="true"></display:column>
+					<display:column property="fechaInicial" title="Fecha Inicial" sortable="true" escapeXml="true"></display:column>
+					<display:column property="fechaFinal" title="Fecha Final" sortable="true" escapeXml="true"></display:column>
+					<display:column property="liga.idLiga" title="Id de la Liga" sortable="true" escapeXml="true"></display:column>
+					
+	
+					<display:column media="html">
+						<input type="checkbox" id="<s:property value="%{#attr.temporada.idTemporada}"/>" 
+						name="temporada" value="<s:property value="%{#attr.temporada.idTemporada}"/>" />
+					</display:column>
+				</s:if>
+			</display:table>
+		</div>
+    	
         <input id="cerrarVentana" type="button" value="Cerrar"/>
         <input id="aceptarSeleccion" type="button" value="Aceptar"/>
         <input id="LimpiarVentana" type="button" value="Limpiar"/>

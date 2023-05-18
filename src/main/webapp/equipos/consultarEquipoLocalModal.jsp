@@ -2,9 +2,13 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="<s:url value='/bs/css/bootstrap.min.css'/>">
+    	<script src="<s:url value='/bs/js/bootstrap.bundle.min.js'/>"></script>
+		
 		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
     	<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
@@ -16,7 +20,7 @@
         <!-- Script Jquery easing (Animaciones, usado por sexyalert) -->
         <script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
         
-        <script>
+        <script> 
         	//Inician metodos JQuery
 	        $(document).ready(function(){
 	        
@@ -125,34 +129,29 @@
     	<input type="button" id="buscar" value="Buscar" />
     	
     	
-        <table id="tabla" class="borderAll">
-        	<tr>
-        		<th><s:text name="equipoForm.idEquipo"/></th>
-        		<th><s:text name="equipoForm.nombre"/></th>
-        		<th><s:text name="equipoForm.manager.idManager"/></th>
-        		<th>&nbsp;</th>
-        	</tr>
-        	<s:iterator value="equiposTemporadaRegistrados" status="status">
-        		<s:if test="fechaAlta != null">
-        				
-	        		<tr>
-	        			<td class="nowrap"><s:property value="idEquipo"/></td>
-	        			<td class="nowrap"><s:property value="nombre"/></td>
-	        			<td class="nowrap"><s:property value="manager.idManager"/></td>
-	        			
-	        			<td class="nowrap">
-	                    	<input type="checkbox" id="<s:property value="idEquipo"/>" name="equipo" 
-	                    	value="<s:property value="idEquipo"/>" />
-	                    </td>
-	        		</tr>
-	        		
-	        	</s:if>
-        	
-        	</s:iterator>
-        	<tr class='noSearch hide'>
-        	<td colspan="5"></td>
+    	<div>
+			<display:table export="true" id="equipo" name="equiposTemporadaRegistrados" pagesize="15" requestURI="" class="table table-hover table-striped">
+				<s:if test="%{#attr.equipo.fechaAlta!=null}">
+					<display:setProperty name="export.types" value="csv excel xml pdf" />
+					<display:setProperty name="export.excel.filename" value="EquiposRegistrados.xls" />
+					<display:setProperty name="export.csv.filename" value="EquiposRegistrados.csv" />
+					<display:setProperty name="export.xml.filename" value="EquiposRegistrados.xml" />
+					<display:setProperty name="export.pdf.filename" value="EquiposRegistrados.pdf" />
+					
+					<display:column property="idEquipo" title="Id del Equipo" sortable="true"></display:column>
+					<display:column property="nombre" title="Nombre del equipo" sortable="true" escapeXml="true"></display:column>
+					<display:column property="manager.idManager" title="Id del manager" sortable="true" escapeXml="true"></display:column>
+					
+	
+					<display:column media="html">
+						<input type="checkbox" id="<s:property value="%{#attr.equipo.idEquipo}"/>" 
+						name="equipo" value="<s:property value="%{#attr.equipo.idEquipo}"/>" />
+					</display:column>
+				</s:if>
+			</display:table>
+		</div>
+    	
         
-        </table>
         <input id="cerrarVentana" type="button" value="Cerrar"/>
         <input id="aceptarSeleccion" type="button" value="Aceptar"/>
         <input id="LimiparVentana" type="button" value="Limpiar"/>
