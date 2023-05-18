@@ -29,13 +29,11 @@
         
 	</head>
 <body>
-	<div class="titleDiv"><s:text name="equipoElegido"/></div>
-	<h1><s:property value="#title"/></h1>
-	<br>
-	<s:actionerror />
-    <s:actionmessage />
-    	<br></br>
     	<div class="container rounded p-3 contenido">
+    		<div class="titleDiv"><s:text name="label.equipos.titulo"/></div>
+        	<h1><s:text name="label.equipos.registrados"/></h1>
+        	<s:actionerror />
+    		<s:actionmessage />
     		<display:table export="true" id="tabla" name="equiposByTemporada" pagesize="10" class="table table-bordered">
 				<display:setProperty name="export.types" value="csv excel xml pdf" />
 				<display:setProperty name="export.excel.filename" value="EquiposRegistrados.xls" />
@@ -53,6 +51,7 @@
 				<s:submit value="Regresar" targets="consultarTemporadas"/>
 			</s:form>
     	</div>    	
-<jsp:include page="/bases/footer.jsp"></jsp:include>
+
 </body>
+<jsp:include page="/bases/footer.jsp"></jsp:include>
 </html>
