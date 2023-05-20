@@ -17,7 +17,7 @@
 
 
 <body>
-<h1> Bienvenido al menu de Equipos </h1>
+<h1>Gestionar Equipos </h1>
 
 <s:actionmessage />
 
@@ -59,6 +59,17 @@
   			</div>
 		</div>
 	</div>
+	
+	<div class="col-md-6 d-flex justify-content-center">
+				<div class="card m-2 cb2 text-center">
+  					<div class="card-body">
+  						<span class="card-number fw-bold">00</span>
+    					<h2 class="card-title mb-4">Menu principal</h2>
+    					<p class="card-text">Regresar al menu principal</p>
+    					<a href='<s:url namespace="/" action="menuPrincipal" />' class="btn btn-outline-light">Ir</a>
+  					</div>
+				</div>
+			</div>
 	
 </div>
 
