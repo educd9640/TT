@@ -1,32 +1,60 @@
-package ipn.escom.ballScore.form;
+package ipn.escom.ballScore.entity;
 
-/**Clase para estadisticas de pitcher
- * @author Jose Mauricio
- *
- */
-public class EstadisticasPitcherVO {
-	private Long partidoIniciado=0L;
-	private Long partidoSalvado=0L;
-	private Long partidoTerminado=0L;
-	private Long partidoGanado=0L;
-	private Long partidoPerdido=0L;
-	private Long esOportunidadSalvado=0L;
-	private Long esShutout=0L;
-	private Long inningsPitcheadas=0L;
-	private Long basesPorbola=0L;
-	private Long basesPorBolaInt=0L;
-	private Long basesPorGolpe=0L;
-	private Long balks=0L;
-	private Long wildpitchs=0L;
-	private Long hitsPermitidos=0L;
-	private Long carreras=0L;
-	private Long carrerasPermitidas=0L;
-	private Long homeruns=0L;
-	private Long strikeouts=0L;
-	private Long flyouts=0L;
-	private Long groundOuts=0L;
+import java.io.Serializable;
+
+public class EstPitcherPart implements Serializable{
 	
+	private static final long serialVersionUID = 6549468971604292788L;
+	private Long idPartido;
+	private Long idJugador;
+	private Long idEquipo;
+	private Long idTemporada;
+	private Long partidoIniciado;
+	private Long partidoSalvado;
+	private Long partidoTerminado;
+	private Long partidoGanado;
+	private Long partidoPerdido;
+	private Long esOportunidadSalvado;
+	private Long esShutout;
+	private Long inningsPitcheadas;
+	private Long basesPorbola;
+	private Long basesPorBolaInt;
+	private Long basesPorGolpe;
+	private Long balks;
+	private Long wildpitchs;
+	private Long hitsPermitidos;
+	private Long carreras;
+	private Long carrerasPermitidas;
+	private Long homeruns;
+	private Long strikeouts;
+	private Long flyouts;
+	private Long groundOuts;
+	private JugadorPartido jugadorPartido;
 	
+	public Long getIdPartido() {
+		return idPartido;
+	}
+	public void setIdPartido(Long idPartido) {
+		this.idPartido = idPartido;
+	}
+	public Long getIdJugador() {
+		return idJugador;
+	}
+	public void setIdJugador(Long idJugador) {
+		this.idJugador = idJugador;
+	}
+	public Long getIdEquipo() {
+		return idEquipo;
+	}
+	public void setIdEquipo(Long idEquipo) {
+		this.idEquipo = idEquipo;
+	}
+	public Long getIdTemporada() {
+		return idTemporada;
+	}
+	public void setIdTemporada(Long idTemporada) {
+		this.idTemporada = idTemporada;
+	}
 	public Long getPartidoIniciado() {
 		return partidoIniciado;
 	}
@@ -146,6 +174,12 @@ public class EstadisticasPitcherVO {
 	}
 	public void setGroundOuts(Long groundOuts) {
 		this.groundOuts = groundOuts;
+	}
+	public JugadorPartido getJugadorPartido() {
+		return jugadorPartido;
+	}
+	public void setJugadorPartido(JugadorPartido jugadorPartido) {
+		this.jugadorPartido = jugadorPartido;
 	}
 	
 	

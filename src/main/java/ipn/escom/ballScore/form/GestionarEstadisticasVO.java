@@ -12,6 +12,7 @@ public class GestionarEstadisticasVO {
 	private Long idTemporada;
 	private EstadisticasPitcherVO estadisticasPitcherVO;
 	private EstadisticasDefensivasVO estadisticasDefensivasVO;
+	private EstadisticasOfensivasVO estadisticasOfensivasVO;
 	
 	public Long getIdPartido() {
 		return idPartido;
@@ -49,6 +50,10 @@ public class GestionarEstadisticasVO {
 	public void setEstadisticasDefensivasVO(EstadisticasDefensivasVO estadisticasDefensivasVO) {
 		this.estadisticasDefensivasVO = estadisticasDefensivasVO;
 	}
-	
-
+	public EstadisticasOfensivasVO getEstadisticasOfensivasVO() {
+		return estadisticasOfensivasVO;
+	}
+	public void setEstadisticasOfensivasVO(EstadisticasOfensivasVO estadisticasOfensivasVO) {
+		this.estadisticasOfensivasVO = estadisticasOfensivasVO;
+	}
 }
