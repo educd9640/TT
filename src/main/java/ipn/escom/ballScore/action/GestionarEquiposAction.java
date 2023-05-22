@@ -34,6 +34,8 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	private Manager managerActual;
 	private Equipo equipoManager;
 	private String operacion;
+	private Long temporadaElegida;
+
 	private List<Equipo> equiposRegistrados = new ArrayList<Equipo>();
 
 	/**
@@ -46,10 +48,12 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		equipoForm= new GestionarEquiposForm();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
 		this.managerActual= (Manager) session.getAttribute("Usuario");
-		try {
-			equiposRegistrados= equipoBI.obtenerEquiposRegistrados();
-		}catch(BussinessException e) {
-			addActionError(e.getMessage());
+		if(temporadaElegida!=null) {	
+			try {
+				equiposRegistrados= equipoBI.obtenerEquiposRegistrados(temporadaElegida);
+			}catch(BussinessException e) {
+				addActionError(e.getMessage());
+			}
 		}
 		if(operacion !=null && operacion.equals("actualizado")) {
 			try {
@@ -89,7 +93,6 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	
 	public String registrarEquipo() {
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo");
-		equipoForm= new GestionarEquiposForm();
 		return Action.SUCCESS;
 	}
 	
@@ -115,7 +118,12 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 			return Action.SUCCESS;
 		}
 		equipoForm.setIdManager(equipoManager.getIdEquipo());
-		addActionMessage("Equipo registrado con exito: idEquipo: "+equipoForm.getIdEquipo());
+		
+		if(this.operacion.equals("actualizado")) {
+			addActionMessage("Equipo actualizado con exito: nombre nuevo: "+equipoForm.getNombre());
+		}else {
+			addActionMessage("Equipo registrado con exito: idEquipo: "+equipoForm.getIdEquipo());
+		}
 		
 		return Action.SUCCESS;
 	}
@@ -125,7 +133,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	 */
 	@SkipValidation
 	public String buscarEquipo() {
-		logger.info("Inicia metodo GestionarEquiposAction.actualizarEquipo()");
+		logger.info("Inicia metodo GestionarEquiposAction.buscarEquipo()");
 		return Action.SUCCESS;
 	}
 	
@@ -136,7 +144,6 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	@SkipValidation
 	public String actualizarEquipo(){
 		logger.info("Inicia metodo GestionarEquiposAction.actualizarEquipo()");
-		equipoForm= new GestionarEquiposForm();
 		GestionarEquiposBI equiposBI= new GestionarEquiposBI();
 		String mensaje="";
 		try {
@@ -144,7 +151,16 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 			addActionMessage(mensaje);
 		}catch(BussinessException e) {
 			addActionError(e.getMessage());
+			equipoForm= new GestionarEquiposForm();
 			this.setOperacion("actualizado");
+			try {
+				Equipo team = equiposBI.obtenerEquipo(this.managerActual.getIdManager());
+				BeanUtils.copyProperties(equipoForm,team);
+			} catch (IllegalAccessException | InvocationTargetException b) {
+				logger.error("Error al copiar las propiedades del alumno al form.", b);
+			} catch (BussinessException g) {
+				logger.error("Error al consultar el equipo", g);
+			}
 		}
 		return Action.SUCCESS;
 	}
@@ -199,6 +215,14 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 
 	public void setEquiposRegistrados(List<Equipo> equiposRegistrados) {
 		this.equiposRegistrados = equiposRegistrados;
+	}
+	
+	public Long getTemporadaElegida() {
+		return temporadaElegida;
+	}
+
+	public void setTemporadaElegida(Long temporadaElegida) {
+		this.temporadaElegida = temporadaElegida;
 	}
 	
 	

@@ -1,4 +1,3 @@
-
 <jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="container rounded p-3 contenido">
@@ -20,7 +19,7 @@
 				var full_window_height = window.outerHeight;
 				var full_window_width = window.outerWidth;
         		TINY.box.show({
-        			iframe:'/ballscore/equipos/buscarEquipoModal.action',
+        			iframe:'/ballscore/equipos/buscarEquipoModal.action?temporadaElegida=<s:property value="temporadaseleccionada"/>',
         			boxid:'frameless',
         			width:full_window_width-300,
         			height:full_window_height-250,

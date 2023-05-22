@@ -13,8 +13,10 @@ import org.apache.logging.log4j.Logger;
 
 import ipn.escom.ballScore.dao.GestionarEquiposDAO;
 import ipn.escom.ballScore.dao.GestionarManagersDAO;
+import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
 import ipn.escom.ballScore.entity.Equipo;
 import ipn.escom.ballScore.entity.Manager;
+import ipn.escom.ballScore.entity.EquipoTemporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.GestionarEquiposVO;
 
@@ -177,14 +179,37 @@ public class GestionarEquiposBI {
 		return mensaje;
 	}
 	
-	/**Metodo de negocio para obtener los equipos registrados
+	public List<Equipo> buscarCoincidencias(List<Equipo> equipos, List<EquipoTemporada> temporada) {
+		Equipo equipo = new Equipo();
+		List<Equipo> equiposF= new ArrayList<Equipo>();
+		EquipoTemporada equipoTemporada =new EquipoTemporada();
+		int registrado=0;
+		for(int e=0; e < equipos.size(); e++) {
+			equipo= equipos.get(e);
+			registrado=0;
+			for(int t=0; t < temporada.size(); t++) {
+				equipoTemporada = temporada.get(t);
+				if(equipo.getIdEquipo()==equipoTemporada.getIdEquipo()) {
+					registrado=1;
+				}
+			}
+			if(registrado==0) {
+				equiposF.add(equipo);
+			}
+		}
+		return equiposF;
+	} 
+	
+	/**Metodo de negocio para obtener los equipos que aun no estan registrados en una temporada
 	 * @return
 	 * @throws BussinessException
 	 */
-	public List<Equipo> obtenerEquiposRegistrados() throws BussinessException{
+	public List<Equipo> obtenerEquiposRegistrados(Long idTemporada) throws BussinessException{
 		logger.info("Inicia metodo GestionarEquiposBI.obtenerEquiposRegistrados()");
 		GestionarEquiposDAO equipoDao= new GestionarEquiposDAO();
 		List<Equipo> equipos= new ArrayList<Equipo>();
+		List<Equipo> equiposFaltantes= new ArrayList<Equipo>();
+		List<EquipoTemporada> equipostemp = new ArrayList<EquipoTemporada>();
 		try {
 			equipos=equipoDao.selectFromEquipo();
 		}catch(Exception e) {
@@ -193,7 +218,11 @@ public class GestionarEquiposBI {
 		}finally {
 			equipoDao.cerrarConexiones();
 		}
-		return equipos;
+		GestionarEquipoTemporadaDAO tempequipos = new GestionarEquipoTemporadaDAO();
+		equipostemp= tempequipos.obtenerEquiposTemporada(idTemporada);
+		tempequipos.cerrarConexiones();
+		equiposFaltantes = buscarCoincidencias(equipos,equipostemp);
+		return equiposFaltantes;
 	}
 	
 }
