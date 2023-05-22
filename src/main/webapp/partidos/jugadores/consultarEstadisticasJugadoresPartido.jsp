@@ -27,7 +27,7 @@
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
       	<div>
-			<display:table export="true" id="estPitcherPart" name="form.estadisticasPitcher" pagesize="7" requestURI="" class="table table-hover table-striped">
+			<display:table export="true" id="estPitcherPart" name="form.estadisticasPitcher" pagesize="7" requestURI="" class="table table-hover table-striped" uid="estPitch">
 				<display:setProperty name="export.types" value="csv excel xml pdf" />
 				<display:setProperty name="export.excel.filename" value="EstadisticasPitcherPart.xls" />
 				<display:setProperty name="export.csv.filename" value="EstadisticasPitcherPart.csv" />
@@ -75,7 +75,7 @@
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
       	<div>
-			<display:table export="true" id="estadisticasDefensivas" name="form.estadisticasDefensivas" pagesize="7" requestURI="" class="table table-hover table-striped">
+			<display:table export="true" id="estadisticasDefensivas" name="form.estadisticasDefensivas" pagesize="7" requestURI="" class="table table-hover table-striped" uid="estDef">
 				<display:setProperty name="export.types" value="csv excel xml pdf" />
 				<display:setProperty name="export.excel.filename" value="EstadisticasDefensivasPart.xls" />
 				<display:setProperty name="export.csv.filename" value="EstadisticasDefensivasPart.csv" />
@@ -83,7 +83,7 @@
 				<display:setProperty name="export.pdf.filename" value="EstadisticasDefensivasPart.pdf" />
 				<display:column property="jugadorPartido.jugadorEquipoTemp.jugador.alumno.nombrePila" title="Nombre pila" sortable="true" escapeXml="true"></display:column>
 				<display:column property="inningsJugadas" title="Inns" sortable="true" escapeXml="true"></display:column>
-				<display:column property="asistencias" title="Ass" sortable="true" escapeXml="true"></display:column>
+				<display:column property="asistencias" title="Asis" sortable="true" escapeXml="true"></display:column>
 				<display:column property="dobleplays" title="DP" sortable="true" escapeXml="true"></display:column>
 				<display:column property="triplePlays" title="TP" sortable="true" escapeXml="true"></display:column>
 				<display:column property="errores" title="E" sortable="true" escapeXml="true"></display:column>
@@ -108,12 +108,12 @@
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body">
       	<div>
-			<display:table export="true" id="estadisticasOfensivas" name="form.estadisticasOfensivas" pagesize="7" requestURI="" class="table table-hover table-striped">
+			<display:table export="true" id="estadisticasOfensivas" name="form.estadisticasOfensivas" pagesize="7" requestURI="" class="table table-hover table-striped" uid="estOfen">
 				<display:setProperty name="export.types" value="csv excel xml pdf" />
-				<display:setProperty name="export.excel.filename" value="EstadisticasPitcherPart.xls" />
-				<display:setProperty name="export.csv.filename" value="EstadisticasPitcherPart.csv" />
-				<display:setProperty name="export.xml.filename" value="EstadisticasPitcherPart.xml" />
-				<display:setProperty name="export.pdf.filename" value="EstadisticasPitcherPart.pdf" />
+				<display:setProperty name="export.excel.filename" value="EstadisticasOfensivasPart.xls" />
+				<display:setProperty name="export.csv.filename" value="EstadisticasOfensivasPart.csv" />
+				<display:setProperty name="export.xml.filename" value="EstadisticasOfensivasPart.xml" />
+				<display:setProperty name="export.pdf.filename" value="EstadisticasOfensivasPart.pdf" />
 				<display:column property="jugadorPartido.jugadorEquipoTemp.jugador.alumno.nombrePila" title="Nombre pila" sortable="true" escapeXml="true"></display:column>
 				<display:column property="gamesPlayed" title="GP" sortable="true" escapeXml="true"></display:column>
 				<display:column property="plateAppearance" title="PA" sortable="true" escapeXml="true"></display:column>

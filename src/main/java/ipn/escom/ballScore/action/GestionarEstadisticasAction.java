@@ -42,6 +42,8 @@ public class GestionarEstadisticasAction extends BaseAction{
 			addActionError("Error al registrar estadisticas : "+e.getMessage());
 		}
 		
+		addActionMessage("Estadisticas pitcher registradas");
+		
 		return this.presentarRegistroResultados();
 	}
 	
@@ -61,6 +63,8 @@ public class GestionarEstadisticasAction extends BaseAction{
 			addActionError("Error al registrar estadisticas : "+e.getMessage());
 		}
 		
+		addActionMessage("Estadisticas defensivas registradas");
+		
 		return this.presentarRegistroResultados();
 	}
 	
@@ -79,6 +83,8 @@ public class GestionarEstadisticasAction extends BaseAction{
 			logger.error("Error al registrar estadisticas : "+e.getMessage(), e);
 			addActionError("Error al registrar estadisticas : "+e.getMessage());
 		}
+		
+		addActionMessage("Estadisticas ofensivas registradas");
 		
 		return this.presentarRegistroResultados();
 	}
