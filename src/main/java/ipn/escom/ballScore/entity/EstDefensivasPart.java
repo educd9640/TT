@@ -1,30 +1,30 @@
-package ipn.escom.ballScore.form;
+package ipn.escom.ballScore.entity;
 
-import ipn.escom.ballScore.entity.JugadorPartido;
+import java.io.Serializable;
 
-/**Clase VO para estadisticas defensivas
+/**Clase de entidad para estadisticas defensivas
  * @author Jose Mauricio
  *
  */
-public class EstadisticasDefensivasVO {
+public class EstDefensivasPart implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private Long idPartido;
 	private Long idJugador;
 	private Long idEquipo;
 	private Long idTemporada;
-	private Double asistencias=0D;
-	private Double atrapadasEnRobo=0D;
-	private Double dobleplays=0D;
-	private Double errores=0D;
-	private Double fieldingPercentage=0D;
-	private Double inningsJugadas=0D;
-	private Double outs=0D;
-	private Double asistenciaOutField=0D;
-	private Double passedballs=0D;
-	private Double putouts=0D;
-	private Double totalChances=0D;
-	private Double triplePlays=0D;
-	private Double robos=0D;
+	private Double asistencias;
+	private Double caughtStealingPerc;
+	private Double dobleplays;
+	private Double errores;
+	private Double fieldingPercentage;
+	private Double inningsJugadas;
+	private Double outs;
+	private Double asistenciaOutField;
+	private Double passedballs;
+	private Double putouts;
+	private Double totalChances;
+	private Double triplePlays;
 	
 	private JugadorPartido jugadorPartido;
 
@@ -68,12 +68,12 @@ public class EstadisticasDefensivasVO {
 		this.asistencias = asistencias;
 	}
 
-	public Double getAtrapadasEnRobo() {
-		return atrapadasEnRobo;
+	public Double getCaughtStealingPerc() {
+		return caughtStealingPerc;
 	}
 
-	public void setAtrapadasEnRobo(Double atrapadasEnRobo) {
-		this.atrapadasEnRobo = atrapadasEnRobo;
+	public void setCaughtStealingPerc(Double caughtStealingPerc) {
+		this.caughtStealingPerc = caughtStealingPerc;
 	}
 
 	public Double getDobleplays() {
@@ -156,14 +156,6 @@ public class EstadisticasDefensivasVO {
 		this.triplePlays = triplePlays;
 	}
 
-	public Double getRobos() {
-		return robos;
-	}
-
-	public void setRobos(Double robos) {
-		this.robos = robos;
-	}
-
 	public JugadorPartido getJugadorPartido() {
 		return jugadorPartido;
 	}
@@ -171,5 +163,5 @@ public class EstadisticasDefensivasVO {
 	public void setJugadorPartido(JugadorPartido jugadorPartido) {
 		this.jugadorPartido = jugadorPartido;
 	}
-		
+	
 }
