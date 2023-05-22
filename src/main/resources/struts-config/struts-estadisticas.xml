@@ -64,6 +64,13 @@
 			<result name="input">/partidos/jugadores/registrarResultadosJugador.jsp</result>
 			<result name="success">/partidos/jugadores/registrarResultadosJugador.jsp</result>
 		</action>
+		
+		<action name="consultarEstadisticasPartido"
+			class="ipn.escom.ballScore.action.GestionarEstadisticasAction"
+			method="consultarEstadisticasPartido">
+			<result name="input">/partidos/jugadores/consultarEstadisticasJugadoresPartido.jsp</result>
+			<result name="success">/partidos/jugadores/consultarEstadisticasJugadoresPartido.jsp</result>
+		</action>
 
 	</package>
 

@@ -2,6 +2,10 @@ package ipn.escom.ballScore.entity;
 
 import java.io.Serializable;
 
+/**Clase de entidad para estadisticas de pitcher
+ * @author Jose Mauricio
+ *
+ */
 public class EstPitcherPart implements Serializable{
 	
 	private static final long serialVersionUID = 6549468971604292788L;
@@ -9,26 +13,33 @@ public class EstPitcherPart implements Serializable{
 	private Long idJugador;
 	private Long idEquipo;
 	private Long idTemporada;
-	private Long partidoIniciado;
-	private Long partidoSalvado;
-	private Long partidoTerminado;
-	private Long partidoGanado;
-	private Long partidoPerdido;
-	private Long esOportunidadSalvado;
-	private Long esShutout;
-	private Long inningsPitcheadas;
-	private Long basesPorbola;
-	private Long basesPorBolaInt;
-	private Long basesPorGolpe;
-	private Long balks;
-	private Long wildpitchs;
-	private Long hitsPermitidos;
-	private Long carreras;
-	private Long carrerasPermitidas;
-	private Long homeruns;
-	private Long strikeouts;
-	private Long flyouts;
-	private Long groundOuts;
+	private Double partidoIniciado;
+	private Double partidoSalvado;
+	private Double partidoTerminado;
+	private Double partidoGanado;
+	private Double partidoPerdido;
+	private Double esOportunidadSalvado;
+	private Double esShutout;
+	private Double inningsPitcheadas;
+	private Double basesPorbola;
+	private Double basesPorBolaInt;
+	private Double basesPorGolpe;
+	private Double balks;
+	private Double wildpitchs;
+	private Double hitsPermitidos;
+	private Double carreras;
+	private Double carrerasPermitidas;
+	private Double homeruns;
+	private Double strikeouts;
+	private Double flyouts;
+	private Double groundOuts;
+	private Double knine;
+	private Double bbnine;
+	private Double kbb;
+	private Double hrnine;
+	private Double kperc;
+	private Double bbperc;
+	private Double avg;
 	private JugadorPartido jugadorPartido;
 	
 	public Long getIdPartido() {
@@ -55,125 +66,167 @@ public class EstPitcherPart implements Serializable{
 	public void setIdTemporada(Long idTemporada) {
 		this.idTemporada = idTemporada;
 	}
-	public Long getPartidoIniciado() {
+	public Double getPartidoIniciado() {
 		return partidoIniciado;
 	}
-	public void setPartidoIniciado(Long partidoIniciado) {
+	public void setPartidoIniciado(Double partidoIniciado) {
 		this.partidoIniciado = partidoIniciado;
 	}
-	public Long getPartidoSalvado() {
+	public Double getPartidoSalvado() {
 		return partidoSalvado;
 	}
-	public void setPartidoSalvado(Long partidoSalvado) {
+	public void setPartidoSalvado(Double partidoSalvado) {
 		this.partidoSalvado = partidoSalvado;
 	}
-	public Long getPartidoTerminado() {
+	public Double getPartidoTerminado() {
 		return partidoTerminado;
 	}
-	public void setPartidoTerminado(Long partidoTerminado) {
+	public void setPartidoTerminado(Double partidoTerminado) {
 		this.partidoTerminado = partidoTerminado;
 	}
-	public Long getPartidoGanado() {
+	public Double getPartidoGanado() {
 		return partidoGanado;
 	}
-	public void setPartidoGanado(Long partidoGanado) {
+	public void setPartidoGanado(Double partidoGanado) {
 		this.partidoGanado = partidoGanado;
 	}
-	public Long getPartidoPerdido() {
+	public Double getPartidoPerdido() {
 		return partidoPerdido;
 	}
-	public void setPartidoPerdido(Long partidoPerdido) {
+	public void setPartidoPerdido(Double partidoPerdido) {
 		this.partidoPerdido = partidoPerdido;
 	}
-	public Long getEsOportunidadSalvado() {
+	public Double getEsOportunidadSalvado() {
 		return esOportunidadSalvado;
 	}
-	public void setEsOportunidadSalvado(Long esOportunidadSalvado) {
+	public void setEsOportunidadSalvado(Double esOportunidadSalvado) {
 		this.esOportunidadSalvado = esOportunidadSalvado;
 	}
-	public Long getEsShutout() {
+	public Double getEsShutout() {
 		return esShutout;
 	}
-	public void setEsShutout(Long esShutout) {
+	public void setEsShutout(Double esShutout) {
 		this.esShutout = esShutout;
 	}
-	public Long getInningsPitcheadas() {
+	public Double getInningsPitcheadas() {
 		return inningsPitcheadas;
 	}
-	public void setInningsPitcheadas(Long inningsPitcheadas) {
+	public void setInningsPitcheadas(Double inningsPitcheadas) {
 		this.inningsPitcheadas = inningsPitcheadas;
 	}
-	public Long getBasesPorbola() {
+	public Double getBasesPorbola() {
 		return basesPorbola;
 	}
-	public void setBasesPorbola(Long basesPorbola) {
+	public void setBasesPorbola(Double basesPorbola) {
 		this.basesPorbola = basesPorbola;
 	}
-	public Long getBasesPorBolaInt() {
+	public Double getBasesPorBolaInt() {
 		return basesPorBolaInt;
 	}
-	public void setBasesPorBolaInt(Long basesPorBolaInt) {
+	public void setBasesPorBolaInt(Double basesPorBolaInt) {
 		this.basesPorBolaInt = basesPorBolaInt;
 	}
-	public Long getBasesPorGolpe() {
+	public Double getBasesPorGolpe() {
 		return basesPorGolpe;
 	}
-	public void setBasesPorGolpe(Long basesPorGolpe) {
+	public void setBasesPorGolpe(Double basesPorGolpe) {
 		this.basesPorGolpe = basesPorGolpe;
 	}
-	public Long getBalks() {
+	public Double getBalks() {
 		return balks;
 	}
-	public void setBalks(Long balks) {
+	public void setBalks(Double balks) {
 		this.balks = balks;
 	}
-	public Long getWildpitchs() {
+	public Double getWildpitchs() {
 		return wildpitchs;
 	}
-	public void setWildpitchs(Long wildpitchs) {
+	public void setWildpitchs(Double wildpitchs) {
 		this.wildpitchs = wildpitchs;
 	}
-	public Long getHitsPermitidos() {
+	public Double getHitsPermitidos() {
 		return hitsPermitidos;
 	}
-	public void setHitsPermitidos(Long hitsPermitidos) {
+	public void setHitsPermitidos(Double hitsPermitidos) {
 		this.hitsPermitidos = hitsPermitidos;
 	}
-	public Long getCarreras() {
+	public Double getCarreras() {
 		return carreras;
 	}
-	public void setCarreras(Long carreras) {
+	public void setCarreras(Double carreras) {
 		this.carreras = carreras;
 	}
-	public Long getCarrerasPermitidas() {
+	public Double getCarrerasPermitidas() {
 		return carrerasPermitidas;
 	}
-	public void setCarrerasPermitidas(Long carrerasPermitidas) {
+	public void setCarrerasPermitidas(Double carrerasPermitidas) {
 		this.carrerasPermitidas = carrerasPermitidas;
 	}
-	public Long getHomeruns() {
+	public Double getHomeruns() {
 		return homeruns;
 	}
-	public void setHomeruns(Long homeruns) {
+	public void setHomeruns(Double homeruns) {
 		this.homeruns = homeruns;
 	}
-	public Long getStrikeouts() {
+	public Double getStrikeouts() {
 		return strikeouts;
 	}
-	public void setStrikeouts(Long strikeouts) {
+	public void setStrikeouts(Double strikeouts) {
 		this.strikeouts = strikeouts;
 	}
-	public Long getFlyouts() {
+	public Double getFlyouts() {
 		return flyouts;
 	}
-	public void setFlyouts(Long flyouts) {
+	public void setFlyouts(Double flyouts) {
 		this.flyouts = flyouts;
 	}
-	public Long getGroundOuts() {
+	public Double getGroundOuts() {
 		return groundOuts;
 	}
-	public void setGroundOuts(Long groundOuts) {
+	public void setGroundOuts(Double groundOuts) {
 		this.groundOuts = groundOuts;
+	}
+	public Double getKnine() {
+		return knine;
+	}
+	public void setKnine(Double knine) {
+		this.knine = knine;
+	}
+	public Double getBbnine() {
+		return bbnine;
+	}
+	public void setBbnine(Double bbnine) {
+		this.bbnine = bbnine;
+	}
+	public Double getKbb() {
+		return kbb;
+	}
+	public void setKbb(Double kbb) {
+		this.kbb = kbb;
+	}
+	public Double getHrnine() {
+		return hrnine;
+	}
+	public void setHrnine(Double hrnine) {
+		this.hrnine = hrnine;
+	}
+	public Double getKperc() {
+		return kperc;
+	}
+	public void setKperc(Double kperc) {
+		this.kperc = kperc;
+	}
+	public Double getBbperc() {
+		return bbperc;
+	}
+	public void setBbperc(Double bbperc) {
+		this.bbperc = bbperc;
+	}
+	public Double getAvg() {
+		return avg;
+	}
+	public void setAvg(Double avg) {
+		this.avg = avg;
 	}
 	public JugadorPartido getJugadorPartido() {
 		return jugadorPartido;
@@ -181,6 +234,5 @@ public class EstPitcherPart implements Serializable{
 	public void setJugadorPartido(JugadorPartido jugadorPartido) {
 		this.jugadorPartido = jugadorPartido;
 	}
-	
 	
 }

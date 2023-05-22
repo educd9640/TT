@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "ipn.escom.ballScore.entity.EstOfensivasPart" table = "EST_OFENSIVAS_PART">
+      
+      <meta attribute = "class-description">
+         This class contains the EstOfensivasPart detail. 
+      </meta>
+      
+      <composite-id>
+      	<key-property name="idPartido" column="ID_PARTIDO" type="java.lang.Long"></key-property>
+      	<key-property name="idJugador" column="ID_JUGADOR" type="java.lang.Long"></key-property>
+      	<key-property name="idEquipo" column="ID_EQUIPO" type="java.lang.Long"></key-property>
+      	<key-property name="idTemporada" column="ID_TEMPORADA" type="java.lang.Long"></key-property>
+      </composite-id>
+      
+      <property name = "alBat" 						column = "AB" 				type = "java.lang.Double"/>
+      <property name = "avg" 						column = "AVG" 				type = "java.lang.Double"/>
+      <property name = "caughtStealing" 			column = "CS" 				type = "java.lang.Double"/>
+      <property name = "dobles" 					column = "DOUBLES" 			type = "java.lang.Double"/>
+      <property name = "extraBaseHits" 				column = "XBH" 				type = "java.lang.Double" 				 />
+      <property name = "gamesPlayed" 				column = "G"  				type = "java.lang.Double" 				 />
+      <property name = "grandslam" 					column = "GSH"  			type = "java.lang.Double" 				 />
+      <property name = "groundIntoDoubleplays" 		column = "GIDP" 			type = "java.lang.Double" 				 />
+      <property name = "groundoutToAiroutRatio" 	column = "GO_AO"  			type = "java.lang.Double" 				 />
+      <property name = "hitsByPitch" 				column = "HBP" 				type = "java.lang.Double"					 />
+      <property name = "hits" 						column = "H" 				type = "java.lang.Double"					 />
+      <property name = "homeruns" 					column = "HR" 				type = "java.lang.Double"					 />
+      <property name = "intentionalBB" 				column = "IBB" 				type = "java.lang.Double"					 />
+      <property name = "leftOnBase" 				column = "LOB" 				type = "java.lang.Double"					 />
+      <property name = "onBasePercentage" 			column = "OBP" 				type = "java.lang.Double"					 />
+      <property name = "onBasePlusSlugging" 		column = "OPS" 				type = "java.lang.Double"					 />
+      <property name = "plateAppearance" 			column = "PA" 				type = "java.lang.Double"					 />
+      <property name = "reachedOnError" 			column = "ROE" 				type = "java.lang.Double"					 />
+      <property name = "carreras" 					column = "R" 				type = "java.lang.Double"					 />
+      <property name = "carrerasBateadas" 			column = "RBI" 				type = "java.lang.Double"					 />
+      <property name = "hitsSacrificio" 			column = "SH" 				type = "java.lang.Double"					 />
+      <property name = "elevadosSacrificio" 		column = "SF" 				type = "java.lang.Double"					 />
+      <property name = "sencillos" 					column = "SINGLES" 			type = "java.lang.Double"					 />
+      <property name = "slugger" 					column = "SLG" 				type = "java.lang.Double"					 />
+      <property name = "basesRobadas" 				column = "SB" 				type = "java.lang.Double"					 />
+      <property name = "porcentajeBasesRobadas" 	column = "SB_PERC" 			type = "java.lang.Double"					 />
+      <property name = "totalBases" 				column = "TB" 				type = "java.lang.Double"					 />
+      <property name = "triples" 					column = "TRIPLES" 			type = "java.lang.Double"					 />
+      <property name = "basesPorBola" 				column = "BB" 				type = "java.lang.Double"					 />
+      <property name = "walkOff" 					column = "WO" 				type = "java.lang.Double"					 />
+      <property name = "strikeouts" 				column = "STRIKEOUTS" 		type = "java.lang.Double"					 />
+      <property name = "groundOuts" 				column = "GROUND_OUTS" 		type = "java.lang.Double"					 />
+      <property name = "flyOuts" 					column = "FLY_OUTS" 		type = "java.lang.Double"					 />
+      
+      <many-to-one name="JugadorPartido" class="ipn.escom.ballScore.entity.JugadorPartido" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+      	<column name="ID_JUGADOR"/>
+      	<column name="ID_PARTIDO"/>
+      	<column name="ID_EQUIPO"/>
+      	<column name="ID_TEMPORADA"/>
+      </many-to-one>
+
+   </class>
+</hibernate-mapping>
