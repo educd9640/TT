@@ -21,6 +21,13 @@
         <script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
         
         <script>
+        function limpiarBusqueda(){
+			document.forms[0].idTemporada.value=null;
+			document.forms[0].idLiga.value=null;
+			document.forms[0].nombre.value=null;
+			document.forms[0].submit();
+		}
+		
         	//Inician metodos JQuery
 	        $(document).ready(function(){
 	        
@@ -35,60 +42,6 @@
 				    $box.prop("checked", false);
 				  }
 				});
-				
-				
-				$("#buscar").click(function(){
-        			const tablaReg = document.getElementById('tabla');
-        			const buscarIdTemporada = document.getElementById('busquedaIdTemporada');
-        			const buscarIdLiga = document.getElementById('busquedaIdLiga');
-        			
-        			const textoBuscar = document.getElementById('idTexto').value.toLowerCase();
-        			var noCelda=0;
-        			if(buscarIdTemporada.checked){
-        				noCelda=0;
-        			}else if(buscarIdLiga.checked){
-        				noCelda=4;
-        			}else{
-        				Sexy.error("Debes seleccionar una opcion");
-        			}
-        			var total=0;
-        			for(var r=1;r<tablaReg.rows.length; r++){
-        				
-        				// Si el td tiene la clase "noSearch" no se busca en su contenido
-        				if (tablaReg.rows[r].classList.contains("noSearch")) {
-                            continue;
-                        }
-        				
-        				var encontrado = false;
-        				const celdaRenglon = tablaReg.rows[r].getElementsByTagName('td');
-        				//buscamos en la celda especifica de acuerdo a la opcion seleccionada
-        				const textoTabla = celdaRenglon[noCelda].innerHTML.toLowerCase();
-        				if(textoTabla.indexOf(textoBuscar)>-1){
-        					console.log(textoTabla);
-        					encontrado = true;
-        					total++;
-        				}
-        				if(encontrado){
-        					tablaReg.rows[r].style.display='';
-        				}else{
-        					tablaReg.rows[r].style.display='none';
-        				}
-        			}
-        			
-        			// mostramos las coincidencias
-                    const ultimoTR=tablaReg.rows[tablaReg.rows.length-1];
-                    const td=ultimoTR.querySelector("td");
-                    ultimoTR.classList.remove("hide", "red");
-                    if (total>=1) {
-                        td.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
-                    } else {
-                        ultimoTR.classList.add("red");
-                        td.innerHTML="No se han encontrado coincidencias";
-                    }
-        		});
-				
-				
-				
 				
 				$("#cerrarVentana").click(function(){
 					window.parent.TINY.box.hide();
@@ -115,15 +68,18 @@
         <s:actionerror />
         <s:actionmessage />
         
-        <input type="radio" id="busquedaIdTemporada" name="opcion" value="IdTemporada">
-    	<label for="busquedaIdTemporada">Busqueda por Id de la Temporada</label> 
-        <input type="radio" id="busquedaIdLiga" name="opcion" value="IdLiga">
-    	<label for="busquedaIdLiga">Busqueda por Id de la Liga</label>
-    	
-    	<br></br>
-    	<label id="etiqueta" for="idTexto"></label>
-    	<input type="text" id="idTexto" name="idTexto"/>
-    	<input type="button" id="buscar" value="Buscar" />
+        <s:form action="consultarEquipoTemporadasModal" method="post">
+        <table style="border:none">
+        	<tr>
+        	<td><b>Busqueda por id de Temporada</b> <input type="text" id="idTemporada" name="temporadaF.idTemporada"/></td>
+        	<td><b>Busqueda por id de la Liga</b> <input type="text" id="idLiga" name="temporadaF.liga.idLiga"/></td>
+        	<td><b>Busqueda por nombre de la Liga</b> <input type="text" id="nombre" name="temporadaF.liga.nombre"/></td>
+        	</tr>
+        	<tr>
+        		<td align="left" colspan="3"><s:submit value="%{getText('button.label.buscar')}" theme="simple"/> <input type="button" value="Limpiar" onclick="javascript:limpiarBusqueda()"></td>
+        	</tr>
+        </table>
+        </s:form>
     	
     	
     	<div>
@@ -140,6 +96,7 @@
 					<display:column property="fechaInicial" title="Fecha Inicial" sortable="true" escapeXml="true"></display:column>
 					<display:column property="fechaFinal" title="Fecha Final" sortable="true" escapeXml="true"></display:column>
 					<display:column property="liga.idLiga" title="Id de la Liga" sortable="true" escapeXml="true"></display:column>
+					<display:column property="liga.nombre" title="Nombre de la Liga" sortable="true" escapeXml="true"></display:column>
 					
 	
 					<display:column media="html">
@@ -152,6 +109,5 @@
     	
         <input id="cerrarVentana" type="button" value="Cerrar"/>
         <input id="aceptarSeleccion" type="button" value="Aceptar"/>
-        <input id="LimpiarVentana" type="button" value="Limpiar"/>
 	</body>
 </html>

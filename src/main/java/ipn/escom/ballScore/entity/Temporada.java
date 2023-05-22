@@ -14,6 +14,7 @@ public class Temporada{
 	private Date fechaAlta;
 	
 	private Liga liga;
+	private EquipoTemporada equipoTemporada;
 
 	public Long getIdTemporada() {
 		return idTemporada;
@@ -61,6 +62,14 @@ public class Temporada{
 
 	public void setLiga(Liga liga) {
 		this.liga = liga;
+	}
+
+	public EquipoTemporada getEquipoTemporada() {
+		return equipoTemporada;
+	}
+
+	public void setEquipoTemporada(EquipoTemporada equipoTemporada) {
+		this.equipoTemporada = equipoTemporada;
 	} 
 	
 	

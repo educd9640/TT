@@ -48,25 +48,24 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
     public void prepare(){
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo()");
 		GestionarEquiposBI equipoBI= new GestionarEquiposBI();
-		equipoForm= new GestionarEquiposForm();
+		//equipoForm= new GestionarEquiposForm();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
 		this.managerActual= (Manager) session.getAttribute("Usuario");
 		
-		if(idTemporada != null) {
-			try {
-				this.equiposTemporadaRegistrados = equipoBI.obtenerEquiposTemporadaRegistrados(idTemporada);
-				if(equipoL != null) {
-					for(int i=0; i<equiposTemporadaRegistrados.size();i++) {
-						if(equiposTemporadaRegistrados.get(i).getIdEquipo() == equipoL) {
-							equiposTemporadaRegistrados.remove(i);
-						}
-					}
-				}
-				
-			}catch(BussinessException e) {
-				addActionError(e.getMessage());
+		
+		try {
+			if(idTemporada != null && equipoForm!=null && equipoForm.getIdEquipo()!=null) {
+				this.equiposTemporadaRegistrados.add(equipoBI.buscarEquipoTemporadaPorId(equipoForm.getIdEquipo(), idTemporada, equipoL));
+			}else if(idTemporada != null && equipoForm!=null && equipoForm.getNombre()!=null && !equipoForm.getNombre().equals("")) {
+				this.equiposTemporadaRegistrados = equipoBI.buscarEquipoTemporadaPorNombre(equipoForm.getNombre(), idTemporada, equipoL);
+			}else {
+				this.equiposTemporadaRegistrados = equipoBI.obtenerEquiposTemporadaRegistrados(idTemporada, equipoL);
 			}
+			
+		}catch(BussinessException e) {
+			addActionError(e.getMessage());
 		}
+		
 		
 		try {
 			equiposRegistrados= equipoBI.obtenerEquiposRegistrados();

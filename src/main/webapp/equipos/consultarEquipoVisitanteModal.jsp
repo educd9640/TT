@@ -21,6 +21,11 @@
         <script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
         
         <script>
+        function limpiarBusqueda(){
+			document.forms[0].idEquipo.value=null;
+			document.forms[0].nombre.value=null;
+			document.forms[0].submit();
+		}
         	//Inician metodos JQuery
 	        $(document).ready(function(){
 	        
@@ -36,59 +41,7 @@
 				  }
 				});
 				
-				
-				$("#buscar").click(function(){
-        			const tablaReg = document.getElementById('tabla');
-        			const buscarID = document.getElementById('busquedaID');
-        			const buscarEquipo = document.getElementById('busquedaEquipo');
-        			
-        			const textoBuscar = document.getElementById('idTexto').value.toLowerCase();
-        			var noCelda=0;
-        			if(buscarID.checked){
-        				noCelda=0;
-        			}else if(buscarEquipo.checked){
-        				noCelda=1;
-        			}else{
-        				Sexy.error("Debes seleccionar una opcion");
-        			}
-        			var total=0;
-        			for(var r=1;r<tablaReg.rows.length; r++){
-        				
-        				// Si el td tiene la clase "noSearch" no se busca en su contenido
-        				if (tablaReg.rows[r].classList.contains("noSearch")) {
-                            continue;
-                        }
-        				
-        				var encontrado = false;
-        				const celdaRenglon = tablaReg.rows[r].getElementsByTagName('td');
-        				//buscamos en la celda especifica de acuerdo a la opcion seleccionada
-        				const textoTabla = celdaRenglon[noCelda].innerHTML.toLowerCase();
-        				if(textoTabla.indexOf(textoBuscar)>-1){
-        					console.log(textoTabla);
-        					encontrado = true;
-        					total++;
-        				}
-        				if(encontrado){
-        					tablaReg.rows[r].style.display='';
-        				}else{
-        					tablaReg.rows[r].style.display='none';
-        				}
-        			}
-        			
-        			// mostramos las coincidencias
-                    const ultimoTR=tablaReg.rows[tablaReg.rows.length-1];
-                    const td=ultimoTR.querySelector("td");
-                    ultimoTR.classList.remove("hide", "red");
-                    if (total>=1) {
-                        td.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
-                    } else {
-                        ultimoTR.classList.add("red");
-                        td.innerHTML="No se han encontrado coincidencias";
-                    }
-        		});
-				
-				
-				
+
 				
 				$("#cerrarVentana").click(function(){
 					window.parent.TINY.box.hide();
@@ -110,22 +63,24 @@
 	</head>
 	<body>
 		<div class="titleDiv"><s:text name="application.title"/></div>
-        <h1><s:text name="label.registrados.titulo"/></h1>
+        <h1><s:text name="label.visitante.titulo"/></h1>
         <br/><br/>
         <s:actionerror />
         <s:actionmessage />
         
-        
-        
-        <input type="radio" id="busquedaID" name="opcion" value="ID">
-    	<label for="busquedaID">Busqueda por ID</label> 
-        <input type="radio" id="busquedaEquipo" name="opcion" value="equipo">
-    	<label for="busquedaEquipo">Busqueda por nombre del equipo</label>
-    	<br></br>
-    	<br></br>
-    	<label id="etiqueta" for="idTexto"></label>
-    	<input type="text" id="idTexto" name="idTexto"/>
-    	<input type="button" id="buscar" value="Buscar" />
+        <s:form action="consultarEquipoVisitanteModal" method="post">
+        <table style="border:none">
+        	<tr>
+        	<td><b>Busqueda por id del equipo</b> <input type="text" id="idEquipo" name="equipoForm.idEquipo"/></td>
+        	<td><b>Busqueda por nombre del equipo</b> <input type="text" id="nombre" name="equipoForm.nombre"/></td>
+        	</tr>
+        	<s:hidden name="idTemporada" value="%{#attr.idTemporada}"></s:hidden>
+        	<s:hidden name="equipoL" value="%{#attr.equipoL}"></s:hidden>
+        	<tr>
+        		<td align="left" colspan="3"><s:submit value="%{getText('button.label.buscar')}" theme="simple"/> <input type="button" value="Limpiar" onclick="javascript:limpiarBusqueda()"></td>
+        	</tr>
+        </table>
+        </s:form>
     	
     	<div>
 			<display:table export="true" id="equipo" name="equiposTemporadaRegistrados" pagesize="15" requestURI="" class="table table-hover table-striped">
@@ -139,6 +94,7 @@
 					<display:column property="idEquipo" title="Id del Equipo" sortable="true"></display:column>
 					<display:column property="nombre" title="Nombre del equipo" sortable="true" escapeXml="true"></display:column>
 					<display:column property="manager.idManager" title="Id del manager" sortable="true" escapeXml="true"></display:column>
+					<display:column property="manager.nombrePila" title="Nombre del manager" sortable="true" escapeXml="true"></display:column>
 					
 	
 					<display:column media="html">
@@ -151,6 +107,5 @@
 
         <input id="cerrarVentana" type="button" value="Cerrar"/>
         <input id="aceptarSeleccion" type="button" value="Aceptar"/>
-        <input id="LimpiarVentana" type="button" value="Limpiar"/>
 	</body>
 </html>
