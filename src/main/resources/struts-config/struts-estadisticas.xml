@@ -57,6 +57,13 @@
 			<result name="input">/partidos/jugadores/registrarResultadosJugador.jsp</result>
 			<result name="success">/partidos/jugadores/registrarResultadosJugador.jsp</result>
 		</action>
+		
+		<action name="registrarEstadisticasOfensivas"
+			class="ipn.escom.ballScore.action.GestionarEstadisticasAction"
+			method="registrarEstadisticasOfensivas">
+			<result name="input">/partidos/jugadores/registrarResultadosJugador.jsp</result>
+			<result name="success">/partidos/jugadores/registrarResultadosJugador.jsp</result>
+		</action>
 
 	</package>
 

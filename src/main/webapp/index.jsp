@@ -3,7 +3,7 @@
 	<div>
 	<img alt="logo" src="/ballscore/bases/ball.png" style="display: block; margin-left: auto; margin-right: auto;" width=250 height=250>
 	</div>
-	<div id="login" class="rounded" style="background-color: white;width: 25%; padding: 1%; margin-top:1%">
+	<div id="login" class="rounded" style="background-color: white;width: 500px; padding: 1%; margin-top:1%">
 		<h4>Inicio de sesión: </h4>
 		<s:form action="login"  theme="bootstrap" cssClass="well form-vertical">
 			<s:textfield name="login"  placeholder="Login" />

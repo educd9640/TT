@@ -21,8 +21,8 @@
         		TINY.box.show({
         			iframe:'/ballscore/alumnos/consultarAlumnosModal.action?soloLibres=true',
         			boxid:'frameless',
-        			width:full_window_width-300,
-        			height:full_window_height-250,
+        			width:full_window_width-(full_window_width*.15),
+        			height:full_window_height-(full_window_height*.20),
         			fixed:true,
         			maskid:'bluemask',
 					maskopacity:40
