@@ -109,6 +109,14 @@
 	<s:if test="%{sessionManager.idManager==equipoTemporada.equipo.manager.idManager}">
 		<input id="registrarJugadoresModal" type="button" value="Registrar jugadores"/>
 	</s:if>
+	
+	<s:form namespace="/jugadores/estadisticas" action="consultarEstadisticasPartido" method="post">
+		<s:hidden id="idTemporada" key="form.idTemporada"></s:hidden>
+		<s:hidden id="idEquipo" key="form.idEquipo"></s:hidden>
+		<s:hidden id="idPartido" key="form.idPartido"></s:hidden>
+		<s:submit value="Consultar Estadisticas" theme="simple"/>
+	</s:form>	
+	
     <s:form namespace="/partidos" action="consultarPartidos">
 			<s:submit value="Regresar" targets="consultarPartidos" />
 	</s:form>

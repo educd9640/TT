@@ -5,146 +5,146 @@ package ipn.escom.ballScore.form;
  *
  */
 public class EstadisticasPitcherVO {
-	private Long partidoIniciado=0L;
-	private Long partidoSalvado=0L;
-	private Long partidoTerminado=0L;
-	private Long partidoGanado=0L;
-	private Long partidoPerdido=0L;
-	private Long esOportunidadSalvado=0L;
-	private Long esShutout=0L;
-	private Long inningsPitcheadas=0L;
-	private Long basesPorbola=0L;
-	private Long basesPorBolaInt=0L;
-	private Long basesPorGolpe=0L;
-	private Long balks=0L;
-	private Long wildpitchs=0L;
-	private Long hitsPermitidos=0L;
-	private Long carreras=0L;
-	private Long carrerasPermitidas=0L;
-	private Long homeruns=0L;
-	private Long strikeouts=0L;
-	private Long flyouts=0L;
-	private Long groundOuts=0L;
+	private Double partidoIniciado=0D;
+	private Double partidoSalvado=0D;
+	private Double partidoTerminado=0D;
+	private Double partidoGanado=0D;
+	private Double partidoPerdido=0D;
+	private Double esOportunidadSalvado=0D;
+	private Double esShutout=0D;
+	private Double inningsPitcheadas=0D;
+	private Double basesPorbola=0D;
+	private Double basesPorBolaInt=0D;
+	private Double basesPorGolpe=0D;
+	private Double balks=0D;
+	private Double wildpitchs=0D;
+	private Double hitsPermitidos=0D;
+	private Double carreras=0D;
+	private Double carrerasPermitidas=0D;
+	private Double homeruns=0D;
+	private Double strikeouts=0D;
+	private Double flyouts=0D;
+	private Double groundOuts=0D;
 	
 	
-	public Long getPartidoIniciado() {
+	public Double getPartidoIniciado() {
 		return partidoIniciado;
 	}
-	public void setPartidoIniciado(Long partidoIniciado) {
+	public void setPartidoIniciado(Double partidoIniciado) {
 		this.partidoIniciado = partidoIniciado;
 	}
-	public Long getPartidoSalvado() {
+	public Double getPartidoSalvado() {
 		return partidoSalvado;
 	}
-	public void setPartidoSalvado(Long partidoSalvado) {
+	public void setPartidoSalvado(Double partidoSalvado) {
 		this.partidoSalvado = partidoSalvado;
 	}
-	public Long getPartidoTerminado() {
+	public Double getPartidoTerminado() {
 		return partidoTerminado;
 	}
-	public void setPartidoTerminado(Long partidoTerminado) {
+	public void setPartidoTerminado(Double partidoTerminado) {
 		this.partidoTerminado = partidoTerminado;
 	}
-	public Long getPartidoGanado() {
+	public Double getPartidoGanado() {
 		return partidoGanado;
 	}
-	public void setPartidoGanado(Long partidoGanado) {
+	public void setPartidoGanado(Double partidoGanado) {
 		this.partidoGanado = partidoGanado;
 	}
-	public Long getPartidoPerdido() {
+	public Double getPartidoPerdido() {
 		return partidoPerdido;
 	}
-	public void setPartidoPerdido(Long partidoPerdido) {
+	public void setPartidoPerdido(Double partidoPerdido) {
 		this.partidoPerdido = partidoPerdido;
 	}
-	public Long getEsOportunidadSalvado() {
+	public Double getEsOportunidadSalvado() {
 		return esOportunidadSalvado;
 	}
-	public void setEsOportunidadSalvado(Long esOportunidadSalvado) {
+	public void setEsOportunidadSalvado(Double esOportunidadSalvado) {
 		this.esOportunidadSalvado = esOportunidadSalvado;
 	}
-	public Long getEsShutout() {
+	public Double getEsShutout() {
 		return esShutout;
 	}
-	public void setEsShutout(Long esShutout) {
+	public void setEsShutout(Double esShutout) {
 		this.esShutout = esShutout;
 	}
-	public Long getInningsPitcheadas() {
+	public Double getInningsPitcheadas() {
 		return inningsPitcheadas;
 	}
-	public void setInningsPitcheadas(Long inningsPitcheadas) {
+	public void setInningsPitcheadas(Double inningsPitcheadas) {
 		this.inningsPitcheadas = inningsPitcheadas;
 	}
-	public Long getBasesPorbola() {
+	public Double getBasesPorbola() {
 		return basesPorbola;
 	}
-	public void setBasesPorbola(Long basesPorbola) {
+	public void setBasesPorbola(Double basesPorbola) {
 		this.basesPorbola = basesPorbola;
 	}
-	public Long getBasesPorBolaInt() {
+	public Double getBasesPorBolaInt() {
 		return basesPorBolaInt;
 	}
-	public void setBasesPorBolaInt(Long basesPorBolaInt) {
+	public void setBasesPorBolaInt(Double basesPorBolaInt) {
 		this.basesPorBolaInt = basesPorBolaInt;
 	}
-	public Long getBasesPorGolpe() {
+	public Double getBasesPorGolpe() {
 		return basesPorGolpe;
 	}
-	public void setBasesPorGolpe(Long basesPorGolpe) {
+	public void setBasesPorGolpe(Double basesPorGolpe) {
 		this.basesPorGolpe = basesPorGolpe;
 	}
-	public Long getBalks() {
+	public Double getBalks() {
 		return balks;
 	}
-	public void setBalks(Long balks) {
+	public void setBalks(Double balks) {
 		this.balks = balks;
 	}
-	public Long getWildpitchs() {
+	public Double getWildpitchs() {
 		return wildpitchs;
 	}
-	public void setWildpitchs(Long wildpitchs) {
+	public void setWildpitchs(Double wildpitchs) {
 		this.wildpitchs = wildpitchs;
 	}
-	public Long getHitsPermitidos() {
+	public Double getHitsPermitidos() {
 		return hitsPermitidos;
 	}
-	public void setHitsPermitidos(Long hitsPermitidos) {
+	public void setHitsPermitidos(Double hitsPermitidos) {
 		this.hitsPermitidos = hitsPermitidos;
 	}
-	public Long getCarreras() {
+	public Double getCarreras() {
 		return carreras;
 	}
-	public void setCarreras(Long carreras) {
+	public void setCarreras(Double carreras) {
 		this.carreras = carreras;
 	}
-	public Long getCarrerasPermitidas() {
+	public Double getCarrerasPermitidas() {
 		return carrerasPermitidas;
 	}
-	public void setCarrerasPermitidas(Long carrerasPermitidas) {
+	public void setCarrerasPermitidas(Double carrerasPermitidas) {
 		this.carrerasPermitidas = carrerasPermitidas;
 	}
-	public Long getHomeruns() {
+	public Double getHomeruns() {
 		return homeruns;
 	}
-	public void setHomeruns(Long homeruns) {
+	public void setHomeruns(Double homeruns) {
 		this.homeruns = homeruns;
 	}
-	public Long getStrikeouts() {
+	public Double getStrikeouts() {
 		return strikeouts;
 	}
-	public void setStrikeouts(Long strikeouts) {
+	public void setStrikeouts(Double strikeouts) {
 		this.strikeouts = strikeouts;
 	}
-	public Long getFlyouts() {
+	public Double getFlyouts() {
 		return flyouts;
 	}
-	public void setFlyouts(Long flyouts) {
+	public void setFlyouts(Double flyouts) {
 		this.flyouts = flyouts;
 	}
-	public Long getGroundOuts() {
+	public Double getGroundOuts() {
 		return groundOuts;
 	}
-	public void setGroundOuts(Long groundOuts) {
+	public void setGroundOuts(Double groundOuts) {
 		this.groundOuts = groundOuts;
 	}
 	

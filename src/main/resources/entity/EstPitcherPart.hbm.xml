@@ -17,27 +17,33 @@
       	<key-property name="idTemporada" column="ID_TEMPORADA" type="java.lang.Long"></key-property>
       </composite-id>
       
-      <property name = "partidoIniciado" 		column = "STARTED_GAMES" 	type = "java.lang.Long"/>
-      <property name = "partidoSalvado" 		column = "SV" 				type = "java.lang.Long"/>
-      <property name = "partidoTerminado" 		column = "FINISHED_GAMES" 	type = "java.lang.Long"/>
-      <property name = "partidoGanado" 			column = "W" 			type = "java.lang.Long"/>
-      <property name = "partidoPerdido" 		column = "L" 			type = "java.lang.Long" 				 />
-      <property name = "esOportunidadSalvado" 	column = "SVO"  		type = "java.lang.Long" 				 />
-      <property name = "esShutout" 				column = "SHO"  		type = "java.lang.Long" 				 />
-      <property name = "inningsPitcheadas" 		column = "IP" 			type = "java.lang.Long" 				 />
-      <property name = "basesPorbola" 			column = "BB"  			type = "java.lang.Long" 				 />
-      <property name = "basesPorBolaInt" 		column = "IBB" 			type = "java.lang.Long"					 />
-      <property name = "basesPorGolpe" 			column = "HBP" 			type = "java.lang.Long"					 />
-      <property name = "balks" 					column = "BK" 			type = "java.lang.Long"					 />
-      <property name = "wildpitchs" 			column = "WP" 			type = "java.lang.Long"					 />
-      <property name = "hitsPermitidos" 		column = "H" 			type = "java.lang.Long"					 />
-      <property name = "carreras" 				column = "R" 			type = "java.lang.Long"					 />
-      <property name = "carrerasPermitidas" 	column = "ER" 			type = "java.lang.Long"					 />
-      <property name = "homeruns" 				column = "HR" 			type = "java.lang.Long"					 />
-      <property name = "strikeouts" 			column = "SO" 			type = "java.lang.Long"					 />
-      <property name = "flyouts" 				column = "FLOUT" 		type = "java.lang.Long"					 />
-      <property name = "groundOuts" 			column = "GOUT" 		type = "java.lang.Long"					 />
-      
+      <property name = "partidoIniciado" 		column = "STARTED_GAMES" 	type = "java.lang.Double"/>
+      <property name = "partidoSalvado" 		column = "SV" 				type = "java.lang.Double"/>
+      <property name = "partidoTerminado" 		column = "FINISHED_GAMES" 	type = "java.lang.Double"/>
+      <property name = "partidoGanado" 			column = "W" 			type = "java.lang.Double"/>
+      <property name = "partidoPerdido" 		column = "L" 			type = "java.lang.Double" 				 />
+      <property name = "esOportunidadSalvado" 	column = "SVO"  		type = "java.lang.Double" 				 />
+      <property name = "esShutout" 				column = "SHO"  		type = "java.lang.Double" 				 />
+      <property name = "inningsPitcheadas" 		column = "IP" 			type = "java.lang.Double" 				 />
+      <property name = "basesPorbola" 			column = "BB"  			type = "java.lang.Double" 				 />
+      <property name = "basesPorBolaInt" 		column = "IBB" 			type = "java.lang.Double"					 />
+      <property name = "basesPorGolpe" 			column = "HBP" 			type = "java.lang.Double"					 />
+      <property name = "balks" 					column = "BK" 			type = "java.lang.Double"					 />
+      <property name = "wildpitchs" 			column = "WP" 			type = "java.lang.Double"					 />
+      <property name = "hitsPermitidos" 		column = "H" 			type = "java.lang.Double"					 />
+      <property name = "carreras" 				column = "R" 			type = "java.lang.Double"					 />
+      <property name = "carrerasPermitidas" 	column = "ER" 			type = "java.lang.Double"					 />
+      <property name = "homeruns" 				column = "HR" 			type = "java.lang.Double"					 />
+      <property name = "strikeouts" 			column = "SO" 			type = "java.lang.Double"					 />
+      <property name = "flyouts" 				column = "FLOUT" 		type = "java.lang.Double"					 />
+      <property name = "groundOuts" 			column = "GOUT" 		type = "java.lang.Double"					 />
+      <property name = "knine" 					column = "K9" 		type = "java.lang.Double"					 />
+      <property name = "bbnine" 				column = "BB9" 		type = "java.lang.Double"					 />
+      <property name = "kbb" 					column = "KBB" 		type = "java.lang.Double"					 />
+      <property name = "hrnine" 				column = "HR9" 		type = "java.lang.Double"					 />
+      <property name = "kperc" 					column = "K_PERC" 		type = "java.lang.Double"					 />
+      <property name = "bbperc" 				column = "BB_PERC" 		type = "java.lang.Double"					 />
+      <property name = "avg" 					column = "AVG" 		type = "java.lang.Double"					 />
       <many-to-one name="JugadorPartido" class="ipn.escom.ballScore.entity.JugadorPartido" lazy="false" not-null="true" cascade="none" insert="false" update="false">
       	<column name="ID_JUGADOR"/>
       	<column name="ID_PARTIDO"/>

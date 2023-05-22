@@ -1,0 +1,41 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "ipn.escom.ballScore.entity.EstDefensivasPart" table = "EST_DEFENSIVAS_PART">
+      
+      <meta attribute = "class-description">
+         This class contains the EstDefensivasPart detail. 
+      </meta>
+      
+      <composite-id>
+      	<key-property name="idPartido" column="ID_PARTIDO" type="java.lang.Long"></key-property>
+      	<key-property name="idJugador" column="ID_JUGADOR" type="java.lang.Long"></key-property>
+      	<key-property name="idEquipo" column="ID_EQUIPO" type="java.lang.Long"></key-property>
+      	<key-property name="idTemporada" column="ID_TEMPORADA" type="java.lang.Long"></key-property>
+      </composite-id>
+      
+      <property name = "asistencias" 		column = "A" 				type = "java.lang.Double"/>
+      <property name = "caughtStealingPerc"	column = "CS_PERC" 			type = "java.lang.Double"/>
+      <property name = "dobleplays" 		column = "DP" 				type = "java.lang.Double"/>
+      <property name = "errores" 			column = "E" 				type = "java.lang.Double"/>
+      <property name = "fieldingPercentage" column = "FPCT" 			type = "java.lang.Double" 				 />
+      <property name = "inningsJugadas" 	column = "INN"  			type = "java.lang.Double" 				 />
+      <property name = "outs" 				column = "O"  				type = "java.lang.Double" 				 />
+      <property name = "asistenciaOutField" column = "OFA" 				type = "java.lang.Double" 				 />
+      <property name = "passedballs" 		column = "PB"  				type = "java.lang.Double" 				 />
+      <property name = "putouts" 			column = "PO" 				type = "java.lang.Double"					 />
+      <property name = "totalChances" 		column = "TC" 				type = "java.lang.Double"					 />
+      <property name = "triplePlays" 		column = "TP" 				type = "java.lang.Double"					 />
+      
+      <many-to-one name="JugadorPartido" class="ipn.escom.ballScore.entity.JugadorPartido" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+      	<column name="ID_JUGADOR"/>
+      	<column name="ID_PARTIDO"/>
+      	<column name="ID_EQUIPO"/>
+      	<column name="ID_TEMPORADA"/>
+      </many-to-one>
+
+   </class>
+</hibernate-mapping>
