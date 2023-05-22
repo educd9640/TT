@@ -12,7 +12,6 @@ import org.apache.logging.log4j.Logger;
 import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
 import ipn.escom.ballScore.dao.GestionarLigasDAO;
 import ipn.escom.ballScore.dao.GestionarTemporadasDAO;
-import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
 import ipn.escom.ballScore.entity.Liga;
 import ipn.escom.ballScore.entity.Temporada;
 import ipn.escom.ballScore.entity.EquipoTemporada;
@@ -188,6 +187,54 @@ public class GestionarTemporadasBI {
 		}
 		
 		return temporadas;
+	}
+
+
+
+	public GestionarTemporadasDAO getTemporadaDAO() {
+		return temporadaDAO;
+	}
+
+
+
+	public void setTemporadaDAO(GestionarTemporadasDAO temporadaDAO) {
+		this.temporadaDAO = temporadaDAO;
+	}
+
+
+
+	public GestionarEquipoTemporadaDAO getEquipotemporadaDAO() {
+		return equipotemporadaDAO;
+	}
+
+
+
+	public void setEquipotemporadaDAO(GestionarEquipoTemporadaDAO equipotemporadaDAO) {
+		this.equipotemporadaDAO = equipotemporadaDAO;
+	}
+
+
+
+	public GestionarLigasDAO getLigaDAO() {
+		return ligaDAO;
+	}
+
+
+
+	public void setLigaDAO(GestionarLigasDAO ligaDAO) {
+		this.ligaDAO = ligaDAO;
+	}
+
+
+
+	public GestionarEquipoTemporadaDAO getEquipotempDAO() {
+		return equipotempDAO;
+	}
+
+
+
+	public void setEquipotempDAO(GestionarEquipoTemporadaDAO equipotempDAO) {
+		this.equipotempDAO = equipotempDAO;
 	}
 	
 	/**Metodo para obtener las temporadas registradas en una liga

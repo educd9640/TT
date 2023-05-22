@@ -122,6 +122,7 @@
           <li><a href='<s:url namespace="/equipos" action="submenuEquipos" />' class="nav-link px-2 text-white">Equipo</a></li>
           <li><a href='<s:url namespace="/ligas" action="submenuLigas" />' class="nav-link px-2 text-white">Ligas</a></li>
           <li><a href='<s:url namespace="/temporadas" action="submenuTemporadas" />' class="nav-link px-2 text-white">Temporadas</a></li>
+          <li><a href='<s:url namespace="/partidos" action="submenuPartidos" />' class="nav-link px-2 text-white">Partidos</a></li>
         </ul>
 
         <div class="text-end">

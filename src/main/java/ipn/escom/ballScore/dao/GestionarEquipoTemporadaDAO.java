@@ -7,7 +7,6 @@ import java.util.List;
 import org.hibernate.Query;
 
 import ipn.escom.ballScore.entity.EquipoTemporada;
-import ipn.escom.ballScore.entity.Temporada;
 import ipn.escom.ballScore.exception.BussinessException;
 
 /**Clase DAO para la gestion de equipos de temporada

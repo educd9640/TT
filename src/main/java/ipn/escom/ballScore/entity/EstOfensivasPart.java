@@ -1,50 +1,51 @@
-package ipn.escom.ballScore.form;
+package ipn.escom.ballScore.entity;
 
-import ipn.escom.ballScore.entity.JugadorPartido;
+import java.io.Serializable;
 
-/**Clase VO para estadisticas ofensivas
+/**Clase de entidad para estadisticas ofensivas
  * @author Jose Mauricio
  *
  */
-public class EstadisticasOfensivasVO {
+public class EstOfensivasPart implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private Long idPartido;
 	private Long idJugador;
 	private Long idEquipo;
 	private Long idTemporada;
-	private Double alBat=0D;
-	private Double avg=0D;
-	private Double caughtStealing=0D;
-	private Double dobles=0D;
-	private Double extraBaseHits=0D;
-	private Double gamesPlayed=0D;
-	private Double grandslam=0D;
-	private Double groundIntoDoubleplays=0D;
-	private Double groundoutToAiroutRatio=0D;
-	private Double hitsByPitch=0D;
-	private Double hits=0D;
-	private Double homeruns=0D;
-	private Double intentionalBB=0D;
-	private Double leftOnBase=0D;
-	private Double onBasePercentage=0D;
-	private Double onBasePlusSlugging=0D;
-	private Double plateAppearance=0D;
-	private Double reachedOnError=0D;
-	private Double carreras=0D;
-	private Double carrerasBateadas=0D;
-	private Double hitsSacrificio=0D;
-	private Double elevadosSacrificio=0D;
-	private Double sencillos=0D;
-	private Double slugger=0D;
-	private Double basesRobadas=0D;
-	private Double porcentajeBasesRobadas=0D;
-	private Double totalBases=0D;
-	private Double triples=0D;
-	private Double basesPorBola=0D;
-	private Double walkOff=0D;
-	private Double strikeouts=0D;
-	private Double groundOuts=0D;
-	private Double flyOuts=0D;
+	private Double alBat;
+	private Double avg;
+	private Double caughtStealing;
+	private Double dobles;
+	private Double extraBaseHits;
+	private Double gamesPlayed;
+	private Double grandslam;
+	private Double groundIntoDoubleplays;
+	private Double groundoutToAiroutRatio;
+	private Double hitsByPitch;
+	private Double hits;
+	private Double homeruns;
+	private Double intentionalBB;
+	private Double leftOnBase;
+	private Double onBasePercentage;
+	private Double onBasePlusSlugging;
+	private Double plateAppearance;
+	private Double reachedOnError;
+	private Double carreras;
+	private Double carrerasBateadas;
+	private Double hitsSacrificio;
+	private Double elevadosSacrificio;
+	private Double sencillos;
+	private Double slugger;
+	private Double basesRobadas;
+	private Double porcentajeBasesRobadas;
+	private Double totalBases;
+	private Double triples;
+	private Double basesPorBola;
+	private Double walkOff;
+	private Double strikeouts;
+	private Double groundOuts;
+	private Double flyOuts;
 	
 	private JugadorPartido jugadorPartido;
 
