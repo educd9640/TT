@@ -58,8 +58,24 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		}catch(BussinessException e) {
 			addActionError(e.getMessage());
 		}
+		
+		
 		try {
-			this.equipoTemporadasRegistradas = temporadaBI.obtenerEquipoTemporadasRegistradas();
+			if(temporadaF!=null) {
+				if(temporadaF.getIdTemporada()!=null) {
+					this.equipoTemporadasRegistradas.add(temporadaBI.buscarTemporadaPorId(temporadaF.getIdTemporada()));
+				}else if(temporadaF.getLiga().getIdLiga()!=null) {
+					this.equipoTemporadasRegistradas = temporadaBI.buscarTemporadaPorIdLiga(temporadaF.getLiga().getIdLiga());
+				}else if(temporadaF.getLiga().getNombre()!=null) {
+					this.equipoTemporadasRegistradas = temporadaBI.buscarTemporadaPorNombreLiga(temporadaF.getLiga().getNombre());
+				}else {
+					this.equipoTemporadasRegistradas = temporadaBI.obtenerEquipoTemporadasRegistradas();
+				}
+			}else {
+				this.equipoTemporadasRegistradas = temporadaBI.obtenerEquipoTemporadasRegistradas();
+			}
+			
+			
 		}catch(BussinessException e) {
 			addActionError(e.getMessage());
 		}
