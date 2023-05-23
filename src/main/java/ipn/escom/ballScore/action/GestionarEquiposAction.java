@@ -67,11 +67,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 			addActionError(e.getMessage());
 		}
 		
-		
-		try {
-			equiposRegistrados= equipoBI.obtenerEquiposRegistrados();
-		}catch(BussinessException e) {
-			addActionError(e.getMessage());
+
 		if(temporadaElegida!=null) {	
 			try {
 				equiposRegistrados= equipoBI.obtenerEquiposRegistrados(temporadaElegida);
