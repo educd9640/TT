@@ -42,4 +42,3 @@
 	</body>
 	<jsp:include page="/bases/footer.jsp"></jsp:include>
 </html>
-

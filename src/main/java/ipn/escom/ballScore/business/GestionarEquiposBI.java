@@ -11,12 +11,15 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
 import ipn.escom.ballScore.dao.GestionarEquiposDAO;
 import ipn.escom.ballScore.dao.GestionarManagersDAO;
+import ipn.escom.ballScore.dao.GestionarTemporadasDAO;
 import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
 import ipn.escom.ballScore.entity.Equipo;
-import ipn.escom.ballScore.entity.Manager;
 import ipn.escom.ballScore.entity.EquipoTemporada;
+import ipn.escom.ballScore.entity.Manager;
+import ipn.escom.ballScore.entity.Temporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.GestionarEquiposVO;
 
@@ -29,6 +32,8 @@ import ipn.escom.ballScore.form.GestionarEquiposVO;
 public class GestionarEquiposBI {
 
 	private static final Logger logger = LogManager.getLogger();
+	
+	private GestionarEquipoTemporadaDAO equipoTemporadaDAO;
 
 	/**
 	 * Metodo de negocio para registrar un equipo
@@ -223,6 +228,151 @@ public class GestionarEquiposBI {
 		tempequipos.cerrarConexiones();
 		equiposFaltantes = buscarCoincidencias(equipos,equipostemp);
 		return equiposFaltantes;
+	}
+	
+	
+	/**Metodo de negocio para obtener los equipos registrados en equipo_temporada
+	 * @return Lista de equipos
+	 * @throws BussinessException En caso de error
+	 */
+	public List<Equipo> obtenerEquiposTemporadaRegistrados(Long idTemporada, Long equipoL) throws BussinessException{
+		logger.info("Inicia metodo GestionarEquiposBI.obtenerEquiposTemporadaRegistrados()");
+		GestionarEquiposDAO equipoDAO= new GestionarEquiposDAO();
+		equipoTemporadaDAO = new GestionarEquipoTemporadaDAO();
+		
+		List<Equipo> equipos = new ArrayList<Equipo>();
+		List<Long> equiposTem = new ArrayList<Long>();
+		
+		try {
+			if(equipoL!=null) {
+				equiposTem = equipoTemporadaDAO.obtenerEquipos(idTemporada, equipoL);
+			}else {
+				equiposTem = equipoTemporadaDAO.obtenerEquipos(idTemporada);
+			}
+			
+		}catch(Exception e) {
+			logger.error(" Error al consultar los equipos registrados en equipo_temporada", e);
+			throw new BussinessException("Error al consultar los equipos registrados en equipo_temporada.");
+		}
+		
+		try {
+			for(Long equipo : equiposTem) {
+				equipos.add(equipoDAO.obtenerEquipo(equipo));
+			}
+		}catch(Exception e) {
+			logger.error(" Error al consultar los equipos registrados", e);
+			throw new BussinessException("Error al consultar los equipos registrados.");
+		}finally {
+			equipoDAO.cerrarConexiones();
+			equipoTemporadaDAO.cerrarConexiones();
+		}
+		
+		return equipos;
+		
+	}
+	
+	/**Metodo para buscar un equipo por su id
+	 * @param id del equipo
+	 * @return Entidad del equipo con sus datos
+	 * @throws BussinessException En caso de no encontrar el Equipo
+	 */
+	public Equipo buscarEquipoPorId(Long id) throws BussinessException{
+		logger.info("Inicia metodo GestionarTemporadasBI.buscarTemporadaPorId()");
+		GestionarEquiposDAO equipoDAO= new GestionarEquiposDAO();
+		Equipo equipo = equipoDAO.selectEquipoById(id);
+		
+		if(equipo == null) {
+			throw new BussinessException("Error al obtener la temporada por su id, no se encuentra registrada.");
+		}
+		equipoDAO.cerrarConexiones();
+		return equipo;
+		
+	}
+	
+	/**Metodo para buscar un equipo que se encuentre en equipo_temporada  por su id
+	 * @param idEquipo
+	 * @param idTemporada
+	 * @return La entidad Equipo si se encuentra
+	 * @throws BussinessException En caso de error
+	 */
+	public Equipo buscarEquipoTemporadaPorId(Long idEquipo, Long idTemporada, Long equipoL) throws BussinessException {
+		logger.info("Inicia metodo GestionarEquiposBI.buscarEquipoTemporadaPorId()");
+		GestionarEquiposDAO equipoDAO= new GestionarEquiposDAO();
+		equipoTemporadaDAO = new GestionarEquipoTemporadaDAO();
+		
+		EquipoTemporada Aux = new EquipoTemporada();
+		Equipo equipo = new Equipo();
+		
+		try {
+			if(equipoL!=null) {
+				Aux = equipoTemporadaDAO.selectEquipoTemporadaById(idEquipo, idTemporada, equipoL);				
+			}else {
+
+				Aux = equipoTemporadaDAO.selectEquipoTemporadaById(idEquipo, idTemporada);
+			}
+			
+			
+		}catch(Exception e) {
+			logger.error(" Error al consultar los equipos registrados con ese id", e);
+			throw new BussinessException("Error al consultar los equipos registrados con ese id.");
+		}
+		
+		 
+		try {
+			if(Aux!=null) {
+				equipo = equipoDAO.selectEquipoById(idEquipo);
+			}
+		}catch(Exception e) {
+			logger.error(" Error al consultar los equipos registrados", e);
+			throw new BussinessException("Error al consultar los equipos registrados.");
+		}finally {
+			equipoDAO.cerrarConexiones();
+			equipoTemporadaDAO.cerrarConexiones();
+		}
+		
+		
+		return equipo;
+		
+	}
+	
+	/**Metodo para obtener una lista de equipos con el nombre requerido
+	 * @param idEquipo
+	 * @param idTemporada
+	 * @return
+	 * @throws BussinessException
+	 */
+	public List<Equipo> buscarEquipoTemporadaPorNombre(String nombre, Long idTemporada, Long equipoL) throws BussinessException {
+		logger.info("Inicia metodo GestionarEquiposBI.buscarEquipoTemporadaPorNombre()");
+		GestionarEquiposDAO equipoDAO= new GestionarEquiposDAO();
+		equipoTemporadaDAO = new GestionarEquipoTemporadaDAO();
+		
+		List<Equipo> equipos = new ArrayList<Equipo>();
+		List<Long> equiposTem = new ArrayList<Long>();
+		try {
+			if(equipoL!=null) {
+				equiposTem = equipoTemporadaDAO.selectEquipoTemporadaByNombre(nombre, idTemporada, equipoL);
+			}else {
+				equiposTem = equipoTemporadaDAO.selectEquipoTemporadaByNombre(nombre, idTemporada);
+			}
+			
+		}catch(Exception e) {
+			logger.error(" Error al consultar los equipos registrados con ese nombre", e);
+			throw new BussinessException("Error al consultar los equipos registrados con ese nombre.");
+		}
+		try {
+			for(Long equipo : equiposTem) {
+				equipos.add(equipoDAO.obtenerEquipo(equipo));
+			}
+		}catch(Exception e) {
+			logger.error(" Error al consultar los equipos registrados", e);
+			throw new BussinessException("Error al consultar los equipos registrados.");
+		}finally {
+			equipoDAO.cerrarConexiones();
+			equipoTemporadaDAO.cerrarConexiones();
+		}
+		
+		return equipos;
+		
 	}
 	
 }
