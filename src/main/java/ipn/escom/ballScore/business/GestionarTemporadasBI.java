@@ -33,7 +33,6 @@ public class GestionarTemporadasBI {
 	
 	
 	
-	
 	/**Metodo para crear/actualizar una Temporada
 	 * @param temporadaVO con los datos de la temporada
 	 * @param operacion con la operacion a realizar
@@ -80,7 +79,7 @@ public class GestionarTemporadasBI {
 	
 	
 	
-	/**Metodo para busacar una temporada por su id
+	/**Metodo para buscar una temporada por su id
 	 * @param id de la temporada
 	 * @return Entidad de la temporada con sus datos
 	 * @throws BussinessException En caso de no encontrar la Temporada
@@ -236,6 +235,75 @@ public class GestionarTemporadasBI {
 
 	public void setEquipotempDAO(GestionarEquipoTemporadaDAO equipotempDAO) {
 		this.equipotempDAO = equipotempDAO;
+	}
+	
+	/**Metodo para obtener las temporadas registradas en una liga
+	 * @param id de la Liga
+	 * @return Lista de temporadas
+	 * @throws BussinessException
+	 */
+	public List<Temporada> buscarTemporadaPorIdLiga(Long id) throws BussinessException{
+		logger.info("Inicia metodo GestionarTemporadasBI.buscarTemporadaPorIdLiga()");
+		temporadaDAO = new GestionarTemporadasDAO();
+		GestionarEquipoTemporadaDAO equipoTemporadaDAO = new GestionarEquipoTemporadaDAO();
+		List<Temporada> temporadas = new ArrayList<Temporada>();
+		List<Long> equipoTemporadas = new ArrayList<Long>();
+		try {
+			equipoTemporadas = equipoTemporadaDAO.selectTemporadaByIdLiga(id);
+		}catch(Exception e) {
+			logger.error(" Error al consultar las temporadas registradas con ese id de liga", e);
+			throw new BussinessException("Error al consultar las temporadas registradas con ese id de liga.");
+		}
+		
+		try {
+			for(Long temporada: equipoTemporadas) {
+				temporadas.add( temporadaDAO.selectTemporadaById(temporada));
+			}
+		}catch(Exception e) {
+			logger.error(" Error al consultar las temporadas registradas", e);
+			throw new BussinessException("Error al consultar las temporadas registradas.");
+		}finally {
+			temporadaDAO.cerrarConexiones();
+		}
+		
+		
+		return temporadas;
+		
+	}
+	
+	
+	/**Metodo para obtener las temporadas registradas en una liga
+	 * @param id de la Liga
+	 * @return Lista de temporadas
+	 * @throws BussinessException
+	 */
+	public List<Temporada> buscarTemporadaPorNombreLiga(String nombre) throws BussinessException{
+		logger.info("Inicia metodo GestionarTemporadasBI.buscarTemporadaPorIdLiga()");
+		temporadaDAO = new GestionarTemporadasDAO();
+		GestionarEquipoTemporadaDAO equipoTemporadaDAO = new GestionarEquipoTemporadaDAO();
+		List<Temporada> temporadas = new ArrayList<Temporada>();
+		List<Long> equipoTemporadas = new ArrayList<Long>();
+		try {
+			equipoTemporadas = equipoTemporadaDAO.selectTemporadaByNombreLiga(nombre);
+		}catch(Exception e) {
+			logger.error(" Error al consultar las temporadas registradas con ese nombre", e);
+			throw new BussinessException("Error al consultar las temporadas registradas nombre.");
+		}
+		
+		try {
+			for(Long temporada: equipoTemporadas) {
+				temporadas.add( temporadaDAO.selectTemporadaById(temporada));
+			}
+		}catch(Exception e) {
+			logger.error(" Error al consultar las temporadas registradas", e);
+			throw new BussinessException("Error al consultar las temporadas registradas.");
+		}finally {
+			temporadaDAO.cerrarConexiones();
+		}
+		
+		
+		return temporadas;
+		
 	}
 	
 }

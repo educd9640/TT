@@ -34,9 +34,13 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	private Manager managerActual;
 	private Equipo equipoManager;
 	private String operacion;
+	private Long idTemporada;
+	private Long equipoL;
+
 	private Long temporadaElegida;
 
 	private List<Equipo> equiposRegistrados = new ArrayList<Equipo>();
+	private List<Equipo> equiposTemporadaRegistrados = new ArrayList<Equipo>();
 
 	/**
 	 *Metodo para preparar la pantalla
@@ -45,9 +49,25 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
     public void prepare(){
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo()");
 		GestionarEquiposBI equipoBI= new GestionarEquiposBI();
-		equipoForm= new GestionarEquiposForm();
+		//equipoForm= new GestionarEquiposForm();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
 		this.managerActual= (Manager) session.getAttribute("Usuario");
+		
+		
+		try {
+			if(idTemporada != null && equipoForm!=null && equipoForm.getIdEquipo()!=null) {
+				this.equiposTemporadaRegistrados.add(equipoBI.buscarEquipoTemporadaPorId(equipoForm.getIdEquipo(), idTemporada, equipoL));
+			}else if(idTemporada != null && equipoForm!=null && equipoForm.getNombre()!=null && !equipoForm.getNombre().equals("")) {
+				this.equiposTemporadaRegistrados = equipoBI.buscarEquipoTemporadaPorNombre(equipoForm.getNombre(), idTemporada, equipoL);
+			}else {
+				this.equiposTemporadaRegistrados = equipoBI.obtenerEquiposTemporadaRegistrados(idTemporada, equipoL);
+			}
+			
+		}catch(BussinessException e) {
+			addActionError(e.getMessage());
+		}
+		
+
 		if(temporadaElegida!=null) {	
 			try {
 				equiposRegistrados= equipoBI.obtenerEquiposRegistrados(temporadaElegida);
@@ -191,6 +211,23 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		return Action.SUCCESS;
 	}
 	
+	
+	/**Metodo para presentar pantalla de equipos locales
+	 * @return
+	 */
+	public String mostrarLocales() {
+		logger.info("Inicia metodo GestionarLigasAction.mostrarLocales()");
+		return Action.SUCCESS;
+	}
+	
+	/**Metodo para presentar pantalla de equipos visitantes
+	 * @return
+	 */
+	public String mostrarVisitantes() {
+		logger.info("Inicia metodo GestionarLigasAction.mostrarVisitantes()");
+		return Action.SUCCESS;
+	}
+	
 	//Inician Metodos getters y setters
 
 	public GestionarEquiposForm getEquipoForm() {
@@ -215,6 +252,30 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 
 	public void setEquiposRegistrados(List<Equipo> equiposRegistrados) {
 		this.equiposRegistrados = equiposRegistrados;
+	}
+
+	public List<Equipo> getEquiposTemporadaRegistrados() {
+		return equiposTemporadaRegistrados;
+	}
+
+	public void setEquiposTemporadaRegistrados(List<Equipo> equiposTemporadaRegistrados) {
+		this.equiposTemporadaRegistrados = equiposTemporadaRegistrados;
+	}
+
+	public Long getIdTemporada() {
+		return idTemporada;
+	}
+
+	public void setIdTemporada(Long idTemporada) {
+		this.idTemporada = idTemporada;
+	}
+	
+	public Long getEquipoL() {
+		return equipoL;
+	}
+
+	public void setEquipoL(Long idEquipoL) {
+		this.equipoL = idEquipoL;
 	}
 	
 	public Long getTemporadaElegida() {

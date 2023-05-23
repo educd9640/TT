@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.type.LongType;
 
 import ipn.escom.ballScore.entity.Temporada;
 
@@ -104,6 +105,4 @@ public class GestionarTemporadasDAO extends BaseDAO{
 			throw new SQLException(e.getMessage(), e.getCause());
 		}
 	}
-	
-	
 }

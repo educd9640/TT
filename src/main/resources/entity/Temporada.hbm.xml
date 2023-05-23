@@ -29,6 +29,11 @@
       <many-to-one name="liga" class="ipn.escom.ballScore.entity.Liga" lazy="false" not-null="true" cascade="none" insert="true" update="true">
       <column name="ID_LIGA"></column>
       </many-to-one>
+      
+      <many-to-one name="equipoTemporada" class="ipn.escom.ballScore.entity.EquipoTemporada" lazy="false" not-null="true" cascade="none" insert="false" update="false">
+     	<column name="ID_EQUIPO_CAMPEON" ></column>
+     	<column name="ID_TEMPORADA" ></column>
+     </many-to-one>
 
    </class>
 </hibernate-mapping>

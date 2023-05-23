@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import ipn.escom.ballScore.entity.Equipo;
+import ipn.escom.ballScore.entity.Temporada;
 
 /**Clase DAO para gestionar equipos
  * @author Cisneros Christian
@@ -130,6 +131,14 @@ public class GestionarEquiposDAO extends BaseDAO {
 		Query q = session.createQuery("from Equipo where id_Manager =:idManager");
 		q.setParameter("idManager", idManager);
 		return(List<Equipo>) q.list();
+	}
+	
+	/**Metodo para obtener un equipo por su id
+	 * @param id del equipo
+	 * @return La entidad Equipo con sus datos
+	 */
+	public Equipo selectEquipoById(Long id) {
+		return(Equipo) this.session.get(Equipo.class, id);
 	}
 	
 }
