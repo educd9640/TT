@@ -191,7 +191,7 @@ public class GestionarJugadoresDAO extends BaseDAO{
 			Query q = session.createSQLQuery("SELECT JUG.ID_JUGADOR, AL.BOLETA_ALUMNO, AL.NOMBRE_PILA, AL.APELLIDO_PAT, AL.APELLIDO_MAT, JUG.POSICION_PRIM, JUG.POSICION_SEC, JUG.FECHA_ALTA \n"
 					+ "FROM JUGADOR JUG \n"
 					+ "INNER JOIN ALUMNO AL ON (JUG.BOLETA_ALUMNO = AL.BOLETA_ALUMNO) \n"
-					+ "WHERE ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_EQUIPO_TEMP WHERE ID_EQUIPO = :idEquipo AND ID_TEMPORADA = :idTemporada)");
+					+ "WHERE ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_EQUIPO_TEMP WHERE ID_EQUIPO = :idEquipo AND ID_TEMPORADA = :idTemporada) AND JUG.ID_EQUIPO = :idEquipo ");
 			q.setParameter("idEquipo", idEquipo);
 			q.setParameter("idTemporada", idTemporada);
 			List<Object[]> rows = q.list();
@@ -232,7 +232,7 @@ public class GestionarJugadoresDAO extends BaseDAO{
 			Query q = session.createSQLQuery("SELECT JUG.ID_JUGADOR, AL.BOLETA_ALUMNO, AL.NOMBRE_PILA, AL.APELLIDO_PAT, AL.APELLIDO_MAT, JUG.POSICION_PRIM, JUG.POSICION_SEC, JUG.FECHA_ALTA \n"
 					+ "FROM JUGADOR JUG \n"
 					+ "INNER JOIN ALUMNO AL ON (JUG.BOLETA_ALUMNO = AL.BOLETA_ALUMNO) \n"
-					+ "WHERE ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_EQUIPO_TEMP WHERE ID_EQUIPO = :idEquipo AND ID_TEMPORADA = :idTemporada) "
+					+ "WHERE ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_EQUIPO_TEMP WHERE ID_EQUIPO = :idEquipo AND ID_TEMPORADA = :idTemporada) AND JUG.ID_EQUIPO = :idEquipo "
 					+ "AND AL.BOLETA_ALUMNO = :boletaAlumno");
 			q.setParameter("idEquipo", idEquipo);
 			q.setParameter("idTemporada", idTemporada);
@@ -275,7 +275,7 @@ public class GestionarJugadoresDAO extends BaseDAO{
 			Query q = session.createSQLQuery("SELECT JUG.ID_JUGADOR, AL.BOLETA_ALUMNO, AL.NOMBRE_PILA, AL.APELLIDO_PAT, AL.APELLIDO_MAT, JUG.POSICION_PRIM, JUG.POSICION_SEC, JUG.FECHA_ALTA \n"
 					+ "FROM JUGADOR JUG \n"
 					+ "INNER JOIN ALUMNO AL ON (JUG.BOLETA_ALUMNO = AL.BOLETA_ALUMNO) \n"
-					+ "WHERE ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_EQUIPO_TEMP WHERE ID_EQUIPO = :idEquipo AND ID_TEMPORADA = :idTemporada) "
+					+ "WHERE ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_EQUIPO_TEMP WHERE ID_EQUIPO = :idEquipo AND ID_TEMPORADA = :idTemporada) AND JUG.ID_EQUIPO = :idEquipo "
 					+ "AND AL.NOMBRE_PILA LIKE :nombrePila");
 			q.setParameter("idEquipo", idEquipo);
 			q.setParameter("idTemporada", idTemporada);
@@ -318,7 +318,7 @@ public class GestionarJugadoresDAO extends BaseDAO{
 			Query q = session.createSQLQuery("SELECT JUG.ID_JUGADOR, AL.BOLETA_ALUMNO, AL.NOMBRE_PILA, AL.APELLIDO_PAT, AL.APELLIDO_MAT, JUG.POSICION_PRIM, JUG.POSICION_SEC, JUG.FECHA_ALTA \n"
 					+ "FROM JUGADOR JUG \n"
 					+ "INNER JOIN ALUMNO AL ON (JUG.BOLETA_ALUMNO = AL.BOLETA_ALUMNO) \n"
-					+ "WHERE ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_EQUIPO_TEMP WHERE ID_EQUIPO = :idEquipo AND ID_TEMPORADA = :idTemporada) "
+					+ "WHERE ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_EQUIPO_TEMP WHERE ID_EQUIPO = :idEquipo AND ID_TEMPORADA = :idTemporada) AND JUG.ID_EQUIPO = :idEquipo "
 					+ "AND JUG.POSICION_PRIM = :posicionPrim");
 			q.setParameter("idEquipo", idEquipo);
 			q.setParameter("idTemporada", idTemporada);
@@ -361,7 +361,7 @@ public class GestionarJugadoresDAO extends BaseDAO{
 			Query q = session.createSQLQuery("SELECT JUG.ID_JUGADOR, AL.BOLETA_ALUMNO, AL.NOMBRE_PILA, AL.APELLIDO_PAT, AL.APELLIDO_MAT, JUG.POSICION_PRIM, JUG.POSICION_SEC, JUG.FECHA_ALTA \n"
 					+ "FROM JUGADOR JUG \n"
 					+ "INNER JOIN ALUMNO AL ON (JUG.BOLETA_ALUMNO = AL.BOLETA_ALUMNO) \n"
-					+ "WHERE ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_EQUIPO_TEMP WHERE ID_EQUIPO = :idEquipo AND ID_TEMPORADA = :idTemporada) "
+					+ "WHERE ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_EQUIPO_TEMP WHERE ID_EQUIPO = :idEquipo AND ID_TEMPORADA = :idTemporada) AND JUG.ID_EQUIPO = :idEquipo "
 					+ "AND JUG.POSICION_SEC = :posicionSec");
 			q.setParameter("idEquipo", idEquipo);
 			q.setParameter("idTemporada", idTemporada);
