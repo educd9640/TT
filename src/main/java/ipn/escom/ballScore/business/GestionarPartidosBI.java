@@ -68,8 +68,11 @@ public class GestionarPartidosBI {
 				logger.error("Error en la operacion sql del partido",e);
 				throw new BussinessException("Error al registrar el partido.");
 			}
+		}finally {
+			partidoDAO.cerrarConexiones();
+			temporadaDAO.cerrarConexiones();
+			equipoTDAO.cerrarConexiones();
 		}
-		partidoDAO.cerrarConexiones();
 		return nuevoPartido;
 	}
 

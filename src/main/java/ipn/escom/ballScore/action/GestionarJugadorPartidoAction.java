@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
-
 import com.opensymphony.xwork2.Action;
 
 import ipn.escom.ballScore.business.GestionarEquipoTemporadaBI;
@@ -28,14 +27,14 @@ public class GestionarJugadorPartidoAction extends BaseAction{
 	private GestionarJugadorPartidoForm form;
 	private Partido partido;
 	private EquipoTemporada equipoTemporada;
-	private Manager sessionManager;
+	private Long sessionManagerId;
 	private List<String> posiciones;
 	
 	/**Metodo Action para registrar jugadores
 	 * @return pantalla para registrar jugadores
 	 */
 	public String registrarJugadores() {
-		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
+		logger.info("Inicia metodo GestionarJugadorPartidoAction.registrarJugadores()");
 		GestionarJugadorPartidoBI bi = new GestionarJugadorPartidoBI();
 		
 		try {
@@ -53,14 +52,14 @@ public class GestionarJugadorPartidoAction extends BaseAction{
 	 * @return Pantalla de jugadores del partido
 	 */
 	public String consultarJugadoresPartido() {
-		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
+		logger.info("Inicia metodo GestionarJugadorPartidoAction.consultarJugadoresPartido()");
 		GestionarJugadorPartidoBI bi = new GestionarJugadorPartidoBI();
 		GestionarPartidosBI biPartido = new GestionarPartidosBI();
 		GestionarJugadoresBI jugadoresBI = new GestionarJugadoresBI();
 		GestionarEquipoTemporadaBI equipoBI = new GestionarEquipoTemporadaBI();
 		this.posiciones= jugadoresBI.obtenerPosiciones();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
-		sessionManager = (Manager) session.getAttribute("Usuario");
+		sessionManagerId = ((Manager) session.getAttribute("Usuario")).getIdManager();
 		try {
 			this.partido = biPartido.obtenerPartidosRegistradosByIdPartido(form.getIdPartido()).get(0);
 			this.equipoTemporada = equipoBI.consultarEquipoTemporada(form.getIdEquipo(), form.getIdTemporada());
@@ -87,7 +86,7 @@ public class GestionarJugadorPartidoAction extends BaseAction{
 	 * @return pantalla de jugadores no inscritos en el partido
 	 */
 	public String consultarJugadoresNoInscritos() {
-		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
+		logger.info("Inicia metodo GestionarJugadorPartidoAction.consultarJugadoresNoInscritos()");
 		GestionarJugadoresBI jugadoresBI = new GestionarJugadoresBI();
 		this.posiciones= jugadoresBI.obtenerPosiciones();
 		GestionarJugadorPartidoBI bi = new GestionarJugadorPartidoBI();
@@ -138,13 +137,13 @@ public class GestionarJugadorPartidoAction extends BaseAction{
 	public void setEquipoTemporada(EquipoTemporada equipoTemporada) {
 		this.equipoTemporada = equipoTemporada;
 	}
-
-	public Manager getSessionManager() {
-		return sessionManager;
+	
+	public Long getSessionManagerId() {
+		return sessionManagerId;
 	}
 
-	public void setSessionManager(Manager sessionManager) {
-		this.sessionManager = sessionManager;
+	public void setSessionManagerId(Long sessionManagerId) {
+		this.sessionManagerId = sessionManagerId;
 	}
 
 	public List<String> getPosiciones() {

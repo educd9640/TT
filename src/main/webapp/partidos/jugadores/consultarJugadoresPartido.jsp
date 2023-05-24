@@ -67,7 +67,7 @@
     del equipo <b><s:text name="equipoTemporada.equipo.nombre"/></b>
     <br>
     <s:form action="consultarJugadoresPartido" method="post">
-    	<s:hidden id="sessionManager" key="sessionManager"></s:hidden>
+    	<s:hidden id="sessionManagerId" key="sessionManagerId"></s:hidden>
 		<s:hidden id="idTemporada" key="form.idTemporada"></s:hidden>
 		<s:hidden id="idEquipo" key="form.idEquipo"></s:hidden>
 		<s:hidden id="idPartido" key="form.idPartido"></s:hidden>
@@ -100,13 +100,13 @@
 				<display:column property="jugadorEquipoTemp.jugador.posicionPrim" title="Posición Primaria" sortable="true" escapeXml="true"></display:column>
 				<display:column property="jugadorEquipoTemp.jugador.posicionSec" title="Posición Secundaria" sortable="true" escapeXml="true"></display:column>
 				<display:column media="html">
-					<s:if test="%{sessionManager.idManager==equipoTemporada.equipo.manager.idManager}">
+					<s:if test="%{sessionManagerId==equipoTemporada.equipo.manager.idManager}">
                         <a href="javascript:registrarResultados('<s:property value="%{#attr.jugadoresPartido.idJugador}"/>')">Registrar Resultados</a>
                     </s:if>
 				</display:column>
 			</display:table>
 		</div>
-	<s:if test="%{sessionManager.idManager==equipoTemporada.equipo.manager.idManager}">
+	<s:if test="%{sessionManagerId==equipoTemporada.equipo.manager.idManager}">
 		<input id="registrarJugadoresModal" type="button" value="Registrar jugadores"/>
 	</s:if>
 	
