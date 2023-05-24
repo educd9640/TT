@@ -100,7 +100,7 @@ public class GestionarJugadorPartidoBI {
 	}
 	
 	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritos(Long idEquipo, Long idTemporada, Long idPartido) throws BussinessException{
-		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
+		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresEquipoTempNoInscritos()");
 		GestionarJugadorEquipoTempDAO dao = new GestionarJugadorEquipoTempDAO();
 		try {
 			List<JugadorEquipoTemp> jugadoresEquipoTemp = dao.selectJugadoresNoRegistradosEnPartido(idEquipo, idTemporada, idPartido);
@@ -114,7 +114,7 @@ public class GestionarJugadorPartidoBI {
 	}
 	
 	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritosByBoleta(Long idEquipo, Long idTemporada, Long idPartido, Long boletaAlumno) throws BussinessException{
-		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
+		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresEquipoTempNoInscritosByBoleta()");
 		GestionarJugadorEquipoTempDAO dao = new GestionarJugadorEquipoTempDAO();
 		try {
 			List<JugadorEquipoTemp> jugadoresEquipoTemp = dao.selectJugadoresNoRegistradosEnPartido(idEquipo, idTemporada, idPartido, boletaAlumno);
@@ -128,7 +128,7 @@ public class GestionarJugadorPartidoBI {
 	}
 	
 	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritosLikeNombrePila(Long idEquipo, Long idTemporada, Long idPartido, String NombrePila) throws BussinessException{
-		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
+		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresEquipoTempNoInscritosLikeNombrePila()");
 		GestionarJugadorEquipoTempDAO dao = new GestionarJugadorEquipoTempDAO();
 		try {
 			List<JugadorEquipoTemp> jugadoresEquipoTemp = dao.selectJugadoresNoRegistradosEnPartidoLikeNombrePila(idEquipo, idTemporada, idPartido, NombrePila);
@@ -142,7 +142,7 @@ public class GestionarJugadorPartidoBI {
 	}
 	
 	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritosByPosicionPrim(Long idEquipo, Long idTemporada, Long idPartido, String posicionPrim) throws BussinessException{
-		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
+		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresEquipoTempNoInscritosByPosicionPrim()");
 		GestionarJugadorEquipoTempDAO dao = new GestionarJugadorEquipoTempDAO();
 		try {
 			List<JugadorEquipoTemp> jugadoresEquipoTemp = dao.selectJugadoresNoRegistradosEnPartidoByPosicionPrim(idEquipo, idTemporada, idPartido, posicionPrim);
@@ -156,7 +156,7 @@ public class GestionarJugadorPartidoBI {
 	}
 	
 	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritosByPosicionSec(Long idEquipo, Long idTemporada, Long idPartido, String posicionSec) throws BussinessException{
-		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
+		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresEquipoTempNoInscritosByPosicionSec()");
 		GestionarJugadorEquipoTempDAO dao = new GestionarJugadorEquipoTempDAO();
 		try {
 			List<JugadorEquipoTemp> jugadoresEquipoTemp = dao.selectJugadoresNoRegistradosEnPartidoByPosicionSec(idEquipo, idTemporada, idPartido, posicionSec);

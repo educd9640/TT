@@ -41,18 +41,21 @@
 			class="ipn.escom.ballScore.action.GestionarJugadorPartidoAction"
 			method="consultarJugadoresPartido">
 			<result name="success">/partidos/jugadores/consultarJugadoresPartido.jsp</result>
+			<result name="input">/partidos/jugadores/consultarJugadoresPartido.jsp</result>
 		</action>
 	
 		<action name="consultarJugadoresNoInscritos"
 			class="ipn.escom.ballScore.action.GestionarJugadorPartidoAction"
 			method="consultarJugadoresNoInscritos">
 			<result name="success">/partidos/jugadores/consultarJugadoresNoInscritosModal.jsp</result>
+			<result name="input">/partidos/jugadores/consultarJugadoresNoInscritosModal.jsp</result>
 		</action>
 		
 		<action name="registrarJugadores"
 			class="ipn.escom.ballScore.action.GestionarJugadorPartidoAction"
 			method="registrarJugadores">
 			<result name="success">/partidos/jugadores/consultarJugadoresPartido.jsp</result>
+			<result name="input">/partidos/jugadores/consultarJugadoresPartido.jsp</result>
 		</action>
 
 	</package>
