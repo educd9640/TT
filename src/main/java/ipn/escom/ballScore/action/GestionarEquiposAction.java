@@ -49,7 +49,6 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
     public void prepare(){
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo()");
 		GestionarEquiposBI equipoBI= new GestionarEquiposBI();
-		//equipoForm= new GestionarEquiposForm();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
 		this.managerActual= (Manager) session.getAttribute("Usuario");
 		
