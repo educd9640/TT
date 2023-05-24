@@ -1,5 +1,7 @@
+<jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<div class="container rounded p-3 contenido">
 <s:set var="title" value="%{'Registro Managers'}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -34,4 +36,5 @@
 		</s:form>
     </body>
 </html>
-
+</div>
+<jsp:include page="/bases/footer.jsp"></jsp:include>
