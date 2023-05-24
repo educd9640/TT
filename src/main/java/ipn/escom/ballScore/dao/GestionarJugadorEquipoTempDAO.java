@@ -150,7 +150,7 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 					+ "INNER JOIN JUGADOR JUG ON (JET.ID_JUGADOR = JUG.ID_JUGADOR) \n"
 					+ "INNER JOIN ALUMNO AL ON (JUG.BOLETA_ALUMNO = AL.BOLETA_ALUMNO) \n"
 					+ "WHERE JET.ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_PARTIDO WHERE ID_PARTIDO = :idPartido AND ID_EQUIPO = :idEquipo AND ID_TEMPORADA =:idTemporada) "
-					+ "AND JET.ID_EQUIPO = :idEquipo");
+					+ "AND JET.ID_EQUIPO = :idEquipo AND JET.ID_TEMPORADA=:idTemporada");
 			q.setParameter("idPartido", idPartido);
 			q.setParameter("idEquipo", idEquipo);
 			q.setParameter("idTemporada", idTemporada);
@@ -188,7 +188,7 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 					+ "INNER JOIN JUGADOR JUG ON (JET.ID_JUGADOR = JUG.ID_JUGADOR) \n"
 					+ "INNER JOIN ALUMNO AL ON (JUG.BOLETA_ALUMNO = AL.BOLETA_ALUMNO) \n"
 					+ "WHERE JET.ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_PARTIDO WHERE ID_PARTIDO = :idPartido AND ID_EQUIPO = :idEquipo AND ID_TEMPORADA =:idTemporada) "
-					+ "AND AL.BOLETA_ALUMNO = :boletaAlumno AND JET.ID_EQUIPO = :idEquipo");
+					+ "AND AL.BOLETA_ALUMNO = :boletaAlumno AND JET.ID_EQUIPO = :idEquipo AND JET.ID_TEMPORADA=:idTemporada");
 			q.setParameter("idPartido", idPartido);
 			q.setParameter("idEquipo", idEquipo);
 			q.setParameter("idTemporada", idTemporada);
@@ -227,7 +227,7 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 					+ "INNER JOIN JUGADOR JUG ON (JET.ID_JUGADOR = JUG.ID_JUGADOR) \n"
 					+ "INNER JOIN ALUMNO AL ON (JUG.BOLETA_ALUMNO = AL.BOLETA_ALUMNO) \n"
 					+ "WHERE JET.ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_PARTIDO WHERE ID_PARTIDO = :idPartido AND ID_EQUIPO = :idEquipo AND ID_TEMPORADA =:idTemporada) "
-					+ "AND AL.NOMBRE_PILA LIKE :nombrePila AND JET.ID_EQUIPO = :idEquipo");
+					+ "AND AL.NOMBRE_PILA LIKE :nombrePila AND JET.ID_EQUIPO = :idEquipo AND JET.ID_TEMPORADA=:idTemporada");
 			q.setParameter("idPartido", idPartido);
 			q.setParameter("idEquipo", idEquipo);
 			q.setParameter("idTemporada", idTemporada);
@@ -266,7 +266,7 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 					+ "INNER JOIN JUGADOR JUG ON (JET.ID_JUGADOR = JUG.ID_JUGADOR) \n"
 					+ "INNER JOIN ALUMNO AL ON (JUG.BOLETA_ALUMNO = AL.BOLETA_ALUMNO) \n"
 					+ "WHERE JET.ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_PARTIDO WHERE ID_PARTIDO = :idPartido AND ID_EQUIPO = :idEquipo AND ID_TEMPORADA =:idTemporada) "
-					+ "AND JUG.POSICION_PRIM = :posicionPrim AND JET.ID_EQUIPO = :idEquipo");
+					+ "AND JUG.POSICION_PRIM = :posicionPrim AND JET.ID_EQUIPO = :idEquipo AND JET.ID_TEMPORADA=:idTemporada");
 			q.setParameter("idPartido", idPartido);
 			q.setParameter("idEquipo", idEquipo);
 			q.setParameter("idTemporada", idTemporada);
@@ -305,7 +305,7 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 					+ "INNER JOIN JUGADOR JUG ON (JET.ID_JUGADOR = JUG.ID_JUGADOR) \n"
 					+ "INNER JOIN ALUMNO AL ON (JUG.BOLETA_ALUMNO = AL.BOLETA_ALUMNO) \n"
 					+ "WHERE JET.ID_JUGADOR NOT IN (SELECT ID_JUGADOR FROM JUGADOR_PARTIDO WHERE ID_PARTIDO = :idPartido AND ID_EQUIPO = :idEquipo AND ID_TEMPORADA =:idTemporada) "
-					+ "AND JUG.POSICION_SEC = :posicionSec AND JET.ID_EQUIPO = :idEquipo");
+					+ "AND JUG.POSICION_SEC = :posicionSec AND JET.ID_EQUIPO = :idEquipo AND JET.ID_TEMPORADA=:idTemporada");
 			q.setParameter("idPartido", idPartido);
 			q.setParameter("idEquipo", idEquipo);
 			q.setParameter("idTemporada", idTemporada);
