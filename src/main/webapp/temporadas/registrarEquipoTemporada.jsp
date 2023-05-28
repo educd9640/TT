@@ -1,7 +1,7 @@
 <jsp:include page="/bases/header.jsp"></jsp:include>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="container rounded p-3 contenido">
-<s:set var="title" value="%{'Buscar Equipo'}"/>
+<s:set var="title" value="%{'Registrar equipo en temporada'}"/>
         <script>
         	function settearDesdeModal(informacion){
         		var infoEquipo = informacion.split("_");
@@ -37,11 +37,12 @@
     <s:form action="ingresarEquipo" method="post" >
     	<input id="buscarEquipo" type="button" value="Buscar Equipo"/>
     	<br>
-		<s:textfield key="label.temporada" name="temporadaseleccionada" readonly="true"/>
+		<s:hidden key="label.temporada" name="temporadaseleccionada" readonly="true"/>
 		<br>
     	<s:textfield id="nombreEquipo" key="equipoForm.nombre" name="nombreEquipo"/>
     	<br>
-    	<s:textfield id="idEquipo" key="equipoForm.idEquipo" name="equiposeleccionado"/>
+    	<s:hidden id="idEquipo" key="equipoForm.idEquipo" name="equiposeleccionado"/>
+    	<br>
     	<br>
     	<s:textfield id="nombreManager" key="equipoForm.nombreManager" name="managerequipo"/>
     	<br>
