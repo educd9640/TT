@@ -1,71 +1,61 @@
 <jsp:include page="/bases/header.jsp"></jsp:include>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div class="container rounded p-3 contenido">
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
+<html>
+	<head>
+		<link rel="stylesheet" href="<s:url value='/bs/css/bootstrap.min.css'/>">
+		<script src="<s:url value='/bs/js/bootstrap.bundle.min.js'/>"></script>
+		
+		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
+		<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
+        <s:head />
+        <style>td { white-space:nowrap; }</style>
+        <title><s:property value="#title"/></title>
+        
+        <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
+        <!-- Script Sexyalertbox -->
+        <script src="<s:url value='/js/sexyalertbox.v1.2.jquery.js'/>"></script>
+        <!-- Script Jquery easing (Animaciones, usado por sexyalert) -->
+        <script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
+	</head>
+	
+	<body>
+		<div class="container rounded p-3 contenido">
 		<div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.registrados.titulo"/></h1>
         <br/><br/>
         <s:actionerror />
         <s:actionmessage />
-        <table class="borderAll">
-        	<tr>
-        		<th><s:text name="ligaF.idLiga"/></th>
-        		<th><s:text name="ligaF.nombre"/></th>
-        		<th><s:text name="ligaF.telefono"/></th>
-        		<th><s:text name="ligaF.calle"/></th>
-        		<th><s:text name="ligaF.colonia"/></th>
-        		<th><s:text name="ligaF.codigoPostal"/></th>
-        		<th><s:text name="ligaF.delegacion"/></th>
-        		<th><s:text name="ligaF.estado"/></th>
-        		<th><s:text name="ligaF.fechaAlta"/></th>
-        		<th>&nbsp;</th>
-        	</tr>
-        	<s:iterator value="ligasRegistradas" status="status">
-        		<tr>
-        			<td class="nowrap"><s:property value="idLiga"/></td>
-        			<td class="nowrap"><s:property value="nombre"/></td>
-        			<td class="nowrap"><s:property value="telefono"/></td>
-        			<td class="nowrap"><s:property value="calle"/></td>
-        			<td class="nowrap"><s:property value="colonia"/></td>
-        			<td class="nowrap"><s:property value="codigoPostal"/></td>
-        			<td class="nowrap"><s:property value="delegacion"/></td>
-        			<td class="nowrap"><s:property value="estado"/></td>
-        			<td class="nowrap">
-        				<s:if test="fechaAlta != null">
-        					<s:property value="%{'Activada'}"></s:property>
-        				</s:if>
-        				<s:else>
-        					<s:property value="%{'Desactivada'}"></s:property>
-        				</s:else>
-        			</td>
-        			<td class="nowrap">
-        				<s:url action="modificarLiga" var="url" escapeAmp="false">
-                            <s:param name="ligaF.idLiga" value="idLiga"/>
-                            <s:param name="operacion">actualizado</s:param>
-                        </s:url>
-                        <a href="<s:property value="#url"/>">Modificar</a>
-                        &nbsp;&nbsp;&nbsp;
-                        
-                        
-        				<s:url action="estadoLiga" var="url">
-                            <s:param name="ligaF.idLiga" value="idLiga"/>
-                        </s:url>
-                        <s:if test="fechaAlta != null">
-                        	<a href="<s:property value="#url"/>">Desactivar</a>		
-                        </s:if>
-                        <s:else>
-                        	<a href="<s:property value="#url"/>">Activar</a>
-                        </s:else>
-                        
-        			
-        			</td>
-        		</tr>
-        	
-        	</s:iterator>
-        
-        </table>
-        <s:form action="submenuLigas">
-			<s:submit value="Regresar" targets="submenuLigas" />
-		</s:form>
+        	<display:table export="true" id="liga" name="ligasRegistradas" pagesize="10" class="table table-bordered">
+        		<display:setProperty name="export.types" value="csv excel xml pdf" />
+				<display:setProperty name="export.excel.filename" value="EquiposRegistrados.xls" />
+				<display:setProperty name="export.csv.filename" value="EquiposRegistrados.csv" />
+				<display:setProperty name="export.xml.filename" value="EquiposRegistrados.xml" />
+				<display:setProperty name="export.pdf.filename" value="EquiposRegistrados.pdf" />
+				<display:column property="nombre" title="Nombre de la liga" sortable="true" ></display:column> 
+				<display:column property="telefono" title="Telefono" sortable="true" ></display:column>
+				<display:column property="estado" title="Estado" sortable="true" ></display:column> 
+				<display:column property="delegacion" title="Delegacion" sortable="true" ></display:column> 
+				<display:column property="calle" title="Calle" sortable="true" ></display:column>   
+				<display:column title="Activo" sortable="true" media="html">
+					<s:if test="%{#attr.liga.fechaAlta!=null}">
+						<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
+					</s:if>
+                    <s:else>
+                   		<img width="15" height="15" src="<s:url value='/img/cross.png'/>">
+                    </s:else>
+				</display:column>
+        	</display:table>
+        <br>
+        	<s:form action="submenuLigas">
+				<s:submit value="Regresar" targets="submenuLigas" />
+			</s:form>
 	
-</div>
-<jsp:include page="/bases/footer.jsp"></jsp:include>
+		</div>
+	</body>
+	<jsp:include page="/bases/footer.jsp"></jsp:include>	
+</html>
+
