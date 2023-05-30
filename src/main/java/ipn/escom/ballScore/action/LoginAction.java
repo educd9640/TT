@@ -55,7 +55,7 @@ public class LoginAction extends BaseAction{
 	 */
 	public String sessionTest(){
 		
-		logger.info("LoginAction : sessionTest: \nPrueba de inicio de sesión/Interceptor que se creÃ³ antes al iniciar sesión");
+		logger.info("LoginAction : sessionTest: \nPrueba de inicio de sesión/Interceptor que se crea antes al iniciar sesión");
 		
 		Manager usuarioLogado = (Manager) this.getSessionMap().get("Usuario");
 		logger.info("Usuario logeado: "+usuarioLogado);
@@ -63,7 +63,7 @@ public class LoginAction extends BaseAction{
 		return "success";
 	}
 
-
+	
 	/**Metodo para logout
 	 * @return Action Success
 	 */
