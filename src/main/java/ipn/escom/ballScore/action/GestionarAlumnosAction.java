@@ -126,7 +126,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 		}
 		
 		addActionMessage("Alumno ["+vo.getNombrePila()+" "+vo.getApellidoPat()+"] "+operacion+" con exito. ");
-		
+		alumnoForm = new GestionarAlumnosForm();
 		return Action.SUCCESS;
 	}
 	

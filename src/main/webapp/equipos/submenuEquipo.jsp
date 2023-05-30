@@ -25,6 +25,8 @@
 	<s:param name="operacion">actualizado</s:param>
 </s:url>
 
+
+
 <div class="row">
 
 	<div class="col-md-6 d-flex justify-content-center">

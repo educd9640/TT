@@ -1,13 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="<s:url value='/bs/css/bootstrap.min.css'/>">
+		<script src="<s:url value='/bs/js/bootstrap.bundle.min.js'/>"></script>
+		
 		<link href="<s:url value='/main.css'/>" rel="stylesheet" type="text/css"/>
-    	<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
+		<link href="<s:url value='/css/sexyalertbox.css'/>" rel="stylesheet" type="text/css"/>
         <s:head />
+        <style>td { white-space:nowrap; }</style>
         <title><s:text name="label.registrados.titulo"/></title>
 
         <script src="<s:url value='/js/jquery-3.6.4.min.js'/>"></script>
@@ -105,63 +110,56 @@
         
 	</head>
 	<body>
-		<div class="titleDiv"><s:text name="application.title"/></div>
-        <h1><s:text name="label.registrados.titulo"/></h1>
-        <br/><br/>
-        <s:actionerror />
-        <s:actionmessage />
-        
-        <input type="radio" id="busquedaID" name="opcion" value="ID">
-    	<label for="busquedaID">Busqueda por ID</label> 
-        <input type="radio" id="busquedaLiga" name="opcion" value="equipo">
-    	<label for="busquedaLiga">Busqueda por nombre de la Liga</label>
-    	<br></br>
-    	<br></br>
-    	<label id="etiqueta" for="idTexto"></label>
-    	<input type="text" id="idTexto" name="idTexto"/>
-    	<input type="button" id="buscar" value="Buscar" />
-    	
-    	
-        <table id="tabla" class="borderAll">
-        	<tr>
-        		<th><s:text name="ligaF.idLiga"/></th>
-        		<th><s:text name="ligaF.nombre"/></th>
-        		<th><s:text name="ligaF.telefono"/></th>
-        		<th><s:text name="ligaF.calle"/></th>
-        		<th><s:text name="ligaF.colonia"/></th>
-        		<th><s:text name="ligaF.codigoPostal"/></th>
-        		<th><s:text name="ligaF.delegacion"/></th>
-        		<th><s:text name="ligaF.estado"/></th>
-        		<th><s:text name="ligaF.fechaAlta"/></th>
-        		<th>&nbsp;</th>
-        	</tr>
-        	<s:iterator value="ligasRegistradas" status="status">
-        		<s:if test="fechaAlta != null">
-        				
-	        		<tr>
-	        			<td class="nowrap"><s:property value="idLiga"/></td>
-	        			<td class="nowrap"><s:property value="nombre"/></td>
-	        			<td class="nowrap"><s:property value="telefono"/></td>
-	        			<td class="nowrap"><s:property value="calle"/></td>
-	        			<td class="nowrap"><s:property value="colonia"/></td>
-	        			<td class="nowrap"><s:property value="codigoPostal"/></td>
-	        			<td class="nowrap"><s:property value="delegacion"/></td>
-	        			<td class="nowrap"><s:property value="estado"/></td>
-	        			
-	        			<td class="nowrap">
-	                    	<input type="checkbox" id="<s:property value="idLiga"/>" name="liga" 
-	                    	value="<s:property value="idLiga"/>_<s:property value="nombre"/>" />
-	                    </td>
-	        		</tr>
-	        		
-	        	</s:if>
-        	
-        	</s:iterator>
-        	<tr class='noSearch hide'>
-        	<td colspan="5"></td>
-        
-        </table>
-        <input id="cerrarVentana" type="button" value="Cerrar"/>
+		<div class="container rounded p-3 contenido">
+		
+			<div class="titleDiv"><s:text name="application.title"/></div>
+        	<h1><s:text name="label.registrados.titulo"/></h1>
+        	<br/><br/>
+        	<s:actionerror />
+        	<s:actionmessage />
+			<input type="radio" id="busquedaID" name="opcion" value="ID">
+    		<label for="busquedaID">Busqueda por ID</label> 
+        	<input type="radio" id="busquedaLiga" name="opcion" value="equipo">
+    		<label for="busquedaLiga">Busqueda por nombre de la Liga</label>
+    		<br></br>
+    		<br></br>
+    		<label id="etiqueta" for="idTexto"></label>
+    		<input type="text" id="idTexto" name="idTexto"/>
+    		<input type="button" id="buscar" value="Buscar" />
+			
+			<display:table export="true" id="ligas" name="ligasRegistradas" pagesize="10" class="table table-bordered">
+				<display:setProperty name="export.types" value="csv excel xml pdf" />
+				<display:setProperty name="export.excel.filename" value="EquiposRegistrados.xls" />
+				<display:setProperty name="export.csv.filename" value="EquiposRegistrados.csv" />
+				<display:setProperty name="export.xml.filename" value="EquiposRegistrados.xml" />
+				<display:setProperty name="export.pdf.filename" value="EquiposRegistrados.pdf" />
+				<s:if test="%{#attr.ligas.fechaAlta!=null}">
+					<display:column property="nombre" title="Nombre de la liga" sortable="true" ></display:column> 
+					<display:column property="telefono" title="Telefono" sortable="true" ></display:column>
+					<display:column property="estado" title="Estado" sortable="true" ></display:column> 
+					<display:column property="delegacion" title="Delegacion" sortable="true" ></display:column> 
+					<display:column property="calle" title="Calle" sortable="true" ></display:column>   
+					<display:column title="Activo" sortable="true" media="html">
+						<s:if test="%{#attr.liga.fechaAlta!=null}">
+							<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
+						</s:if>
+                    	<s:else>
+                   			<img width="15" height="15" src="<s:url value='/img/cross.png'/>">
+                    	</s:else>
+					</display:column>
+					<display:column media="html">
+						<input type="checkbox" id="<s:property value="%{#attr.ligas.idLiga}" />" name="liga" value="<s:property value="%{#attr.ligas.idLiga}"/>_<s:property value="%{#attr.ligas.nombre}"/>"/>     
+					</display:column>
+					<display:footer>
+						<tr class='noSearch hide'>
+                			<td colspan="5"></td>
+            			</tr>
+					</display:footer>	
+				</s:if>
+			</display:table>
+			<br>
+		</div>
+		<input id="cerrarVentana" type="button" value="Cerrar"/>
         <input id="aceptarSeleccion" type="button" value="Aceptar"/>
         <input id="LimiparVentana" type="button" value="Limpiar"/>
 	</body>

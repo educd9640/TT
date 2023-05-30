@@ -36,7 +36,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	private String operacion;
 	private Long idTemporada;
 	private Long equipoL;
-
+	private String accion;
 	private Long temporadaElegida;
 
 	private List<Equipo> equiposRegistrados = new ArrayList<Equipo>();
@@ -66,7 +66,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 			addActionError(e.getMessage());
 		}
 		
-
+		equipoForm= new GestionarEquiposForm();
 		if(temporadaElegida!=null) {	
 			try {
 				equiposRegistrados= equipoBI.obtenerEquiposRegistrados(temporadaElegida);
@@ -112,6 +112,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	
 	public String registrarEquipo() {
 		logger.info("Inicia metodo GestionarEquiposAction.registrarEquipo");
+		this.setAccion("mostrar");
 		return Action.SUCCESS;
 	}
 	
@@ -120,6 +121,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	 */
 	public String registroEquipo() {
 		logger.info("Inicia metodo GestionarManagersAction.registro()");
+		equipoManager = new Equipo();
 		GestionarEquiposBI equiposBI= new GestionarEquiposBI();
 		GestionarEquiposVO vo = new GestionarEquiposVO();
 
@@ -141,9 +143,8 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 		if(this.operacion.equals("actualizado")) {
 			addActionMessage("Equipo actualizado con exito: nombre nuevo: "+equipoForm.getNombre());
 		}else {
-			addActionMessage("Equipo registrado con exito: idEquipo: "+equipoForm.getIdEquipo());
+			addActionMessage("Equipo registrado con exito: idEquipo: "+equipoManager.getIdEquipo());
 		}
-		
 		return Action.SUCCESS;
 	}
 	
@@ -163,6 +164,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	@SkipValidation
 	public String actualizarEquipo(){
 		logger.info("Inicia metodo GestionarEquiposAction.actualizarEquipo()");
+		this.setAccion("mostrar");
 		GestionarEquiposBI equiposBI= new GestionarEquiposBI();
 		String mensaje="";
 		try {
@@ -243,6 +245,14 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
+	}
+	
+	public String getAccion() {
+		return accion;
+	}
+
+	public void setAccion(String accion) {
+		this.accion = accion;
 	}
 	
 	public List<Equipo> getEquiposRegistrados() {
