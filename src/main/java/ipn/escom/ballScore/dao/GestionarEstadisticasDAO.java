@@ -274,4 +274,49 @@ public class GestionarEstadisticasDAO extends BaseDAO{
 		q.setParameter("idTemporada", idTemporada);
 		return (List<EstDefensivasPart>)q.list();
 	}
+	
+	/**Metodo para consultar estadisticas de temporada
+	 * @param idJugador del jugador
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @return estadisticas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<EstPitcherPart> selectEstPitcherPartTemp(Long idJugador, Long idEquipo, Long idTemporada){
+		Query q = session.createQuery("from EstPitcherPart estPitcher where estPitcher.idJugador = :idJugador and estPitcher.idEquipo = :idEquipo and estPitcher.idTemporada = :idTemporada");
+		q.setParameter("idJugador", idJugador);
+		q.setParameter("idEquipo", idEquipo);
+		q.setParameter("idTemporada", idTemporada);
+		return (List<EstPitcherPart>)q.list();
+	}
+	
+	/**Metodo para consultar estadisticas de temporada
+	 * @param idJugador del jugador
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @return estadisticas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<EstOfensivasPart> selectEstOfensivasPartTemp(Long idJugador, Long idEquipo, Long idTemporada){
+		Query q = session.createQuery("from EstOfensivasPart estOfensivas where estOfensivas.idJugador = :idJugador and estOfensivas.idEquipo = :idEquipo and estOfensivas.idTemporada = :idTemporada");
+		q.setParameter("idJugador", idJugador);
+		q.setParameter("idEquipo", idEquipo);
+		q.setParameter("idTemporada", idTemporada);
+		return (List<EstOfensivasPart>)q.list();
+	}
+	
+	/**Metodo para consultar estadisticas de temporada
+	 * @param idJugador del jugador
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @return estadisticas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<EstDefensivasPart> selectEstDefensivasPartTemp(Long idJugador, Long idEquipo, Long idTemporada){
+		Query q = session.createQuery("from EstDefensivasPart estDefensivas where estDefensivas.idJugador = :idJugador and estDefensivas.idEquipo = :idEquipo and estDefensivas.idTemporada = :idTemporada");
+		q.setParameter("idJugador", idJugador);
+		q.setParameter("idEquipo", idEquipo);
+		q.setParameter("idTemporada", idTemporada);
+		return (List<EstDefensivasPart>)q.list();
+	}
 }
