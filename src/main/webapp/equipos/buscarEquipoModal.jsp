@@ -46,17 +46,14 @@
         		
         		$("#buscar").click(function(){
         			const tablaReg = document.getElementById('tabla');
-        			const buscarID = document.getElementById('busquedaID');
         			const buscarEquipo = document.getElementById('busquedaEquipo');
         			const buscarManager = document.getElementById('busquedaManager');
         			const textoBuscar = document.getElementById('idTexto').value.toLowerCase();
         			var noCelda=0;
-        			if(buscarID.checked){
-        				noCelda=1;
-        			}else if(buscarEquipo.checked){
+        			if(buscarEquipo.checked){
         				noCelda=0;
         			}else if(buscarManager.checked){
-        				noCelda=2;
+        				noCelda=1;
         			}else{
         				Sexy.error("Debes seleccionar una opcion");
         			}
@@ -128,8 +125,6 @@
 	<br>
 	<s:actionerror />
     <s:actionmessage />
-    	<input type="radio" id="busquedaID" name="opcion" value="ID">
-    	<label for="busquedaID">Busqueda por ID</label>   	
     	<input type="radio" id="busquedaEquipo" name="opcion" value="equipo">
     	<label for="busquedaEquipo">Busqueda por nombre del Equipo</label>
     	<input type="radio" id="busquedaManager" name="opcion" value="manager">
@@ -149,7 +144,6 @@
 				<display:setProperty name="export.xml.filename" value="EquiposRegistrados.xml" />
 				<display:setProperty name="export.pdf.filename" value="EquiposRegistrados.pdf" />
 				<display:column property="nombre" title="Nombre del equipo" sortable="true" ></display:column>    
-				<display:column property="idEquipo" title="ID del Equipo" sortable="true" ></display:column>
 				<display:column property="manager.nombrePila" title="Nombre del manager" sortable="true" ></display:column>
 				<display:column media="html">
 					<input type="checkbox" id="<s:property value="%{#attr.tabla.idEquipo}" />" name="equipoElegido" value="<s:property value="%{#attr.tabla.idEquipo}"/>_<s:property value="%{#attr.tabla.manager.nombrePila}"/>_<s:property value="%{#attr.tabla.nombre}"/>" />

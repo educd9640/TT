@@ -29,13 +29,8 @@
             <s:textfield key="alumnoForm.telefono" />
             <s:textfield key="alumnoForm.telEmergencia" />
             <s:textfield key="alumnoForm.correo" />
-            <s:select name="alumnoForm.idEscuela" list="escuelas" listKey="idEscuela" listValue="nombreCortoEscuela" label="%{getText('alumnoForm.idEscuela')}"/>
-            <s:if test="hasActionMessages()">
-				<s:submit value="%{getText('button.label.submit')}" disabled="true"/>
-			</s:if>
-			<s:else>
-    			<s:submit value="%{getText('button.label.submit')}"/>
-			</s:else>
+            <s:select name="alumnoForm.idEscuela" list="escuelas" listKey="idEscuela" listValue="nombreCortoEscuela" label="%{getText('alumnoForm.idEscuela')}"/>			
+    		<s:submit value="%{getText('button.label.submit')}"/>
         </s:form>
         <s:form action="submenuAlumnos" >
 			<s:submit value="Regresar" targets="submenuAlumnos"/>

@@ -71,7 +71,6 @@ public class GestionarEquiposBI {
 			{				
 				nuevoEquipo=equiposDao.updateEquipo(nuevoEquipo);
 			}else {
-				logger.info("Hola");
 				nuevoEquipo=equiposDao.insertIntoEquipo(nuevoEquipo);
 			}
 		}catch (SQLException e) {
@@ -80,7 +79,7 @@ public class GestionarEquiposBI {
 				throw new BussinessException("Ya existe un equipo registrado con ese nombre.");
 			} else {
 				logger.error("Error al realizar insert del equipo", e);
-				throw new BussinessException(" Error al registrar al alumno. ");
+				throw new BussinessException(" Error al registrar el equipo. ");
 			}
 		}finally {
 			equiposDao.cerrarConexiones();
