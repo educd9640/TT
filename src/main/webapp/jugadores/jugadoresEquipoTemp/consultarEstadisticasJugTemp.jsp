@@ -99,6 +99,9 @@
 				<display:column property="fieldingPercentage" title="Fielding %" sortable="true" escapeXml="true"></display:column>
 			</display:table>
 		</div>
+		<s:if test="%{form.estadisticasDefensivas.size()>49}">
+			<a href="http://localhost:5000/estadisticas/jugadores/${form.idJugador}/equipos/${form.idEquipo}/temporadas/${form.idTemporada}/reporte/defensivo" class="btn btn-primary">Generar Reporte</a>
+		</s:if>
       </div>
     </div>
   </div>
@@ -153,6 +156,9 @@
 				<display:column property="avg" title="AVG" sortable="true" escapeXml="true"></display:column>
 			</display:table>
 		</div>
+		<s:if test="%{form.estadisticasDefensivas.size()>49}">
+			<a href="http://localhost:5000/estadisticas/jugadores/${form.idJugador}/equipos/${form.idEquipo}/temporadas/${form.idTemporada}/reporte/ofensivo" class="btn btn-primary">Generar Reporte</a>
+		</s:if>
       </div>
     </div>
   </div>
