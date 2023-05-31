@@ -53,6 +53,9 @@
         	<input id="buscarLiga" type="button" value="Buscar Liga">
         	<s:textfield id="nombre" key="temporadaF.liga.nombre" readonly="true"/>
         	
+        	<input type="date" id="fechaInicialTemporada" name="form.fechaInicialTemporada">
+        	<input type="date" id="fechaInicialTemporada" name="form.fechaInicialTemporada">
+        	
 			<s:textfield id="fechaInicial" key="fechaInicial" label="Fecha Inicial" placeholder="dd/mm/yyyy"/>
 			<s:textfield id="fechaFinal" key="fechaFinal" label="Fecha Final" placeholder="dd/mm/yyyy"/>
         	

@@ -35,7 +35,6 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	private PartidoForm partidoF;
 	private String operacion;
 	private String fechaAnuncioPartido;
-	private String horaAnuncioPartido;
 	
 	
 	private List<Partido> partidosRegistrados = new ArrayList<Partido>();
@@ -76,22 +75,19 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 		logger.info("Inicia metodo GestionarPartidosAction.registrarPartido()");
 		PartidoVO partidoVO= new PartidoVO();
 		String fechaHoraStr;
-		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 
-		if(fechaAnuncioPartido!=null && fechaAnuncioPartido.contains("/")) {
-			String auxFecha[]=fechaAnuncioPartido.split("/");
-			if(auxFecha.length != 0 && auxFecha.length<=3) {
-				if(horaAnuncioPartido!=null && horaAnuncioPartido.contains(":")) {
-					fechaHoraStr = auxFecha[2] + "-"+ auxFecha[1] + "-" + auxFecha[0] + " " + horaAnuncioPartido + ":00.000";
-				}else {
-					fechaHoraStr = auxFecha[2] + "-"+ auxFecha[1] + "-" + auxFecha[0] + " 00:00:00.000";
-				}
-				Timestamp fechaHora = Timestamp.valueOf(fechaHoraStr);
-				partidoF.setFechaAnuncioPartido(fechaHora);
+		if(fechaAnuncioPartido!=null && fechaAnuncioPartido!="") {
+			try {
+				java.util.Date parsedDate = dateFormat.parse(fechaAnuncioPartido);
+	            Timestamp timestamp = new Timestamp(parsedDate.getTime());
+	            partidoF.setFechaAnuncioPartido(timestamp);
+			}catch(Exception e) {
+				logger.error(" Error al establecer la fecha y hora ", e);
+				addActionError("Error al establecer la fecha y hora.");
 			}
 		}
-		
-		
+
 		try {
 			BeanUtils.copyProperties(partidoVO, partidoF);
 		}catch(IllegalAccessException | InvocationTargetException e) {
@@ -216,19 +212,6 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	public void setFechaAnuncioPartido(String fechaAnuncioPartido) {
 		this.fechaAnuncioPartido = fechaAnuncioPartido;
 	}
-
-
-
-	public String getHoraAnuncioPartido() {
-		return horaAnuncioPartido;
-	}
-
-
-
-	public void setHoraAnuncioPartido(String horaAnuncioPartido) {
-		this.horaAnuncioPartido = horaAnuncioPartido;
-	}
-
 
 
 	public List<Partido> getPartidosRegistrados() {

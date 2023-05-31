@@ -138,8 +138,8 @@
         	&nbsp;&nbsp;&nbsp;
         	
         	<s:textfield key="partidoF.campo" />
-        	<s:textfield id="fechaAnuncioPartido" key="fechaAnuncioPartido" label="Fecha de Anuncio" placeholder="dd/mm/yyyy"/>
-			<s:textfield id="horaAnuncioPartido" key="horaAnuncioPartido" label="Hora de Anuncio formato 24hrs" placeholder="xx:xx"/>        	
+        	<input type="datetime-local" id="fechaAnuncioPartido" name="fechaAnuncioPartido">
+        	        	
         	
         	<s:if test="hasActionMessages() || hasActionErrors()">
 				<s:submit value="%{getText('button.label.submit')}"/>
