@@ -113,6 +113,14 @@
 	                        <a href="<s:property value="#url"/>">Alta</a>
                     </s:else>
 				</display:column>
+				<display:column media="html">
+							<s:url namespace="/jugadores/estadisticas" action="consultarEstadisticasTemporada" var="url" escapeAmp="false">
+	                            <s:param name="form.idTemporada" value="%{#attr.jugadorTemporada.idTemporada}"/>
+	                            <s:param name="form.idEquipo" value="%{#attr.jugadorTemporada.idEquipo}"/>
+	                            <s:param name="form.idJugador" value="%{#attr.jugadorTemporada.idJugador}"/>
+	                        </s:url>
+	                        <a href="<s:property value="#url"/>">Estadisticas Temporada</a>
+				</display:column>
 			</display:table>
 		</div>
 	<input id="registrarJugadoresModal" type="button" value="Registrar jugadores"/>

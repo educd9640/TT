@@ -71,6 +71,13 @@
 			<result name="input">/partidos/jugadores/consultarEstadisticasJugadoresPartido.jsp</result>
 			<result name="success">/partidos/jugadores/consultarEstadisticasJugadoresPartido.jsp</result>
 		</action>
+		
+		<action name="consultarEstadisticasTemporada"
+			class="ipn.escom.ballScore.action.GestionarEstadisticasAction"
+			method="consultarEstadisticasTemporada">
+			<result name="input">/jugadores/jugadoresEquipoTemp/consultarEstadisticasJugTemp.jsp</result>
+			<result name="success">/jugadores/jugadoresEquipoTemp/consultarEstadisticasJugTemp.jsp</result>
+		</action>
 
 	</package>
 
