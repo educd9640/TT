@@ -12,19 +12,19 @@ public class EstadisticasDefensivasVO {
 	private Long idJugador;
 	private Long idEquipo;
 	private Long idTemporada;
-	private Double asistencias=0D;
-	private Double atrapadasEnRobo=0D;
-	private Double dobleplays=0D;
-	private Double errores=0D;
-	private Double fieldingPercentage=0D;
-	private Double inningsJugadas=0D;
-	private Double outs=0D;
-	private Double asistenciaOutField=0D;
-	private Double passedballs=0D;
-	private Double putouts=0D;
-	private Double totalChances=0D;
-	private Double triplePlays=0D;
-	private Double robos=0D;
+	private Long asistencias=0L;
+	private Long atrapadasEnRobo=0L;
+	private Long dobleplays=0L;
+	private Long errores=0L;
+	private Long fieldingPercentage=0L;
+	private Long inningsJugadas=0L;
+	private Long outs=0L;
+	private Long asistenciaOutField=0L;
+	private Long passedballs=0L;
+	private Long putouts=0L;
+	private Long totalChances=0L;
+	private Long triplePlays=0L;
+	private Long robos=0L;
 	
 	private JugadorPartido jugadorPartido;
 
@@ -60,107 +60,107 @@ public class EstadisticasDefensivasVO {
 		this.idTemporada = idTemporada;
 	}
 
-	public Double getAsistencias() {
+	public Long getAsistencias() {
 		return asistencias;
 	}
 
-	public void setAsistencias(Double asistencias) {
+	public void setAsistencias(Long asistencias) {
 		this.asistencias = asistencias;
 	}
 
-	public Double getAtrapadasEnRobo() {
+	public Long getAtrapadasEnRobo() {
 		return atrapadasEnRobo;
 	}
 
-	public void setAtrapadasEnRobo(Double atrapadasEnRobo) {
+	public void setAtrapadasEnRobo(Long atrapadasEnRobo) {
 		this.atrapadasEnRobo = atrapadasEnRobo;
 	}
 
-	public Double getDobleplays() {
+	public Long getDobleplays() {
 		return dobleplays;
 	}
 
-	public void setDobleplays(Double dobleplays) {
+	public void setDobleplays(Long dobleplays) {
 		this.dobleplays = dobleplays;
 	}
 
-	public Double getErrores() {
+	public Long getErrores() {
 		return errores;
 	}
 
-	public void setErrores(Double errores) {
+	public void setErrores(Long errores) {
 		this.errores = errores;
 	}
 
-	public Double getFieldingPercentage() {
+	public Long getFieldingPercentage() {
 		return fieldingPercentage;
 	}
 
-	public void setFieldingPercentage(Double fieldingPercentage) {
+	public void setFieldingPercentage(Long fieldingPercentage) {
 		this.fieldingPercentage = fieldingPercentage;
 	}
 
-	public Double getInningsJugadas() {
+	public Long getInningsJugadas() {
 		return inningsJugadas;
 	}
 
-	public void setInningsJugadas(Double inningsJugadas) {
+	public void setInningsJugadas(Long inningsJugadas) {
 		this.inningsJugadas = inningsJugadas;
 	}
 
-	public Double getOuts() {
+	public Long getOuts() {
 		return outs;
 	}
 
-	public void setOuts(Double outs) {
+	public void setOuts(Long outs) {
 		this.outs = outs;
 	}
 
-	public Double getAsistenciaOutField() {
+	public Long getAsistenciaOutField() {
 		return asistenciaOutField;
 	}
 
-	public void setAsistenciaOutField(Double asistenciaOutField) {
+	public void setAsistenciaOutField(Long asistenciaOutField) {
 		this.asistenciaOutField = asistenciaOutField;
 	}
 
-	public Double getPassedballs() {
+	public Long getPassedballs() {
 		return passedballs;
 	}
 
-	public void setPassedballs(Double passedballs) {
+	public void setPassedballs(Long passedballs) {
 		this.passedballs = passedballs;
 	}
 
-	public Double getPutouts() {
+	public Long getPutouts() {
 		return putouts;
 	}
 
-	public void setPutouts(Double putouts) {
+	public void setPutouts(Long putouts) {
 		this.putouts = putouts;
 	}
 
-	public Double getTotalChances() {
+	public Long getTotalChances() {
 		return totalChances;
 	}
 
-	public void setTotalChances(Double totalChances) {
+	public void setTotalChances(Long totalChances) {
 		this.totalChances = totalChances;
 	}
 
-	public Double getTriplePlays() {
+	public Long getTriplePlays() {
 		return triplePlays;
 	}
 
-	public void setTriplePlays(Double triplePlays) {
+	public void setTriplePlays(Long triplePlays) {
 		this.triplePlays = triplePlays;
 	}
 
-	public Double getRobos() {
+	public Long getRobos() {
 		return robos;
 	}
 
-	public void setRobos(Double robos) {
+	public void setRobos(Long robos) {
 		this.robos = robos;
 	}
 

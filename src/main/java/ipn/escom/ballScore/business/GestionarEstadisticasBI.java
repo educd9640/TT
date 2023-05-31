@@ -147,7 +147,7 @@ public class GestionarEstadisticasBI {
 	 * @throws BussinessException en caso de error de negocio
 	 */
 	public List<EstPitcherPart> consultarEstadisticasPitcherEquipoPartido(Long idPartido, Long idEquipo, Long idTemporada) throws BussinessException{
-		logger.info("Inicia metodo GestionarRegistroEstadisticasBI.consultarEstadisticasPartido()");
+		logger.info("Inicia metodo GestionarRegistroEstadisticasBI.consultarEstadisticasPitcherEquipoPartido()");
 		GestionarEstadisticasDAO dao = new GestionarEstadisticasDAO();
 		try {
 			return dao.selectEstPitcherPart(idPartido, idEquipo, idTemporada);
@@ -167,7 +167,7 @@ public class GestionarEstadisticasBI {
 	 * @throws BussinessException en caso de error de negocio
 	 */
 	public List<EstOfensivasPart> consultarEstadisticasOfensivasEquipoPartido(Long idPartido, Long idEquipo, Long idTemporada) throws BussinessException{
-		logger.info("Inicia metodo GestionarRegistroEstadisticasBI.consultarEstadisticasPartido()");
+		logger.info("Inicia metodo GestionarRegistroEstadisticasBI.consultarEstadisticasOfensivasEquipoPartido()");
 		GestionarEstadisticasDAO dao = new GestionarEstadisticasDAO();
 		try {
 			return dao.selectEstOfensivasPart(idPartido, idEquipo, idTemporada);
@@ -187,10 +187,70 @@ public class GestionarEstadisticasBI {
 	 * @throws BussinessException en caso de error de negocio
 	 */
 	public List<EstDefensivasPart> consultarEstadisticasDefensivasEquipoPartido(Long idPartido, Long idEquipo, Long idTemporada) throws BussinessException{
-		logger.info("Inicia metodo GestionarRegistroEstadisticasBI.consultarEstadisticasPartido()");
+		logger.info("Inicia metodo GestionarRegistroEstadisticasBI.consultarEstadisticasDefensivasEquipoPartido()");
 		GestionarEstadisticasDAO dao = new GestionarEstadisticasDAO();
 		try {
 			return dao.selectEstDefensivasPart(idPartido, idEquipo, idTemporada);
+		}catch (Exception e) {
+			logger.error("Error al consultar estadisticas: "+e.getMessage(), e);
+			throw new BussinessException("Error al consultar estadisticas: "+e.getMessage());
+		}finally {
+			dao.cerrarConexiones();
+		}
+	}
+	
+	/**Metodo Bi para consultar estadisticas de pitcher de un jugador de temporada
+	 * @param idJugador del jugador
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @return Estadisticas
+	 * @throws BussinessException En caso de error al consultar
+	 */
+	public List<EstPitcherPart> consultarEstadisticasPitcherJugadorTemp(Long idJugador, Long idEquipo, Long idTemporada) throws BussinessException{
+		logger.info("Inicia metodo GestionarRegistroEstadisticasBI.consultarEstadisticasPitcherJugadorTemp()");
+		GestionarEstadisticasDAO dao = new GestionarEstadisticasDAO();
+		try {
+			return dao.selectEstPitcherPartTemp(idJugador, idEquipo, idTemporada);
+		}catch (Exception e) {
+			logger.error("Error al consultar estadisticas: "+e.getMessage(), e);
+			throw new BussinessException("Error al consultar estadisticas: "+e.getMessage());
+		}finally {
+			dao.cerrarConexiones();
+		}
+	}
+	
+	/**Metodo Bi para consultar estadisticas ofensivas de un jugador de temporada
+	 * @param idJugador del jugador
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @return Estadisticas
+	 * @throws BussinessException En caso de error al consultar
+	 */
+	public List<EstOfensivasPart> consultarEstadisticasOfensivasTemp(Long idJugador, Long idEquipo, Long idTemporada) throws BussinessException{
+		logger.info("Inicia metodo GestionarRegistroEstadisticasBI.consultarEstadisticasOfensivasTemp()");
+		GestionarEstadisticasDAO dao = new GestionarEstadisticasDAO();
+		try {
+			return dao.selectEstOfensivasPartTemp(idJugador, idEquipo, idTemporada);
+		}catch (Exception e) {
+			logger.error("Error al consultar estadisticas: "+e.getMessage(), e);
+			throw new BussinessException("Error al consultar estadisticas: "+e.getMessage());
+		}finally {
+			dao.cerrarConexiones();
+		}
+	}
+	
+	/**Metodo Bi para consultar estadisticas defensivas de un jugador de temporada
+	 * @param idJugador del jugador
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @return Estadisticas
+	 * @throws BussinessException En caso de error al consultar
+	 */
+	public List<EstDefensivasPart> consultarEstadisticasDefensivasTemp(Long idJugador, Long idEquipo, Long idTemporada) throws BussinessException{
+		logger.info("Inicia metodo GestionarRegistroEstadisticasBI.consultarEstadisticasDefensivasTemp()");
+		GestionarEstadisticasDAO dao = new GestionarEstadisticasDAO();
+		try {
+			return dao.selectEstDefensivasPartTemp(idJugador, idEquipo, idTemporada);
 		}catch (Exception e) {
 			logger.error("Error al consultar estadisticas: "+e.getMessage(), e);
 			throw new BussinessException("Error al consultar estadisticas: "+e.getMessage());
