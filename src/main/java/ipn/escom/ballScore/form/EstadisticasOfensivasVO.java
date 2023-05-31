@@ -12,39 +12,39 @@ public class EstadisticasOfensivasVO {
 	private Long idJugador;
 	private Long idEquipo;
 	private Long idTemporada;
-	private Double alBat=0D;
-	private Double avg=0D;
-	private Double caughtStealing=0D;
-	private Double dobles=0D;
-	private Double extraBaseHits=0D;
-	private Double gamesPlayed=0D;
-	private Double grandslam=0D;
-	private Double groundIntoDoubleplays=0D;
-	private Double groundoutToAiroutRatio=0D;
-	private Double hitsByPitch=0D;
-	private Double hits=0D;
-	private Double homeruns=0D;
-	private Double intentionalBB=0D;
-	private Double leftOnBase=0D;
-	private Double onBasePercentage=0D;
-	private Double onBasePlusSlugging=0D;
-	private Double plateAppearance=0D;
-	private Double reachedOnError=0D;
-	private Double carreras=0D;
-	private Double carrerasBateadas=0D;
-	private Double hitsSacrificio=0D;
-	private Double elevadosSacrificio=0D;
-	private Double sencillos=0D;
-	private Double slugger=0D;
-	private Double basesRobadas=0D;
-	private Double porcentajeBasesRobadas=0D;
-	private Double totalBases=0D;
-	private Double triples=0D;
-	private Double basesPorBola=0D;
-	private Double walkOff=0D;
-	private Double strikeouts=0D;
-	private Double groundOuts=0D;
-	private Double flyOuts=0D;
+	private Long alBat=0L;
+	private Long avg=0L;
+	private Long caughtStealing=0L;
+	private Long dobles=0L;
+	private Long extraBaseHits=0L;
+	private Long gamesPlayed=0L;
+	private Long grandslam=0L;
+	private Long groundIntoDoubleplays=0L;
+	private Long groundoutToAiroutRatio=0L;
+	private Long hitsByPitch=0L;
+	private Long hits=0L;
+	private Long homeruns=0L;
+	private Long intentionalBB=0L;
+	private Long leftOnBase=0L;
+	private Long onBasePercentage=0L;
+	private Long onBasePlusSlugging=0L;
+	private Long plateAppearance=0L;
+	private Long reachedOnError=0L;
+	private Long carreras=0L;
+	private Long carrerasBateadas=0L;
+	private Long hitsSacrificio=0L;
+	private Long elevadosSacrificio=0L;
+	private Long sencillos=0L;
+	private Long slugger=0L;
+	private Long basesRobadas=0L;
+	private Long porcentajeBasesRobadas=0L;
+	private Long totalBases=0L;
+	private Long triples=0L;
+	private Long basesPorBola=0L;
+	private Long walkOff=0L;
+	private Long strikeouts=0L;
+	private Long groundOuts=0L;
+	private Long flyOuts=0L;
 	
 	private JugadorPartido jugadorPartido;
 
@@ -80,267 +80,267 @@ public class EstadisticasOfensivasVO {
 		this.idTemporada = idTemporada;
 	}
 
-	public Double getAlBat() {
+	public Long getAlBat() {
 		return alBat;
 	}
 
-	public void setAlBat(Double alBat) {
+	public void setAlBat(Long alBat) {
 		this.alBat = alBat;
 	}
 
-	public Double getAvg() {
+	public Long getAvg() {
 		return avg;
 	}
 
-	public void setAvg(Double avg) {
+	public void setAvg(Long avg) {
 		this.avg = avg;
 	}
 
-	public Double getCaughtStealing() {
+	public Long getCaughtStealing() {
 		return caughtStealing;
 	}
 
-	public void setCaughtStealing(Double caughtStealing) {
+	public void setCaughtStealing(Long caughtStealing) {
 		this.caughtStealing = caughtStealing;
 	}
 
-	public Double getDobles() {
+	public Long getDobles() {
 		return dobles;
 	}
 
-	public void setDobles(Double dobles) {
+	public void setDobles(Long dobles) {
 		this.dobles = dobles;
 	}
 
-	public Double getExtraBaseHits() {
+	public Long getExtraBaseHits() {
 		return extraBaseHits;
 	}
 
-	public void setExtraBaseHits(Double extraBaseHits) {
+	public void setExtraBaseHits(Long extraBaseHits) {
 		this.extraBaseHits = extraBaseHits;
 	}
 
-	public Double getGamesPlayed() {
+	public Long getGamesPlayed() {
 		return gamesPlayed;
 	}
 
-	public void setGamesPlayed(Double gamesPlayed) {
+	public void setGamesPlayed(Long gamesPlayed) {
 		this.gamesPlayed = gamesPlayed;
 	}
 
-	public Double getGrandslam() {
+	public Long getGrandslam() {
 		return grandslam;
 	}
 
-	public void setGrandslam(Double grandslam) {
+	public void setGrandslam(Long grandslam) {
 		this.grandslam = grandslam;
 	}
 
-	public Double getGroundIntoDoubleplays() {
+	public Long getGroundIntoDoubleplays() {
 		return groundIntoDoubleplays;
 	}
 
-	public void setGroundIntoDoubleplays(Double groundIntoDoubleplays) {
+	public void setGroundIntoDoubleplays(Long groundIntoDoubleplays) {
 		this.groundIntoDoubleplays = groundIntoDoubleplays;
 	}
 
-	public Double getGroundoutToAiroutRatio() {
+	public Long getGroundoutToAiroutRatio() {
 		return groundoutToAiroutRatio;
 	}
 
-	public void setGroundoutToAiroutRatio(Double groundoutToAiroutRatio) {
+	public void setGroundoutToAiroutRatio(Long groundoutToAiroutRatio) {
 		this.groundoutToAiroutRatio = groundoutToAiroutRatio;
 	}
 
-	public Double getHitsByPitch() {
+	public Long getHitsByPitch() {
 		return hitsByPitch;
 	}
 
-	public void setHitsByPitch(Double hitsByPitch) {
+	public void setHitsByPitch(Long hitsByPitch) {
 		this.hitsByPitch = hitsByPitch;
 	}
 
-	public Double getHits() {
+	public Long getHits() {
 		return hits;
 	}
 
-	public void setHits(Double hits) {
+	public void setHits(Long hits) {
 		this.hits = hits;
 	}
 
-	public Double getHomeruns() {
+	public Long getHomeruns() {
 		return homeruns;
 	}
 
-	public void setHomeruns(Double homeruns) {
+	public void setHomeruns(Long homeruns) {
 		this.homeruns = homeruns;
 	}
 
-	public Double getIntentionalBB() {
+	public Long getIntentionalBB() {
 		return intentionalBB;
 	}
 
-	public void setIntentionalBB(Double intentionalBB) {
+	public void setIntentionalBB(Long intentionalBB) {
 		this.intentionalBB = intentionalBB;
 	}
 
-	public Double getLeftOnBase() {
+	public Long getLeftOnBase() {
 		return leftOnBase;
 	}
 
-	public void setLeftOnBase(Double leftOnBase) {
+	public void setLeftOnBase(Long leftOnBase) {
 		this.leftOnBase = leftOnBase;
 	}
 
-	public Double getOnBasePercentage() {
+	public Long getOnBasePercentage() {
 		return onBasePercentage;
 	}
 
-	public void setOnBasePercentage(Double onBasePercentage) {
+	public void setOnBasePercentage(Long onBasePercentage) {
 		this.onBasePercentage = onBasePercentage;
 	}
 
-	public Double getOnBasePlusSlugging() {
+	public Long getOnBasePlusSlugging() {
 		return onBasePlusSlugging;
 	}
 
-	public void setOnBasePlusSlugging(Double onBasePlusSlugging) {
+	public void setOnBasePlusSlugging(Long onBasePlusSlugging) {
 		this.onBasePlusSlugging = onBasePlusSlugging;
 	}
 
-	public Double getPlateAppearance() {
+	public Long getPlateAppearance() {
 		return plateAppearance;
 	}
 
-	public void setPlateAppearance(Double plateAppearance) {
+	public void setPlateAppearance(Long plateAppearance) {
 		this.plateAppearance = plateAppearance;
 	}
 
-	public Double getReachedOnError() {
+	public Long getReachedOnError() {
 		return reachedOnError;
 	}
 
-	public void setReachedOnError(Double reachedOnError) {
+	public void setReachedOnError(Long reachedOnError) {
 		this.reachedOnError = reachedOnError;
 	}
 
-	public Double getCarreras() {
+	public Long getCarreras() {
 		return carreras;
 	}
 
-	public void setCarreras(Double carreras) {
+	public void setCarreras(Long carreras) {
 		this.carreras = carreras;
 	}
 
-	public Double getCarrerasBateadas() {
+	public Long getCarrerasBateadas() {
 		return carrerasBateadas;
 	}
 
-	public void setCarrerasBateadas(Double carrerasBateadas) {
+	public void setCarrerasBateadas(Long carrerasBateadas) {
 		this.carrerasBateadas = carrerasBateadas;
 	}
 
-	public Double getHitsSacrificio() {
+	public Long getHitsSacrificio() {
 		return hitsSacrificio;
 	}
 
-	public void setHitsSacrificio(Double hitsSacrificio) {
+	public void setHitsSacrificio(Long hitsSacrificio) {
 		this.hitsSacrificio = hitsSacrificio;
 	}
 
-	public Double getElevadosSacrificio() {
+	public Long getElevadosSacrificio() {
 		return elevadosSacrificio;
 	}
 
-	public void setElevadosSacrificio(Double elevadosSacrificio) {
+	public void setElevadosSacrificio(Long elevadosSacrificio) {
 		this.elevadosSacrificio = elevadosSacrificio;
 	}
 
-	public Double getSencillos() {
+	public Long getSencillos() {
 		return sencillos;
 	}
 
-	public void setSencillos(Double sencillos) {
+	public void setSencillos(Long sencillos) {
 		this.sencillos = sencillos;
 	}
 
-	public Double getSlugger() {
+	public Long getSlugger() {
 		return slugger;
 	}
 
-	public void setSlugger(Double slugger) {
+	public void setSlugger(Long slugger) {
 		this.slugger = slugger;
 	}
 
-	public Double getBasesRobadas() {
+	public Long getBasesRobadas() {
 		return basesRobadas;
 	}
 
-	public void setBasesRobadas(Double basesRobadas) {
+	public void setBasesRobadas(Long basesRobadas) {
 		this.basesRobadas = basesRobadas;
 	}
 
-	public Double getPorcentajeBasesRobadas() {
+	public Long getPorcentajeBasesRobadas() {
 		return porcentajeBasesRobadas;
 	}
 
-	public void setPorcentajeBasesRobadas(Double porcentajeBasesRobadas) {
+	public void setPorcentajeBasesRobadas(Long porcentajeBasesRobadas) {
 		this.porcentajeBasesRobadas = porcentajeBasesRobadas;
 	}
 
-	public Double getTotalBases() {
+	public Long getTotalBases() {
 		return totalBases;
 	}
 
-	public void setTotalBases(Double totalBases) {
+	public void setTotalBases(Long totalBases) {
 		this.totalBases = totalBases;
 	}
 
-	public Double getTriples() {
+	public Long getTriples() {
 		return triples;
 	}
 
-	public void setTriples(Double triples) {
+	public void setTriples(Long triples) {
 		this.triples = triples;
 	}
 
-	public Double getBasesPorBola() {
+	public Long getBasesPorBola() {
 		return basesPorBola;
 	}
 
-	public void setBasesPorBola(Double basesPorBola) {
+	public void setBasesPorBola(Long basesPorBola) {
 		this.basesPorBola = basesPorBola;
 	}
 
-	public Double getWalkOff() {
+	public Long getWalkOff() {
 		return walkOff;
 	}
 
-	public void setWalkOff(Double walkOff) {
+	public void setWalkOff(Long walkOff) {
 		this.walkOff = walkOff;
 	}
 
-	public Double getStrikeouts() {
+	public Long getStrikeouts() {
 		return strikeouts;
 	}
 
-	public void setStrikeouts(Double strikeouts) {
+	public void setStrikeouts(Long strikeouts) {
 		this.strikeouts = strikeouts;
 	}
 
-	public Double getGroundOuts() {
+	public Long getGroundOuts() {
 		return groundOuts;
 	}
 
-	public void setGroundOuts(Double groundOuts) {
+	public void setGroundOuts(Long groundOuts) {
 		this.groundOuts = groundOuts;
 	}
 
-	public Double getFlyOuts() {
+	public Long getFlyOuts() {
 		return flyOuts;
 	}
 
-	public void setFlyOuts(Double flyOuts) {
+	public void setFlyOuts(Long flyOuts) {
 		this.flyOuts = flyOuts;
 	}
 

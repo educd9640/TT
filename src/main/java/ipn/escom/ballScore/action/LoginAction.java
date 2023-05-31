@@ -42,8 +42,8 @@ public class LoginAction extends BaseAction{
 			return "valid";
 		}
 		else {
-			logger.error("Error al iniciar sesi贸n con el usuario: "+getLogin());
-			addActionError("Usuario o contrase帽a invalidos");
+			logger.error("Error al iniciar sesi髇 con el usuario: "+getLogin());
+			addActionError("Usuario o contrase馻 invalidos");
 			return "invalid";
 		}
 
@@ -55,7 +55,7 @@ public class LoginAction extends BaseAction{
 	 */
 	public String sessionTest(){
 		
-		logger.info("LoginAction : sessionTest: \nPrueba de inicio de sesi贸n/Interceptor que se cre贸 antes al iniciar sesi贸n");
+		logger.info("LoginAction : sessionTest: \nPrueba de inicio de sesi髇/Interceptor que se crea antes al iniciar sesi髇");
 		
 		Manager usuarioLogado = (Manager) this.getSessionMap().get("Usuario");
 		logger.info("Usuario logeado: "+usuarioLogado);
@@ -63,7 +63,7 @@ public class LoginAction extends BaseAction{
 		return "success";
 	}
 
-
+	
 	/**Metodo para logout
 	 * @return Action Success
 	 */
