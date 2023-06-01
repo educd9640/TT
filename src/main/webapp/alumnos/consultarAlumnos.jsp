@@ -14,8 +14,13 @@
         <div class="titleDiv"><s:text name="application.title"/></div>
         <h3><s:text name="label.registrados.titulo"/></h3>
         <br/><br/>
+        <s:if test="hasActionErrors()">
+		<div class="errors">
         <s:actionerror />
-        <s:actionmessage />
+		</div>
+		</s:if>
+
+		<s:actionmessage />
         <table style="border:none">
         	<tr>
         	<td><b>Busqueda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="alumnoForm.boletaAlumno"/></td>

@@ -113,7 +113,12 @@
 	<body>
 		<div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:property value="#title"/></h1>
+        <s:if test="hasActionErrors()">
+		<div class="errors">
         <s:actionerror />
+		</div>
+		</s:if>
+
         <s:actionmessage />
         <s:form action="registrarPartido" method="post">
         	

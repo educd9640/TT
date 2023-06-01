@@ -18,8 +18,13 @@
 		<div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.seleccionar.titulo"/></h1>
         <br/><br/>
+        <s:if test="hasActionErrors()">
+		<div class="errors">
         <s:actionerror />
-        <s:actionmessage />
+		</div>
+		</s:if>
+ 
+		        <s:actionmessage />
         
        <s:form action="consultarTemporadasRegistro" method="post">
         <table style="border:none">
