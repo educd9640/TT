@@ -10,7 +10,13 @@
 </s:else>
         <div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:property value="#title"/></h1>
-        <s:actionerror theme="simple"/> <s:actionmessage theme="simple"/>
+        <s:if test="hasActionErrors()">
+		<div class="errors">
+        <s:actionerror />
+		</div>
+		</s:if>
+ 
+		<s:actionmessage theme="simple"/>
         <s:form action="registrarAlumno" method="post">
         	<s:if test="operacion=='actualizado'">
         		<s:textfield key="alumnoForm.boletaAlumno" readonly="true"/>

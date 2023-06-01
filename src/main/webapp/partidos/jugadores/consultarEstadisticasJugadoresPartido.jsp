@@ -14,8 +14,13 @@
 	<h1>
 		<s:text name="label.estadisticas.partido" />
 	</h1>
-	<s:actionerror />
-    <s:actionmessage />
+        <s:if test="hasActionErrors()">
+		<div class="errors">
+        <s:actionerror />
+		</div>
+		</s:if>
+
+		    <s:actionmessage />
     <br>
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">

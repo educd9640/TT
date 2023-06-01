@@ -34,7 +34,12 @@
         <div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.resultadosModal.titulo"/></h1>
         <br/><br/>
+        <s:if test="hasActionErrors()">
+		<div class="errors">
         <s:actionerror />
+		</div>
+		</s:if>
+   
         <s:actionmessage />
         Registrando resultados del jugador:
 
