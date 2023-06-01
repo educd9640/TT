@@ -123,8 +123,13 @@
 	<div class="titleDiv"><s:text name="equipoElegido"/></div>
 	<h1><s:property value="#title"/></h1>
 	<br>
-	<s:actionerror />
-    <s:actionmessage />
+        <s:if test="hasActionErrors()">
+		<div class="errors">
+        <s:actionerror />
+		</div>
+		</s:if>
+
+		<s:actionmessage />
     	<input type="radio" id="busquedaEquipo" name="opcion" value="equipo">
     	<label for="busquedaEquipo">Busqueda por nombre del Equipo</label>
     	<input type="radio" id="busquedaManager" name="opcion" value="manager">

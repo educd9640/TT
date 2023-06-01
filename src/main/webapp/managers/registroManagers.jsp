@@ -3,8 +3,13 @@
 <div class="container rounded p-3 contenido">
         <div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:property value="#title"/></h1>
+        <s:if test="hasActionErrors()">
+		<div class="errors">
         <s:actionerror />
-        <s:actionmessage />
+		</div>
+		</s:if>
+      
+		        <s:actionmessage />
         <s:form action="registro" method="post">
             <s:textfield key="managerForm.nombrePila" /> 
             <s:textfield key="managerForm.apellidoPat" /> 

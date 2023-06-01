@@ -59,8 +59,13 @@
 		<s:text name="label.registrados.titulo" />
 	</h1>
 	<br /><br />
-	<s:actionerror />
-    <s:actionmessage />
+        <s:if test="hasActionErrors()">
+		<div class="errors">
+        <s:actionerror />
+		</div>
+		</s:if>
+
+	<s:actionmessage />
     <br>
     Registrando jugadores en partido del dia [<b><s:text name="partido.fechaAnuncioPartido"/></b>] de la liga [<b><s:text name="partido.temporada.liga.nombre"/></b>] temporada del <b><s:text name="partido.temporada.fechaInicial"/></b> al <b><s:text name="partido.temporada.fechaInicial"/></b>
     <br>

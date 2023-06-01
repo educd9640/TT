@@ -35,7 +35,7 @@ public class GestionarJugEquipoTempBI {
 				throw new BussinessException("No existen equipos registrados en alguna temporada.");
 		} catch (Exception e) {
 			logger.error("Error al consultar equipos de la temporada", e);
-			throw new BussinessException("Error al consultar equipos de la temporada " + e.getCause());
+			throw new BussinessException("Error al consultar equipos de la temporada " + e.getMessage());
 		}finally {
 			gestionarEquipoTemporadaDAO.cerrarConexiones();
 		}
