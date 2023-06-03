@@ -19,7 +19,17 @@
 <script src="<s:url value='/js/sexyalertbox.v1.2.jquery.js'/>"></script>
 <!-- Script Jquery easing (Animaciones, usado por sexyalert) -->
 <script src="<s:url value='/js/jquery.easing.1.3.js'/>"></script>
-
+<style type="text/css">
+body {
+	background-image: url('/ballscore/bases/background.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	width: 100%;
+	heigth: 100%;
+	position: relative;
+}
+</style>
 <body style="margin: 0">
 <header class="p-3 text-bg-dark" style="width: 100%">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
