@@ -3,7 +3,7 @@ package ipn.escom.ballScore.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
-/**Entidad de equipo
+/**Entidad de Equipo
  * @author Jose Mauricio
  *
  */

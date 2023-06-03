@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import ipn.escom.ballScore.entity.JugadorPartido;
 
-/**Clase VO para estadisticas ofensivas
+/**VO para estadisticas ofensivas
  * @author Jose Mauricio
  *
  */

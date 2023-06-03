@@ -5,7 +5,7 @@ import java.sql.Date;
 
 import ipn.escom.ballScore.entity.Alumno;
 
-/**Clase VO para la gestion de jugadores
+/**VO para la gestion de jugadores
  * @author Jose Mauricio
  *
  */

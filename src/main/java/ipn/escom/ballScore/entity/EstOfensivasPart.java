@@ -2,7 +2,7 @@ package ipn.escom.ballScore.entity;
 
 import java.io.Serializable;
 
-/**Clase de entidad para estadisticas ofensivas
+/**Entidad para estadisticas ofensivas
  * @author Jose Mauricio
  *
  */

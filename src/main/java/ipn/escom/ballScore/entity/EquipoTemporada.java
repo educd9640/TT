@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-/**Clase entidad para la tabla EQUIPO_TEMPORADA
+/**Entidad de EquipoTemporada
  * @author Jose Mauricio
  *
  */

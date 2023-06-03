@@ -20,7 +20,7 @@ import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.PartidoForm;
 import ipn.escom.ballScore.form.PartidoVO;
 
-/**Clase Acrion para gestionar Partidos
+/**Clase Action para gestionar Partidos
  * @author Eduardo Callejas
  *
  */

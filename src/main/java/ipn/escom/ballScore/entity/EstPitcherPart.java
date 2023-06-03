@@ -2,7 +2,7 @@ package ipn.escom.ballScore.entity;
 
 import java.io.Serializable;
 
-/**Clase de entidad para estadisticas de pitcher
+/**Entidad para estadisticas de pitcher
  * @author Jose Mauricio
  *
  */
