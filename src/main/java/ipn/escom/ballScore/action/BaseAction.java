@@ -18,7 +18,7 @@ import ipn.escom.ballScore.business.LoginBI;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-/**Clase abastracta para la creación de clases Actions
+/**Clase abstracta para la creación de clases Actions
  * @author Jose Mauricio
  *
  */
