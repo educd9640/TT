@@ -19,6 +19,10 @@ import ipn.escom.ballScore.entity.Partido;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.GestionarJugadorPartidoForm;
 
+/**Clase Action para la gestion de jugadores de partido
+ * @author Jose Mauricio
+ *
+ */
 public class GestionarJugadorPartidoAction extends BaseAction{
 	
 	
@@ -111,47 +115,89 @@ public class GestionarJugadorPartidoAction extends BaseAction{
 		
 		return Action.SUCCESS;
 	}
-	
 
-	//Getters y setters
+	/**
+	 * @return El campo form
+	 */
 	public GestionarJugadorPartidoForm getForm() {
 		return form;
 	}
 
+	/**
+	 * @param form El campo form a settear
+	 */
 	public void setForm(GestionarJugadorPartidoForm form) {
 		this.form = form;
 	}
 
+	/**
+	 * @return El campo partido
+	 */
 	public Partido getPartido() {
 		return partido;
 	}
 
+	/**
+	 * @param partido El campo partido a settear
+	 */
 	public void setPartido(Partido partido) {
 		this.partido = partido;
 	}
 
+	/**
+	 * @return El campo equipoTemporada
+	 */
 	public EquipoTemporada getEquipoTemporada() {
 		return equipoTemporada;
 	}
 
+	/**
+	 * @param equipoTemporada El campo equipoTemporada a settear
+	 */
 	public void setEquipoTemporada(EquipoTemporada equipoTemporada) {
 		this.equipoTemporada = equipoTemporada;
 	}
-	
+
+	/**
+	 * @return El campo sessionManagerId
+	 */
 	public Long getSessionManagerId() {
 		return sessionManagerId;
 	}
 
+	/**
+	 * @param sessionManagerId El campo sessionManagerId a settear
+	 */
 	public void setSessionManagerId(Long sessionManagerId) {
 		this.sessionManagerId = sessionManagerId;
 	}
 
+	/**
+	 * @return El campo posiciones
+	 */
 	public List<String> getPosiciones() {
 		return posiciones;
 	}
 
+	/**
+	 * @param posiciones El campo posiciones a settear
+	 */
 	public void setPosiciones(List<String> posiciones) {
 		this.posiciones = posiciones;
 	}
 
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }

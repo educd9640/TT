@@ -44,7 +44,7 @@ public class GestionarManagersBI {
 	/**Metodo de negocio para registrar un manager
 	 * @param vo Con los datos del manager
 	 * @return Id con el que se registro el manager (-1 en caso de que ya exista un manager con ese correo registrado)
-	 * @throws BussinessException 
+	 * @throws BussinessException en caso de error de negocio
 	 */
 	public Long registrarManager(GestionarManagersVO vo) throws BussinessException {
 		logger.info("Inicia metodo GestionarManagersBI.registrarManager()");

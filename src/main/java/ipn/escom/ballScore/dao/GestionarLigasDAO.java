@@ -21,7 +21,7 @@ public class GestionarLigasDAO extends BaseDAO{
 	}
 	
 	/**Metodo para insertar una liga
-	 * @param entidad con los datos de la liga(LigaVO)
+	 * @param liga con los datos de la liga
 	 * @return la entidad persistida
 	 * @throws SQLException en caso de error
 	 */
@@ -41,7 +41,8 @@ public class GestionarLigasDAO extends BaseDAO{
 	
 	
 	/**Metodo para actualizar una liga
-	 * @param ligaVO
+	 * @param liga con los datos de la liga
+	 * @return entidad persistida
 	 * @throws SQLException en caso de error
 	 */
 	public Liga updateLiga(Liga liga) throws SQLException {
@@ -58,7 +59,7 @@ public class GestionarLigasDAO extends BaseDAO{
 	}
 	
 	/**Metodo para consultar todas las ligas registradas
-	 * @return
+	 * @return lista de ligas
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Liga> selectFromLiga(){
@@ -68,7 +69,7 @@ public class GestionarLigasDAO extends BaseDAO{
 	
 	
 	/**Metodo para activar/desactivar una liga
-	 * @param ligaVO liga en cuestión
+	 * @param liga liga en cuestión
 	 * @throws SQLException en caso de error
 	 */
 	public void estadoLiga(Liga liga) throws SQLException {

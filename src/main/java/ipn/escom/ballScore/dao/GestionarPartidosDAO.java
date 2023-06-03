@@ -15,14 +15,17 @@ import ipn.escom.ballScore.entity.Partido;
  */
 public class GestionarPartidosDAO extends BaseDAO{
 	
+	/**
+	 * Constructor
+	 */
 	public GestionarPartidosDAO() {
 		super();
 	}
 	
 	/**Metodo para insertar un partido
-	 * @param partido
+	 * @param partido entidad a persistir
 	 * @return la entidad persistida
-	 * @throws SQLException
+	 * @throws SQLException en caso de error al insertar
 	 */
 	public Partido insertIntoPartido(Partido partido) throws SQLException {
 		java.util.Date utilDate = new java.util.Date();
@@ -94,7 +97,7 @@ public class GestionarPartidosDAO extends BaseDAO{
 	}
 	
 	/**Metodo para actualizar un partido
-	 * @param partido
+	 * @param partido entidad a persistir
 	 * @return la entidad persistida
 	 * @throws SQLException en caso de error
 	 */
@@ -114,7 +117,7 @@ public class GestionarPartidosDAO extends BaseDAO{
 	
 	/**Metodo para obtener un partido por su id
 	 * @param id del partido
-	 * @return
+	 * @return paritod
 	 */
 	public Partido selectPartidoById(Long id) {
 		return(Partido) this.session.get(Partido.class, id);
@@ -122,7 +125,7 @@ public class GestionarPartidosDAO extends BaseDAO{
 	
 	
 	/**Metodo para activar/desactivar un partido
-	 * @param partido
+	 * @param partido partido a alternar estado
 	 * @throws SQLException en caso de error
 	 */
 	public void estadoPartido(Partido partido) throws SQLException {

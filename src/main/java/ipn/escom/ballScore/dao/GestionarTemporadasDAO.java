@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Query;
-import org.hibernate.type.LongType;
-
 import ipn.escom.ballScore.entity.Temporada;
 
 /**Clase DAO para gestionar ligas
@@ -25,9 +23,9 @@ public class GestionarTemporadasDAO extends BaseDAO{
 	
 	
 	/**Metodo para insertar una temporada
-	 * @param temporada
+	 * @param temporada temporada a persistir
 	 * @return la entidad persistida
-	 * @throws SQLException
+	 * @throws SQLException en caso de error al persistir
 	 */
 	public Temporada insertIntoTemporada(Temporada temporada)throws SQLException {
 		java.util.Date utilDate = new java.util.Date();
@@ -45,7 +43,7 @@ public class GestionarTemporadasDAO extends BaseDAO{
 	
 	
 	/**Metodo para consultar todas las temporadas registradas
-	 * @return
+	 * @return lista de temporadas
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Temporada> selectFromTemporada(){
@@ -57,7 +55,7 @@ public class GestionarTemporadasDAO extends BaseDAO{
 	
 	
 	/**Metodo para actualizar una temporada
-	 * @param temporada
+	 * @param temporada a actualizar
 	 * @return la entidad persistida
 	 * @throws SQLException en caso de error
 	 */

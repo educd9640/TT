@@ -75,7 +75,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
     }
 	
 	/**Metodo para presentar pantalla de formulario
-	 * @return
+	 * @return pantalla de formulario
 	 */
 	public String mostrarFormulario() {
 		logger.info("Inicia metodo GestionarAlumnosAction.mostrarFormulario()");
@@ -84,7 +84,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	}
 	
 	/**Metodo para presentar pantalla de registrados
-	 * @return
+	 * @return pantalla de registrados
 	 */
 	@SkipValidation
 	public String mostrarRegistrados() {
@@ -94,7 +94,7 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 	}
 	
 	/**Metodo para presentar pantalla de registrados Libres
-	 * @return
+	 * @return pantalla de registrados sin equipo
 	 */
 	@SkipValidation
 	public String mostrarRegistradosLibres() {
@@ -187,57 +187,104 @@ public class GestionarAlumnosAction extends BaseAction implements Preparable{
 		this.prepare();
 		return Action.SUCCESS;
 	}
-	
-	//Inician metodos getters y setters
-	
+
+	/**
+	 * @return El campo alumnoForm
+	 */
 	public GestionarAlumnosForm getAlumnoForm() {
 		return alumnoForm;
 	}
 
+	/**
+	 * @param alumnoForm El campo alumnoForm a settear
+	 */
 	public void setAlumnoForm(GestionarAlumnosForm alumnoForm) {
 		this.alumnoForm = alumnoForm;
 	}
 
+	/**
+	 * @return El campo operacion
+	 */
 	public String getOperacion() {
 		return operacion;
 	}
 
+	/**
+	 * @param operacion El campo operacion a settear
+	 */
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
 	}
 
+	/**
+	 * @return El campo escuelas
+	 */
 	public List<Escuela> getEscuelas() {
 		return escuelas;
 	}
 
+	/**
+	 * @param escuelas El campo escuelas a settear
+	 */
 	public void setEscuelas(List<Escuela> escuelas) {
 		this.escuelas = escuelas;
 	}
 
+	/**
+	 * @return El campo semestres
+	 */
 	public List<Long> getSemestres() {
 		return semestres;
 	}
 
+	/**
+	 * @param semestres El campo semestres a settear
+	 */
 	public void setSemestres(List<Long> semestres) {
 		this.semestres = semestres;
 	}
 
+	/**
+	 * @return El campo alumnosRegistrado
+	 */
 	public List<Alumno> getAlumnosRegistrado() {
 		return alumnosRegistrado;
 	}
 
+	/**
+	 * @param alumnosRegistrado El campo alumnosRegistrado a settear
+	 */
 	public void setAlumnosRegistrado(List<Alumno> alumnosRegistrado) {
 		this.alumnosRegistrado = alumnosRegistrado;
 	}
 
+	/**
+	 * @return El campo soloLibres
+	 */
 	public boolean isSoloLibres() {
 		return soloLibres;
 	}
 
+	/**
+	 * @param soloLibres El campo soloLibres a settear
+	 */
 	public void setSoloLibres(boolean soloLibres) {
 		this.soloLibres = soloLibres;
 	}
-	
+
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 	
 }

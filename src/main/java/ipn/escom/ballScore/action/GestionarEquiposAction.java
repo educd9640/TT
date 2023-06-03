@@ -215,7 +215,7 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	
 	
 	/**Metodo para presentar pantalla de equipos locales
-	 * @return
+	 * @return pantalla de equipos locales
 	 */
 	public String mostrarLocales() {
 		logger.info("Inicia metodo GestionarLigasAction.mostrarLocales()");
@@ -223,79 +223,166 @@ public class GestionarEquiposAction extends BaseAction implements Preparable{
 	}
 	
 	/**Metodo para presentar pantalla de equipos visitantes
-	 * @return
+	 * @return pantalla de equipos visitantes
 	 */
 	public String mostrarVisitantes() {
 		logger.info("Inicia metodo GestionarLigasAction.mostrarVisitantes()");
 		return Action.SUCCESS;
 	}
-	
-	//Inician Metodos getters y setters
 
+	/**
+	 * @return El campo equipoForm
+	 */
 	public GestionarEquiposForm getEquipoForm() {
 		return equipoForm;
 	}
 
+	/**
+	 * @param equipoForm El campo equipoForm a settear
+	 */
 	public void setEquipoForm(GestionarEquiposForm equipoForm) {
 		this.equipoForm = equipoForm;
 	}
 
+	/**
+	 * @return El campo managerActual
+	 */
+	public Manager getManagerActual() {
+		return managerActual;
+	}
+
+	/**
+	 * @param managerActual El campo managerActual a settear
+	 */
+	public void setManagerActual(Manager managerActual) {
+		this.managerActual = managerActual;
+	}
+
+	/**
+	 * @return El campo equipoManager
+	 */
+	public Equipo getEquipoManager() {
+		return equipoManager;
+	}
+
+	/**
+	 * @param equipoManager El campo equipoManager a settear
+	 */
+	public void setEquipoManager(Equipo equipoManager) {
+		this.equipoManager = equipoManager;
+	}
+
+	/**
+	 * @return El campo operacion
+	 */
 	public String getOperacion() {
 		return operacion;
 	}
 
+	/**
+	 * @param operacion El campo operacion a settear
+	 */
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
 	}
-	
-	public String getAccion() {
-		return accion;
-	}
 
-	public void setAccion(String accion) {
-		this.accion = accion;
-	}
-	
-	public List<Equipo> getEquiposRegistrados() {
-		return equiposRegistrados;
-	}
-
-	public void setEquiposRegistrados(List<Equipo> equiposRegistrados) {
-		this.equiposRegistrados = equiposRegistrados;
-	}
-
-	public List<Equipo> getEquiposTemporadaRegistrados() {
-		return equiposTemporadaRegistrados;
-	}
-
-	public void setEquiposTemporadaRegistrados(List<Equipo> equiposTemporadaRegistrados) {
-		this.equiposTemporadaRegistrados = equiposTemporadaRegistrados;
-	}
-
+	/**
+	 * @return El campo idTemporada
+	 */
 	public Long getIdTemporada() {
 		return idTemporada;
 	}
 
+	/**
+	 * @param idTemporada El campo idTemporada a settear
+	 */
 	public void setIdTemporada(Long idTemporada) {
 		this.idTemporada = idTemporada;
 	}
-	
+
+	/**
+	 * @return El campo equipoL
+	 */
 	public Long getEquipoL() {
 		return equipoL;
 	}
 
-	public void setEquipoL(Long idEquipoL) {
-		this.equipoL = idEquipoL;
+	/**
+	 * @param equipoL El campo equipoL a settear
+	 */
+	public void setEquipoL(Long equipoL) {
+		this.equipoL = equipoL;
 	}
-	
+
+	/**
+	 * @return El campo accion
+	 */
+	public String getAccion() {
+		return accion;
+	}
+
+	/**
+	 * @param accion El campo accion a settear
+	 */
+	public void setAccion(String accion) {
+		this.accion = accion;
+	}
+
+	/**
+	 * @return El campo temporadaElegida
+	 */
 	public Long getTemporadaElegida() {
 		return temporadaElegida;
 	}
 
+	/**
+	 * @param temporadaElegida El campo temporadaElegida a settear
+	 */
 	public void setTemporadaElegida(Long temporadaElegida) {
 		this.temporadaElegida = temporadaElegida;
 	}
-	
+
+	/**
+	 * @return El campo equiposRegistrados
+	 */
+	public List<Equipo> getEquiposRegistrados() {
+		return equiposRegistrados;
+	}
+
+	/**
+	 * @param equiposRegistrados El campo equiposRegistrados a settear
+	 */
+	public void setEquiposRegistrados(List<Equipo> equiposRegistrados) {
+		this.equiposRegistrados = equiposRegistrados;
+	}
+
+	/**
+	 * @return El campo equiposTemporadaRegistrados
+	 */
+	public List<Equipo> getEquiposTemporadaRegistrados() {
+		return equiposTemporadaRegistrados;
+	}
+
+	/**
+	 * @param equiposTemporadaRegistrados El campo equiposTemporadaRegistrados a settear
+	 */
+	public void setEquiposTemporadaRegistrados(List<Equipo> equiposTemporadaRegistrados) {
+		this.equiposTemporadaRegistrados = equiposTemporadaRegistrados;
+	}
+
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 }
 

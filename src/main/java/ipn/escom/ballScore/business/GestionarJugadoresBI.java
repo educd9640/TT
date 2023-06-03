@@ -17,6 +17,10 @@ import ipn.escom.ballScore.entity.Jugador;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.GestionarJugadoresVO;
 
+/**Clase de negocio para la gestion de jugadores
+ * @author Jose Mauricio
+ *
+ */
 public class GestionarJugadoresBI {
 	
 	private static final Logger logger = LogManager.getLogger();
@@ -38,7 +42,7 @@ public class GestionarJugadoresBI {
 	}
 	
 	/**Metodo para obtener lista de posiciones
-	 * @return
+	 * @return posiciones
 	 */
 	public List<String> obtenerPosiciones(){
 		List<String> posiciones = new ArrayList<String>();

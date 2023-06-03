@@ -84,23 +84,48 @@ public class GestionarManagersAction extends BaseAction implements Preparable{
 		
 		return Action.SUCCESS;
 	}
-	
-	//Inician Metodos getters y setters
 
+	/**
+	 * @return El campo managerForm
+	 */
 	public GestionarManagersForm getManagerForm() {
 		return managerForm;
 	}
 
+	/**
+	 * @param managerForm El campo managerForm a settear
+	 */
 	public void setManagerForm(GestionarManagersForm managerForm) {
 		this.managerForm = managerForm;
 	}
 
+	/**
+	 * @return El campo escuelas
+	 */
 	public List<Escuela> getEscuelas() {
 		return escuelas;
 	}
 
+	/**
+	 * @param escuelas El campo escuelas a settear
+	 */
 	public void setEscuelas(List<Escuela> escuelas) {
 		this.escuelas = escuelas;
 	}
+
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 
 }
