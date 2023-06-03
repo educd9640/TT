@@ -2,7 +2,7 @@ package ipn.escom.ballScore.form;
 
 import java.io.Serializable;
 
-/**Clase para estadisticas de pitcher
+/**VO para estadisticas de pitcher
  * @author Jose Mauricio
  *
  */

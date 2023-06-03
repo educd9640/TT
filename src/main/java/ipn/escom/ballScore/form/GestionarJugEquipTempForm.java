@@ -9,7 +9,7 @@ import ipn.escom.ballScore.entity.Jugador;
 import ipn.escom.ballScore.entity.JugadorEquipoTemp;
 import ipn.escom.ballScore.entity.Temporada;
 
-/**Clase form para las pantallas de gestion de jugadores de equipos temporada
+/**Form para gestion de jugadores de equipos temporada
  * @author Jose Mauricio
  *
  */

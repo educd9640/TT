@@ -3,7 +3,7 @@ package ipn.escom.ballScore.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
-/**Clase entidad para la tabla JUGADOR_EQUIPO_TEMP
+/**Entidad de JugadorEquipoTemp
  * @author Jose Mauricio
  *
  */
