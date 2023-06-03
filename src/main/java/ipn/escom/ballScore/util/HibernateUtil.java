@@ -24,6 +24,9 @@ public class HibernateUtil {
 		}
 	}
 
+	/**Metodo para obtener sessionFactory
+	 * @return sessionFactory
+	 */
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

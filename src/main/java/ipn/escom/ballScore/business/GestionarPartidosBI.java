@@ -138,6 +138,7 @@ public class GestionarPartidosBI {
 	}
 	
 	/**Metodo para obtener los partidos registrados
+	 * @param idPartido del partido
 	 * @return Lista de partidos
 	 * @throws BussinessException En caso de error
 	 */
@@ -157,6 +158,7 @@ public class GestionarPartidosBI {
 	}
 	
 	/**Metodo para obtener los partidos registrados
+	 * @param nombreLiga de la liga
 	 * @return Lista de partidos
 	 * @throws BussinessException En caso de error
 	 */
@@ -176,6 +178,7 @@ public class GestionarPartidosBI {
 	}
 	
 	/**Metodo para obtener los partidos registrados
+	 * @param nombreEquipoLocal del equipo local
 	 * @return Lista de partidos
 	 * @throws BussinessException En caso de error
 	 */
@@ -195,6 +198,7 @@ public class GestionarPartidosBI {
 	}
 	
 	/**Metodo para obtener los partidos registrados
+	 * @param nombreEquipoVisitante del equipo visitante
 	 * @return Lista de partidos
 	 * @throws BussinessException En caso de error
 	 */
@@ -214,6 +218,8 @@ public class GestionarPartidosBI {
 	}
 	
 	/**Metodo para obtener los partidos registrados
+	 * @param fechaInicial para rango de busqueda
+	 * @param fechaFinal para rango de busqueda
 	 * @return Lista de partidos
 	 * @throws BussinessException En caso de error
 	 */
@@ -230,36 +236,6 @@ public class GestionarPartidosBI {
 			partidoDAO.cerrarConexiones();
 		}
 		return partidos;
-	}
-
-
-	public GestionarPartidosDAO getPartidoDAO() {
-		return partidoDAO;
-	}
-
-
-	public void setPartidoDAO(GestionarPartidosDAO partidoDAO) {
-		this.partidoDAO = partidoDAO;
-	}
-
-
-	public GestionarTemporadasDAO getTemporadaDAO() {
-		return temporadaDAO;
-	}
-
-
-	public void setTemporadaDAO(GestionarTemporadasDAO temporadaDAO) {
-		this.temporadaDAO = temporadaDAO;
-	}
-
-
-	public GestionarEquipoTemporadaDAO getEquipoTDAO() {
-		return equipoTDAO;
-	}
-
-
-	public void setEquipoTDAO(GestionarEquipoTemporadaDAO equipoTDAO) {
-		this.equipoTDAO = equipoTDAO;
 	}
 	
 }

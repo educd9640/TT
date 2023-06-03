@@ -12,9 +12,21 @@ import ipn.escom.ballScore.entity.JugadorEquipoTemp;
 import ipn.escom.ballScore.entity.JugadorPartido;
 import ipn.escom.ballScore.exception.BussinessException;
 
+/**Clase de negocio para la gestion de jugadores de partido
+ * @author Jose Mauricio
+ *
+ */
 public class GestionarJugadorPartidoBI {
 	private static final Logger logger = LogManager.getLogger();
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idJugador del jugador
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public List<JugadorPartido> consultarJugadorPartidoById(Long idJugador, Long idPartido, Long idEquipo, Long idTemporada) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadorPartidoById()");
 		GestionarJugadorPartidoDAO dao = new GestionarJugadorPartidoDAO();
@@ -29,6 +41,13 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public List<JugadorPartido> consultarJugadoresPartido(Long idPartido, Long idEquipo, Long idTemporada) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
 		GestionarJugadorPartidoDAO dao = new GestionarJugadorPartidoDAO();
@@ -43,6 +62,14 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param boletaAlumno del jugador
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public List<JugadorPartido> consultarJugadoresPartidoByBoleta(Long idPartido, Long idEquipo, Long idTemporada, Long boletaAlumno) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
 		GestionarJugadorPartidoDAO dao = new GestionarJugadorPartidoDAO();
@@ -57,6 +84,14 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param nombrePila del jugador
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public List<JugadorPartido> consultarJugadoresPartidoLikeNombrePila(Long idPartido, Long idEquipo, Long idTemporada, String nombrePila) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
 		GestionarJugadorPartidoDAO dao = new GestionarJugadorPartidoDAO();
@@ -71,6 +106,14 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param posicionPrim del jugador
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public List<JugadorPartido> consultarJugadoresPartidoByPosicionPrim(Long idPartido, Long idEquipo, Long idTemporada, String posicionPrim) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
 		GestionarJugadorPartidoDAO dao = new GestionarJugadorPartidoDAO();
@@ -85,6 +128,14 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param posicionSec del jugador
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public List<JugadorPartido> consultarJugadoresPartidoByPosicionSec(Long idPartido, Long idEquipo, Long idTemporada, String posicionSec) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresPartido()");
 		GestionarJugadorPartidoDAO dao = new GestionarJugadorPartidoDAO();
@@ -99,6 +150,13 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritos(Long idEquipo, Long idTemporada, Long idPartido) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresEquipoTempNoInscritos()");
 		GestionarJugadorEquipoTempDAO dao = new GestionarJugadorEquipoTempDAO();
@@ -113,6 +171,14 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param boletaAlumno del jugador
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritosByBoleta(Long idEquipo, Long idTemporada, Long idPartido, Long boletaAlumno) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresEquipoTempNoInscritosByBoleta()");
 		GestionarJugadorEquipoTempDAO dao = new GestionarJugadorEquipoTempDAO();
@@ -127,11 +193,19 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
-	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritosLikeNombrePila(Long idEquipo, Long idTemporada, Long idPartido, String NombrePila) throws BussinessException{
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param nombrePila del jugador
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
+	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritosLikeNombrePila(Long idEquipo, Long idTemporada, Long idPartido, String nombrePila) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresEquipoTempNoInscritosLikeNombrePila()");
 		GestionarJugadorEquipoTempDAO dao = new GestionarJugadorEquipoTempDAO();
 		try {
-			List<JugadorEquipoTemp> jugadoresEquipoTemp = dao.selectJugadoresNoRegistradosEnPartidoLikeNombrePila(idEquipo, idTemporada, idPartido, NombrePila);
+			List<JugadorEquipoTemp> jugadoresEquipoTemp = dao.selectJugadoresNoRegistradosEnPartidoLikeNombrePila(idEquipo, idTemporada, idPartido, nombrePila);
 			return jugadoresEquipoTemp;
 		}catch (Exception e) {
 			logger.error("Error al consultar jugador partido", e);
@@ -141,6 +215,14 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param posicionPrim del jugador
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritosByPosicionPrim(Long idEquipo, Long idTemporada, Long idPartido, String posicionPrim) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresEquipoTempNoInscritosByPosicionPrim()");
 		GestionarJugadorEquipoTempDAO dao = new GestionarJugadorEquipoTempDAO();
@@ -155,6 +237,14 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param posicionSec del jugador
+	 * @return lista de jugadores del partido
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public List<JugadorEquipoTemp> consultarJugadoresEquipoTempNoInscritosByPosicionSec(Long idEquipo, Long idTemporada, Long idPartido, String posicionSec) throws BussinessException{
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.consultarJugadoresEquipoTempNoInscritosByPosicionSec()");
 		GestionarJugadorEquipoTempDAO dao = new GestionarJugadorEquipoTempDAO();
@@ -169,6 +259,14 @@ public class GestionarJugadorPartidoBI {
 		}
 	}
 	
+	/**Metodo de negocio para consultar jugadores
+	 * @param idPartido del partido
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param idJugadores jugadores a registrar
+	 * @param rolEquipo rol del equipo
+	 * @throws BussinessException En caso de error de negocio
+	 */
 	public void registrarJugadoresPartido(Long idPartido, Long idEquipo, Long idTemporada, String[] idJugadores, String rolEquipo) throws BussinessException {
 		logger.info("Inicia metodo GestionarJugadorPartidoBI.registrarJugadoresPartido()");
 		List<JugadorPartido> jugadoresPartido = new ArrayList<JugadorPartido>();

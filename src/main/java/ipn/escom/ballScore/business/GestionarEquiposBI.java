@@ -14,12 +14,9 @@ import org.apache.logging.log4j.Logger;
 import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
 import ipn.escom.ballScore.dao.GestionarEquiposDAO;
 import ipn.escom.ballScore.dao.GestionarManagersDAO;
-import ipn.escom.ballScore.dao.GestionarTemporadasDAO;
-import ipn.escom.ballScore.dao.GestionarEquipoTemporadaDAO;
 import ipn.escom.ballScore.entity.Equipo;
 import ipn.escom.ballScore.entity.EquipoTemporada;
 import ipn.escom.ballScore.entity.Manager;
-import ipn.escom.ballScore.entity.Temporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.GestionarEquiposVO;
 
@@ -39,8 +36,10 @@ public class GestionarEquiposBI {
 	 * Metodo de negocio para registrar un equipo
 	 * 
 	 * @param vo Con los datos del Equipo
+	 * @param correo correo del manager
+	 * @param operacion operacion a realizar
 	 * @return Id con el que se registro el equipo
-	 * @throws BussinessException
+	 * @throws BussinessException En caso de error de negocio
 	 */
 	public Equipo registrarEquipo(GestionarEquiposVO vo, String correo, String operacion) throws BussinessException {
 		logger.info("Inicia metodo GestionarEquiposBI.registrarEquipo()");
@@ -90,11 +89,9 @@ public class GestionarEquiposBI {
 	
 	/**
 	 * Metodo de negocio para verificar si el manager tiene un equipo registrado
-	 * 
-	 * @param Long con el id del manager
+	 * @param id_manager con el id del manager
 	 * @return booleano para indicar si el manager tiene o no un equipo registrado
 	 */
-
 	public boolean verificarExistencia(Long id_manager) {
 		GestionarEquiposDAO equiposDao = new GestionarEquiposDAO();
 		Equipo equipo_resultado = equiposDao.obtenerManager(id_manager);
@@ -110,12 +107,10 @@ public class GestionarEquiposBI {
 	
 	/**
 	 * Metodo de negocio para buscar si el manager cuenta con un equipo y regresar un mensaje al usuario
-	 * 
-	 * @param Long con el id del manager
+	 * @param id con el id del manager
 	 * @return String con un mensaje para el usuario
-	 * @throws BussinessException
+	 * @throws BussinessException En caso de error de negocio
 	 */
-	
 	public String buscarEquipo(Long id) throws BussinessException {
 		logger.info("Inicia metodo GestionarEquiposBI.buscarEquipo()");
 		boolean estatus = this.verificarExistencia(id);
@@ -132,12 +127,10 @@ public class GestionarEquiposBI {
 	
 	/**
 	 * Metodo de negocio para recuperar un equipo de acuerdo al id del manager
-	 * 
-	 * @param Long con el id del manager
+	 * @param idManager con el id del manager
 	 * @return Equipo entidad del equipo
-	 * @throws BussinessException
+	 * @throws BussinessException En caso de error de negocio
 	 */
-	
 	public Equipo obtenerEquipo(Long idManager) throws BussinessException {
 		GestionarEquiposDAO equipoDao= new GestionarEquiposDAO();
 		Equipo equipoManager= equipoDao.obtenerManager(idManager);
@@ -150,12 +143,10 @@ public class GestionarEquiposBI {
 	
 	/**
 	 * Metodo de negocio para activar o desactivar un equipo de acuerdo a su estado actual, el cual se basa de acuerdo a su fecha de subida
-	 * 
-	 * @param Equipo entidad con los datos del equipo
+	 * @param equipoEstatus entidad con los datos del equipo
 	 * @return String para indicar al usuario si el equipo a sido activado o desctivado
-	 * @throws BussinessException
+	 * @throws BussinessException En caso de error de negocio
 	 */
-	
 	public String cambiarEstatus(Equipo equipoEstatus) throws BussinessException {
 		GestionarEquiposDAO equipoDao= new GestionarEquiposDAO();
 		String mensaje="";
@@ -183,6 +174,11 @@ public class GestionarEquiposBI {
 		return mensaje;
 	}
 	
+	/**Metodo para buscar coincidencias
+	 * @param equipos lista de equipos
+	 * @param temporada temporadas
+	 * @return equipos
+	 */
 	public List<Equipo> buscarCoincidencias(List<Equipo> equipos, List<EquipoTemporada> temporada) {
 		Equipo equipo = new Equipo();
 		List<Equipo> equiposF= new ArrayList<Equipo>();
@@ -205,8 +201,9 @@ public class GestionarEquiposBI {
 	} 
 	
 	/**Metodo de negocio para obtener los equipos que aun no estan registrados en una temporada
-	 * @return
-	 * @throws BussinessException
+	 * @param idTemporada de la temporada
+	 * @return equipos registrados
+	 * @throws BussinessException En caso de error de negocio
 	 */
 	public List<Equipo> obtenerEquiposRegistrados(Long idTemporada) throws BussinessException{
 		logger.info("Inicia metodo GestionarEquiposBI.obtenerEquiposRegistrados()");
@@ -231,6 +228,8 @@ public class GestionarEquiposBI {
 	
 	
 	/**Metodo de negocio para obtener los equipos registrados en equipo_temporada
+	 * @param idTemporada de la temporada
+	 * @param equipoL  id del equipo
 	 * @return Lista de equipos
 	 * @throws BussinessException En caso de error
 	 */
@@ -289,10 +288,11 @@ public class GestionarEquiposBI {
 	}
 	
 	/**Metodo para buscar un equipo que se encuentre en equipo_temporada  por su id
-	 * @param idEquipo
-	 * @param idTemporada
+	 * @param idEquipo del equipo
+	 * @param idTemporada de la temporada
+	 * @param equipoL del equipo
 	 * @return La entidad Equipo si se encuentra
-	 * @throws BussinessException En caso de error
+	 * @throws BussinessException En caso de error de negocio
 	 */
 	public Equipo buscarEquipoTemporadaPorId(Long idEquipo, Long idTemporada, Long equipoL) throws BussinessException {
 		logger.info("Inicia metodo GestionarEquiposBI.buscarEquipoTemporadaPorId()");
@@ -335,10 +335,11 @@ public class GestionarEquiposBI {
 	}
 	
 	/**Metodo para obtener una lista de equipos con el nombre requerido
-	 * @param idEquipo
-	 * @param idTemporada
-	 * @return
-	 * @throws BussinessException
+	 * @param nombre del equipo
+	 * @param idTemporada de la temporada
+	 * @param equipoL id del equipo local a excluir
+	 * @return lista de equipo
+	 * @throws BussinessException en caso de error de negocio
 	 */
 	public List<Equipo> buscarEquipoTemporadaPorNombre(String nombre, Long idTemporada, Long equipoL) throws BussinessException {
 		logger.info("Inicia metodo GestionarEquiposBI.buscarEquipoTemporadaPorNombre()");

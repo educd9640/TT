@@ -7,7 +7,6 @@ import java.util.List;
 import org.hibernate.Query;
 
 import ipn.escom.ballScore.entity.EquipoTemporada;
-import ipn.escom.ballScore.exception.BussinessException;
 
 /**Clase DAO para la gestion de equipos de temporada
  * @author Jose Mauricio
@@ -50,7 +49,6 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 	 * @param idManager del manager
 	 * @param fechaInicialTemporada fecha de inicio de la temporada
 	 * @param fechaFinalTemporada fecha de fin de temporada
-	 * @param nombreLiga de la liga
 	 * @return Lista de equipos de temporada del manager
 	 */
 	@SuppressWarnings("unchecked")
@@ -96,7 +94,7 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 	 * Metodo DAO para registrar un equipo en una temporada
 	 * @param entidad del tipo EquipoTemporada
 	 * @return entidad EquipoTemporada con el equipo, temporada y fecha de alta ingresados
-	 * @throws BussinessException
+	 * @throws SQLException en caso de error de SQL
 	 */
 	
 	public EquipoTemporada registrarEquipo(EquipoTemporada entidad) throws SQLException {
@@ -185,7 +183,7 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 	
 	
 	/**Metodo Dao para seleccionar un equipo de temporada
-	 * @param idEquipo del equipo de temporada
+	 * @param nombre del equipo de temporada
 	 * @param idTemporada id del equipo de temporada
 	 * @return el equipo de temporada
 	 */
@@ -214,8 +212,8 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 	}
 	
 	/**Metodo para obtener las temporadas por el id de la liga
-	 * @param id de la liga
-	 * @return 
+	 * @param idLiga id de la liga
+	 * @return Id de temporada
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Long> selectTemporadaByIdLiga(Long idLiga) {
@@ -227,7 +225,7 @@ public class GestionarEquipoTemporadaDAO extends BaseDAO{
 	
 	/**Metodo para obtener las temporadas por el nombre de la liga
 	 * @param nombre de la liga
-	 * @return 
+	 * @return  ids de temporada
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Long> selectTemporadaByNombreLiga(String nombre) {

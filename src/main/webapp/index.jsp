@@ -10,7 +10,6 @@
 			<s:password name="contrasenia"  placeholder="Contraseña" />
 			<br>
 			<s:submit value="Entrar" cssClass="btn btn-primary" targets="login" effect="highlight"/>
-			<s:submit value="Test" cssClass="btn btn-primary" targets="login" effect="highlight"/>
 		</s:form>
 		
 		<s:form namespace="/managers" action="formularioRegistro"  theme="bootstrap" cssClass="well form-vertical">

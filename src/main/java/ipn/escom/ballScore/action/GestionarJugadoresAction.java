@@ -23,6 +23,10 @@ import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.GestionarJugadoresForm;
 import ipn.escom.ballScore.form.GestionarJugadoresVO;
 
+/**Clase Action para la gestion de jugadores
+ * @author Jose Mauricio
+ *
+ */
 public class GestionarJugadoresAction extends BaseAction implements Preparable{
 
 	private static final long serialVersionUID = 1L;
@@ -59,7 +63,7 @@ public class GestionarJugadoresAction extends BaseAction implements Preparable{
     }
 	
 	/**Metodo para presentar formulario de jugadores
-	 * @return
+	 * @return pantalla de formulario
 	 */
 	public String mostrarFormulario() {
 		
@@ -146,58 +150,103 @@ public class GestionarJugadoresAction extends BaseAction implements Preparable{
 		this.consultarJugadores();
 		return Action.SUCCESS;
 	}
-	
-	//Inician getters y setters
-	
+
+	/**
+	 * @return El campo jugadoresForm
+	 */
 	public GestionarJugadoresForm getJugadoresForm() {
 		return jugadoresForm;
 	}
 
+	/**
+	 * @param jugadoresForm El campo jugadoresForm a settear
+	 */
 	public void setJugadoresForm(GestionarJugadoresForm jugadoresForm) {
 		this.jugadoresForm = jugadoresForm;
 	}
 
+	/**
+	 * @return El campo escuela
+	 */
 	public Escuela getEscuela() {
 		return escuela;
 	}
 
+	/**
+	 * @param escuela El campo escuela a settear
+	 */
 	public void setEscuela(Escuela escuela) {
 		this.escuela = escuela;
 	}
 
-
+	/**
+	 * @return El campo equipo
+	 */
 	public Equipo getEquipo() {
 		return equipo;
 	}
 
-
+	/**
+	 * @param equipo El campo equipo a settear
+	 */
 	public void setEquipo(Equipo equipo) {
 		this.equipo = equipo;
 	}
 
+	/**
+	 * @return El campo posiciones
+	 */
 	public List<String> getPosiciones() {
 		return posiciones;
 	}
 
+	/**
+	 * @param posiciones El campo posiciones a settear
+	 */
 	public void setPosiciones(List<String> posiciones) {
 		this.posiciones = posiciones;
 	}
 
+	/**
+	 * @return El campo jugadoresRegistrados
+	 */
 	public List<Jugador> getJugadoresRegistrados() {
 		return jugadoresRegistrados;
 	}
 
+	/**
+	 * @param jugadoresRegistrados El campo jugadoresRegistrados a settear
+	 */
 	public void setJugadoresRegistrados(List<Jugador> jugadoresRegistrados) {
 		this.jugadoresRegistrados = jugadoresRegistrados;
 	}
 
+	/**
+	 * @return El campo operacion
+	 */
 	public String getOperacion() {
 		return operacion;
 	}
 
+	/**
+	 * @param operacion El campo operacion a settear
+	 */
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
 	}
-	
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
+	}
 	
 }

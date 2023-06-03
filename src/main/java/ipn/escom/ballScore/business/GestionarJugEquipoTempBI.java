@@ -44,7 +44,7 @@ public class GestionarJugEquipoTempBI {
 	
 	/**Metodo de negocio para la consulta de los equipos de temporada del manager
 	 * @param idManager del manager
-	 * @Param nombreLiga de la liga
+	 * @param nombreLiga de la liga
 	 * @return Lista de equipos temporada
 	 * @throws BussinessException En caso de error al consultar o no existan equipos
 	 */
@@ -66,7 +66,6 @@ public class GestionarJugEquipoTempBI {
 	
 	/**Metodo de negocio para la consulta de los equipos de temporada del manager
 	 * @param idManager del manager
-	 * @Param nombreLiga de la liga
 	 * @param fechaInicialTemporada fecha de inicio de la temporada
 	 * @param fechaFinalTemporada fecha de fin de temporada
 	 * @return Lista de equipos temporada
@@ -90,7 +89,7 @@ public class GestionarJugEquipoTempBI {
 	
 	/**Metodo de negocio para la consulta de los equipos de temporada del manager
 	 * @param idManager del manager
-	 * @Param nombreLiga de la liga
+	 * @param nombreLiga de la liga
 	 * @param fechaInicialTemporada fecha de inicio de la temporada
 	 * @param fechaFinalTemporada fecha de fin de temporada
 	 * @return Lista de equipos temporada
