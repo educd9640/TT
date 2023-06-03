@@ -31,7 +31,7 @@ public class GestionarJugEquipTempAction extends BaseAction{
 	private List<String> posiciones;
 	
 	/**Metodo para presentar pantalla de registro de jugadores
-	 * @return
+	 * @return pantalla de registro de jugadores
 	 */
 	public String presentarRegistroJugadores() {
 		logger.info("Inicia metodo GestionarJugEquipTempAction.presentarRegistroJugadores()");
@@ -68,7 +68,7 @@ public class GestionarJugEquipTempAction extends BaseAction{
 	}
 	
 	/**Metodo para presentar pantalla de consulta de temporadas donde el manager tuviera registrados equipos (tabla EQUIPO_TEMPORADA)
-	 * @return
+	 * @return pantalla de temporadas
 	 */
 	public String presentarTemporadas() {
 		logger.info("Inicia metodo GestionarJugEquipTempAction.presentarTemporadas()");
@@ -152,7 +152,7 @@ public class GestionarJugEquipTempAction extends BaseAction{
 	}
 	
 	/**Metodo para alternar estado de un equipo de temporada
-	 * @return
+	 * @return pantalla de presentar temporadas
 	 */
 	public String alternarEstadoEquipoTemp() {
 		GestionarEquipoTemporadaBI bi = new GestionarEquipoTemporadaBI();
@@ -164,24 +164,47 @@ public class GestionarJugEquipTempAction extends BaseAction{
 		
 		return this.presentarTemporadas();
 	}
-	
-	//Inician getters y setters
 
+	/**
+	 * @return El campo form
+	 */
 	public GestionarJugEquipTempForm getForm() {
 		return form;
 	}
 
+	/**
+	 * @param form El campo form a settear
+	 */
 	public void setForm(GestionarJugEquipTempForm form) {
 		this.form = form;
 	}
 
+	/**
+	 * @return El campo posiciones
+	 */
 	public List<String> getPosiciones() {
 		return posiciones;
 	}
 
+	/**
+	 * @param posiciones El campo posiciones a settear
+	 */
 	public void setPosiciones(List<String> posiciones) {
 		this.posiciones = posiciones;
 	}
 
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 }

@@ -41,7 +41,7 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 	/**Metodo DAO para la consulta de jugadores registrados en un equipo de temporada
 	 * @param idEquipo del equipo temporada
 	 * @param idTemporada del equipo temporada
-	 * @param boletaALumno del alumno
+	 * @param boletaAlumno del alumno
 	 * @return Lista de jugadores registrados
 	 */
 	@SuppressWarnings("unchecked")
@@ -179,6 +179,14 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 		return jugadoresRegistrados;
 	}
 	
+	/**Metodo dao para consultar jugadores de equipo de temporada que no estan en el partido
+	 * @param idEquipo del equipo de temporada
+	 * @param idTemporada de la temporada
+	 * @param idPartido del partido
+	 * @param boletaAlumno del alumno
+	 * @return lista de jugadores
+	 * @throws SQLException en caso de error al consultar
+	 */
 	@SuppressWarnings("unchecked")
 	public List<JugadorEquipoTemp> selectJugadoresNoRegistradosEnPartido(Long idEquipo, Long idTemporada, Long idPartido, Long boletaAlumno) throws SQLException{
 		List<JugadorEquipoTemp> jugadoresRegistrados = new ArrayList<JugadorEquipoTemp>();
@@ -218,6 +226,14 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 		return jugadoresRegistrados;
 	}
 	
+	/**Metodo dao para consultar jugadores de equipo de temporada que no estan en el partido
+	 * @param idEquipo del equipo de temporada
+	 * @param idTemporada de la temporada
+	 * @param idPartido del partido
+	 * @param nombrePila del alumno
+	 * @return lista de jugadores
+	 * @throws SQLException en caso de error al consultar
+	 */
 	@SuppressWarnings("unchecked")
 	public List<JugadorEquipoTemp> selectJugadoresNoRegistradosEnPartidoLikeNombrePila(Long idEquipo, Long idTemporada, Long idPartido, String nombrePila) throws SQLException{
 		List<JugadorEquipoTemp> jugadoresRegistrados = new ArrayList<JugadorEquipoTemp>();
@@ -257,6 +273,14 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 		return jugadoresRegistrados;
 	}
 	
+	/**Metodo dao para consultar jugadores de equipo de temporada que no estan en el partido
+	 * @param idEquipo del equipo de temporada
+	 * @param idTemporada de la temporada
+	 * @param idPartido del partido
+	 * @param posicionPrim del alumno
+	 * @return lista de jugadores
+	 * @throws SQLException en caso de error al consultar
+	 */
 	@SuppressWarnings("unchecked")
 	public List<JugadorEquipoTemp> selectJugadoresNoRegistradosEnPartidoByPosicionPrim(Long idEquipo, Long idTemporada, Long idPartido, String posicionPrim) throws SQLException{
 		List<JugadorEquipoTemp> jugadoresRegistrados = new ArrayList<JugadorEquipoTemp>();
@@ -296,6 +320,14 @@ public class GestionarJugadorEquipoTempDAO extends BaseDAO{
 		return jugadoresRegistrados;
 	}
 	
+	/**Metodo dao para consultar jugadores de equipo de temporada que no estan en el partido
+	 * @param idEquipo del equipo de temporada
+	 * @param idTemporada de la temporada
+	 * @param idPartido del partido
+	 * @param posicionSec del alumno
+	 * @return lista de jugadores
+	 * @throws SQLException en caso de error al consultar
+	 */
 	@SuppressWarnings("unchecked")
 	public List<JugadorEquipoTemp> selectJugadoresNoRegistradosEnPartidoByPosicionSec(Long idEquipo, Long idTemporada, Long idPartido, String posicionSec) throws SQLException{
 		List<JugadorEquipoTemp> jugadoresRegistrados = new ArrayList<JugadorEquipoTemp>();

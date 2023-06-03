@@ -119,6 +119,13 @@ public class GestionarEstadisticasDAO extends BaseDAO{
 		q.executeUpdate();
 	}
 	
+	/**Metodo DAO para llamada a sp para registrar estadisticas ofensivas
+	 * @param idPartido del partido
+	 * @param idJugador del jugador del partido
+	 * @param idEquipo del equipo del partido
+	 * @param idTemporada del partido
+	 * @param estVo con estadisticas
+	 */
 	public void registrarEstadisticasOfensivas(Long idPartido, Long idJugador, Long idEquipo, Long idTemporada, EstadisticasOfensivasVO estVo) {
 		Query q = session.createSQLQuery("CALL SP_REGISTRAR_EST_OFENSIVAS_PART ("
 				+ ":idPartido,"

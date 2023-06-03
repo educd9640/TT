@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.hibernate.Query;
 import ipn.escom.ballScore.entity.Equipo;
-import ipn.escom.ballScore.entity.Temporada;
 
 /**Clase DAO para gestionar equipos
  * @author Cisneros Christian
@@ -101,6 +100,7 @@ public class GestionarEquiposDAO extends BaseDAO {
 	}
 	
 	/**Metodo para buscar un equipo de acuerdo a su manager (id)
+	 * @param id del manager
 	 * @return la entidad Equipo de acorde al id del manager
 	 */
 	public Equipo obtenerManager(Long id){
@@ -108,6 +108,7 @@ public class GestionarEquiposDAO extends BaseDAO {
 	}
 	
 	/**Metodo para buscar un equipo de acuerdo a su (id)
+	 * @param id del equipo
 	 * @return la entidad Equipo de acorde al id
 	 */
 	public Equipo obtenerEquipo(Long id){
@@ -124,6 +125,7 @@ public class GestionarEquiposDAO extends BaseDAO {
 	}
 	
 	/**Metodo para consultar un equipos de acorde al id del manager
+	 * @param idManager del manager
 	 * @return Lista con los equipos cuyo manager tenga dicho id
 	 */
 	@SuppressWarnings("unchecked")

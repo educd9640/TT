@@ -58,7 +58,7 @@ public class GestionarAlumnosDAO extends BaseDAO {
 	
 	/**Metodo para consultar todos los alumnos registrados
 	 * @param soloLibres si es true, solo muestra alumnos que no tienen equipo
-	 * @return
+	 * @return lista de alumnos
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Alumno> selectFromAlumno(boolean soloLibres){

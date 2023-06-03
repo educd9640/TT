@@ -2,8 +2,6 @@ package ipn.escom.ballScore.action;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +16,11 @@ import com.opensymphony.xwork2.Preparable;
 import ipn.escom.ballScore.business.GestionarPartidosBI;
 import ipn.escom.ballScore.entity.Manager;
 import ipn.escom.ballScore.entity.Partido;
-import ipn.escom.ballScore.entity.Temporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.PartidoForm;
 import ipn.escom.ballScore.form.PartidoVO;
 
-/**Clase Acrion para gestionar Partidos
+/**Clase Action para gestionar Partidos
  * @author Eduardo Callejas
  *
  */
@@ -49,12 +46,6 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 		logger.info("Inicia metodo GestionarPartidosAction.prepare()");
 		GestionarPartidosBI partidoBI = new GestionarPartidosBI();
 		
-		/*try {
-			this.partidosRegistrados = partidoBI.obtenerPartidosRegistrados();
-		}catch(BussinessException e) {
-			addActionError(e.getMessage());
-		}*/
-		
 		if(partidoF!=null && operacion!=null && partidoF.getIdPartido()!=null) {
 			try {
 				Partido partido = partidoBI.buscarPartidoPorId(partidoF.getIdPartido());
@@ -72,6 +63,9 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	
 	
 	
+	/**Metodo Action para el registro de partidos
+	 * @return pantalla de registro de partidos
+	 */
 	public String registrarPartido() {
 		logger.info("Inicia metodo GestionarPartidosAction.registrarPartido()");
 		PartidoVO partidoVO= new PartidoVO();
@@ -114,7 +108,7 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	
 	
 	/**Metodo para activar/desactivar un partido
-	 * @return
+	 * @return pantalla de partido
 	 */
 	@SkipValidation
 	public String estadoPartido() {
@@ -141,7 +135,7 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	}
 	
 	/**Metodo para presentar pantalla de formulario
-	 * @return
+	 * @return pantalla de formulario
 	 */
 	public String mostrarFormulario() {
 		logger.info("Inicia metodo GestionarAlumnosAction.mostrarFormulario()");
@@ -150,7 +144,7 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	}
 	
 	/**Metodo para presentar pantalla de registrados
-	 * @return
+	 * @return pantalla de registrados
 	 */
 	public String mostrarRegistrados() {
 		logger.info("Inicia metodo GestionarLigasAction.mostrarRegistrados()");
@@ -184,83 +178,149 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 		}
 		return Action.SUCCESS;
 	}
-	
 
+
+
+	/**
+	 * @return El campo partidoF
+	 */
 	public PartidoForm getPartidoF() {
 		return partidoF;
 	}
 
 
+
+	/**
+	 * @param partidoF El campo partidoF a settear
+	 */
 	public void setPartidoF(PartidoForm partidoF) {
 		this.partidoF = partidoF;
 	}
 
 
+
+	/**
+	 * @return El campo operacion
+	 */
 	public String getOperacion() {
 		return operacion;
 	}
 
 
+
+	/**
+	 * @param operacion El campo operacion a settear
+	 */
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
 	}
 
 
 
+	/**
+	 * @return El campo fechaAnuncioPartido
+	 */
 	public String getFechaAnuncioPartido() {
 		return fechaAnuncioPartido;
 	}
 
 
 
+	/**
+	 * @param fechaAnuncioPartido El campo fechaAnuncioPartido a settear
+	 */
 	public void setFechaAnuncioPartido(String fechaAnuncioPartido) {
 		this.fechaAnuncioPartido = fechaAnuncioPartido;
 	}
 
 
 
+	/**
+	 * @return El campo horaAnuncioPartido
+	 */
 	public String getHoraAnuncioPartido() {
 		return horaAnuncioPartido;
 	}
 
 
 
+	/**
+	 * @param horaAnuncioPartido El campo horaAnuncioPartido a settear
+	 */
 	public void setHoraAnuncioPartido(String horaAnuncioPartido) {
 		this.horaAnuncioPartido = horaAnuncioPartido;
 	}
 
 
 
+	/**
+	 * @return El campo partidosRegistrados
+	 */
 	public List<Partido> getPartidosRegistrados() {
 		return partidosRegistrados;
 	}
 
 
 
+	/**
+	 * @param partidosRegistrados El campo partidosRegistrados a settear
+	 */
 	public void setPartidosRegistrados(List<Partido> partidosRegistrados) {
 		this.partidosRegistrados = partidosRegistrados;
 	}
+
+
+
+	/**
+	 * @return El campo partidos
+	 */
 	public List<Partido> getPartidos() {
 		return partidos;
 	}
 
 
 
+	/**
+	 * @param partidos El campo partidos a settear
+	 */
 	public void setPartidos(List<Partido> partidos) {
 		this.partidos = partidos;
 	}
 
 
 
+	/**
+	 * @return El campo sessionManager
+	 */
 	public Manager getSessionManager() {
 		return sessionManager;
 	}
 
 
 
+	/**
+	 * @param sessionManager El campo sessionManager a settear
+	 */
 	public void setSessionManager(Manager sessionManager) {
 		this.sessionManager = sessionManager;
 	}
-	
-	
+
+
+
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
+	}
+
+
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }
