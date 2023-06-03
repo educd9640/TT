@@ -202,16 +202,6 @@ A:hover {
 	z-index: 1500;
 }
 
-body {
-	background-image: url('/ballscore/bases/background.jpg');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-	width: 100%;
-	heigth: 100%;
-	position: relative;
-}
-
 .contenido {
 	background-color: #f5fcfc;
 	height: 75%;
