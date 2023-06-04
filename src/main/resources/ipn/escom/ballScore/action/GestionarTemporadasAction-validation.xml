@@ -7,5 +7,9 @@
         <param name="fieldname">temporadaF.liga.idLiga</param>
         <message>Liga requerida.</message>
     </validator>
+    <validator type="required">
+		<param name="date">fechaInicial</param>
+		<message>Fecha Inicial requerida</message>
+	</validator>
 </validators>
 	

@@ -16,6 +16,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
 import ipn.escom.ballScore.business.GestionarPartidosBI;
+import ipn.escom.ballScore.business.GestionarTemporadasBI;
 import ipn.escom.ballScore.entity.Manager;
 import ipn.escom.ballScore.entity.Partido;
 import ipn.escom.ballScore.entity.Temporada;
@@ -74,19 +75,31 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	public String registrarPartido() {
 		logger.info("Inicia metodo GestionarPartidosAction.registrarPartido()");
 		PartidoVO partidoVO= new PartidoVO();
-		String fechaHoraStr;
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-
+		Timestamp timestamp = null;
 		if(fechaAnuncioPartido!=null && fechaAnuncioPartido!="") {
 			try {
 				java.util.Date parsedDate = dateFormat.parse(fechaAnuncioPartido);
-	            Timestamp timestamp = new Timestamp(parsedDate.getTime());
-	            partidoF.setFechaAnuncioPartido(timestamp);
+	            timestamp = new Timestamp(parsedDate.getTime());
+	            Temporada temporada = new GestionarTemporadasBI().buscarTemporadaPorId(partidoF.getIdTemporada());
+	            if(timestamp.compareTo(temporada.getFechaInicial()) > 0) {	//mayor a la fecha inicial
+	            	
+	            	if(temporada.getFechaFinal()!=null && timestamp.compareTo(temporada.getFechaFinal()) < 0) { //menor a la fecha final
+	            		partidoF.setFechaAnuncioPartido(timestamp);
+	            	}else if(temporada.getFechaFinal()==null) {
+	            		partidoF.setFechaAnuncioPartido(timestamp);
+	            	}else {
+	            		addActionError("El rango de fechas no es válido");
+	            	}
+	            }
 			}catch(Exception e) {
 				logger.error(" Error al establecer la fecha y hora ", e);
 				addActionError("Error al establecer la fecha y hora.");
 			}
 		}
+		
+		
+		
 
 		try {
 			BeanUtils.copyProperties(partidoVO, partidoF);
