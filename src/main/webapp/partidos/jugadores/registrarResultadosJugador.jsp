@@ -147,7 +147,7 @@
 				<tr>
 					<td>Asitencia Out Outfield:<br><s:textfield class="form-control" name="form.estadisticasDefensivasVO.asistenciaOutField" id="asistenciaOutField" type="number" min="0" theme="simple"/></td>
 					<td>Asistencias:  <br><s:textfield class="form-control" name="form.estadisticasDefensivasVO.asistencias" id="asistencias" type="number" min="0" theme="simple"/></td>
-					<td>Atradas en robo: <br><s:textfield class="form-control" name="form.estadisticasDefensivasVO.atrapadasEnRobo" id="atrapadasEnRobo" type="number" min="0" theme="simple"/></td>
+					<td>Atrapadas en robo: <br><s:textfield class="form-control" name="form.estadisticasDefensivasVO.atrapadasEnRobo" id="atrapadasEnRobo" type="number" min="0" theme="simple"/></td>
 					<td>Robos: <br><s:textfield class="form-control" name="form.estadisticasDefensivasVO.robos" id="robos" type="number" min="0" theme="simple"/></td>
 					<td>Errores:<br><s:textfield class="form-control" name="form.estadisticasDefensivasVO.errores" id="errores" type="number" min="0" theme="simple"/></td>
 					<td><input class="btn btn-primary" type="submit" value="Registrar Resultados"></td>
