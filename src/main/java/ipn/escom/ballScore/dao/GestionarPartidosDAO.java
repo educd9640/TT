@@ -9,7 +9,7 @@ import org.hibernate.Query;
 
 import ipn.escom.ballScore.entity.Partido;
 
-/**Clase DAO para gestrionar partidos
+/**Clase DAO para gestionar partidos
  * @author Eduardo Callejas
  *
  */
