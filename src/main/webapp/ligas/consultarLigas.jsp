@@ -53,6 +53,24 @@
                    		<img width="15" height="15" src="<s:url value='/img/cross.png'/>">
                     </s:else>
 				</display:column>
+				<display:column media="html">
+					<s:url action="modificarLiga" var="url" escapeAmp="false">
+                    <s:param name="ligaF.idLiga" value="%{#attr.liga.idLiga}"/>
+                    <s:param name="operacion">actualizado</s:param>
+                    </s:url>
+                        <a href="<s:property value="#url"/>">Modificar</a>
+				</display:column>
+				<display:column media="html">
+					<s:url action="estadoLiga" var="urlAlternar">
+                       <s:param name="ligaF.idLiga" value="%{#attr.liga.idLiga}"/>
+                   </s:url>
+					<s:if test="%{#attr.liga.fechaAlta!=null}">
+						<a href="<s:property value="#urlAlternar"/>">Desactivar</a>	
+					</s:if>
+                    <s:else>
+                   		<a href="<s:property value="#urlAlternar"/>">Activar</a>	
+                    </s:else>
+				</display:column>
         	</display:table>
         <br>
         	<s:form action="submenuLigas">
