@@ -152,13 +152,33 @@ public class GestionarEstadisticasAction extends BaseAction{
 		}
 		return Action.SUCCESS;
 	}
-	
+
+	/**
+	 * @return El campo form
+	 */
 	public GestionarEstadisticasForm getForm() {
 		return form;
 	}
 
+	/**
+	 * @param form El campo form a settear
+	 */
 	public void setForm(GestionarEstadisticasForm form) {
 		this.form = form;
+	}
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
 	}
 	
 

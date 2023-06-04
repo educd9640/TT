@@ -27,8 +27,13 @@
 <div class="container rounded p-3 contenido">
 	<div class="titleDiv"><s:text name="application.title"/></div>
 	<h1><s:property value="#title"/></h1>
-	<s:actionerror />
-    <s:actionmessage />
+        <s:if test="hasActionErrors()">
+		<div class="errors">
+        <s:actionerror />
+		</div>
+		</s:if>
+      
+		    <s:actionmessage />
     <s:form action="registrarEquipo" namespace="/equipos" method="post" >
     	
     	

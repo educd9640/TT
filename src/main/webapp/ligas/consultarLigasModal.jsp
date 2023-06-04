@@ -115,8 +115,13 @@
 			<div class="titleDiv"><s:text name="application.title"/></div>
         	<h1><s:text name="label.registrados.titulo"/></h1>
         	<br/><br/>
-        	<s:actionerror />
-        	<s:actionmessage />
+        <s:if test="hasActionErrors()">
+		<div class="errors">
+        <s:actionerror />
+		</div>
+		</s:if>
+   
+		        	<s:actionmessage />
 			<input type="radio" id="busquedaID" name="opcion" value="ID">
     		<label for="busquedaID">Busqueda por ID</label> 
         	<input type="radio" id="busquedaLiga" name="opcion" value="equipo">

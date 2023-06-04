@@ -44,7 +44,7 @@ public class GestionarManagersBI {
 	/**Metodo de negocio para registrar un manager
 	 * @param vo Con los datos del manager
 	 * @return Id con el que se registro el manager (-1 en caso de que ya exista un manager con ese correo registrado)
-	 * @throws BussinessException 
+	 * @throws BussinessException en caso de error de negocio
 	 */
 	public Long registrarManager(GestionarManagersVO vo) throws BussinessException {
 		logger.info("Inicia metodo GestionarManagersBI.registrarManager()");
@@ -67,12 +67,12 @@ public class GestionarManagersBI {
 			idManager = managersDao.insertIntoManagers(nuevoManager);
 		}catch (SQLException e) {
 			if(e.getCause().getMessage().contains("ORA-00001")) {
-				logger.error(" Error al registrar al alumno, ya existe un alumno registrado", e);
-				throw new BussinessException("Ya existe un alumno registrado con ese numero de boleta.");
+				logger.error(" Error al registrar, ya existe un manager registrado con el correo electronico proporcionado.", e);
+				throw new BussinessException(" Error al registrar, ya existe un manager registrado con el correo electronico proporcionado.");
 			}
 			else {
-				logger.error("Error al realizar insert del alumno",e);
-				throw new BussinessException(" Error al registrar al alumno. ");
+				logger.error("Error al realizar insert del manager",e);
+				throw new BussinessException(" Error al registra. ");
 			}
 		}
 

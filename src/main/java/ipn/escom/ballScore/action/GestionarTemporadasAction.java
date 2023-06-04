@@ -98,7 +98,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		if(consultar!=null && temporadaseleccionada!=null) {
 			if(consultar.equals("equipos")) {
 				try {
-					this.equiposByTemporada = temporadaBI.obtenerEqiposByTemporada(temporadaseleccionada);
+					this.equiposByTemporada = temporadaBI.obtenerEquiposByTemporada(temporadaseleccionada);
 				}catch(Exception e) {
 					logger.error("Error al copiar las propiedades de la Temporada al form",e);
 				}
@@ -109,7 +109,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	
 	
 	/**Metodo para registrar/actualizar Temporadas
-	 * @return
+	 * @return pantalla de registro de temporadas
 	 */
 	public String registrarTemporada() {
 		logger.info("Inicia metodo GestionarTemporadasAction.registrarTemporada()");
@@ -171,7 +171,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	}
 	
 	/**Metodo para registrar un equipo en una temporada
-	 * @return
+	 * @return pantalla de registro de equipo en temporada
 	 */
 	@SkipValidation
 	public String entrarEquipo() {
@@ -190,7 +190,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	
 	
 	/**Metodo para activar/desactivar una temporada
-	 * @return
+	 * @return pantalla de temporada
 	 */
 	@SkipValidation
 	public String estadoTemporada() {
@@ -218,7 +218,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	
 	
 	/**Metodo para presentar pantalla de formulario
-	 * @return
+	 * @return formulario
 	 */
 	public String mostrarFormulario() {
 		logger.info("Inicia metodo GestionarAlumnosAction.mostrarFormulario()");
@@ -227,7 +227,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	}
 	
 	/**Metodo para presentar pantalla de registrados
-	 * @return
+	 * @return pantalla de registrados
 	 */
 	public String mostrarRegistrados() {
 		logger.info("Inicia metodo GestionarLigasAction.mostrarRegistrados()");
@@ -235,119 +235,212 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	}
 
 
+	/**
+	 * @return El campo temporadaF
+	 */
 	public TemporadaForm getTemporadaF() {
 		return temporadaF;
 	}
 
 
+	/**
+	 * @param temporadaF El campo temporadaF a settear
+	 */
 	public void setTemporadaF(TemporadaForm temporadaF) {
 		this.temporadaF = temporadaF;
 	}
 
 
+	/**
+	 * @return El campo operacion
+	 */
 	public String getOperacion() {
 		return operacion;
 	}
 
 
+	/**
+	 * @param operacion El campo operacion a settear
+	 */
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
 	}
 
 
-	public List<Temporada> getTemporadasRegistradas() {
-		return temporadasRegistradas;
-	}
-
-
-	public void setTemporadasRegistradas(List<Temporada> temporadasRegistradas) {
-		this.temporadasRegistradas = temporadasRegistradas;
-	}
-
-
+	/**
+	 * @return El campo fechaInicial
+	 */
 	public String getFechaInicial() {
 		return fechaInicial;
 	}
 
 
+	/**
+	 * @param fechaInicial El campo fechaInicial a settear
+	 */
 	public void setFechaInicial(String fechaInicial) {
 		this.fechaInicial = fechaInicial;
 	}
 
 
+	/**
+	 * @return El campo fechaFinal
+	 */
 	public String getFechaFinal() {
 		return fechaFinal;
 	}
 
 
+	/**
+	 * @param fechaFinal El campo fechaFinal a settear
+	 */
 	public void setFechaFinal(String fechaFinal) {
 		this.fechaFinal = fechaFinal;
 	}
-	
+
+
+	/**
+	 * @return El campo equiposeleccionado
+	 */
 	public Long getEquiposeleccionado() {
 		return equiposeleccionado;
 	}
 
 
+	/**
+	 * @param equiposeleccionado El campo equiposeleccionado a settear
+	 */
 	public void setEquiposeleccionado(Long equiposeleccionado) {
 		this.equiposeleccionado = equiposeleccionado;
 	}
 
 
-	public Long getTemporadaseleccionada() {
-		return temporadaseleccionada;
-	}
-
-
-	public void setTemporadaseleccionada(Long temporadaseleccionada) {
-		this.temporadaseleccionada = temporadaseleccionada;
-	}
-
+	/**
+	 * @return El campo nombreEquipo
+	 */
 	public String getNombreEquipo() {
 		return nombreEquipo;
 	}
 
 
+	/**
+	 * @param nombreEquipo El campo nombreEquipo a settear
+	 */
 	public void setNombreEquipo(String nombreEquipo) {
 		this.nombreEquipo = nombreEquipo;
 	}
 
 
+	/**
+	 * @return El campo managerequipo
+	 */
 	public String getManagerequipo() {
 		return managerequipo;
 	}
 
 
+	/**
+	 * @param managerequipo El campo managerequipo a settear
+	 */
 	public void setManagerequipo(String managerequipo) {
 		this.managerequipo = managerequipo;
 	}
 
 
-	public List<Temporada> getEquipoTemporadasRegistradas() {
-		return equipoTemporadasRegistradas;
+	/**
+	 * @return El campo temporadaseleccionada
+	 */
+	public Long getTemporadaseleccionada() {
+		return temporadaseleccionada;
 	}
 
 
-	public void setEquipoTemporadasRegistradas(List<Temporada> equipoTemporadasRegistradas) {
-		this.equipoTemporadasRegistradas = equipoTemporadasRegistradas;
+	/**
+	 * @param temporadaseleccionada El campo temporadaseleccionada a settear
+	 */
+	public void setTemporadaseleccionada(Long temporadaseleccionada) {
+		this.temporadaseleccionada = temporadaseleccionada;
 	}
-	
+
+
+	/**
+	 * @return El campo consultar
+	 */
 	public String getConsultar() {
 		return consultar;
 	}
 
 
+	/**
+	 * @param consultar El campo consultar a settear
+	 */
 	public void setConsultar(String consultar) {
 		this.consultar = consultar;
 	}
-	
+
+
+	/**
+	 * @return El campo temporadasRegistradas
+	 */
+	public List<Temporada> getTemporadasRegistradas() {
+		return temporadasRegistradas;
+	}
+
+
+	/**
+	 * @param temporadasRegistradas El campo temporadasRegistradas a settear
+	 */
+	public void setTemporadasRegistradas(List<Temporada> temporadasRegistradas) {
+		this.temporadasRegistradas = temporadasRegistradas;
+	}
+
+
+	/**
+	 * @return El campo equipoTemporadasRegistradas
+	 */
+	public List<Temporada> getEquipoTemporadasRegistradas() {
+		return equipoTemporadasRegistradas;
+	}
+
+
+	/**
+	 * @param equipoTemporadasRegistradas El campo equipoTemporadasRegistradas a settear
+	 */
+	public void setEquipoTemporadasRegistradas(List<Temporada> equipoTemporadasRegistradas) {
+		this.equipoTemporadasRegistradas = equipoTemporadasRegistradas;
+	}
+
+
+	/**
+	 * @return El campo equiposByTemporada
+	 */
 	public List<EquipoTemporada> getEquiposByTemporada() {
 		return equiposByTemporada;
 	}
 
 
+	/**
+	 * @param equiposByTemporada El campo equiposByTemporada a settear
+	 */
 	public void setEquiposByTemporada(List<EquipoTemporada> equiposByTemporada) {
 		this.equiposByTemporada = equiposByTemporada;
 	}
+
+
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
+	}
+
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	
 }

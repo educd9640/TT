@@ -32,7 +32,12 @@
     	<div class="container rounded p-3 contenido">
     		<div class="titleDiv"><s:text name="label.equipos.titulo"/></div>
         	<h1><s:text name="label.equipos.registrados"/></h1>
-        	<s:actionerror />
+        <s:if test="hasActionErrors()">
+		<div class="errors">
+        <s:actionerror />
+		</div>
+		</s:if>
+        
     		<s:actionmessage />
     		<display:table export="true" id="tabla" name="equiposByTemporada" pagesize="10" class="table table-bordered">
 				<display:setProperty name="export.types" value="csv excel xml pdf" />

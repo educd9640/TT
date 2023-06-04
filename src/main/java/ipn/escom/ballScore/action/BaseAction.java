@@ -18,13 +18,15 @@ import ipn.escom.ballScore.business.LoginBI;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-/**Clase abastracta para la creación de clases Actions
+/**Clase abstracta para la creación de clases Actions
  * @author Jose Mauricio
  *
  */
 public abstract class BaseAction extends ActionSupport implements SessionAware{
 
-	// Clase LoginBI para authenticar sesion activa
+	/**
+	 * Atributo para las operaciones de verificaci�n de login
+	 */
 	@Inject
 	private LoginBI loginService;
 	
@@ -66,12 +68,16 @@ public abstract class BaseAction extends ActionSupport implements SessionAware{
 	}
 
 	/**Metodo para settear el servicio de login
-	 * @param loginService
+	 * @param loginService el login a settear
 	 */
 	public void setLoginService(LoginBI loginService) {
 		this.loginService = loginService;
 	}
 
+	/**Metodo de utileria para validar nulos o blanco
+	 * @param arg argumento a validar
+	 * @return verdadero si es nulo o blanco
+	 */
 	public boolean isNullOrBlank(String arg) {
 		if(arg==null) 
 			return true;

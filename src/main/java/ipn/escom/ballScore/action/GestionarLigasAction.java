@@ -39,7 +39,6 @@ public class GestionarLigasAction extends BaseAction implements Preparable {
 	 */
 	@Override
 	public void prepare() {
-		// TODO Auto-generated method stub
 		logger.info("Inicia metodo GestionarLigasAction.prepare()");
 		GestionarLigasBI ligaBI = new GestionarLigasBI();
 		try {
@@ -129,13 +128,8 @@ public class GestionarLigasAction extends BaseAction implements Preparable {
 		return Action.SUCCESS;
 	}
 	
-	
-	
-	
-	
-	
 	/**Metodo para presentar pantalla de formulario
-	 * @return
+	 * @return pantalla de formulario
 	 */
 	public String mostrarFormulario() {
 		logger.info("Inicia metodo GestionarAlumnosAction.mostrarFormulario()");
@@ -144,44 +138,68 @@ public class GestionarLigasAction extends BaseAction implements Preparable {
 	}
 	
 	/**Metodo para presentar pantalla de registrados
-	 * @return
+	 * @return pantalla de ligas registradas
 	 */
 	public String mostrarRegistrados() {
 		logger.info("Inicia metodo GestionarLigasAction.mostrarRegistrados()");
 		return Action.SUCCESS;
 	}
-	
-	
-	
+
+	/**
+	 * @return El campo ligaF
+	 */
 	public LigaForm getLigaF() {
 		return ligaF;
 	}
 
-	public String getOperacion() {
-		return operacion;
-	}
-	
-	
-	
-	public List<Liga> getLigasRegistradas() {
-		return ligasRegistradas;
-	}
-	
-
-
-	public void setLigasRegistradas(List<Liga> ligasRegistradas) {
-		this.ligasRegistradas = ligasRegistradas;
-	}
-
-
+	/**
+	 * @param ligaF El campo ligaF a settear
+	 */
 	public void setLigaF(LigaForm ligaF) {
 		this.ligaF = ligaF;
 	}
 
+	/**
+	 * @return El campo operacion
+	 */
+	public String getOperacion() {
+		return operacion;
+	}
+
+	/**
+	 * @param operacion El campo operacion a settear
+	 */
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
 	}
-	
-	
 
+	/**
+	 * @return El campo ligasRegistradas
+	 */
+	public List<Liga> getLigasRegistradas() {
+		return ligasRegistradas;
+	}
+
+	/**
+	 * @param ligasRegistradas El campo ligasRegistradas a settear
+	 */
+	public void setLigasRegistradas(List<Liga> ligasRegistradas) {
+		this.ligasRegistradas = ligasRegistradas;
+	}
+
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 }

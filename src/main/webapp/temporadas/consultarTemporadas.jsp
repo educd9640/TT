@@ -73,7 +73,12 @@
 		<div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.registrados.titulo"/></h1>
         <br/><br/>
+        <s:if test="hasActionErrors()">
+		<div class="errors">
         <s:actionerror />
+		</div>
+		</s:if>
+     
         <s:actionmessage />
         
         <input type="radio" id="busquedaIdTemporada" name="opcion" value="IdTemporada">

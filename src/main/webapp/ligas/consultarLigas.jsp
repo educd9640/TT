@@ -27,8 +27,13 @@
 		<div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.registrados.titulo"/></h1>
         <br/><br/>
+        <s:if test="hasActionErrors()">
+		<div class="errors">
         <s:actionerror />
-        <s:actionmessage />
+		</div>
+		</s:if>
+    
+		        <s:actionmessage />
         	<display:table export="true" id="liga" name="ligasRegistradas" pagesize="10" class="table table-bordered">
         		<display:setProperty name="export.types" value="csv excel xml pdf" />
 				<display:setProperty name="export.excel.filename" value="EquiposRegistrados.xls" />

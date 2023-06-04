@@ -76,24 +76,53 @@ public class LoginAction extends BaseAction{
 		return Action.SUCCESS;
 
 	}
-	
-	//Inician metodos getters y setters
-	
+
+
+	/**
+	 * @return El campo login
+	 */
 	public String getLogin() {
 		return login;
 	}
 
+
+	/**
+	 * @param login El campo login a settear
+	 */
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
+
+	/**
+	 * @return El campo contrasenia
+	 */
 	public String getContrasenia() {
 		return contrasenia;
 	}
 
+
+	/**
+	 * @param contrasenia El campo contrasenia a settear
+	 */
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
 
 
+	/**
+	 * @return El campo logger
+	 */
+	public static Logger getLogger() {
+		return logger;
+	}
+
+
+	/**
+	 * @return El campo serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }

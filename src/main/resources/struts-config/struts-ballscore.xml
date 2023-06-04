@@ -52,13 +52,6 @@
 				default (authInterceptador) -->
 		</action>
 
-		<!-- Hello World! http://localhost/webapp/hello para probar -->
-		<action name="hello"
-			class="ipn.escom.ballScore.action.HelloAction">
-			<result name="success">hello.jsp</result>
-			<interceptor-ref name="defaultStack"></interceptor-ref>
-		</action>
-
 		<action name="login"
 			class="ipn.escom.ballScore.action.LoginAction" method="login">
 			<!-- Tiene que ser defaultStack, de lo contrario, se ejecuta nuevamente 

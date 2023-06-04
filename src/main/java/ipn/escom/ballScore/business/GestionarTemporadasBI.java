@@ -25,7 +25,6 @@ import ipn.escom.ballScore.form.TemporadaVO;
 public class GestionarTemporadasBI {
 	
 	private GestionarTemporadasDAO temporadaDAO;
-	private GestionarEquipoTemporadaDAO equipotemporadaDAO;
 	private GestionarLigasDAO ligaDAO;
 	private GestionarEquipoTemporadaDAO equipotempDAO;
 	
@@ -142,7 +141,12 @@ public class GestionarTemporadasBI {
 		return temporadas;
 	}
 	
-	public List<EquipoTemporada> obtenerEqiposByTemporada(Long idTemporada)throws BussinessException{
+	/**Para la busqueda de equipos por temporada
+	 * @param idTemporada de la temporada
+	 * @return equipos de temporada
+	 * @throws BussinessException en caso de error de negocio
+	 */
+	public List<EquipoTemporada> obtenerEquiposByTemporada(Long idTemporada)throws BussinessException{
 		logger.info("Inicia metodo GestionarTemporadasBI.obtenerEquiposByTemporada()");
 		List <EquipoTemporada> equipos = new ArrayList<EquipoTemporada>();
 		equipotempDAO = new GestionarEquipoTemporadaDAO();
@@ -188,59 +192,11 @@ public class GestionarTemporadasBI {
 		
 		return temporadas;
 	}
-
-
-
-	public GestionarTemporadasDAO getTemporadaDAO() {
-		return temporadaDAO;
-	}
-
-
-
-	public void setTemporadaDAO(GestionarTemporadasDAO temporadaDAO) {
-		this.temporadaDAO = temporadaDAO;
-	}
-
-
-
-	public GestionarEquipoTemporadaDAO getEquipotemporadaDAO() {
-		return equipotemporadaDAO;
-	}
-
-
-
-	public void setEquipotemporadaDAO(GestionarEquipoTemporadaDAO equipotemporadaDAO) {
-		this.equipotemporadaDAO = equipotemporadaDAO;
-	}
-
-
-
-	public GestionarLigasDAO getLigaDAO() {
-		return ligaDAO;
-	}
-
-
-
-	public void setLigaDAO(GestionarLigasDAO ligaDAO) {
-		this.ligaDAO = ligaDAO;
-	}
-
-
-
-	public GestionarEquipoTemporadaDAO getEquipotempDAO() {
-		return equipotempDAO;
-	}
-
-
-
-	public void setEquipotempDAO(GestionarEquipoTemporadaDAO equipotempDAO) {
-		this.equipotempDAO = equipotempDAO;
-	}
 	
 	/**Metodo para obtener las temporadas registradas en una liga
 	 * @param id de la Liga
 	 * @return Lista de temporadas
-	 * @throws BussinessException
+	 * @throws BussinessException en caso de error de negocio
 	 */
 	public List<Temporada> buscarTemporadaPorIdLiga(Long id) throws BussinessException{
 		logger.info("Inicia metodo GestionarTemporadasBI.buscarTemporadaPorIdLiga()");
@@ -273,9 +229,9 @@ public class GestionarTemporadasBI {
 	
 	
 	/**Metodo para obtener las temporadas registradas en una liga
-	 * @param id de la Liga
+	 * @param nombre de la liga
 	 * @return Lista de temporadas
-	 * @throws BussinessException
+	 * @throws BussinessException en caso de error de negocio
 	 */
 	public List<Temporada> buscarTemporadaPorNombreLiga(String nombre) throws BussinessException{
 		logger.info("Inicia metodo GestionarTemporadasBI.buscarTemporadaPorIdLiga()");

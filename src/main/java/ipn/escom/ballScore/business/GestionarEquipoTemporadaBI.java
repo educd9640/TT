@@ -25,10 +25,10 @@ public class GestionarEquipoTemporadaBI {
 	
 	/**
 	 * Metodo de negocio para registrar un equipo dentro de una temporada
-	 * 
-	 * @params Long con el id de la temporada donde se regitrara el equipo y Long con el id del equipo a registrar
-	 * @return entidad EquipoTemporada con el equipo y temporada registrados
-	 * @throws BussinessException
+	 * @param idTemporada con el id de la temporada donde se regitrara el equipo y Long con el id del equipo a registrar
+	 * @param idEquipo EquipoTemporada con el equipo y temporada registrados
+	 * @return Equipo de temporada persistido
+	 * @throws BussinessException En caso de error de negocio
 	 */
 	public EquipoTemporada entrarEquipo(Long idTemporada, Long idEquipo) throws BussinessException{
 		logger.info("Inicia metodo GestionarTemporadasBI.entrarEquipo()");
