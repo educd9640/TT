@@ -109,9 +109,7 @@
         </script>
         
 	</head>
-	<body>
-		<div class="container rounded p-3 contenido">
-		
+	<body>		
 			<div class="titleDiv"><s:text name="application.title"/></div>
         	<h1><s:text name="label.registrados.titulo"/></h1>
         	<br/><br/>
@@ -138,14 +136,13 @@
 				<display:setProperty name="export.csv.filename" value="EquiposRegistrados.csv" />
 				<display:setProperty name="export.xml.filename" value="EquiposRegistrados.xml" />
 				<display:setProperty name="export.pdf.filename" value="EquiposRegistrados.pdf" />
-				<s:if test="%{#attr.ligas.fechaAlta!=null}">
 					<display:column property="nombre" title="Nombre de la liga" sortable="true" ></display:column> 
 					<display:column property="telefono" title="Telefono" sortable="true" ></display:column>
 					<display:column property="estado" title="Estado" sortable="true" ></display:column> 
 					<display:column property="delegacion" title="Delegacion" sortable="true" ></display:column> 
 					<display:column property="calle" title="Calle" sortable="true" ></display:column>   
 					<display:column title="Activo" sortable="true" media="html">
-						<s:if test="%{#attr.liga.fechaAlta!=null}">
+						<s:if test="%{#attr.ligas.fechaAlta!=null}">
 							<img width="15" height="15" src="<s:url value='/img/checked.png'/>">
 						</s:if>
                     	<s:else>
@@ -153,17 +150,17 @@
                     	</s:else>
 					</display:column>
 					<display:column media="html">
-						<input type="checkbox" id="<s:property value="%{#attr.ligas.idLiga}" />" name="liga" value="<s:property value="%{#attr.ligas.idLiga}"/>_<s:property value="%{#attr.ligas.nombre}"/>"/>     
+						<s:if test="%{#attr.ligas.fechaAlta!=null}">
+							<input type="checkbox" id="<s:property value="%{#attr.ligas.idLiga}" />" name="liga" value="<s:property value="%{#attr.ligas.idLiga}"/>_<s:property value="%{#attr.ligas.nombre}"/>"/>     
+						</s:if>
 					</display:column>
 					<display:footer>
 						<tr class='noSearch hide'>
                 			<td colspan="5"></td>
             			</tr>
 					</display:footer>	
-				</s:if>
 			</display:table>
 			<br>
-		</div>
 		<input id="cerrarVentana" type="button" value="Cerrar"/>
         <input id="aceptarSeleccion" type="button" value="Aceptar"/>
         <input id="LimiparVentana" type="button" value="Limpiar"/>

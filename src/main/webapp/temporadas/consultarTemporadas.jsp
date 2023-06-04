@@ -97,9 +97,8 @@
 			<display:setProperty name="export.csv.filename" value="EquiposRegistrados.csv" />
 			<display:setProperty name="export.xml.filename" value="EquiposRegistrados.xml" />
 			<display:setProperty name="export.pdf.filename" value="EquiposRegistrados.pdf" />
-			<display:column property="liga.idLiga" title="ID de la liga" sortable="true" ></display:column>
+			<display:column property="liga.nombre" title="Nombre de la liga" sortable="true" ></display:column>
 			<display:column property="idTemporada" title="ID de la temporada" sortable="true" ></display:column>
-			<display:column property="idEquipoCampeon" title="Id del equipo Campeon" sortable="true" ></display:column>
 			<display:column property="fechaInicial" title="Fecha de inicio" sortable="true" ></display:column>
 			<display:column property="fechaFinal" title="Fecha de cierre" sortable="true" ></display:column>
 			<display:column title="Activa" sortable="true" media="html">
