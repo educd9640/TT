@@ -57,9 +57,10 @@
         	<s:textfield id="idLiga" key="temporadaF.liga.idLiga" readonly="true"/>
         	<input id="buscarLiga" type="button" value="Buscar Liga">
         	<s:textfield id="nombre" key="temporadaF.liga.nombre" readonly="true"/>
+        	<br>
+        	<b>Duración de la temporada del: </b><input type="date" id="fechaInicial" name="fechaInicial">
+        	<b> al :</b><input type="date" id="fechaFinal" name="fechaFinal">
         	
-			<s:textfield id="fechaInicial" key="fechaInicial" label="Fecha Inicial" placeholder="dd/mm/yyyy"/>
-			<s:textfield id="fechaFinal" key="fechaFinal" label="Fecha Final" placeholder="dd/mm/yyyy"/>
         	
         	
         	<s:if test="hasActionMessages() || hasActionErrors()">
