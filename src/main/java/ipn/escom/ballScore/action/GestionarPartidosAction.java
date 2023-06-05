@@ -2,6 +2,7 @@ package ipn.escom.ballScore.action;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +15,10 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
 import ipn.escom.ballScore.business.GestionarPartidosBI;
+import ipn.escom.ballScore.business.GestionarTemporadasBI;
 import ipn.escom.ballScore.entity.Manager;
 import ipn.escom.ballScore.entity.Partido;
+import ipn.escom.ballScore.entity.Temporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.PartidoForm;
 import ipn.escom.ballScore.form.PartidoVO;
@@ -32,7 +35,6 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	private PartidoForm partidoF;
 	private String operacion;
 	private String fechaAnuncioPartido;
-	private String horaAnuncioPartido;
 	
 	
 	private List<Partido> partidosRegistrados = new ArrayList<Partido>();
@@ -69,23 +71,32 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	public String registrarPartido() {
 		logger.info("Inicia metodo GestionarPartidosAction.registrarPartido()");
 		PartidoVO partidoVO= new PartidoVO();
-		String fechaHoraStr;
-		
-
-		if(fechaAnuncioPartido!=null && fechaAnuncioPartido.contains("/")) {
-			String auxFecha[]=fechaAnuncioPartido.split("/");
-			if(auxFecha.length != 0 && auxFecha.length<=3) {
-				if(horaAnuncioPartido!=null && horaAnuncioPartido.contains(":")) {
-					fechaHoraStr = auxFecha[2] + "-"+ auxFecha[1] + "-" + auxFecha[0] + " " + horaAnuncioPartido + ":00.000";
-				}else {
-					fechaHoraStr = auxFecha[2] + "-"+ auxFecha[1] + "-" + auxFecha[0] + " 00:00:00.000";
-				}
-				Timestamp fechaHora = Timestamp.valueOf(fechaHoraStr);
-				partidoF.setFechaAnuncioPartido(fechaHora);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+		Timestamp timestamp = null;
+		if(fechaAnuncioPartido!=null && fechaAnuncioPartido!="") {
+			try {
+				java.util.Date parsedDate = dateFormat.parse(fechaAnuncioPartido);
+	            timestamp = new Timestamp(parsedDate.getTime());
+	            Temporada temporada = new GestionarTemporadasBI().buscarTemporadaPorId(partidoF.getIdTemporada());
+	            if(timestamp.compareTo(temporada.getFechaInicial()) > 0) {	//mayor a la fecha inicial
+	            	
+	            	if(temporada.getFechaFinal()!=null && timestamp.compareTo(temporada.getFechaFinal()) < 0) { //menor a la fecha final
+	            		partidoF.setFechaAnuncioPartido(timestamp);
+	            	}else if(temporada.getFechaFinal()==null) {
+	            		partidoF.setFechaAnuncioPartido(timestamp);
+	            	}else {
+	            		addActionError("El rango de fechas no es válido");
+	            	}
+	            }
+			}catch(Exception e) {
+				logger.error(" Error al establecer la fecha y hora ", e);
+				addActionError("Error al establecer la fecha y hora.");
 			}
 		}
 		
 		
+		
+
 		try {
 			BeanUtils.copyProperties(partidoVO, partidoF);
 		}catch(IllegalAccessException | InvocationTargetException e) {
@@ -234,28 +245,6 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	}
 
 
-
-	/**
-	 * @return El campo horaAnuncioPartido
-	 */
-	public String getHoraAnuncioPartido() {
-		return horaAnuncioPartido;
-	}
-
-
-
-	/**
-	 * @param horaAnuncioPartido El campo horaAnuncioPartido a settear
-	 */
-	public void setHoraAnuncioPartido(String horaAnuncioPartido) {
-		this.horaAnuncioPartido = horaAnuncioPartido;
-	}
-
-
-
-	/**
-	 * @return El campo partidosRegistrados
-	 */
 	public List<Partido> getPartidosRegistrados() {
 		return partidosRegistrados;
 	}

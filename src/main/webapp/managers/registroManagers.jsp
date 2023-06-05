@@ -31,5 +31,3 @@
 		
 </div>
 <jsp:include page="/bases/footer.jsp"></jsp:include>
-
-
