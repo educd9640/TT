@@ -50,6 +50,17 @@ public class GestionarPartidosDAO extends BaseDAO{
 		return(List<Partido>)q.list();
 	}
 	
+	/**Metodo para consultar todos los partidos registrados
+	 * @param nombreLiga de la liga
+	 * @return partidos
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Partido> selectFromPartidoLikeLiga(String nombreLiga){
+		Query q = session.createQuery("from Partido par where upper(par.temporada.liga.nombre) like :nombreLiga");
+		q.setParameter("nombreLiga", nombreLiga.toUpperCase()+"%");
+		return(List<Partido>)q.list();
+	}
+	
 	/**Metodo para consultar partidos por id
 	 * @param idPartido del partido
 	 * @return partidos

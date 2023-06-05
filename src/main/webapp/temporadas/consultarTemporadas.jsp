@@ -91,12 +91,12 @@
     	<input type="button" id="buscar" value="Buscar" />
         <br></br>
         
-        <display:table export="true" id="temporadas" name="temporadasRegistradas" pagesize="10" class="table table-bordered">
+        <display:table export="true" id="temporadas" name="temporadasRegistradas" pagesize="10" requestURI="" class="table table-hover table-striped">
         	<display:setProperty name="export.types" value="csv excel xml pdf" />
-			<display:setProperty name="export.excel.filename" value="EquiposRegistrados.xls" />
-			<display:setProperty name="export.csv.filename" value="EquiposRegistrados.csv" />
-			<display:setProperty name="export.xml.filename" value="EquiposRegistrados.xml" />
-			<display:setProperty name="export.pdf.filename" value="EquiposRegistrados.pdf" />
+			<display:setProperty name="export.excel.filename" value="temporadasRegistradas.xls" />
+			<display:setProperty name="export.csv.filename" value="temporadasRegistradas.csv" />
+			<display:setProperty name="export.xml.filename" value="temporadasRegistradas.xml" />
+			<display:setProperty name="export.pdf.filename" value="temporadasRegistradas.pdf" />
 			<display:column property="liga.nombre" title="Nombre de la liga" sortable="true" ></display:column>
 			<display:column property="idTemporada" title="ID de la temporada" sortable="true" ></display:column>
 			<display:column property="fechaInicial" title="Fecha de inicio" sortable="true" ></display:column>

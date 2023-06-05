@@ -143,7 +143,8 @@
         	&nbsp;&nbsp;&nbsp;
         	
         	<s:textfield key="partidoF.campo" />
-        	<input type="datetime-local" id="fechaAnuncioPartido" name="fechaAnuncioPartido">
+        	<br>
+        	Fecha Partido: <input type="datetime-local" id="fechaAnuncioPartido" name="fechaAnuncioPartido">
         	        	
         	
         	<s:if test="hasActionMessages() || hasActionErrors()">
