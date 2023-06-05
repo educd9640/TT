@@ -120,7 +120,7 @@
         
 	</head>
 <body>
-	<div class="titleDiv"><s:text name="equipoElegido"/></div>
+	<div class="titleDiv">Equipos registrados</div>
 	<h1><s:property value="#title"/></h1>
 	<br>
         <s:if test="hasActionErrors()">
@@ -141,26 +141,18 @@
     	<input type="button" id="buscar" value="Buscar" />
     	<br></br>
     	<br></br>
-    	<div class="container">
-    		<display:table export="true" id="tabla" name="equiposRegistrados" pagesize="10" class="table table-bordered">
+    		<display:table export="true" id="tabla" name="equiposRegistrados" pagesize="10" class="table table-hover table-striped" requestURI="" >
 				<display:setProperty name="export.types" value="csv excel xml pdf" />
 				<display:setProperty name="export.excel.filename" value="EquiposRegistrados.xls" />
 				<display:setProperty name="export.csv.filename" value="EquiposRegistrados.csv" />
 				<display:setProperty name="export.xml.filename" value="EquiposRegistrados.xml" />
 				<display:setProperty name="export.pdf.filename" value="EquiposRegistrados.pdf" />
-				<display:column property="nombre" title="Nombre del equipo" sortable="true" ></display:column>    
-				<display:column property="manager.nombrePila" title="Nombre del manager" sortable="true" ></display:column>
+				<display:column property="nombre" title="Nombre del equipo" sortable="true" escapeXml="true"></display:column>    
+				<display:column property="manager.nombrePila" title="Nombre del manager" sortable="true" escapeXml="true"></display:column>
 				<display:column media="html">
 					<input type="checkbox" id="<s:property value="%{#attr.tabla.idEquipo}" />" name="equipoElegido" value="<s:property value="%{#attr.tabla.idEquipo}"/>_<s:property value="%{#attr.tabla.manager.nombrePila}"/>_<s:property value="%{#attr.tabla.nombre}"/>" />
 				</display:column>
-				<display:footer>
-					<tr class='noSearch hide'>
-                		<td colspan="5"></td>
-            		</tr>
-				</display:footer>
-					
     		</display:table>
-    	</div>
     	
     	<input id="confirmar" type="button" value="Confirmar seleccion"> 
 </body>

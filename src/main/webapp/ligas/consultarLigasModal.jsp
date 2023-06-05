@@ -130,12 +130,12 @@
     		<input type="text" id="idTexto" name="idTexto"/>
     		<input type="button" id="buscar" value="Buscar" />
 			
-			<display:table export="true" id="ligas" name="ligasRegistradas" pagesize="10" class="table table-bordered">
+			<display:table export="true" id="ligas" name="ligasRegistradas" pagesize="10" requestURI="" class="table table-hover table-striped">
 				<display:setProperty name="export.types" value="csv excel xml pdf" />
-				<display:setProperty name="export.excel.filename" value="EquiposRegistrados.xls" />
-				<display:setProperty name="export.csv.filename" value="EquiposRegistrados.csv" />
-				<display:setProperty name="export.xml.filename" value="EquiposRegistrados.xml" />
-				<display:setProperty name="export.pdf.filename" value="EquiposRegistrados.pdf" />
+				<display:setProperty name="export.excel.filename" value="LigasRegistradas.xls" />
+				<display:setProperty name="export.csv.filename" value="LigasRegistradas.csv" />
+				<display:setProperty name="export.xml.filename" value="LigasRegistradas.xml" />
+				<display:setProperty name="export.pdf.filename" value="LigasRegistradas.pdf" />
 					<display:column property="nombre" title="Nombre de la liga" sortable="true" ></display:column> 
 					<display:column property="telefono" title="Telefono" sortable="true" ></display:column>
 					<display:column property="estado" title="Estado" sortable="true" ></display:column> 

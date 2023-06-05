@@ -245,6 +245,9 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 	}
 
 
+	/**
+	 * @return El campo partidosRegistrados
+	 */
 	public List<Partido> getPartidosRegistrados() {
 		return partidosRegistrados;
 	}

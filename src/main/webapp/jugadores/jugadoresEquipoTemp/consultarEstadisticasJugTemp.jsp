@@ -169,8 +169,8 @@
   </div>
 </div>		
 		
-<s:form namespace="/partidos" action="consultarPartidos">
-	<s:submit value="Regresar" targets="consultarPartidos" />
+<s:form namespace="/jugadores/equipo/temporada" action="consultarTemporadasRegistro">
+	<s:submit value="Regresar" targets="consultarTemporadasRegistro" />
 </s:form>
 </div>
 <jsp:include page="/bases/footer.jsp"></jsp:include>

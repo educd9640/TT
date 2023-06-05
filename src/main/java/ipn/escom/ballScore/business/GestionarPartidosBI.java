@@ -167,7 +167,7 @@ public class GestionarPartidosBI {
 		partidoDAO = new GestionarPartidosDAO();
 		List<Partido> partidos = new ArrayList<Partido>();
 		try {
-			partidos = partidoDAO.selectFromPartido();
+			partidos = partidoDAO.selectFromPartidoLikeLiga(nombreLiga);
 		}catch(Exception e) {
 			logger.error(" Error al consultar los partidos registrados ", e);
 			throw new BussinessException("Error al consultar los partidos registrados.");
