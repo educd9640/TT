@@ -2,6 +2,7 @@ package ipn.escom.ballScore.action;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import ipn.escom.ballScore.business.GestionarPartidosBI;
 import ipn.escom.ballScore.business.GestionarTemporadasBI;
 import ipn.escom.ballScore.entity.Manager;
 import ipn.escom.ballScore.entity.Partido;
+import ipn.escom.ballScore.entity.Temporada;
 import ipn.escom.ballScore.exception.BussinessException;
 import ipn.escom.ballScore.form.PartidoForm;
 import ipn.escom.ballScore.form.PartidoVO;

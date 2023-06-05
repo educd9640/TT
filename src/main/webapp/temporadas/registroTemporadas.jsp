@@ -58,8 +58,8 @@
         	<input id="buscarLiga" type="button" value="Buscar Liga">
         	<s:textfield id="nombre" key="temporadaF.liga.nombre" readonly="true"/>
         	
-        	<input type="date" id="fechaInicial" name="fechaInicial">
-        	<input type="date" id="fechaFinal" name="fechaFinal">
+        	<b>Duración de la temporada del: </b><input type="date" id="fechaInicial" name="fechaInicial">
+        	<b> al :</b><input type="date" id="fechaFinal" name="fechaFinal">
         	
         	
         	

@@ -8,8 +8,15 @@
         <message>Liga requerida.</message>
     </validator>
     <validator type="required">
-		<param name="date">fechaInicial</param>
-		<message>Fecha Inicial requerida</message>
+	    <param name="fieldname">fechaInicial</param>
+	    <message>Fecha Inicial requerida</message>
 	</validator>
+	
+	<validator type="date">
+	    <param name="fieldname">fechaInicial</param>
+	    <message>Fecha Inicial inválida</message>
+	</validator>
+
+	
 </validators>
 	
