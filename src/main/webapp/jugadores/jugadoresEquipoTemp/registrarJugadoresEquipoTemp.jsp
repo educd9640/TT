@@ -67,10 +67,10 @@
 		<s:hidden id="jugadoresARegistrar" key="form.jugadoresARegistrar"></s:hidden>
         <table style="border:none">
         	<tr>
-        	<td><b>Busqueda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="form.boletaAlumno"/></td>
-        	<td><b>Busqueda por Nombre Pila</b> <input type="text" id="nombrePila" name="form.nombrePila"/></td>
-        	<td><b>Busqueda por Posici&oacute;n Primaria</b> <s:select id="posicionPrim" name="form.posicionPrim" headerKey="" headerValue="Seleccione" list="posiciones" theme="simple"/></td>
-        	<td><b>Busqueda por Posici&oacute;n Secundaria</b> <s:select id="posicionSec" name="form.posicionSec" headerKey="" headerValue="Seleccione" list="posiciones" theme="simple"/></td>
+        	<td><b>Búsqueda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="form.boletaAlumno"/></td>
+        	<td><b>Búsqueda por Nombre Pila</b> <input type="text" id="nombrePila" name="form.nombrePila"/></td>
+        	<td><b>Búsqueda por Posici&oacute;n Primaria</b> <s:select id="posicionPrim" name="form.posicionPrim" headerKey="" headerValue="Seleccione" list="posiciones" theme="simple"/></td>
+        	<td><b>Búsqueda por Posici&oacute;n Secundaria</b> <s:select id="posicionSec" name="form.posicionSec" headerKey="" headerValue="Seleccione" list="posiciones" theme="simple"/></td>
         	</tr>
         	<tr>
         		<td align="left" colspan="3"><s:submit value="%{getText('button.label.submit')}" theme="simple"/> <input type="button" value="Limpiar" onclick="javascript:limpiarBusqueda()"></td>

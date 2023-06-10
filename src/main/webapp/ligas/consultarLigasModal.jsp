@@ -121,9 +121,9 @@
    
 		        	<s:actionmessage />
 			<input type="radio" id="busquedaID" name="opcion" value="ID">
-    		<label for="busquedaID">Busqueda por ID</label> 
+    		<label for="busquedaID">B&uacute;squeda por ID</label> 
         	<input type="radio" id="busquedaLiga" name="opcion" value="equipo">
-    		<label for="busquedaLiga">Busqueda por nombre de la Liga</label>
+    		<label for="busquedaLiga">B&uacute;squeda por nombre de la Liga</label>
     		<br></br>
     		<br></br>
     		<label id="etiqueta" for="idTexto"></label>
@@ -137,9 +137,9 @@
 				<display:setProperty name="export.xml.filename" value="LigasRegistradas.xml" />
 				<display:setProperty name="export.pdf.filename" value="LigasRegistradas.pdf" />
 					<display:column property="nombre" title="Nombre de la liga" sortable="true" ></display:column> 
-					<display:column property="telefono" title="Telefono" sortable="true" ></display:column>
+					<display:column property="telefono" title="Tel&eacute;fono" sortable="true" ></display:column>
 					<display:column property="estado" title="Estado" sortable="true" ></display:column> 
-					<display:column property="delegacion" title="Delegacion" sortable="true" ></display:column> 
+					<display:column property="delegacion" title="Delegaci&oacute;n" sortable="true" ></display:column> 
 					<display:column property="calle" title="Calle" sortable="true" ></display:column>   
 					<display:column title="Activo" sortable="true" media="html">
 						<s:if test="%{#attr.ligas.fechaAlta!=null}">

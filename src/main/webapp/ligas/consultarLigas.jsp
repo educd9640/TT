@@ -41,9 +41,9 @@
 				<display:setProperty name="export.xml.filename" value="LigasRegistradas.xml" />
 				<display:setProperty name="export.pdf.filename" value="LigasRegistradas.pdf" />
 				<display:column property="nombre" title="Nombre de la liga" sortable="true" ></display:column> 
-				<display:column property="telefono" title="Telefono" sortable="true" ></display:column>
+				<display:column property="telefono" title="Tel&eacute;fono" sortable="true" ></display:column>
 				<display:column property="estado" title="Estado" sortable="true" ></display:column> 
-				<display:column property="delegacion" title="Delegacion" sortable="true" ></display:column> 
+				<display:column property="delegacion" title="Delegaci&oacute;n" sortable="true" ></display:column> 
 				<display:column property="calle" title="Calle" sortable="true" ></display:column>   
 				<display:column title="Activo" sortable="true" media="html">
 					<s:if test="%{#attr.liga.fechaAlta!=null}">

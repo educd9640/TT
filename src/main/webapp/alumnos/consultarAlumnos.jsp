@@ -23,9 +23,9 @@
 		<s:actionmessage />
         <table style="border:none">
         	<tr>
-        	<td><b>Busqueda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="alumnoForm.boletaAlumno"/></td>
-        	<td><b>Busqueda por Nombre Pila</b> <input type="text" id="nombrePila" name="alumnoForm.nombrePila"/></td>
-        	<td><b>Busqueda por Escuela</b> <s:select name="alumnoForm.idEscuela" style="display:inline-block;" headerKey="-1" headerValue="Seleccione" list="escuelas" listKey="idEscuela" listValue="nombreCortoEscuela" theme="simple"/></td>
+        	<td><b>B&uacute;squeda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="alumnoForm.boletaAlumno"/></td>
+        	<td><b>B&uacute;squeda por Nombre Pila</b> <input type="text" id="nombrePila" name="alumnoForm.nombrePila"/></td>
+        	<td><b>B&uacute;squeda por Escuela</b> <s:select name="alumnoForm.idEscuela" style="display:inline-block;" headerKey="-1" headerValue="Seleccione" list="escuelas" listKey="idEscuela" listValue="nombreCortoEscuela" theme="simple"/></td>
         	</tr>
         	<tr>
         		<td align="left" colspan="3"><s:submit value="%{getText('button.label.submit')}" theme="simple"/> <input type="button" value="Limpiar" onclick="javascript:limpiarBusqueda()"></td>
@@ -48,8 +48,8 @@
 				<display:column property="semestre" title="Semestre" sortable="true"></display:column>
 				<display:column property="curp" title="CURP" sortable="true"></display:column>
 				<display:column property="nss" title="NSS" sortable="true"></display:column>
-				<display:column property="telefono" title="Telefono" sortable="true"></display:column>
-				<display:column property="telEmergencia" title="Telefono Emergencia" sortable="true"></display:column>
+				<display:column property="telefono" title="Tel&eacute;fono" sortable="true"></display:column>
+				<display:column property="telEmergencia" title="Tel&eacute;fono Emergencia" sortable="true"></display:column>
 				<display:column property="correo" title="Correo" sortable="true"></display:column>
 				<display:column property="escuela.nombreCortoEscuela" title="Escuela" sortable="true"></display:column>
 				<display:column title="Activo" sortable="true" media="html">

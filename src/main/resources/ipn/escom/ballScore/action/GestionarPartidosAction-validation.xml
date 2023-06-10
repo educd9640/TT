@@ -5,18 +5,18 @@
 <validators>
 	<validator type="required">
 		<param name="fieldname">partidoF.idTemporada</param>
-		<message>Temporada requerida</message>
+		<message></message>
 	</validator>
 	<validator type="required">
 		<param name="fieldname">partidoF.idEquipoLocal</param>
-		<message>Equipo Local requerido</message>
+		<message></message>
 	</validator>
 	<validator type="required">
 		<param name="fieldname">partidoF.idEquipoVisitante</param>
-		<message>Equipo Visitante requerido</message>
+		<message></message>
 	</validator>
 	<validator type="required">
 		<param name="fieldname">partidoF.campo</param>
-		<message>Nombre del campo requerido</message>
+		<message></message>
 	</validator>
 </validators>

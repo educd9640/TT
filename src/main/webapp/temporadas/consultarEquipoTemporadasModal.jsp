@@ -76,9 +76,9 @@
         <s:form action="consultarEquipoTemporadasModal" method="post">
         <table style="border:none">
         	<tr>
-        	<td><b>Busqueda por id de Temporada</b> <input type="text" id="idTemporada" name="temporadaF.idTemporada"/></td>
-        	<td><b>Busqueda por id de la Liga</b> <input type="text" id="idLiga" name="temporadaF.liga.idLiga"/></td>
-        	<td><b>Busqueda por nombre de la Liga</b> <input type="text" id="nombre" name="temporadaF.liga.nombre"/></td>
+        	<td><b>B&uacute;squeda por id de Temporada</b> <input type="text" id="idTemporada" name="temporadaF.idTemporada"/></td>
+        	<td><b>B&uacute;squeda por id de la Liga</b> <input type="text" id="idLiga" name="temporadaF.liga.idLiga"/></td>
+        	<td><b>B&uacute;squeda por nombre de la Liga</b> <input type="text" id="nombre" name="temporadaF.liga.nombre"/></td>
         	</tr>
         	<tr>
         		<td align="left" colspan="3"><s:submit value="%{getText('button.label.buscar')}" theme="simple"/> <input type="button" value="Limpiar" onclick="javascript:limpiarBusqueda()"></td>

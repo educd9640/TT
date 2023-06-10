@@ -47,8 +47,8 @@
         <s:form action="consultarTemporadas" method="post">
         <table style="border:none">
         	<tr>
-        	<td><input type="radio" id="busquedaIdTemporada" name="opcion" value="IdTemporada"> <label for="busquedaIdTemporada">Busqueda por Id de la Temporada</label> </td>
-        	<td><input type="radio" id="busquedaIdLiga" name="opcion" value="IdLiga"> <label for="busquedaIdLiga">Busqueda por Nombre de la Liga</label></td>
+        	<td><input type="radio" id="busquedaIdTemporada" name="opcion" value="IdTemporada"> <label for="busquedaIdTemporada">B&uacute;squeda por Id de la Temporada</label> </td>
+        	<td><input type="radio" id="busquedaIdLiga" name="opcion" value="IdLiga"> <label for="busquedaIdLiga">B&uacute;squeda por Nombre de la Liga</label></td>
     		</tr>
     		<tr>
         	<td><label id="etiqueta" for="idTexto"></label></td>
