@@ -36,8 +36,11 @@
             <s:textfield key="alumnoForm.telEmergencia" />
             <s:textfield key="alumnoForm.correo" />
             <s:select name="alumnoForm.idEscuela" list="escuelas" listKey="idEscuela" listValue="nombreCortoEscuela" label="%{getText('alumnoForm.idEscuela')}"/>			
+            * Obligatorio
     		<s:submit value="%{getText('button.label.submit')}"/>
         </s:form>
+        
+        <br>
         <s:form action="submenuAlumnos" >
 			<s:submit value="Regresar" targets="submenuAlumnos"/>
 		</s:form>
