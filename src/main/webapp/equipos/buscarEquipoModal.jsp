@@ -131,9 +131,9 @@
 
 		<s:actionmessage />
     	<input type="radio" id="busquedaEquipo" name="opcion" value="equipo">
-    	<label for="busquedaEquipo">Busqueda por nombre del Equipo</label>
+    	<label for="busquedaEquipo">B&uacute;squeda por nombre del Equipo</label>
     	<input type="radio" id="busquedaManager" name="opcion" value="manager">
-    	<label for="busquedaManager">Busqueda por nombre del Manager</label>
+    	<label for="busquedaManager">B&uacute;squeda por nombre del Manager</label>
     	<br></br>
     	<br></br>
     	<label id="etiqueta" for="idTexto"></label>

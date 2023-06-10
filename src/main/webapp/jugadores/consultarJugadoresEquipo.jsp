@@ -24,10 +24,10 @@
         <s:form action="consultarJugadores" method="post">
         <table style="border:none">
         	<tr>
-        	<td><b>Busqueda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="jugadoresForm.alumno.boletaAlumno"/></td>
-        	<td><b>Busqueda por Nombre Pila</b> <input type="text" id="nombrePila" name="jugadoresForm.alumno.nombrePila"/></td>
-        	<td><b>Busqueda por Posici&oacute;n Primaria</b> <s:select id="posicionPrim" name="jugadoresForm.posicionPrim" headerKey="" headerValue="Seleccione" list="posiciones" theme="simple"/></td>
-        	<td><b>Busqueda por Posici&oacute;n Secundaria</b> <s:select id="posicionSec" name="jugadoresForm.posicionSec" headerKey="" headerValue="Seleccione" list="posiciones" theme="simple"/></td>
+        	<td><b>Búsqueda por Boleta Alumno</b> <input type="text" id="boletaAlumno" name="jugadoresForm.alumno.boletaAlumno"/></td>
+        	<td><b>Búsqueda por Nombre Pila</b> <input type="text" id="nombrePila" name="jugadoresForm.alumno.nombrePila"/></td>
+        	<td><b>Búsqueda por Posici&oacute;n Primaria</b> <s:select id="posicionPrim" name="jugadoresForm.posicionPrim" headerKey="" headerValue="Seleccione" list="posiciones" theme="simple"/></td>
+        	<td><b>Búsqueda por Posici&oacute;n Secundaria</b> <s:select id="posicionSec" name="jugadoresForm.posicionSec" headerKey="" headerValue="Seleccione" list="posiciones" theme="simple"/></td>
         	</tr>
         	<tr>
         		<td align="left" colspan="3"><s:submit value="%{getText('button.label.submit')}" theme="simple"/> <input type="button" value="Limpiar" onclick="javascript:limpiarBusqueda()"></td>

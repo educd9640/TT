@@ -82,9 +82,9 @@
         <s:actionmessage />
         
         <input type="radio" id="busquedaIdTemporada" name="opcion" value="IdTemporada">
-    	<label for="busquedaIdTemporada">Busqueda por Id de la Temporada</label> 
+    	<label for="busquedaIdTemporada">B&uacute;squeda por Id de la Temporada</label> 
         <input type="radio" id="busquedaIdLiga" name="opcion" value="IdLiga">
-    	<label for="busquedaIdLiga">Busqueda por Id de la Liga</label>
+    	<label for="busquedaIdLiga">B&uacute;squeda por Id de la Liga</label>
     	<br></br>
     	<label id="etiqueta" for="idTexto"></label>
     	<input type="text" id="idTexto" name="idTexto"/>

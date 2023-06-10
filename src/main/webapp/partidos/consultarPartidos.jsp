@@ -26,10 +26,10 @@
         <s:actionmessage />
         <table style="border:none">
         	<tr>
-	        	<td><b>Busqueda por Id Partido</b> <input type="text" id="idPartido" name="partidoF.idPartido"/></td>
-	        	<td><b>Busqueda por Liga</b> <input type="text" id="nombreLiga" name="partidoF.nombreLiga"/></td>
-	        	<td><b>Busqueda por Equipo Local</b> <input type="text" id="nombreEquipoLocal" name="partidoF.nombreEquipoLocal"/></td>
-	        	<td><b>Busqueda por Equipo Visitante</b> <input type="text" id="nombreEquipoVisitante" name="partidoF.nombreEquipoVisitante"/></td>
+	        	<td><b>B&uacute;squeda por Id Partido</b> <input type="text" id="idPartido" name="partidoF.idPartido"/></td>
+	        	<td><b>B&uacute;squeda por Liga</b> <input type="text" id="nombreLiga" name="partidoF.nombreLiga"/></td>
+	        	<td><b>B&uacute;squeda por Equipo Local</b> <input type="text" id="nombreEquipoLocal" name="partidoF.nombreEquipoLocal"/></td>
+	        	<td><b>B&uacute;squeda por Equipo Visitante</b> <input type="text" id="nombreEquipoVisitante" name="partidoF.nombreEquipoVisitante"/></td>
         	</tr>
         	<tr>
 	        	<td colspan="2" align="right"><b>Buscar partidos del <input type="date" id="fechaInicialBusqueda" name="partidoF.fechaInicialBusqueda"></b>

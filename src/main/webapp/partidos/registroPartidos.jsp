@@ -144,6 +144,7 @@
         	
         	<s:textfield key="partidoF.campo" />
         	<br>
+        	<br>
         	Fecha Partido: <input type="datetime-local" id="fechaAnuncioPartido" name="fechaAnuncioPartido">
         	        	
         	

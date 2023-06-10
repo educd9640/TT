@@ -76,8 +76,8 @@
         <s:form action="consultarEquipoVisitanteModal" method="post">
         <table style="border:none">
         	<tr>
-        	<td><b>Busqueda por id del equipo</b> <input type="text" id="idEquipo" name="equipoForm.idEquipo"/></td>
-        	<td><b>Busqueda por nombre del equipo</b> <input type="text" id="nombre" name="equipoForm.nombre"/></td>
+        	<td><b>Búsqueda por id del equipo</b> <input type="text" id="idEquipo" name="equipoForm.idEquipo"/></td>
+        	<td><b>Búsqueda por nombre del equipo</b> <input type="text" id="nombre" name="equipoForm.nombre"/></td>
         	</tr>
         	<s:hidden name="idTemporada" value="%{#attr.idTemporada}"></s:hidden>
         	<s:hidden name="equipoL" value="%{#attr.equipoL}"></s:hidden>
