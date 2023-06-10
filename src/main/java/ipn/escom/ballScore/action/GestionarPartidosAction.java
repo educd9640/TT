@@ -73,7 +73,7 @@ public class GestionarPartidosAction extends BaseAction implements Preparable {
 		PartidoVO partidoVO= new PartidoVO();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 		Timestamp timestamp = null;
-		if(fechaAnuncioPartido!=null && fechaAnuncioPartido!="") {
+		if(fechaAnuncioPartido!=null && !fechaAnuncioPartido.equals("")) {
 			try {
 				java.util.Date parsedDate = dateFormat.parse(fechaAnuncioPartido);
 	            timestamp = new Timestamp(parsedDate.getTime());

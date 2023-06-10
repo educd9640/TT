@@ -117,7 +117,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaI = null;
 		Date fechaF = null;
-		if(fechaInicial!= null && fechaInicial!="") {
+		if(fechaInicial!= null && !fechaInicial.equals("")) {
 			try {
 				java.util.Date utilDate = dateFormat.parse(fechaInicial);
 				fechaI = new java.sql.Date(utilDate.getTime());
@@ -127,7 +127,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 			}
 		}
 		
-		if(fechaFinal!= null && fechaFinal!="") {
+		if(fechaFinal!= null && !fechaFinal.equals("")) {
 			try {
 				java.util.Date utilDate = dateFormat.parse(fechaFinal);
 				fechaF = new java.sql.Date(utilDate.getTime());
