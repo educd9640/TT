@@ -15,9 +15,12 @@
 	<div class="container rounded p-3 contenido">
         <script>
 	        function limpiarBusqueda(){
-				document.forms[0].idTemporada.value=null;
-				document.forms[0].idLiga.value=null;
-				document.forms[0].nombre.value=null;
+				var opcionIdTemporada = document.getElementById("busquedaIdTemporada");
+		        var opcionIdLiga = document.getElementById("busquedaIdLiga");
+		        var texto= document.getElementById("idTexto");
+		        opcionIdTemporada.value=null;
+		        opcionIdLiga.value=null;
+		        texto.value=null;
 				document.forms[0].submit();
 			}
         	function realizarBusqueda() {
@@ -25,6 +28,7 @@
 		        var opcionIdLiga = document.getElementById("busquedaIdLiga");
 		
 		        if (!opcionIdTemporada.checked && !opcionIdLiga.checked) {
+		        	Sexy.error("Debe seleccionar una opci&oacute;n");
 		            return; // No se seleccionó ninguna opción, no se hace nada
 		        }else if(opcionIdTemporada.checked && !opcionIdLiga.checked){
 		        	opcionIdTemporada.value=true;
@@ -53,7 +57,7 @@
     		<tr>
         	<td><label id="etiqueta" for="idTexto"></label></td>
         	<td><input type="text" id="idTexto" name="idTexto"/></td>
-        	<td><input type="button" id="buscar" value="Buscar" onclick="realizarBusqueda()" /> <input type="button" value="Limpiar" onclick="javascript:limpiarBusqueda()"></td>
+        	<td><input type="button" id="buscar" value="Buscar" onclick="realizarBusqueda()" /> <input type="button" value="Limpiar" onclick="limpiarBusqueda()"></td>
         	</tr>
         </table>
         </s:form>
