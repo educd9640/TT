@@ -43,7 +43,7 @@ public class LoginAction extends BaseAction{
 		}
 		else {
 			logger.error("Error al iniciar sesión con el usuario: "+getLogin());
-			addActionError("Usuario o contraseña invalidos");
+			addActionError("Usuario o contraseña inválidos");
 			return "invalid";
 		}
 

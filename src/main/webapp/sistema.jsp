@@ -20,7 +20,7 @@
   					<div class="card-body">
   						<span class="card-number fw-bold">01</span>
     					<h2 class="card-title mb-4">Alumnos</h2>
-    					<p class="card-text">Con BallScore puede registrar a los alumnos de su institucion academica</p>
+    					<p class="card-text">Con BallScore puede registrar a los alumnos de su instituci&oacute;n acad&eacute;mica</p>
     					<a href='<s:url namespace="/alumnos" action="submenuAlumnos" />' class="btn btn-outline-light">Gestionar Alumnos</a>
   					</div>
 				</div>
@@ -75,7 +75,7 @@
   					<div class="card-body">
   						<span class="card-number fw-bold">06</span>
     					<h2 class="card-title mb-4">Partidos</h2>
-    					<p class="card-text">Con BallScore puede dar de alta y llevar un control de las estadisticas de un partido</p>
+    					<p class="card-text">Con BallScore puede dar de alta y llevar un control de las estad&iacute;sticas de un partido</p>
     					<a href='<s:url namespace="/partidos" action="submenuPartidos" />' class="btn btn-outline-light">Gestionar Partidos</a>
   					</div>
 				</div>
