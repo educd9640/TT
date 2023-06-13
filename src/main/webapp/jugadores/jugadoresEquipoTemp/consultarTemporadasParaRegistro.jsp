@@ -29,8 +29,8 @@
        <s:form action="consultarTemporadasRegistro" method="post">
         <table style="border:none">
         	<tr>
-        	<td><b>Busqueda por Nombre Liga</b> <input type="text" id="nombreLiga" name="form.nombreLiga"/></td>
-        	<td><b>Busqueda por rango de fechas del: </b> <input type="date" id="fechaInicialTemporada" name="form.fechaInicialTemporada"></td>
+        	<td><b>Búsqueda por Nombre Liga</b> <input type="text" id="nombreLiga" name="form.nombreLiga"/></td>
+        	<td><b>Búsqueda por rango de fechas del: </b> <input type="date" id="fechaInicialTemporada" name="form.fechaInicialTemporada"></td>
         	<td><b> al </b> <input type="date" id="fechaFinalTemporada" name="form.fechaFinalTemporada"></td>
         	</tr>
         	<tr>

@@ -43,6 +43,8 @@
 		</s:if>
        
         <s:actionmessage />
+        <br>
+        <br>
         <s:form action="registrarTemporada" method="post">
         	
         	<s:if test="operacion=='actualizado'">

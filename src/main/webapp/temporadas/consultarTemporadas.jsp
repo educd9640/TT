@@ -14,61 +14,29 @@
 	<body>
 	<div class="container rounded p-3 contenido">
         <script>
-        	//Inician metodos JQuery
-	        $(document).ready(function(){
-	        
-				$("#buscar").click(function(){
-        			const tablaReg = document.getElementById('tabla');
-        			const buscarIdTemporada = document.getElementById('busquedaIdTemporada');
-        			const buscarIdLiga = document.getElementById('busquedaIdLiga');
-        			
-        			const textoBuscar = document.getElementById('idTexto').value.toLowerCase();
-        			var noCelda=0;
-        			if(buscarIdTemporada.checked){
-        				noCelda=0;
-        			}else if(buscarIdLiga.checked){
-        				noCelda=4;
-        			}else{
-        				Sexy.error("Debes seleccionar una opcion");
-        			}
-        			var total=0;
-        			for(var r=1;r<tablaReg.rows.length; r++){
-        				
-        				// Si el td tiene la clase "noSearch" no se busca en su contenido
-        				if (tablaReg.rows[r].classList.contains("noSearch")) {
-                            continue;
-                        }
-        				
-        				var encontrado = false;
-        				const celdaRenglon = tablaReg.rows[r].getElementsByTagName('td');
-        				//buscamos en la celda especifica de acuerdo a la opcion seleccionada
-        				const textoTabla = celdaRenglon[noCelda].innerHTML.toLowerCase();
-        				if(textoTabla.indexOf(textoBuscar)>-1){
-        					console.log(textoTabla);
-        					encontrado = true;
-        					total++;
-        				}
-        				if(encontrado){
-        					tablaReg.rows[r].style.display='';
-        				}else{
-        					tablaReg.rows[r].style.display='none';
-        				}
-        			}
-        			
-        			// mostramos las coincidencias
-                    const ultimoTR=tablaReg.rows[tablaReg.rows.length-1];
-                    const td=ultimoTR.querySelector("td");
-                    ultimoTR.classList.remove("hide", "red");
-                    if (total>=1) {
-                        td.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
-                    } else {
-                        ultimoTR.classList.add("red");
-                        td.innerHTML="No se han encontrado coincidencias";
-                    }
-        		});
-				
-    			 
-	        });
+	        function limpiarBusqueda(){
+				var opcionIdTemporada = document.getElementById("busquedaIdTemporada");
+		        var opcionIdLiga = document.getElementById("busquedaIdLiga");
+		        var texto= document.getElementById("idTexto");
+		        opcionIdTemporada.value=null;
+		        opcionIdLiga.value=null;
+		        texto.value=null;
+				document.forms[0].submit();
+			}
+        	function realizarBusqueda() {
+		        var opcionIdTemporada = document.getElementById("busquedaIdTemporada");
+		        var opcionIdLiga = document.getElementById("busquedaIdLiga");
+		
+		        if (!opcionIdTemporada.checked && !opcionIdLiga.checked) {
+		        	Sexy.error("Debe seleccionar una opci&oacute;n");
+		            return; // No se seleccionó ninguna opción, no se hace nada
+		        }else if(opcionIdTemporada.checked && !opcionIdLiga.checked){
+		        	opcionIdTemporada.value=true;
+		        }else if(!opcionIdTemporada.checked && opcionIdLiga.checked){
+		        	opcionIdLiga.value=false;
+		        }
+		        document.forms[0].submit();
+	        }
         </script>
 		<div class="titleDiv"><s:text name="application.title"/></div>
         <h1><s:text name="label.registrados.titulo"/></h1>
@@ -80,16 +48,19 @@
 		</s:if>
      
         <s:actionmessage />
-        
-        <input type="radio" id="busquedaIdTemporada" name="opcion" value="IdTemporada">
-    	<label for="busquedaIdTemporada">Busqueda por Id de la Temporada</label> 
-        <input type="radio" id="busquedaIdLiga" name="opcion" value="IdLiga">
-    	<label for="busquedaIdLiga">Busqueda por Id de la Liga</label>
-    	<br></br>
-    	<label id="etiqueta" for="idTexto"></label>
-    	<input type="text" id="idTexto" name="idTexto"/>
-    	<input type="button" id="buscar" value="Buscar" />
-        <br></br>
+        <s:form action="consultarTemporadas" method="post">
+        <table style="border:none">
+        	<tr>
+        	<td><input type="radio" id="busquedaIdTemporada" name="opcion" value="IdTemporada"> <label for="busquedaIdTemporada">B&uacute;squeda por Id de la Temporada</label> </td>
+        	<td><input type="radio" id="busquedaIdLiga" name="opcion" value="IdLiga"> <label for="busquedaIdLiga">B&uacute;squeda por Nombre de la Liga</label></td>
+    		</tr>
+    		<tr>
+        	<td><label id="etiqueta" for="idTexto"></label></td>
+        	<td><input type="text" id="idTexto" name="idTexto"/></td>
+        	<td><input type="button" id="buscar" value="Buscar" onclick="realizarBusqueda()" /> <input type="button" value="Limpiar" onclick="limpiarBusqueda()"></td>
+        	</tr>
+        </table>
+        </s:form>
         
         <display:table export="true" id="temporadas" name="temporadasRegistradas" pagesize="10" requestURI="" class="table table-hover table-striped">
         	<display:setProperty name="export.types" value="csv excel xml pdf" />

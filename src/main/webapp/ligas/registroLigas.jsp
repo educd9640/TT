@@ -19,7 +19,7 @@
         	<s:else>
         		<s:hidden name="operacion" value="%{'registrado'}"/>
         	</s:else>
-	
+			*Obligatorio
 			<s:textfield key="ligaF.nombre" />
 			<s:textfield key="ligaF.telefono" />
 			<s:textfield key="ligaF.calle" />

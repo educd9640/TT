@@ -40,6 +40,8 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	private String managerequipo;
 	private Long temporadaseleccionada;
 	private String consultar;
+	private String idTexto;
+	private boolean opcion;
 
 
 	private List<Temporada> temporadasRegistradas = new ArrayList<Temporada>();
@@ -55,7 +57,19 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		logger.info("Inicia metodo GestionarTemporadasAction.prepare()");
 		GestionarTemporadasBI temporadaBI = new GestionarTemporadasBI();
 		try {
-			this.temporadasRegistradas = temporadaBI.obtenerTemporadasRegistradas();
+			if(idTexto!=null && !idTexto.equals("")) {
+				if(opcion) {//idTemporada
+					Long aux = Long.parseLong(idTexto);
+					this.temporadasRegistradas.add(temporadaBI.buscarTemporadaPorId(aux));
+				}else {//idLiga
+					this.temporadasRegistradas = temporadaBI.buscarTemporadaPorNombreLiga(idTexto);
+				}
+			}else {
+				this.temporadasRegistradas = temporadaBI.obtenerTemporadasRegistradas();
+			}
+			
+			
+			
 		}catch(BussinessException e) {
 			addActionError(e.getMessage());
 		}
@@ -117,7 +131,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaI = null;
 		Date fechaF = null;
-		if(fechaInicial!= null && fechaInicial!="") {
+		if(fechaInicial!= null && !fechaInicial.equals("")) {
 			try {
 				java.util.Date utilDate = dateFormat.parse(fechaInicial);
 				fechaI = new java.sql.Date(utilDate.getTime());
@@ -127,7 +141,7 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 			}
 		}
 		
-		if(fechaFinal!= null && fechaFinal!="") {
+		if(fechaFinal!= null && !fechaFinal.equals("")) {
 			try {
 				java.util.Date utilDate = dateFormat.parse(fechaFinal);
 				fechaF = new java.sql.Date(utilDate.getTime());
@@ -440,6 +454,26 @@ public class GestionarTemporadasAction extends BaseAction implements Preparable 
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+
+	public String getIdTexto() {
+		return idTexto;
+	}
+
+
+	public void setIdTexto(String idTexto) {
+		this.idTexto = idTexto;
+	}
+
+
+	public boolean isOpcion() {
+		return opcion;
+	}
+
+
+	public void setOpcion(boolean opcion) {
+		this.opcion = opcion;
 	}
 	
 	
