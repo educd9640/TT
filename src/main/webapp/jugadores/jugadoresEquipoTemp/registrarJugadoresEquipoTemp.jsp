@@ -124,7 +124,7 @@
 	                            <s:param name="form.idEquipo" value="%{#attr.jugadorTemporada.idEquipo}"/>
 	                            <s:param name="form.idJugador" value="%{#attr.jugadorTemporada.idJugador}"/>
 	                        </s:url>
-	                        <a href="<s:property value="#url"/>">Estadisticas Temporada</a>
+	                        <a href="<s:property value="#url"/>">Estad&iacute;sticas Temporada</a>
 				</display:column>
 			</display:table>
 		</div>

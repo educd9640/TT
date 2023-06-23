@@ -76,7 +76,7 @@
         <s:form action="consultarEquipoLocalModal" method="post">
         <table style="border:none">
         	<tr>
-        	<td><b>B&amp;uacute;squeda por id del equipo</b> <input type="text" id="idEquipo" name="equipoForm.idEquipo"/></td>
+        	<td><b>B&uacute;squeda por id del equipo</b> <input type="text" id="idEquipo" name="equipoForm.idEquipo"/></td>
         	<td><b>B&uacute;squeda por nombre del equipo</b> <input type="text" id="nombre" name="equipoForm.nombre"/></td>
         	</tr>
         	<tr>
